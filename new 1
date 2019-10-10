@@ -1,0 +1,8 @@
+var d =doument.forms["myform1"]["dob"].value;
+var z ="1990-01-01";
+if(d < z)
+{
+	alert('please enter year above 1990');
+	document.getElementById('dob').focus();
+	return false;
+}
