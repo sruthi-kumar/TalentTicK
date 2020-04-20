@@ -16,7 +16,9 @@ $page_data['total_members'] = 1563 ;
 $page_data['total_resumes'] = 250 ; 
 $page_data['total_companies'] = 80 ; 
 
-$page_data['testimonials'] = [ 1, 2, 3, 4, 5 ] ; 
+$testimonials = [ 1, 2, 3, 4, 5 ];
+
+$page_data['testimonials'] = $testimonials  ; 
 
 
 $t->data= $page_data ; 
