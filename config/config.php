@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
-$site_name = 'Talentick' ;
+$site_name = 'TalenTick' ;
 $web_assets = base_url().'/assets/web' ;
 $company_assets = base_url().'/assets/company' ;
 $admin_assets = base_url().'/assets/admin' ;
