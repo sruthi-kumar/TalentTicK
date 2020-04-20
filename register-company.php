@@ -1,5 +1,6 @@
 <?php
 include_once ('autoload.php');
+
 $t = new TemplateEngine($_SERVER['DOCUMENT_ROOT'].'/templates/web/'); 
 $t->data = [] ; 
 
@@ -14,5 +15,5 @@ $t->data= $page_data ;
  
  
 $t->render('inc/header.phtml');  
-$t->render('login.phtml');  
+$t->render('register-company.phtml');  
 $t->render('inc/footer.phtml');  
