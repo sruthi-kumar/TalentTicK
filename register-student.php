@@ -14,5 +14,5 @@ $t->data= $page_data ;
  
  
 $t->render('inc/header.phtml');  
-$t->render('login.phtml');  
+$t->render('register-student.phtml');  
 $t->render('inc/footer.phtml');  
