@@ -9,11 +9,21 @@ $company_assets = base_url().'/assets/company' ;
 $admin_assets = base_url().'/assets/admin' ;
 
 function base_url(){
+
+
+	$localfolder = "" ;
     if(isset($_SERVER['HTTPS'])){
         $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
     }
     else{
         $protocol = 'http';
     }
-    return $protocol . "://" . $_SERVER['HTTP_HOST'];
+
+    if($_SERVER['HTTP_HOST'] == 'localhost') {
+    	$localfolder = explode('/', $_SERVER['PHP_SELF'] ) ; 
+
+    	$localfolder = '/'.$localfolder[1] ; 
+
+    }
+    return $protocol . "://" . $_SERVER['HTTP_HOST'].$localfolder;
 }

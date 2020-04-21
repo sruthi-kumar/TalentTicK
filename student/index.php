@@ -1,6 +1,6 @@
 <?php
 include_once ('../autoload.php');
-$t = new TemplateEngine('../templates/student/'); 
+$t = new TemplateEngine('student'); 
 $t->data = [] ; 
 
 

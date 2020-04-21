@@ -1,6 +1,6 @@
 <?php
-include_once ($_SERVER['DOCUMENT_ROOT'].'/autoload.php');
-$t = new TemplateEngine($_SERVER['DOCUMENT_ROOT'].'/templates/company/'); 
+include_once ('../autoload.php');
+$t = new TemplateEngine('company'); 
 $t->data = [] ; 
 
 

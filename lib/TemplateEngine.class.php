@@ -1,14 +1,14 @@
 <?php
 class TemplateEngine {
 
-	protected $template_dir = 'templates/';
+	protected $template_dir = __DIR__.'/../templates/';
 	protected $vars         = array();
 	protected $output = "show"; 
 
 	public function __construct($template_dir = null) {
 		if ($template_dir !== null) {
 			// you should check here if this dir really exists
-			$this->template_dir = $template_dir;
+			$this->template_dir .= $template_dir.'/';
 		}
 	}
 
