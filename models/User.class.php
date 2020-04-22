@@ -11,6 +11,28 @@ class User extends Dbh
 	private $updated_at;
 
 	private $table_name ="users";
+
+
+	function setUserData($type , $data){
+
+		switch ($type) {
+			case 'user_id':
+				$this->user_id = $data ; 
+				break;
+			case 'username':
+				$this->username = $data ; 
+				break;
+			case 'password':
+				$this->username = $data ; 
+				break;
+			case 'type':
+				$this->username = $data ; 
+				break;
+	 
+}
+
+		
+	}
 	 
 	function getUsers($limit = null){
 
@@ -27,13 +49,31 @@ class User extends Dbh
 
 	}
 
-	function getUserByEmail($username){
+	function getUserById($user_id =null){
+
+		$this->user_id =$user_id ?? $this->user_id ; 
+
+		$user_data = [] ; 
+
+		$sql="SELECT * FROM $this->table_name WHERE user_id=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->user_id] ; 
+		$stmt->execute($params);
+		$user_data = $stmt->fetch();
+
+		return $user_data ; 
+
+	}
+
+	function getUserByUsername($username = null ){
+
+		$this->username =$username ?? $this->username ; 
 
 		$user_data = [] ; 
 
 		$sql="SELECT * FROM $this->table_name WHERE username=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$username] ; 
+		$params = [$this->username] ; 
 		$stmt->execute($params);
 		$user_data = $stmt->fetch();
 
@@ -51,21 +91,20 @@ class User extends Dbh
 		$sql="INSERT INTO $this->table_name (username,password,type) values(?,?,?)";
 		$stmt = $this->connect()->prepare($sql); 
 		$stmt->execute($params);
-		$stmt->exec($params); 
+		return $stmt->exec($params); 
 
 	}
 
-	function updateUser(){
-
+	function updateUser($user_id =null){
+ 
 		$params=[];
 		$params[] = $this->username; 
 		$params[] = $this->password;
 		$params[] = $this->type;
-		$params[] = $this->user_id; 
+		$params[] = $user_id ?? $this->user_id ; 
 
 		$sql="UPDATE $this->table_name (username,password,type) values(?,?,?) WHERE user_id = ?";
-		$stmt = $this->connect()->prepare($sql); 
-		$params[] = $user_id ; 
+		$stmt = $this->connect()->prepare($sql);  
 		$stmt->execute($params);
 		$stmt->exec($params); 
 

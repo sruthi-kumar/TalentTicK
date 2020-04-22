@@ -1,4 +1,4 @@
 <?php
-include_once ('autoload.php');
+include_once ('../autoload.php');
 session_destroy();
-header('location:login.php'); 
+header('location:../login.php'); 

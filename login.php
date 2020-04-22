@@ -8,7 +8,10 @@ $page_data['login'] = $login_status;
 $page_data['login_type'] = $login_type;
 $page_data['assets'] = $web_assets;
 
-$page_data['page_title'] = "Home" ; 
+$page_data['page_title'] = "Login" ; 
+
+$page_data['login_status'] = $_GET['status'] ?? "" ; 
+$page_data['login_error'] = $_SESSION['errors']['auth']??null;
 
 $t->data= $page_data ; 
  

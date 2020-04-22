@@ -1,6 +1,6 @@
 <?php
 include_once ('../autoload.php');
-$t = new TemplateEngine('company'); 
+$t = new TemplateEngine('recruiter'); 
 $t->data = [] ; 
 
 
