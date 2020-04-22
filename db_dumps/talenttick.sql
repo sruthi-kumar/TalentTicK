@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2020 at 04:44 PM
+-- Generation Time: Apr 22, 2020 at 09:00 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -220,8 +220,8 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `profiles` (
-  `pid` int NOT NULL,
-  `regid` int NOT NULL,
+  `profile_id` int NOT NULL,
+  `student_id` int NOT NULL,
   `dob` date NOT NULL,
   `address` varchar(40) NOT NULL,
   `addressline2` varchar(50) NOT NULL,
@@ -241,7 +241,7 @@ CREATE TABLE `profiles` (
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`pid`, `regid`, `dob`, `address`, `addressline2`, `addressline3`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `city`, `Highest Qualification`, `pincode`) VALUES
+INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `city`, `Highest Qualification`, `pincode`) VALUES
 (8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 89, 65, 78, 87, 0, '', 'Kottayam', '', 985623),
 (9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 76, 85, 87, 98, 0, '', 'Kollam', '', 688034),
 (18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 80, 6.77778e20, 0, 655444, 0, '', 'Trivandrum', '', 654321),
@@ -277,31 +277,33 @@ CREATE TABLE `recent_status` (
 --
 
 CREATE TABLE `recruiters` (
-  `cid` int NOT NULL,
-  `loginid` int NOT NULL,
-  `cname` varchar(40) NOT NULL,
+  `recruiter_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `company_name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `email` varchar(40) NOT NULL,
-  `phno` bigint NOT NULL,
+  `website` text,
+  `phone` varchar(15) NOT NULL,
   `address` varchar(40) NOT NULL,
-  `license` varchar(11) NOT NULL,
+  `license` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `city` varchar(30) NOT NULL,
-  `pincode` int NOT NULL
+  `pincode` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recruiters`
 --
 
-INSERT INTO `recruiters` (`cid`, `loginid`, `cname`, `email`, `phno`, `address`, `license`, `city`, `pincode`) VALUES
-(1, 3, 'TCS', 'tcs@gmail.com', 9856231478, 'tcstcs', '0', 'Bihar', 985623),
-(3, 13, 'Ibm', 'ibm@gmail.com', 9856231478, 'ibmcity', '0', 'delhi', 985623),
-(5, 16, 'FEDERAL', 'federal@gmail.com', 9856231147, 'federal care ', '0', 'Kerala', 985623),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', 8956231478, 'ust global tvm', '0', 'Kerala', 895623),
-(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 89562314566, 'software solutions private limited', '0', 'Bihar', 859623),
-(8, 30, 'mu', 'ww@gmail.com', 856, 'adafsd', '0', 'Arunachal pradesh', 12232),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', 203, 'k', '44', 'Bihar', 85),
-(10, 44, 'ABC', 'abc@gmail.com', 8956231023, 'abcdhiiu', '789632', 'Kerala', 784523),
-(11, 46, 'ABCD', 'abcd@gmail.com', 9856230233, 'abcdoijug', '12365985', 'Bihar', 985623);
+INSERT INTO `recruiters` (`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`) VALUES
+(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623'),
+(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623'),
+(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623'),
+(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623'),
+(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', NULL, '89562314566', 'software solutions private limited', '0', 'Bihar', '859623'),
+(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232'),
+(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85'),
+(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523'),
+(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623'),
+(13, 72, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047');
 
 -- --------------------------------------------------------
 
@@ -310,44 +312,44 @@ INSERT INTO `recruiters` (`cid`, `loginid`, `cname`, `email`, `phno`, `address`,
 --
 
 CREATE TABLE `students` (
-  `regid` int NOT NULL,
-  `loginid` int NOT NULL,
+  `student_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `mobileno` bigint NOT NULL,
-  `gender` enum('Male','Female','Other') DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `mobile_number` varchar(15) NOT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`regid`, `loginid`, `firstname`, `lastname`, `mobileno`, `gender`, `status`) VALUES
-(5, 8, 'Haritha', 'N H', 9856231478, NULL, 1),
-(6, 9, 'athul', 'S N', 9947266566, NULL, 1),
-(7, 15, 'sruthi', 'kumar', 9633679875, NULL, 1),
-(8, 17, 'anitta', 's', 6677889900, NULL, 1),
-(9, 18, 'anu', 'a', 9876543212, NULL, 1),
-(10, 23, 'ammu', 's', 8956231452, NULL, 1),
-(11, 24, 'asif', 'ali', 8956231478, NULL, 1),
-(12, 25, 'arya', 'kumar', 9856231478, NULL, 1),
-(13, 26, 'arun', 'k s', 8956231478, NULL, 1),
-(14, 27, 'Achu', 'l', 8956231478, NULL, 1),
-(15, 28, 'aathira', 'ajith', 9895623145, NULL, 1),
-(16, 29, 'akil', 'achu', 9865231478, NULL, 1),
-(17, 31, 'athira', 'Ajith', 9856231478, NULL, 1),
-(18, 32, 'sharon ', 'kurian', 9856231455, NULL, 1),
-(19, 34, 'smriti', 'kumar', 8956231478, NULL, 1),
-(20, 35, 'anju', 'mathew', 9856231230, NULL, 1),
-(21, 36, 'teenu', 'v therese', 0, NULL, 1),
-(22, 37, 'Raj', 's', 8956231478, NULL, 1),
-(23, 38, 'amala', 'saji', 9856231230, NULL, 1),
-(24, 39, 'Rincy', 'mol', 8956231452, NULL, 1),
-(25, 40, 'sruthi', 'kumar', 9856231452, NULL, 1),
-(26, 42, 'lavanya', 's', 8596321230, NULL, 1),
-(27, 45, 'ganesh', 'prakash', 9856230236, NULL, 1),
-(28, 47, 'rahul', 's', 8956231023, NULL, 1);
+INSERT INTO `students` (`student_id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`) VALUES
+(5, 8, 'Haritha', 'N H', '9856231478', 'Female'),
+(6, 9, 'athul', 'S N', '9947266566', 'Female'),
+(7, 15, 'sruthi', 'kumar', '9633679875', 'Female'),
+(8, 17, 'anitta', 's', '6677889900', 'Female'),
+(9, 18, 'anu', 'a', '9876543212', 'Female'),
+(10, 23, 'ammu', 's', '8956231452', 'Female'),
+(11, 24, 'asif', 'ali', '8956231478', 'Female'),
+(12, 25, 'arya', 'kumar', '9856231478', 'Female'),
+(13, 26, 'arun', 'k s', '8956231478', 'Female'),
+(14, 27, 'Achu', 'l', '8956231478', 'Female'),
+(15, 28, 'aathira', 'ajith', '9895623145', 'Female'),
+(16, 29, 'akil', 'achu', '9865231478', 'Male'),
+(17, 31, 'athira', 'Ajith', '9856231478', 'Male'),
+(18, 32, 'sharon ', 'kurian', '9856231455', 'Female'),
+(19, 34, 'smriti', 'kumar', '8956231478', 'Female'),
+(20, 35, 'anju', 'mathew', '9856231230', 'Female'),
+(21, 36, 'teenu', 'v therese', '0', 'Female'),
+(22, 37, 'Raj', 's', '8956231478', 'Female'),
+(23, 38, 'amala', 'saji', '9856231230', 'Female'),
+(24, 39, 'Rincy', 'mol', '8956231452', 'Female'),
+(25, 40, 'sruthi', 'kumar', '9856231452', 'Female'),
+(26, 42, 'lavanya', 's', '8596321230', 'Female'),
+(27, 45, 'ganesh', 'prakash', '9856230236', 'Female'),
+(28, 47, 'rahul', 's', '8956231023', 'Female'),
+(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female');
 
 -- --------------------------------------------------------
 
@@ -379,6 +381,7 @@ CREATE TABLE `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `type` enum('admin','recruiter','student','guest') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'guest',
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -387,42 +390,44 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `created_at`) VALUES
-(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', '2020-04-22 07:59:44'),
-(3, 'tcs@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(6, 'wipro@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(8, 'haritha@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(9, 'athul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(13, 'ibm@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(15, 'sruthi@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(16, 'federal@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(17, 'anitta@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(18, 'a@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(20, 'ust@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(22, 'soft@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(23, 'ammu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(24, 'asif@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(25, 'arya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(26, 'arun@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(27, 'achu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(28, 'athira@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(29, 'akil@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(30, 'percyjack288@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(31, 'athira@gail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(32, 'sharon@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(34, 'smriti@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(35, 'Anju@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(36, 'teenuvtherese@amaljyothi.ac.in', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(37, 'raj@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(38, 'amala@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(39, 'rincymol.reji@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(40, 'shrutiskumar9633@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(42, 'lavanya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(43, 's@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(44, 'abc@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(45, 'ganesh@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
-(46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
-(47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44');
+INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `status`, `created_at`) VALUES
+(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44'),
+(3, 'tcs@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(6, 'wipro@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(8, 'haritha@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(9, 'athul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(13, 'ibm@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(15, 'sruthi@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(16, 'federal@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(17, 'anitta@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(18, 'a@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(20, 'ust@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(22, 'soft@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(23, 'ammu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(24, 'asif@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(25, 'arya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(26, 'arun@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(27, 'achu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(28, 'athira@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(29, 'akil@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(30, 'percyjack288@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(31, 'athira@gail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(32, 'sharon@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(34, 'smriti@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(35, 'Anju@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(36, 'teenuvtherese@amaljyothi.ac.in', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(37, 'raj@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(38, 'amala@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(39, 'rincymol.reji@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(40, 'shrutiskumar9633@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(42, 'lavanya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(43, 's@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(44, 'abc@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(45, 'ganesh@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(62, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-04-22 13:59:45'),
+(72, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 15:29:05');
 
 --
 -- Indexes for dumped tables
@@ -478,8 +483,8 @@ ALTER TABLE `messages`
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `regid` (`regid`);
+  ADD PRIMARY KEY (`profile_id`),
+  ADD KEY `regid` (`student_id`);
 
 --
 -- Indexes for table `recent_status`
@@ -491,15 +496,15 @@ ALTER TABLE `recent_status`
 -- Indexes for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  ADD PRIMARY KEY (`cid`),
-  ADD KEY `loginid` (`loginid`);
+  ADD PRIMARY KEY (`recruiter_id`),
+  ADD KEY `loginid` (`user_id`);
 
 --
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`regid`),
-  ADD KEY `login-id` (`loginid`);
+  ADD PRIMARY KEY (`student_id`),
+  ADD KEY `login-id` (`user_id`);
 
 --
 -- Indexes for table `stud_recent_job`
@@ -567,7 +572,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `profile_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `recent_status`
@@ -579,13 +584,13 @@ ALTER TABLE `recent_status`
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `recruiter_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `regid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `stud_recent_job`
@@ -597,7 +602,7 @@ ALTER TABLE `stud_recent_job`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Constraints for dumped tables
@@ -620,31 +625,31 @@ ALTER TABLE `job_applications`
 -- Constraints for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`cid`);
+  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`);
 
 --
 -- Constraints for table `profiles`
 --
 ALTER TABLE `profiles`
-  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`regid`) REFERENCES `students` (`regid`);
+  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
 
 --
 -- Constraints for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  ADD CONSTRAINT `recruiters_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `recruiters_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `stud_recent_job`
 --
 ALTER TABLE `stud_recent_job`
-  ADD CONSTRAINT `stud_recent_job_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`cid`),
+  ADD CONSTRAINT `stud_recent_job_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`),
   ADD CONSTRAINT `stud_recent_job_ibfk_2` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
 COMMIT;
 
