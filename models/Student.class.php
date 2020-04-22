@@ -7,7 +7,7 @@ class Student extends Dbh {
 	private $firstname;
 	private $lastname;
 	private $mobile_number;
-	private $gender;
+	private $gender = "Other";
 
 	private $table_name = "students";
 
@@ -85,14 +85,12 @@ class Student extends Dbh {
 
 	function createStudent() {
 
-		$params = [];
-		$params[] = $this->user_id;
-		$params[] = $this->firstname;
-		$params[] = $this->lastname;
-		$params[] = $this->mobile_number;
-		$params[] = $this->gender;
+		
+		$model_data = set_model_data($this->toArray());
 
-		$sql = "INSERT INTO $this->table_name ( user_id , firstname, lastname, mobile_number, gender) values(?,?,?,?,?)";
+		$params = $model_data['values'];
+
+		$sql = "INSERT INTO $this->table_name ( $model_data['fields'] ) values( $model_data['placeholder']) ";
 		$stmt = $this->connect()->prepare($sql);
 
 		if ($stmt->execute($params)) {
@@ -107,18 +105,27 @@ class Student extends Dbh {
 
 	function updateStudent($student_id = null) {
 
-		$params = [];
-		$params[] = $this->user_id;
-		$params[] = $this->firstname;
-		$params[] = $this->lastname;
-		$params[] = $this->mobile_number;
-		$params[] = $this->gender;
+		
+
+		$model_data = set_model_data($this->toArray());
+
+		$params = $model_data['values'];
 		$params[] = $student_id ?? $this->student_id;
 
-		$sql = "UPDATE $this->table_name ( user_id , firstname, lastname, mobile_number, gender) values(?,?,?,?,?) WHERE student_id = ?";
+		$sql = "UPDATE $this->table_name ( $model_data['fields'] ) values( $model_data['placeholder']) WHERE student_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
+	}
+
+	function toArray() {
+		$params = [];
+		$params['user_id'] = $this->user_id ?? '';
+		$params['firstname'] = $this->firstname ?? '';
+		$params['lastname'] = $this->lastname ?? '';
+		$params['mobile_number'] = $this->mobile_number ?? '';
+		$params['gender'] = $this->gender ?? '';
+		return $params;
 	}
 
 }

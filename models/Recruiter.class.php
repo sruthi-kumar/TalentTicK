@@ -101,20 +101,11 @@ class Recruiter extends Dbh {
 
 	function createRecruiter() {
 
-/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
+		$model_data = set_model_data($this->toArray());
 
-		$params = [];
-		$params[] = $this->user_id;
-		$params[] = $this->company_name;
-		$params[] = $this->email;
-		$params[] = $this->website;
-		$params[] = $this->phone;
-		$params[] = $this->address;
-		$params[] = $this->license;
-		$params[] = $this->city;
-		$params[] = $this->pincode;
+		$params = $model_data['values'];
 
-		$sql = "INSERT INTO $this->table_name ( user_id,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode ) values(?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO $this->table_name ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") ";
 		$stmt = $this->connect()->prepare($sql);
 
 		if ($stmt->execute($params)) {
@@ -129,21 +120,32 @@ class Recruiter extends Dbh {
 
 	function updateRecruiter($recruiter_id = null) {
 
-		$params = [];
-		$params[] = $this->user_id;
-		$params[] = $this->company_name;
-		$params[] = $this->email;
-		$params[] = $this->website;
-		$params[] = $this->phone;
-		$params[] = $this->address;
-		$params[] = $this->license;
-		$params[] = $this->city;
+		$model_data = set_model_data($this->toArray());
+
+		$params = $model_data['values'];
+
 		$params[] = $recruiter_id ?? $this->recruiter_id;
 
-		$sql = "UPDATE $this->table_name ( user_id,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode ) values(?,?,?,?,?,?,?,?,?) WHERE recruiter_id = ?";
+		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE recruiter_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
+	}
+
+	function toArray() {
+
+/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
+		$params = [];
+		$params['user_id'] = $this->user_id ?? '';
+		$params['company_name'] = $this->company_name ?? '';
+		$params['email'] = $this->email ?? '';
+		$params['website'] = $this->website ?? '';
+		$params['phone'] = $this->phone ?? '';
+		$params['address'] = $this->address ?? '';
+		$params['license'] = $this->license ?? '';
+		$params['city'] = $this->city ?? '';
+		$params['pincode'] = $this->pincode ?? '';
+		return $params;
 	}
 
 }
