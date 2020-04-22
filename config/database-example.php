@@ -8,4 +8,5 @@ function getDbConfig(){
 	$conf['db_name'] = "talenttick";
 
 	return $conf ; 
+}
 ?>
