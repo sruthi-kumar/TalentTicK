@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2020 at 04:19 PM
+-- Generation Time: Apr 22, 2020 at 04:44 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -25,20 +25,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `branch`
+-- Table structure for table `branches`
 --
 
-CREATE TABLE `branch` (
+CREATE TABLE `branches` (
   `bid` int NOT NULL,
   `branch` varchar(30) NOT NULL,
   `dpid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `branch`
+-- Dumping data for table `branches`
 --
 
-INSERT INTO `branch` (`bid`, `branch`, `dpid`) VALUES
+INSERT INTO `branches` (`bid`, `branch`, `dpid`) VALUES
 (1, 'Civil Engineering', 1),
 (2, 'Software Engineering', 1),
 (3, 'Mechanical Engineering', 1),
@@ -57,86 +57,19 @@ INSERT INTO `branch` (`bid`, `branch`, `dpid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company`
+-- Table structure for table `departments`
 --
 
-CREATE TABLE `company` (
-  `comid` int NOT NULL,
-  `company` varchar(15) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`comid`, `company`, `status`) VALUES
-(5, 'FEDERAL', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `compnygetdetails`
---
-
-CREATE TABLE `compnygetdetails` (
-  `studid` int NOT NULL,
-  `regid` int NOT NULL,
-  `attended` int NOT NULL,
-  `passed` int NOT NULL,
-  `failed` int NOT NULL,
-  `college _namw` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cregister`
---
-
-CREATE TABLE `cregister` (
-  `cid` int NOT NULL,
-  `loginid` int NOT NULL,
-  `cname` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `phno` bigint NOT NULL,
-  `address` varchar(40) NOT NULL,
-  `license` varchar(11) NOT NULL,
-  `city` varchar(30) NOT NULL,
-  `pincode` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cregister`
---
-
-INSERT INTO `cregister` (`cid`, `loginid`, `cname`, `email`, `phno`, `address`, `license`, `city`, `pincode`) VALUES
-(1, 3, 'TCS', 'tcs@gmail.com', 9856231478, 'tcstcs', '0', 'Bihar', 985623),
-(3, 13, 'Ibm', 'ibm@gmail.com', 9856231478, 'ibmcity', '0', 'delhi', 985623),
-(5, 16, 'FEDERAL', 'federal@gmail.com', 9856231147, 'federal care ', '0', 'Kerala', 985623),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', 8956231478, 'ust global tvm', '0', 'Kerala', 895623),
-(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 89562314566, 'software solutions private limited', '0', 'Bihar', 859623),
-(8, 30, 'mu', 'ww@gmail.com', 856, 'adafsd', '0', 'Arunachal pradesh', 12232),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', 203, 'k', '44', 'Bihar', 85),
-(10, 44, 'ABC', 'abc@gmail.com', 8956231023, 'abcdhiiu', '789632', 'Kerala', 784523),
-(11, 46, 'ABCD', 'abcd@gmail.com', 9856230233, 'abcdoijug', '12365985', 'Bihar', 985623);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `department`
---
-
-CREATE TABLE `department` (
+CREATE TABLE `departments` (
   `dpid` int NOT NULL,
   `department` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `departments`
 --
 
-INSERT INTO `department` (`dpid`, `department`) VALUES
+INSERT INTO `departments` (`dpid`, `department`) VALUES
 (1, 'M.Tech'),
 (2, 'MCA'),
 (3, 'B.Tech');
@@ -144,43 +77,10 @@ INSERT INTO `department` (`dpid`, `department`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobpost`
+-- Table structure for table `job_applications`
 --
 
-CREATE TABLE `jobpost` (
-  `pid` int NOT NULL,
-  `cid` int NOT NULL,
-  `cname` varchar(30) NOT NULL,
-  `job title` varchar(30) NOT NULL,
-  `job type` varchar(20) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `last date to apply` date NOT NULL,
-  `backlog` int NOT NULL,
-  `CGPA` double NOT NULL,
-  `jobss` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `jobpost`
---
-
-INSERT INTO `jobpost` (`pid`, `cid`, `cname`, `job title`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `jobss`) VALUES
-(35, 6, 'UST', 'CODING', 'PART-TIME', 'PATHANAMTHITTA', '2020-02-12', 2, 98, 1),
-(43, 7, 'SOFTWARE', 'EXECUTE MANAGER', 'PART-TIME', 'MALAPURAM', '2020-02-26', 1, 50, 1),
-(44, 1, 'TCS', 'FRONT-END MANAGER', 'PART-TIME', 'KOTTAYAM', '2020-02-26', 0, 75, 0),
-(45, 5, 'FEDERAL', 'ADMINISTATOR', 'PERMANENT', 'TRIVANDRUM', '2020-02-26', 3, 85, 0),
-(46, 3, 'Ibm', 'TESTING', 'PERMANENT', 'PALAKKAD', '2020-02-27', 1, 65, 0),
-(50, 3, 'Ibm', 'FRONT-END MANAGER', 'PERMANENT', 'WAYYANADU', '2020-02-27', 2, 63, 0),
-(51, 1, 'TCS', 'EXECUTE MANAGER', 'PART-TIME', 'KOZHIKOD', '2020-03-27', 0, 90, 0),
-(52, 1, 'TCS', 'ADMINISTATOR', 'FULL-TIME', 'KASARGOD', '2020-03-01', 1, 20, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `job_apply`
---
-
-CREATE TABLE `job_apply` (
+CREATE TABLE `job_applications` (
   `jid` int NOT NULL,
   `logid` int NOT NULL,
   `pid` int NOT NULL,
@@ -188,10 +88,10 @@ CREATE TABLE `job_apply` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `job_apply`
+-- Dumping data for table `job_applications`
 --
 
-INSERT INTO `job_apply` (`jid`, `logid`, `pid`, `jobss`) VALUES
+INSERT INTO `job_applications` (`jid`, `logid`, `pid`, `jobss`) VALUES
 (13, 23, 35, 1),
 (15, 24, 35, 1),
 (16, 24, 43, 1),
@@ -216,44 +116,53 @@ INSERT INTO `job_apply` (`jid`, `logid`, `pid`, `jobss`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_title`
+-- Table structure for table `job_posts`
 --
 
-CREATE TABLE `job_title` (
-  `jobid` int NOT NULL,
-  `job_title` varchar(30) NOT NULL,
-  `status` int NOT NULL DEFAULT '1'
+CREATE TABLE `job_posts` (
+  `pid` int NOT NULL,
+  `cid` int NOT NULL,
+  `cname` varchar(30) NOT NULL,
+  `job title` varchar(30) NOT NULL,
+  `job type` varchar(20) NOT NULL,
+  `location` varchar(30) NOT NULL,
+  `last date to apply` date NOT NULL,
+  `backlog` int NOT NULL,
+  `CGPA` double NOT NULL,
+  `jobss` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `job_title`
+-- Dumping data for table `job_posts`
 --
 
-INSERT INTO `job_title` (`jobid`, `job_title`, `status`) VALUES
-(1, 'TESTING', 1),
-(2, 'CODING', 1),
-(3, 'FRONT-END MANAGER', 1),
-(4, 'ADMINISTATOR', 1),
-(5, 'EXECUTE MANAGER', 1),
-(6, 'WEB DEVELOPER', 1);
+INSERT INTO `job_posts` (`pid`, `cid`, `cname`, `job title`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `jobss`) VALUES
+(35, 6, 'UST', 'CODING', 'PART-TIME', 'PATHANAMTHITTA', '2020-02-12', 2, 98, 1),
+(43, 7, 'SOFTWARE', 'EXECUTE MANAGER', 'PART-TIME', 'MALAPURAM', '2020-02-26', 1, 50, 1),
+(44, 1, 'TCS', 'FRONT-END MANAGER', 'PART-TIME', 'KOTTAYAM', '2020-02-26', 0, 75, 0),
+(45, 5, 'FEDERAL', 'ADMINISTATOR', 'PERMANENT', 'TRIVANDRUM', '2020-02-26', 3, 85, 0),
+(46, 3, 'Ibm', 'TESTING', 'PERMANENT', 'PALAKKAD', '2020-02-27', 1, 65, 0),
+(50, 3, 'Ibm', 'FRONT-END MANAGER', 'PERMANENT', 'WAYYANADU', '2020-02-27', 2, 63, 0),
+(51, 1, 'TCS', 'EXECUTE MANAGER', 'PART-TIME', 'KOZHIKOD', '2020-03-27', 0, 90, 0),
+(52, 1, 'TCS', 'ADMINISTATOR', 'FULL-TIME', 'KASARGOD', '2020-03-01', 1, 20, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_type`
+-- Table structure for table `job_types`
 --
 
-CREATE TABLE `job_type` (
+CREATE TABLE `job_types` (
   `typeid` int NOT NULL,
   `job_type` varchar(30) NOT NULL,
   `status` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `job_type`
+-- Dumping data for table `job_types`
 --
 
-INSERT INTO `job_type` (`typeid`, `job_type`, `status`) VALUES
+INSERT INTO `job_types` (`typeid`, `job_type`, `status`) VALUES
 (1, 'FULL-TIME', 1),
 (2, 'PART-TIME', 1),
 (5, 'PERMANENT', 1);
@@ -261,20 +170,20 @@ INSERT INTO `job_type` (`typeid`, `job_type`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `location`
+-- Table structure for table `locations`
 --
 
-CREATE TABLE `location` (
+CREATE TABLE `locations` (
   `locationid` int NOT NULL,
   `location` varchar(35) NOT NULL,
   `status` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `location`
+-- Dumping data for table `locations`
 --
 
-INSERT INTO `location` (`locationid`, `location`, `status`) VALUES
+INSERT INTO `locations` (`locationid`, `location`, `status`) VALUES
 (1, 'ALAPPUZHA', 1),
 (2, 'ERANAKULAM', 1),
 (3, 'IDUKKI', 1),
@@ -307,10 +216,10 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Table structure for table `profiles`
 --
 
-CREATE TABLE `profile` (
+CREATE TABLE `profiles` (
   `pid` int NOT NULL,
   `regid` int NOT NULL,
   `dob` date NOT NULL,
@@ -329,10 +238,10 @@ CREATE TABLE `profile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `profile`
+-- Dumping data for table `profiles`
 --
 
-INSERT INTO `profile` (`pid`, `regid`, `dob`, `address`, `addressline2`, `addressline3`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `city`, `Highest Qualification`, `pincode`) VALUES
+INSERT INTO `profiles` (`pid`, `regid`, `dob`, `address`, `addressline2`, `addressline3`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `city`, `Highest Qualification`, `pincode`) VALUES
 (8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 89, 65, 78, 87, 0, '', 'Kottayam', '', 985623),
 (9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 76, 85, 87, 98, 0, '', 'Kollam', '', 688034),
 (18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 80, 6.77778e20, 0, 655444, 0, '', 'Trivandrum', '', 654321),
@@ -364,48 +273,81 @@ CREATE TABLE `recent_status` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `register`
+-- Table structure for table `recruiters`
 --
 
-CREATE TABLE `register` (
+CREATE TABLE `recruiters` (
+  `cid` int NOT NULL,
+  `loginid` int NOT NULL,
+  `cname` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `phno` bigint NOT NULL,
+  `address` varchar(40) NOT NULL,
+  `license` varchar(11) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `pincode` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `recruiters`
+--
+
+INSERT INTO `recruiters` (`cid`, `loginid`, `cname`, `email`, `phno`, `address`, `license`, `city`, `pincode`) VALUES
+(1, 3, 'TCS', 'tcs@gmail.com', 9856231478, 'tcstcs', '0', 'Bihar', 985623),
+(3, 13, 'Ibm', 'ibm@gmail.com', 9856231478, 'ibmcity', '0', 'delhi', 985623),
+(5, 16, 'FEDERAL', 'federal@gmail.com', 9856231147, 'federal care ', '0', 'Kerala', 985623),
+(6, 20, 'UST GLOBAL', 'ust@gmail.com', 8956231478, 'ust global tvm', '0', 'Kerala', 895623),
+(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 89562314566, 'software solutions private limited', '0', 'Bihar', 859623),
+(8, 30, 'mu', 'ww@gmail.com', 856, 'adafsd', '0', 'Arunachal pradesh', 12232),
+(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', 203, 'k', '44', 'Bihar', 85),
+(10, 44, 'ABC', 'abc@gmail.com', 8956231023, 'abcdhiiu', '789632', 'Kerala', 784523),
+(11, 46, 'ABCD', 'abcd@gmail.com', 9856230233, 'abcdoijug', '12365985', 'Bihar', 985623);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
   `regid` int NOT NULL,
   `loginid` int NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `mobileno` bigint NOT NULL,
-  `gender` varchar(10) NOT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `register`
+-- Dumping data for table `students`
 --
 
-INSERT INTO `register` (`regid`, `loginid`, `firstname`, `lastname`, `mobileno`, `gender`, `status`) VALUES
-(5, 8, 'Haritha', 'N H', 9856231478, 'Female', 1),
-(6, 9, 'athul', 'S N', 9947266566, 'Male', 1),
-(7, 15, 'sruthi', 'kumar', 9633679875, 'Female', 1),
-(8, 17, 'anitta', 's', 6677889900, 'Male', 1),
-(9, 18, 'anu', 'a', 9876543212, 'Male', 1),
-(10, 23, 'ammu', 's', 8956231452, 'Female', 1),
-(11, 24, 'asif', 'ali', 8956231478, 'Male', 1),
-(12, 25, 'arya', 'kumar', 9856231478, 'Female', 1),
-(13, 26, 'arun', 'k s', 8956231478, 'Male', 1),
-(14, 27, 'Achu', 'l', 8956231478, 'Male', 1),
-(15, 28, 'aathira', 'ajith', 9895623145, 'Female', 1),
-(16, 29, 'akil', 'achu', 9865231478, 'Male', 1),
-(17, 31, 'athira', 'Ajith', 9856231478, 'Female', 1),
-(18, 32, 'sharon ', 'kurian', 9856231455, 'Female', 1),
-(19, 34, 'smriti', 'kumar', 8956231478, 'Female', 1),
-(20, 35, 'anju', 'mathew', 9856231230, 'Female', 1),
-(21, 36, 'teenu', 'v therese', 0, 'Female', 1),
-(22, 37, 'Raj', 's', 8956231478, 'Male', 1),
-(23, 38, 'amala', 'saji', 9856231230, 'Female', 1),
-(24, 39, 'Rincy', 'mol', 8956231452, 'Female', 1),
-(25, 40, 'sruthi', 'kumar', 9856231452, 'Gender', 1),
-(26, 42, 'lavanya', 's', 8596321230, 'Female', 1),
-(27, 45, 'ganesh', 'prakash', 9856230236, 'Male', 1),
-(28, 47, 'rahul', 's', 8956231023, 'Male', 1);
+INSERT INTO `students` (`regid`, `loginid`, `firstname`, `lastname`, `mobileno`, `gender`, `status`) VALUES
+(5, 8, 'Haritha', 'N H', 9856231478, NULL, 1),
+(6, 9, 'athul', 'S N', 9947266566, NULL, 1),
+(7, 15, 'sruthi', 'kumar', 9633679875, NULL, 1),
+(8, 17, 'anitta', 's', 6677889900, NULL, 1),
+(9, 18, 'anu', 'a', 9876543212, NULL, 1),
+(10, 23, 'ammu', 's', 8956231452, NULL, 1),
+(11, 24, 'asif', 'ali', 8956231478, NULL, 1),
+(12, 25, 'arya', 'kumar', 9856231478, NULL, 1),
+(13, 26, 'arun', 'k s', 8956231478, NULL, 1),
+(14, 27, 'Achu', 'l', 8956231478, NULL, 1),
+(15, 28, 'aathira', 'ajith', 9895623145, NULL, 1),
+(16, 29, 'akil', 'achu', 9865231478, NULL, 1),
+(17, 31, 'athira', 'Ajith', 9856231478, NULL, 1),
+(18, 32, 'sharon ', 'kurian', 9856231455, NULL, 1),
+(19, 34, 'smriti', 'kumar', 8956231478, NULL, 1),
+(20, 35, 'anju', 'mathew', 9856231230, NULL, 1),
+(21, 36, 'teenu', 'v therese', 0, NULL, 1),
+(22, 37, 'Raj', 's', 8956231478, NULL, 1),
+(23, 38, 'amala', 'saji', 9856231230, NULL, 1),
+(24, 39, 'Rincy', 'mol', 8956231452, NULL, 1),
+(25, 40, 'sruthi', 'kumar', 9856231452, NULL, 1),
+(26, 42, 'lavanya', 's', 8596321230, NULL, 1),
+(27, 45, 'ganesh', 'prakash', 9856230236, NULL, 1),
+(28, 47, 'rahul', 's', 8956231023, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -487,68 +429,43 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `created_at`) VA
 --
 
 --
--- Indexes for table `branch`
+-- Indexes for table `branches`
 --
-ALTER TABLE `branch`
+ALTER TABLE `branches`
   ADD PRIMARY KEY (`bid`),
   ADD KEY `dpid` (`dpid`);
 
 --
--- Indexes for table `company`
+-- Indexes for table `departments`
 --
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`comid`);
-
---
--- Indexes for table `compnygetdetails`
---
-ALTER TABLE `compnygetdetails`
-  ADD PRIMARY KEY (`studid`);
-
---
--- Indexes for table `cregister`
---
-ALTER TABLE `cregister`
-  ADD PRIMARY KEY (`cid`),
-  ADD KEY `loginid` (`loginid`);
-
---
--- Indexes for table `department`
---
-ALTER TABLE `department`
+ALTER TABLE `departments`
   ADD PRIMARY KEY (`dpid`);
 
 --
--- Indexes for table `jobpost`
+-- Indexes for table `job_applications`
 --
-ALTER TABLE `jobpost`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `cid` (`cid`);
-
---
--- Indexes for table `job_apply`
---
-ALTER TABLE `job_apply`
+ALTER TABLE `job_applications`
   ADD PRIMARY KEY (`jid`),
   ADD KEY `logid` (`logid`),
   ADD KEY `pid` (`pid`);
 
 --
--- Indexes for table `job_title`
+-- Indexes for table `job_posts`
 --
-ALTER TABLE `job_title`
-  ADD PRIMARY KEY (`jobid`);
+ALTER TABLE `job_posts`
+  ADD PRIMARY KEY (`pid`),
+  ADD KEY `cid` (`cid`);
 
 --
--- Indexes for table `job_type`
+-- Indexes for table `job_types`
 --
-ALTER TABLE `job_type`
+ALTER TABLE `job_types`
   ADD PRIMARY KEY (`typeid`);
 
 --
--- Indexes for table `location`
+-- Indexes for table `locations`
 --
-ALTER TABLE `location`
+ALTER TABLE `locations`
   ADD PRIMARY KEY (`locationid`);
 
 --
@@ -558,9 +475,9 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `profile`
+-- Indexes for table `profiles`
 --
-ALTER TABLE `profile`
+ALTER TABLE `profiles`
   ADD PRIMARY KEY (`pid`),
   ADD KEY `regid` (`regid`);
 
@@ -571,9 +488,16 @@ ALTER TABLE `recent_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `register`
+-- Indexes for table `recruiters`
 --
-ALTER TABLE `register`
+ALTER TABLE `recruiters`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `loginid` (`loginid`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
   ADD PRIMARY KEY (`regid`),
   ADD KEY `login-id` (`loginid`);
 
@@ -598,63 +522,39 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `branch`
+-- AUTO_INCREMENT for table `branches`
 --
-ALTER TABLE `branch`
+ALTER TABLE `branches`
   MODIFY `bid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `company`
+-- AUTO_INCREMENT for table `departments`
 --
-ALTER TABLE `company`
-  MODIFY `comid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `compnygetdetails`
---
-ALTER TABLE `compnygetdetails`
-  MODIFY `studid` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cregister`
---
-ALTER TABLE `cregister`
-  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `department`
---
-ALTER TABLE `department`
+ALTER TABLE `departments`
   MODIFY `dpid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `jobpost`
+-- AUTO_INCREMENT for table `job_applications`
 --
-ALTER TABLE `jobpost`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
---
--- AUTO_INCREMENT for table `job_apply`
---
-ALTER TABLE `job_apply`
+ALTER TABLE `job_applications`
   MODIFY `jid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT for table `job_title`
+-- AUTO_INCREMENT for table `job_posts`
 --
-ALTER TABLE `job_title`
-  MODIFY `jobid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `job_posts`
+  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT for table `job_type`
+-- AUTO_INCREMENT for table `job_types`
 --
-ALTER TABLE `job_type`
+ALTER TABLE `job_types`
   MODIFY `typeid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `location`
+-- AUTO_INCREMENT for table `locations`
 --
-ALTER TABLE `location`
+ALTER TABLE `locations`
   MODIFY `locationid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
@@ -664,9 +564,9 @@ ALTER TABLE `messages`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `profile`
+-- AUTO_INCREMENT for table `profiles`
 --
-ALTER TABLE `profile`
+ALTER TABLE `profiles`
   MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
@@ -676,9 +576,15 @@ ALTER TABLE `recent_status`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `register`
+-- AUTO_INCREMENT for table `recruiters`
 --
-ALTER TABLE `register`
+ALTER TABLE `recruiters`
+  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
   MODIFY `regid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
@@ -698,47 +604,47 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `branch`
+-- Constraints for table `branches`
 --
-ALTER TABLE `branch`
-  ADD CONSTRAINT `branch_ibfk_1` FOREIGN KEY (`dpid`) REFERENCES `department` (`dpid`);
+ALTER TABLE `branches`
+  ADD CONSTRAINT `branches_ibfk_1` FOREIGN KEY (`dpid`) REFERENCES `departments` (`dpid`);
 
 --
--- Constraints for table `cregister`
+-- Constraints for table `job_applications`
 --
-ALTER TABLE `cregister`
-  ADD CONSTRAINT `cregister_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `jobpost`
---
-ALTER TABLE `jobpost`
-  ADD CONSTRAINT `jobpost_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `cregister` (`cid`);
-
---
--- Constraints for table `job_apply`
---
-ALTER TABLE `job_apply`
+ALTER TABLE `job_applications`
   ADD CONSTRAINT `logid` FOREIGN KEY (`logid`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `jobpost` (`pid`);
+  ADD CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `job_posts` (`pid`);
 
 --
--- Constraints for table `profile`
+-- Constraints for table `job_posts`
 --
-ALTER TABLE `profile`
-  ADD CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`regid`) REFERENCES `register` (`regid`);
+ALTER TABLE `job_posts`
+  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`cid`);
 
 --
--- Constraints for table `register`
+-- Constraints for table `profiles`
 --
-ALTER TABLE `register`
-  ADD CONSTRAINT `register_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
+ALTER TABLE `profiles`
+  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`regid`) REFERENCES `students` (`regid`);
+
+--
+-- Constraints for table `recruiters`
+--
+ALTER TABLE `recruiters`
+  ADD CONSTRAINT `recruiters_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `students`
+--
+ALTER TABLE `students`
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `stud_recent_job`
 --
 ALTER TABLE `stud_recent_job`
-  ADD CONSTRAINT `stud_recent_job_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `cregister` (`cid`),
+  ADD CONSTRAINT `stud_recent_job_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`cid`),
   ADD CONSTRAINT `stud_recent_job_ibfk_2` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
 COMMIT;
 
