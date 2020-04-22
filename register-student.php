@@ -4,8 +4,8 @@ $t = new TemplateEngine('web');
 $t->data = [] ; 
 
 
-$page_data['login'] = $login_status;
-$page_data['login_type'] = $login_type;
+$page_data['login'] = $_SESSION['user_data']['type']??false;
+$page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
 $page_data['assets'] = $web_assets;
 
 $page_data['page_title'] = "Home" ; 
