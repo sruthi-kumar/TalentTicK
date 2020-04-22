@@ -3,6 +3,8 @@ include_once ('../autoload.php');
 
 $user = new User();
 
+print_r($_POST) ; exit ;
+
 
 $user->username = $_POST['email'];
 $user->password = md5($_POST['password']);  

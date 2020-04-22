@@ -17,20 +17,20 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="student-registration.php" method="post" class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/student-registration.php" method="post" class="p-5 bg-white">
               
               
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="username">FirstName</label>
-                  <input type="email" id="username"  name="username" class="form-control" placeholder="Your Registerd Email Id" required="required">
+                  <label class="font-weight-bold" for="firstname">FirstName</label>
+                  <input type="text" id="firstname"  name="firstname" class="form-control" placeholder="Your FirstName " required="required">
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="username">LastName</label>
-                  <input type="email" id="username"  name="username" class="form-control" placeholder="Your Registerd Email Id" required="required">
+                  <label class="font-weight-bold" for="lastname">LastName</label>
+                  <input type="text" id="lastname"  name="lastname" class="form-control" placeholder="Your LastName" required="required">
                 </div>
               </div>
 
@@ -47,14 +47,14 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="email">Email ID</label>
-                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Registerd Email Id" required="required">
+                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Email Id" required="required">
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="email">Phone Number</label>
-                  <input type="email" id="text"  name="email" class="form-control" placeholder="Your Registerd Email Id" required="required">
+                  <label class="font-weight-bold" for="phone">Phone Number</label>
+                  <input type="text" id="phone"  name="phone" class="form-control" placeholder="Your Phone Number" required="required">
                 </div>
               </div>
 
@@ -68,7 +68,7 @@
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="confirmpassword">Confirm Password</label>
-                  <input type="confirmpassword" id="confirmpassword" name="confirmpassword" class="form-control" required="required">
+                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required="required">
                 </div>
               </div>
 
