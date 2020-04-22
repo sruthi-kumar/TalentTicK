@@ -19,7 +19,7 @@ $page_data['total_companies'] = 80 ;
 $page_data['testimonials'] = [ 1, 2, 3, 4, 5 ] ; 
 
 
-$t->data= $page_data ; 
+$t->data = $page_data ; 
 $t->render('inc/header.phtml');
 $t->render('home.phtml');  
 $t->render('inc/footer.phtml');  

@@ -4,8 +4,7 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
 $site_name = 'TalenTick' ;
-$web_assets = base_url().'/assets/web' ;
-$company_assets = base_url().'/assets/company' ;
+$web_assets = base_url().'/assets/web' ; 
 $admin_assets = base_url().'/assets/admin' ;
 
 function base_url(){
