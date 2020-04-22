@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2020 at 04:01 PM
+-- Generation Time: Apr 22, 2020 at 04:19 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -446,7 +446,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `created_at`) VALUES
-(1, 'admin@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', '2020-04-22 07:59:44'),
+(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', '2020-04-22 07:59:44'),
 (3, 'tcs@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
 (6, 'wipro@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', '2020-04-22 07:59:44'),
 (8, 'haritha@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', '2020-04-22 07:59:44'),
