@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2020 at 09:00 PM
+-- Generation Time: Apr 22, 2020 at 10:16 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -303,7 +303,7 @@ INSERT INTO `recruiters` (`recruiter_id`, `user_id`, `company_name`, `email`, `w
 (9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85'),
 (10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523'),
 (11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623'),
-(13, 72, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047');
+(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047');
 
 -- --------------------------------------------------------
 
@@ -317,7 +317,7 @@ CREATE TABLE `students` (
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `mobile_number` varchar(15) NOT NULL,
-  `gender` enum('Male','Female','Other') DEFAULT NULL
+  `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -427,7 +427,7 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `status`, `creat
 (46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
 (47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (62, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-04-22 13:59:45'),
-(72, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 15:29:05');
+(76, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 16:45:43');
 
 --
 -- Indexes for dumped tables
@@ -584,7 +584,7 @@ ALTER TABLE `recent_status`
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `recruiter_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `recruiter_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -602,7 +602,7 @@ ALTER TABLE `stud_recent_job`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Constraints for dumped tables
