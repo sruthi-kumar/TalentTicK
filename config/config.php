@@ -8,8 +8,6 @@ $web_assets = base_url().'/assets/web' ;
 $admin_assets = base_url().'/assets/admin' ;
 
 function base_url(){
-
-
 	$localfolder = "" ;
     if(isset($_SERVER['HTTPS'])){
         $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
@@ -25,4 +23,12 @@ function base_url(){
 
     }
     return $protocol . "://" . $_SERVER['HTTP_HOST'].$localfolder;
+}
+
+
+
+function debug($data , $die = true ){
+    echo"<pre>"; 
+    var_dump($data) ; 
+    if($die) exit ;
 }
