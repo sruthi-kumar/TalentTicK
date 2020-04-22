@@ -1,5 +1,11 @@
 <?php
 include_once ('autoload.php');
+
+if(isset($_SESSION['user_data'])) {
+	header('location:../'.$login_type.'/index.php');
+}
+
+
 $t = new TemplateEngine('web'); 
 $t->data = [] ; 
 
