@@ -10,11 +10,11 @@ $page_data['login_type'] = $login_type;
 
 $page_data['assets'] = $admin_assets;
 
-$page_data['page'] = "dashboard";
-$page_data['page_title'] = "Dashboard";
+$page_data['page'] = "branch-list";
+$page_data['page_title'] = "Settings: Branches";
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');
-$t->render('dashboard.phtml');
+$t->render('branch-list.phtml');
 $t->render('inc/footer.phtml');
