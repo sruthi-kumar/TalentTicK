@@ -38,9 +38,15 @@
   <script src="<?=$this->data['assets']?>/js/jquery.nicescroll.js"></script>
   <script src="<?=$this->data['assets']?>/js/scripts.js"></script>
   <!--//scrolling js-->
+ 
+<?php switch ($this->data['page']) {
+  case 'dashboard':  ?> 
+
+  <?php break; }?>
+
   
   <!-- Bootstrap Core JavaScript -->
-   <script src="<?=$this->data['assets']?>/js/bootstrap.js"> </script>
+  <script src="<?=$this->data['assets']?>/js/bootstrap.js"> </script>
    
 </body>
 </html>
