@@ -17,12 +17,12 @@
             <ul class="sidebar-menu">
               <li class="header">MAIN NAVIGATION</li>
               <li class="treeview">
-                <a href="<?=base_url()?>/student/index.php">
+                <a href="<?=base_url()?>/recruiter/index.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
               </li>  
               <li>
-                <a href="<?=base_url()?>/student/notifications.php">
+                <a href="<?=base_url()?>/recruiter/notifications.php">
                   <i class="fa fa-bell"></i> <span>Notifications</span> </i> 
                 </a>
               </li> 
@@ -33,9 +33,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/student/jobs-search.php"><i class="fa fa-angle-right"></i> Search Jobs</a></li>
-                  <li><a href="<?=base_url()?>/student/jobs-list.php"><i class="fa fa-angle-right"></i> New Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/student/jobs-applied.php"><i class="fa fa-angle-right"></i> Applied Jobs</a></li> 
+                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
+                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
+                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
                 </ul>
               </li> 
               
@@ -48,11 +48,11 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/student/profile-details.php"><i class="fa fa-angle-right"></i> My Profile</a></li>
-                  <li><a href="<?=base_url()?>/student/profile-update.php"><i class="fa fa-angle-right"></i> Update</a></li> 
+                  <li><a href="<?=base_url()?>/recruiter/profile-details.php"><i class="fa fa-angle-right"></i> My Profile</a></li>
+                  <li><a href="<?=base_url()?>/recruiter/profile-update.php"><i class="fa fa-angle-right"></i> Update</a></li> 
                 </ul>
               </li> 
-              <!-- <li><a href="<?=base_url()?>/student/settings.php"><i class="fa fa-cog text-red"></i> <span>Settings</span></a></li> -->
+              <!-- <li><a href="<?=base_url()?>/recruiter/settings.php"><i class="fa fa-cog text-red"></i> <span>Settings</span></a></li> -->
               <li><a href="<?=base_url()?>/actions/logout.php"><i class="fa fa-sign-out text-yellow"></i> <span>Logout</span></a></li> 
             </ul>
           </div>
@@ -128,7 +128,7 @@
                 <div class="profile_img"> 
                   <span class="prfil-img"><img src="<?=$this->data['assets']?>/images/2.jpg" alt=""> </span> 
                   <div class="user-name">
-                    <p>Student Name</p>
+                    <p>Recruiter Name</p>
                     <span>Profile</span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
@@ -138,8 +138,8 @@
               </a>
               <ul class="dropdown-menu drp-mnu">
                 <!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>  -->
-                <li> <a href="<?=base_url()?>/student/profile-details.php"><i class="fa fa-user"></i> My Profile</a> </li>
-                <li> <a href="<?=base_url()?>/student/profile-update.php"><i class="fa fa-edit"></i> Update Profile</a> </li> 
+                <li> <a href="<?=base_url()?>/recruiter/profile-details.php"><i class="fa fa-user"></i> My Profile</a> </li>
+                <li> <a href="<?=base_url()?>/recruiter/profile-update.php"><i class="fa fa-edit"></i> Update Profile</a> </li> 
                 <li> <a href="<?=base_url()?>/actions/logout.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
               </ul>
             </li>
