@@ -61,7 +61,25 @@ if (validate_form($_POST)) {
 		$result = $student->createStudent();
 		//debug($result);
 
-		if (!$result) {
+		if ($result) {
+
+
+			$to_address = $_POST['email'];
+			$subject = "TalenTick Job Portal Registration Successfull!";
+			$body = "
+
+			Hi $_POST['firstname'] $_POST['lastname']  , <br>
+
+			Your Profile has been successfully registered wih our portal. <br>
+
+			Please login and complete your payment.
+
+			";
+
+			send_email_notification($to_address, $subject, $body);
+
+
+		}else{
 			$status = 'failed';
 			$_SESSION['errors']['register'] = "Registration Failed!";
 		}

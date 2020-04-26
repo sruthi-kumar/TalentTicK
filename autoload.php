@@ -2,6 +2,7 @@
 include_once __DIR__ . '/config/config.php';
 include_once __DIR__ . '/lib/helpers.php';
 include_once __DIR__ . '/lib/auth.php';
+include_once __DIR__ . '/lib/smtp-mail.php';
 
 spl_autoload_register('load_library');
 spl_autoload_register('load_model');
