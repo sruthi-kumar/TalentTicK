@@ -55,7 +55,7 @@ class Student extends Dbh {
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$student[] = $row;
+			$students[] = $row;
 		}
 
 		return $students;

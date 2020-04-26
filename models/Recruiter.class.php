@@ -76,7 +76,7 @@ class Recruiter extends Dbh {
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$recruiter[] = $row;
+			$recruiters[] = $row;
 		}
 
 		return $recruiters;

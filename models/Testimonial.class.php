@@ -1,8 +1,8 @@
 <?php
 
-class Notification extends Dbh {
+class Testimonial extends Dbh {
 
-	/* `notifications` WHERE 1 `id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`, `updated_at`*/
+	/* `testimonials` WHERE 1 `id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`, `updated_at`*/
 
 	private $user;
 	private $title;
@@ -11,7 +11,7 @@ class Notification extends Dbh {
 	private $type;
 	private $status;
 
-	private $table_name = "notifications";
+	private $table_name = "testimonials";
 
 	function toArray() {
 		$params = [];
@@ -49,42 +49,42 @@ class Notification extends Dbh {
 
 	}
 
-	function getNotifications($limit = null) {
+	function getTestimonials($limit = null) {
 
-		$notifications = [];
+		$testimonials = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE status = active ORDER BY id DESC";
+		$sql = "SELECT * FROM $this->table_name ";
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$notifications[] = $row;
+			$testimonials[] = $row;
 		}
 
-		return $notifications;
+		return $testimonials;
 
 	}
 
-	function getNotificationById($notification_id = null) {
+	function getTestimonialById($testimonial_id = null) {
 
-		$this->notification_id = $notification_id ?? $this->notification_id;
+		$this->testimonial_id = $testimonial_id ?? $this->testimonial_id;
 
-		$notification_data = [];
+		$testimonial_data = [];
 
 		$sql = "SELECT * FROM $this->table_name WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->notification_id];
+		$params = [$this->testimonial_id];
 		$stmt->execute($params);
-		$notification_data = $stmt->fetch();
+		$testimonial_data = $stmt->fetch();
 
-		return $notification_data;
+		return $testimonial_data;
 
 	}
 
-	function getNotificationByUser($user = null, $date = null) {
+	function getTestimonialByUser($user = null, $date = null) {
 
 		$this->user = $user ?? $this->user;
 
-		$notification_data = [];
+		$testimonial_data = [];
 
 		if (isset($date)) {
 			$sql = "SELECT * FROM $this->table_name WHERE created_at=? AND user=? AND status=? ORDER BY id DESC ";
@@ -95,13 +95,13 @@ class Notification extends Dbh {
 		}
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
-		$notification_data = $stmt->fetchAll();
+		$testimonial_data = $stmt->fetchAll();
 
-		return $notification_data;
+		return $testimonial_data;
 
 	}
 
-	function createNotification() {
+	function createTestimonial() {
 
 		$model_data = set_model_data($this->toArray());
 
@@ -120,15 +120,15 @@ class Notification extends Dbh {
 		}
 	}
 
-	function updateNotification($notification_id = null) {
+	function updateTestimonial($testimonial_id = null) {
 
 		$model_data = set_model_data($this->toArray());
 
 		$params = $model_data['values'];
 
-		$params[] = $notification_id ?? $this->notification_id;
+		$params[] = $testimonial_id ?? $this->testimonial_id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE notification_id = ?";
+		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE testimonial_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

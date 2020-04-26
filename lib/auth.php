@@ -2,19 +2,30 @@
 $login_status = false;
 $login_type = 'guest';
 
-$user_data = $_SESSION['user_data']??null ;  
+$user_data = $_SESSION['user_data'] ?? null;
 
-if(isset($user_data)){
-	$login_type = $user_data['type'] ;	 
+if (isset($user_data)) {
+	$login_type = $user_data['type'];
 }
 
-function validate_user($module){
+function validate_user($module) {
 
-	 global $login_type;
+	global $login_type;
 
-	if($login_type !=$module){
+	if ($login_type != $module) {
 		header('location:../login.php');
 		exit;
 	}
 
+}
+
+function get_current_user_set() {
+
+	$current_user_set = [];
+
+	$current_user_set['login'] = $_SESSION['user_data']['type'] ?? false;
+	$current_user_set['login_type'] = $_SESSION['user_data']['type'] ?? "";
+	$current_user_set['user_data'] = $_SESSION['user_data'] ?? [];
+
+	return $current_user_set;
 }

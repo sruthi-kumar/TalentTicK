@@ -51,7 +51,7 @@ class User extends Dbh {
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$user[] = $row;
+			$users[] = $row;
 		}
 
 		return $users;

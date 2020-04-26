@@ -7,9 +7,7 @@ $t->data = [];
 
 //debug($_SESSION['user_data']);
 
-$page_data['login'] = $_SESSION['user_data']['type'] ?? false;
-$page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
-$page_data['user_data'] = $_SESSION['user_data'] ?? [];
+$page_data = get_current_user_set();
 
 $page_data['assets'] = $admin_assets;
 
