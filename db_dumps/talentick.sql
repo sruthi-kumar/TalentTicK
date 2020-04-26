@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2020 at 10:16 PM
+-- Generation Time: Apr 26, 2020 at 08:35 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `talenttick`
+-- Database: `talentick`
 --
 
 -- --------------------------------------------------------
@@ -124,7 +124,7 @@ CREATE TABLE `job_posts` (
   `cid` int NOT NULL,
   `cname` varchar(30) NOT NULL,
   `job title` varchar(30) NOT NULL,
-  `job type` varchar(20) NOT NULL,
+  `job type` int NOT NULL,
   `location` varchar(30) NOT NULL,
   `last date to apply` date NOT NULL,
   `backlog` int NOT NULL,
@@ -137,14 +137,14 @@ CREATE TABLE `job_posts` (
 --
 
 INSERT INTO `job_posts` (`pid`, `cid`, `cname`, `job title`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `jobss`) VALUES
-(35, 6, 'UST', 'CODING', 'PART-TIME', 'PATHANAMTHITTA', '2020-02-12', 2, 98, 1),
-(43, 7, 'SOFTWARE', 'EXECUTE MANAGER', 'PART-TIME', 'MALAPURAM', '2020-02-26', 1, 50, 1),
-(44, 1, 'TCS', 'FRONT-END MANAGER', 'PART-TIME', 'KOTTAYAM', '2020-02-26', 0, 75, 0),
-(45, 5, 'FEDERAL', 'ADMINISTATOR', 'PERMANENT', 'TRIVANDRUM', '2020-02-26', 3, 85, 0),
-(46, 3, 'Ibm', 'TESTING', 'PERMANENT', 'PALAKKAD', '2020-02-27', 1, 65, 0),
-(50, 3, 'Ibm', 'FRONT-END MANAGER', 'PERMANENT', 'WAYYANADU', '2020-02-27', 2, 63, 0),
-(51, 1, 'TCS', 'EXECUTE MANAGER', 'PART-TIME', 'KOZHIKOD', '2020-03-27', 0, 90, 0),
-(52, 1, 'TCS', 'ADMINISTATOR', 'FULL-TIME', 'KASARGOD', '2020-03-01', 1, 20, 0);
+(35, 6, 'UST', 'CODING', 1, 'PATHANAMTHITTA', '2020-02-12', 2, 98, 1),
+(43, 7, 'SOFTWARE', 'EXECUTE MANAGER', 1, 'MALAPURAM', '2020-02-26', 1, 50, 1),
+(44, 1, 'TCS', 'FRONT-END MANAGER', 5, 'KOTTAYAM', '2020-02-26', 0, 75, 0),
+(45, 5, 'FEDERAL', 'ADMINISTATOR', 1, 'TRIVANDRUM', '2020-02-26', 3, 85, 0),
+(46, 3, 'Ibm', 'TESTING', 2, 'PALAKKAD', '2020-02-27', 1, 65, 0),
+(50, 3, 'Ibm', 'FRONT-END MANAGER', 1, 'WAYYANADU', '2020-02-27', 2, 63, 0),
+(51, 1, 'TCS', 'EXECUTE MANAGER', 1, 'KOZHIKOD', '2020-03-27', 0, 90, 0),
+(52, 1, 'TCS', 'ADMINISTATOR', 1, 'KASARGOD', '2020-03-01', 1, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -153,19 +153,19 @@ INSERT INTO `job_posts` (`pid`, `cid`, `cname`, `job title`, `job type`, `locati
 --
 
 CREATE TABLE `job_types` (
-  `typeid` int NOT NULL,
+  `id` int NOT NULL,
   `job_type` varchar(30) NOT NULL,
-  `status` int NOT NULL DEFAULT '1'
+  `status` enum('active','inactive') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job_types`
 --
 
-INSERT INTO `job_types` (`typeid`, `job_type`, `status`) VALUES
-(1, 'FULL-TIME', 1),
-(2, 'PART-TIME', 1),
-(5, 'PERMANENT', 1);
+INSERT INTO `job_types` (`id`, `job_type`, `status`) VALUES
+(1, 'FULL-TIME', 'active'),
+(2, 'PART-TIME', 'active'),
+(5, 'CONTRACT', 'active');
 
 -- --------------------------------------------------------
 
@@ -202,16 +202,30 @@ INSERT INTO `locations` (`locationid`, `location`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Table structure for table `notifications`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE `notifications` (
   `id` int NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `mail` varchar(30) NOT NULL,
-  `subject` varchar(30) NOT NULL,
-  `message` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `action_link` text COLLATE utf8_unicode_ci,
+  `type` int NOT NULL,
+  `status` enum('active','inactive') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification_types`
+--
+
+CREATE TABLE `notification_types` (
+  `id` int NOT NULL,
+  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -253,22 +267,6 @@ INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressli
 (34, 19, '1997-06-30', 'gananadam', 'kappil', '', 73, 69, 85, 93, 0, '', 'Trivandrum', '', 895623),
 (36, 21, '2001-11-25', 'asdfg', 'asdf', '', 99, 99, 99, 99, 0, '', 'Trivandrum', '', 6865188),
 (38, 23, '0000-00-00', 'amala villa', 'manimala', '', 85, 80, 75, 90, 0, 'sruthicv.docx', 'Kottayam', '', 895623);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `recent_status`
---
-
-CREATE TABLE `recent_status` (
-  `id` int NOT NULL,
-  `cname` varchar(30) NOT NULL,
-  `job_title` varchar(30) NOT NULL,
-  `job_type` varchar(30) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `last_date_to_apply` date NOT NULL,
-  `description` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -350,25 +348,6 @@ INSERT INTO `students` (`student_id`, `user_id`, `firstname`, `lastname`, `mobil
 (27, 45, 'ganesh', 'prakash', '9856230236', 'Female'),
 (28, 47, 'rahul', 's', '8956231023', 'Female'),
 (29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `stud_recent_job`
---
-
-CREATE TABLE `stud_recent_job` (
-  `id` int NOT NULL,
-  `loginid` int NOT NULL,
-  `cid` int NOT NULL,
-  `cname` varchar(30) NOT NULL,
-  `job_title` varchar(30) NOT NULL,
-  `job_type` varchar(30) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `last_date_to_apply` date NOT NULL,
-  `backlogs` int NOT NULL,
-  `CGPA` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -459,13 +438,14 @@ ALTER TABLE `job_applications`
 --
 ALTER TABLE `job_posts`
   ADD PRIMARY KEY (`pid`),
-  ADD KEY `cid` (`cid`);
+  ADD KEY `cid` (`cid`),
+  ADD KEY `job type` (`job type`);
 
 --
 -- Indexes for table `job_types`
 --
 ALTER TABLE `job_types`
-  ADD PRIMARY KEY (`typeid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `locations`
@@ -474,9 +454,16 @@ ALTER TABLE `locations`
   ADD PRIMARY KEY (`locationid`);
 
 --
--- Indexes for table `messages`
+-- Indexes for table `notifications`
 --
-ALTER TABLE `messages`
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `notification_types`
+--
+ALTER TABLE `notification_types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -485,12 +472,6 @@ ALTER TABLE `messages`
 ALTER TABLE `profiles`
   ADD PRIMARY KEY (`profile_id`),
   ADD KEY `regid` (`student_id`);
-
---
--- Indexes for table `recent_status`
---
-ALTER TABLE `recent_status`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `recruiters`
@@ -505,15 +486,6 @@ ALTER TABLE `recruiters`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`),
   ADD KEY `login-id` (`user_id`);
-
---
--- Indexes for table `stud_recent_job`
---
-ALTER TABLE `stud_recent_job`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `loginid` (`loginid`),
-  ADD KEY `cid` (`cid`),
-  ADD KEY `loginid_2` (`loginid`);
 
 --
 -- Indexes for table `users`
@@ -554,7 +526,7 @@ ALTER TABLE `job_posts`
 -- AUTO_INCREMENT for table `job_types`
 --
 ALTER TABLE `job_types`
-  MODIFY `typeid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -563,22 +535,10 @@ ALTER TABLE `locations`
   MODIFY `locationid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
   MODIFY `profile_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT for table `recent_status`
---
-ALTER TABLE `recent_status`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `recruiters`
@@ -591,12 +551,6 @@ ALTER TABLE `recruiters`
 --
 ALTER TABLE `students`
   MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `stud_recent_job`
---
-ALTER TABLE `stud_recent_job`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -625,7 +579,14 @@ ALTER TABLE `job_applications`
 -- Constraints for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`);
+  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`),
+  ADD CONSTRAINT `job_posts_ibfk_2` FOREIGN KEY (`job type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`type`) REFERENCES `notification_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `profiles`
@@ -644,13 +605,6 @@ ALTER TABLE `recruiters`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `stud_recent_job`
---
-ALTER TABLE `stud_recent_job`
-  ADD CONSTRAINT `stud_recent_job_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`),
-  ADD CONSTRAINT `stud_recent_job_ibfk_2` FOREIGN KEY (`loginid`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
