@@ -11,7 +11,18 @@ class Student extends Dbh {
 
 	private $table_name = "students";
 
-	function setStudentData($type, $data) {
+	function toArray() {
+		$params = [];
+		$params['user_id'] = $this->user_id ?? '';
+		$params['firstname'] = $this->firstname ?? '';
+		$params['lastname'] = $this->lastname ?? '';
+		$params['mobile_number'] = $this->mobile_number ?? '';
+		$params['gender'] = $this->gender ?? '';
+		return $params;
+	}
+
+
+	function setData($type, $data) {
 
 		switch ($type) {
 		case 'student_id':
@@ -117,15 +128,4 @@ class Student extends Dbh {
 		$stmt->execute($params);
 
 	}
-
-	function toArray() {
-		$params = [];
-		$params['user_id'] = $this->user_id ?? '';
-		$params['firstname'] = $this->firstname ?? '';
-		$params['lastname'] = $this->lastname ?? '';
-		$params['mobile_number'] = $this->mobile_number ?? '';
-		$params['gender'] = $this->gender ?? '';
-		return $params;
-	}
-
 }

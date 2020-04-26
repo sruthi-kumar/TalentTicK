@@ -5,8 +5,9 @@ validate_user('admin');
 $t = new TemplateEngine('admin');
 $t->data = [];
 
-$page_data['login'] = $login_status;
-$page_data['login_type'] = $login_type;
+$page_data['login'] = $_SESSION['user_data']['type'] ?? false;
+$page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
+$page_data['user_data'] = $_SESSION['user_data'] ?? [];
 
 $page_data['assets'] = $admin_assets;
 

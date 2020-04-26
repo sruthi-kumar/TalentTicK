@@ -6,7 +6,7 @@ $password = $_POST['password'];
 
 $user = new User();
 
-$user->setUserData('username', $email);
+$user->setData('username', $email);
 
 $user_data = $user->getUserByUsername();
 
