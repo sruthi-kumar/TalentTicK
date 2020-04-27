@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 27, 2020 at 11:28 AM
+-- Generation Time: Apr 27, 2020 at 09:57 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -83,7 +83,7 @@ INSERT INTO `departments` (`dpid`, `department`) VALUES
 CREATE TABLE `jobs` (
   `id` int NOT NULL,
   `recruiter` int NOT NULL,
-  `job title` varchar(30) NOT NULL,
+  `job_title` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `job_description` text NOT NULL,
   `job_type` int NOT NULL,
   `state_id` int NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `jobs` (
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `recruiter`, `job title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`) VALUES
+INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`) VALUES
 (35, 6, 'CODING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-12', 2, 98, 0, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
 (43, 7, 'EXECUTE MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-26', 1, 50, 0, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
 (44, 1, 'FRONT-END MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 5, 1, 1, '2020-02-26', 0, 75, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
@@ -121,37 +121,39 @@ INSERT INTO `jobs` (`id`, `recruiter`, `job title`, `job_description`, `job_type
 --
 
 CREATE TABLE `job_applications` (
-  `jid` int NOT NULL,
-  `logid` int NOT NULL,
-  `pid` int NOT NULL,
-  `jobss` tinyint(1) NOT NULL
+  `id` int NOT NULL,
+  `user` int NOT NULL,
+  `job` int NOT NULL,
+  `status` enum('pending','accepted','rejected') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job_applications`
 --
 
-INSERT INTO `job_applications` (`jid`, `logid`, `pid`, `jobss`) VALUES
-(13, 23, 35, 1),
-(15, 24, 35, 1),
-(16, 24, 43, 1),
-(17, 24, 44, 1),
-(18, 9, 45, 1),
-(19, 9, 50, 1),
-(20, 24, 50, 1),
-(21, 26, 50, 1),
-(22, 27, 50, 1),
-(26, 27, 46, 1),
-(27, 27, 44, 1),
-(28, 24, 45, 1),
-(29, 28, 43, 1),
-(30, 8, 43, 1),
-(31, 32, 44, 1),
-(32, 32, 35, 1),
-(33, 36, 51, 1),
-(34, 36, 50, 1),
-(35, 34, 52, 1),
-(36, 9, 43, 1);
+INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VALUES
+(13, 23, 35, 'pending', '2020-04-27 13:36:29'),
+(15, 24, 35, 'pending', '2020-04-27 13:36:29'),
+(16, 24, 43, 'pending', '2020-04-27 13:36:29'),
+(17, 24, 44, 'pending', '2020-04-27 13:36:29'),
+(18, 9, 45, 'pending', '2020-04-27 13:36:29'),
+(19, 9, 50, 'pending', '2020-04-27 13:36:29'),
+(20, 24, 50, 'pending', '2020-04-27 13:36:29'),
+(21, 26, 50, 'pending', '2020-04-27 13:36:29'),
+(22, 27, 50, 'pending', '2020-04-27 13:36:29'),
+(26, 27, 46, 'pending', '2020-04-27 13:36:29'),
+(27, 27, 44, 'pending', '2020-04-27 13:36:29'),
+(28, 24, 45, 'pending', '2020-04-27 13:36:29'),
+(29, 28, 43, 'pending', '2020-04-27 13:36:29'),
+(30, 8, 43, 'pending', '2020-04-27 13:36:29'),
+(31, 32, 44, 'pending', '2020-04-27 13:36:29'),
+(32, 32, 35, 'pending', '2020-04-27 13:36:29'),
+(33, 36, 51, 'pending', '2020-04-27 13:36:29'),
+(34, 36, 50, 'pending', '2020-04-27 13:36:29'),
+(35, 34, 52, 'pending', '2020-04-27 13:36:29'),
+(36, 9, 43, 'pending', '2020-04-27 13:36:29');
 
 -- --------------------------------------------------------
 
@@ -192,20 +194,20 @@ CREATE TABLE `location_districts` (
 --
 
 INSERT INTO `location_districts` (`id`, `state_id`, `district`, `status`) VALUES
-(1, 1, 'ALAPPUZHA', 1),
-(2, 1, 'ERANAKULAM', 1),
-(3, 1, 'IDUKKI', 1),
-(4, 1, 'KANNUR', 1),
-(5, 1, 'KASARGOD', 1),
-(6, 1, 'KOLLAM', 1),
-(7, 1, 'KOTTAYAM', 1),
-(8, 1, 'KOZHIKOD', 1),
-(9, 1, 'MALAPURAM', 1),
-(10, 1, 'PATHANAMTHITTA', 1),
-(11, 1, 'PALAKKAD', 1),
-(12, 1, 'THRISSUR', 1),
-(13, 1, 'TRIVANDRUM', 1),
-(14, 1, 'WAYYANADU', 1);
+(1, 13, 'ALAPPUZHA', 1),
+(2, 13, 'ERANAKULAM', 1),
+(3, 13, 'IDUKKI', 1),
+(4, 13, 'KANNUR', 1),
+(5, 13, 'KASARGOD', 1),
+(6, 13, 'KOLLAM', 1),
+(7, 13, 'KOTTAYAM', 1),
+(8, 13, 'KOZHIKOD', 1),
+(9, 13, 'MALAPURAM', 1),
+(10, 13, 'PATHANAMTHITTA', 1),
+(11, 13, 'PALAKKAD', 1),
+(12, 13, 'THRISSUR', 1),
+(13, 13, 'TRIVANDRUM', 1),
+(14, 13, 'WAYYANADU', 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +336,7 @@ INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressli
 --
 
 CREATE TABLE `recruiters` (
-  `recruiter_id` int NOT NULL,
+  `id` int NOT NULL,
   `user_id` int NOT NULL,
   `company_name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `email` varchar(40) NOT NULL,
@@ -353,7 +355,7 @@ CREATE TABLE `recruiters` (
 -- Dumping data for table `recruiters`
 --
 
-INSERT INTO `recruiters` (`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`) VALUES
+INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`) VALUES
 (1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'pending', '2020-04-27 05:41:02'),
 (3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'pending', '2020-04-27 05:41:02'),
 (5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'pending', '2020-04-27 05:41:02'),
@@ -529,9 +531,9 @@ ALTER TABLE `jobs`
 -- Indexes for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  ADD PRIMARY KEY (`jid`),
-  ADD KEY `logid` (`logid`),
-  ADD KEY `pid` (`pid`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `logid` (`user`),
+  ADD KEY `pid` (`job`);
 
 --
 -- Indexes for table `job_types`
@@ -543,7 +545,8 @@ ALTER TABLE `job_types`
 -- Indexes for table `location_districts`
 --
 ALTER TABLE `location_districts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `state_id` (`state_id`);
 
 --
 -- Indexes for table `location_states`
@@ -569,7 +572,7 @@ ALTER TABLE `profiles`
 -- Indexes for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  ADD PRIMARY KEY (`recruiter_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `loginid` (`user_id`);
 
 --
@@ -619,7 +622,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `jid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `job_types`
@@ -655,7 +658,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `recruiter_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -689,7 +692,7 @@ ALTER TABLE `branches`
 -- Constraints for table `jobs`
 --
 ALTER TABLE `jobs`
-  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`recruiter`) REFERENCES `recruiters` (`recruiter_id`),
+  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`recruiter`) REFERENCES `recruiters` (`id`),
   ADD CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`job_type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `jobs_ibfk_3` FOREIGN KEY (`state_id`) REFERENCES `location_states` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `jobs_ibfk_4` FOREIGN KEY (`district_id`) REFERENCES `location_districts` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -698,8 +701,14 @@ ALTER TABLE `jobs`
 -- Constraints for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  ADD CONSTRAINT `logid` FOREIGN KEY (`logid`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `jobs` (`id`);
+  ADD CONSTRAINT `logid` FOREIGN KEY (`user`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `pid` FOREIGN KEY (`job`) REFERENCES `jobs` (`id`);
+
+--
+-- Constraints for table `location_districts`
+--
+ALTER TABLE `location_districts`
+  ADD CONSTRAINT `location_districts_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `location_states` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `notifications`
