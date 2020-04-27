@@ -1,0 +1,36 @@
+<!-- main content start-->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="tables">
+          <h2 class="title1">Tables</h2> 
+ 
+
+
+            <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+            <h4>Hover Rows Table:</h4>
+            <table id="datatable"  class="table table-hover"> 
+
+             <!--  `id`, `recruiter`, `job_title`, -->
+
+              <thead> <tr> 
+                <th>#</th> <th>FirstName</th> <th>LastName</th> <th>Branch</th> <th>Department</th>  <th>Actions</th> </tr> 
+              </thead> 
+              <tbody> 
+                <?php $i = 1;  foreach ($this->data['students']  as $student) { ?> 
+                <tr> 
+                  <th scope="row"><?=$i++?></th> 
+                  <td><?=$student['firstname']?></td> 
+                  <td><?=$student['lastname']?></td>
+                  <td><?=$student['branch']?> </td> 
+                  <td><?=$student['department'] ?></td> 
+                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/job-details.php?id='.$student['id']?>">View</a> </td> 
+                </tr>  
+                <?php } ?>
+              </tbody> 
+            </table>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>

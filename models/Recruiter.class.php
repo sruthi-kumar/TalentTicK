@@ -2,7 +2,12 @@
 
 class Recruiter extends Dbh {
 
-/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
+	/*
+		`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
+
+		`recruiters` WHERE 1  `id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`, `updated_at`
+
+	*/
 
 	private $recruiter_id;
 	private $user_id;

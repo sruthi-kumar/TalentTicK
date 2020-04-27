@@ -2,6 +2,20 @@
 
 class Student extends Dbh {
 
+	/*
+
+		`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
+
+		`students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`, `updated_at`
+
+		`departments` WHERE 1 `id`, `department`
+
+		`branches` WHERE  `id`, `branch`, `department_id`
+
+		 `profiles` WHERE 1 `profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`
+
+	*/
+
 	private $student_id;
 	private $user_id;
 	private $firstname;
@@ -50,7 +64,9 @@ class Student extends Dbh {
 
 		$students = [];
 
-		$sql = "SELECT * FROM $this->table_name ";
+		$sql = " SELECT $this->table_name.* ,branches.branch , departments.department  FROM $this->table_name ";
+		$sql .= " JOIN branches ON branches.id = $this->table_name.branch_id ";
+		$sql .= " JOIN departments ON departments.id = branches.department_id ";
 
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
