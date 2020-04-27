@@ -17,13 +17,13 @@
             <ul class="sidebar-menu">
               <li class="header">MAIN NAVIGATION</li>
               <li class="treeview">
-                <a href="<?=base_url()?>/recruiter/index.php">
+                <a href="<?=base_url()?>/admin/index.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
               </li>  
               <li>
-                <a href="<?=base_url()?>/recruiter/notifications.php">
-                  <i class="fa fa-bell"></i> <span>Notifications</span> </i> 
+                <a href="<?=base_url()?>/admin/notifications.php">
+                  <i class="fa fa-bell"></i> <span>Notifications</span> 
                 </a>
               </li> 
               <li class="treeview">
@@ -32,12 +32,23 @@
                 <span>Jobs</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
+                <ul class="treeview-menu"> 
+                  <li><a href="<?=base_url()?>/admin/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
+                  <li><a href="<?=base_url()?>/admin/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
                 </ul>
               </li> 
+
+              <li class="treeview">
+                <a href="#">
+                <i class="fa fa-laptop"></i>
+                <span>Locations</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu"> 
+                  <li><a href="<?=base_url()?>/admin/location-list.php"><i class="fa fa-angle-right"></i> Locations List</a></li>
+                  <li><a href="<?=base_url()?>/admin/location-add.php"><i class="fa fa-angle-right"></i> Add Location</a></li> 
+                </ul>
+              </li>  
 
               <li class="treeview">
                 <a href="#">
@@ -45,10 +56,9 @@
                 <span>Departments</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
+                <ul class="treeview-menu"> 
+                  <li><a href="<?=base_url()?>/admin/department-list.php"><i class="fa fa-angle-right"></i> Deparment List</a></li>
+                  <li><a href="<?=base_url()?>/admin/department-add.php"><i class="fa fa-angle-right"></i> Add Deparment</a></li> 
                 </ul>
               </li> 
               
@@ -59,10 +69,9 @@
                 <span>Branches</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
+                <ul class="treeview-menu"> 
+                  <li><a href="<?=base_url()?>/admin/branch-list.php"><i class="fa fa-angle-right"></i> Branch List</a></li>
+                  <li><a href="<?=base_url()?>/admin/branch-add.php"><i class="fa fa-angle-right"></i> Add branch</a></li> 
                 </ul>
               </li> 
               
@@ -73,9 +82,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
+                  <li><a href="<?=base_url()?>/admin/student-search.php"><i class="fa fa-angle-right"></i> Search Student</a></li>
+                  <li><a href="<?=base_url()?>/admin/student-list.php"><i class="fa fa-angle-right"></i> Students List</a></li> 
                 </ul>
               </li>  
               
@@ -86,24 +94,16 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
+                  <li><a href="<?=base_url()?>/admin/recruiter-verification.php"><i class="fa fa-angle-right"></i> Recruiter Verification</a></li> </li>
+                  <li><a href="<?=base_url()?>/admin/recruiter-search.php"><i class="fa fa-angle-right"></i> Search Recruiter</a></li>
+                  <li><a href="<?=base_url()?>/admin/recruiter-list.php"><i class="fa fa-angle-right"></i> Recruiter List</a></li> </li> 
                 </ul>
               </li>  
-
-              <li class="treeview">
-                <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Locations</span>
-                <i class="fa fa-angle-left pull-right"></i>
+              <li>
+                <a href="<?=base_url()?>/admin/testimonials.php">
+                  <i class="fa fa-edit"></i> <span>Testimonials</span> 
                 </a>
-                <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/job-post.php"><i class="fa fa-angle-right"></i> Post Jobs</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-list.php"><i class="fa fa-angle-right"></i> Jobs List</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/job-applications.php"><i class="fa fa-angle-right"></i> Job Applications</a></li> 
-                </ul>
-              </li>  
+              </li> 
                
               <li class="header">USER</li>
               <li class="treeview">
@@ -113,11 +113,11 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?=base_url()?>/recruiter/profile-details.php"><i class="fa fa-angle-right"></i> My Profile</a></li>
-                  <li><a href="<?=base_url()?>/recruiter/profile-update.php"><i class="fa fa-angle-right"></i> Update</a></li> 
+                  <li><a href="<?=base_url()?>/admin/profile-details.php"><i class="fa fa-angle-right"></i> My Profile</a></li>
+                  <li><a href="<?=base_url()?>/admin/profile-update.php"><i class="fa fa-angle-right"></i> Update</a></li> 
                 </ul>
               </li> 
-              <!-- <li><a href="<?=base_url()?>/recruiter/settings.php"><i class="fa fa-cog text-red"></i> <span>Settings</span></a></li> -->
+              <!-- <li><a href="<?=base_url()?>/admin/settings.php"><i class="fa fa-cog text-red"></i> <span>Settings</span></a></li> -->
               <li><a href="<?=base_url()?>/actions/logout.php"><i class="fa fa-sign-out text-yellow"></i> <span>Logout</span></a></li> 
             </ul>
           </div>
@@ -193,7 +193,7 @@
                 <div class="profile_img"> 
                   <span class="prfil-img"><img src="<?=$this->data['assets']?>/images/2.jpg" alt=""> </span> 
                   <div class="user-name">
-                    <p>Recruiter Name</p>
+                    <p>Administrator</p>
                     <span>Profile</span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
@@ -203,8 +203,9 @@
               </a>
               <ul class="dropdown-menu drp-mnu">
                 <!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>  -->
-                <li> <a href="<?=base_url()?>/recruiter/profile-details.php"><i class="fa fa-user"></i> My Profile</a> </li>
-                <li> <a href="<?=base_url()?>/recruiter/profile-update.php"><i class="fa fa-edit"></i> Update Profile</a> </li> 
+                <li> <a href="<?=base_url()?>/admin/profile-details.php"><i class="fa fa-user"></i> My Profile</a> </li>
+                <li> <a href="<?=base_url()?>/admin/update-password.php"><i class="fa fa-lock"></i> Update Password</a> </li> 
+                <li> <a href="<?=base_url()?>/admin/profile-update.php"><i class="fa fa-edit"></i> Update Profile</a> </li> 
                 <li> <a href="<?=base_url()?>/actions/logout.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
               </ul>
             </li>

@@ -1,27 +1,23 @@
 <?php
-include_once ('autoload.php');
+include_once 'autoload.php';
 
-if(isset($_SESSION['user_data'])) {
-	header('location:../'.$login_type.'/index.php');
+if (isset($_SESSION['user_data'])) {
+	header('location:../' . $login_type . '/index.php');
 }
 
+$t = new TemplateEngine('web');
+$t->data = [];
 
-$t = new TemplateEngine('web'); 
-$t->data = [] ; 
-
-
-$page_data['login'] = $login_status;
-$page_data['login_type'] = $login_type;
+$page_data = get_current_user_set();
 $page_data['assets'] = $web_assets;
 
-$page_data['page_title'] = "Login" ; 
+$page_data['page_title'] = "Login";
 
-$page_data['login_status'] = $_GET['status'] ?? "" ; 
-$page_data['login_error'] = $_SESSION['errors']['auth']??null;
+$page_data['login_status'] = $_GET['status'] ?? "";
+$page_data['login_error'] = $_SESSION['errors']['auth'] ?? null;
 
-$t->data= $page_data ; 
- 
- 
-$t->render('inc/header.phtml');  
-$t->render('login.phtml');  
-$t->render('inc/footer.phtml');  
+$t->data = $page_data;
+
+$t->render('inc/header.phtml');
+$t->render('login.phtml');
+$t->render('inc/footer.phtml');

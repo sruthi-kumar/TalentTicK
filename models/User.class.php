@@ -12,7 +12,16 @@ class User extends Dbh {
 
 	private $table_name = "users";
 
-	function setUserData($type, $data) {
+	function toArray() {
+		$params = [];
+		$params['username'] = $this->username ?? '';
+		$params['password'] = $this->password ?? '';
+		$params['type'] = $this->type ?? '';
+		$params['status'] = $this->status ?? '';
+		return $params;
+	}
+
+	function setData($type, $data) {
 
 		switch ($type) {
 		case 'user_id':
@@ -42,7 +51,7 @@ class User extends Dbh {
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$user[] = $row;
+			$users[] = $row;
 		}
 
 		return $users;
@@ -114,15 +123,6 @@ class User extends Dbh {
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
-	}
-
-	function toArray() {
-		$params = [];
-		$params['username'] = $this->username ?? '';
-		$params['password'] = $this->password ?? '';
-		$params['type'] = $this->type ?? '';
-		$params['status'] = $this->status ?? '';
-		return $params;
 	}
 
 }

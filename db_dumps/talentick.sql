@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 26, 2020 at 08:35 PM
+-- Generation Time: Apr 27, 2020 at 10:58 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -77,6 +77,39 @@ INSERT INTO `departments` (`dpid`, `department`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int NOT NULL,
+  `recruiter` int NOT NULL,
+  `job title` varchar(30) NOT NULL,
+  `job_description` text NOT NULL,
+  `job type` int NOT NULL,
+  `location` int NOT NULL,
+  `last date to apply` date NOT NULL,
+  `backlog` int NOT NULL,
+  `CGPA` double NOT NULL,
+  `vacancies` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `recruiter`, `job title`, `job_description`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `vacancies`) VALUES
+(35, 6, 'CODING', '', 1, 1, '2020-02-12', 2, 98, 1),
+(43, 7, 'EXECUTE MANAGER', '', 1, 1, '2020-02-26', 1, 50, 1),
+(44, 1, 'FRONT-END MANAGER', '', 5, 1, '2020-02-26', 0, 75, 0),
+(45, 5, 'ADMINISTATOR', '', 1, 1, '2020-02-26', 3, 85, 0),
+(46, 3, 'TESTING', '', 2, 1, '2020-02-27', 1, 65, 0),
+(50, 3, 'FRONT-END MANAGER', '', 1, 1, '2020-02-27', 2, 63, 0),
+(51, 1, 'EXECUTE MANAGER', '', 1, 1, '2020-03-27', 0, 90, 0),
+(52, 1, 'ADMINISTATOR', '', 1, 1, '2020-03-01', 1, 20, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `job_applications`
 --
 
@@ -116,39 +149,6 @@ INSERT INTO `job_applications` (`jid`, `logid`, `pid`, `jobss`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_posts`
---
-
-CREATE TABLE `job_posts` (
-  `pid` int NOT NULL,
-  `cid` int NOT NULL,
-  `cname` varchar(30) NOT NULL,
-  `job title` varchar(30) NOT NULL,
-  `job type` int NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `last date to apply` date NOT NULL,
-  `backlog` int NOT NULL,
-  `CGPA` double NOT NULL,
-  `jobss` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `job_posts`
---
-
-INSERT INTO `job_posts` (`pid`, `cid`, `cname`, `job title`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `jobss`) VALUES
-(35, 6, 'UST', 'CODING', 1, 'PATHANAMTHITTA', '2020-02-12', 2, 98, 1),
-(43, 7, 'SOFTWARE', 'EXECUTE MANAGER', 1, 'MALAPURAM', '2020-02-26', 1, 50, 1),
-(44, 1, 'TCS', 'FRONT-END MANAGER', 5, 'KOTTAYAM', '2020-02-26', 0, 75, 0),
-(45, 5, 'FEDERAL', 'ADMINISTATOR', 1, 'TRIVANDRUM', '2020-02-26', 3, 85, 0),
-(46, 3, 'Ibm', 'TESTING', 2, 'PALAKKAD', '2020-02-27', 1, 65, 0),
-(50, 3, 'Ibm', 'FRONT-END MANAGER', 1, 'WAYYANADU', '2020-02-27', 2, 63, 0),
-(51, 1, 'TCS', 'EXECUTE MANAGER', 1, 'KOZHIKOD', '2020-03-27', 0, 90, 0),
-(52, 1, 'TCS', 'ADMINISTATOR', 1, 'KASARGOD', '2020-03-01', 1, 20, 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `job_types`
 --
 
@@ -174,7 +174,7 @@ INSERT INTO `job_types` (`id`, `job_type`, `status`) VALUES
 --
 
 CREATE TABLE `locations` (
-  `locationid` int NOT NULL,
+  `id` int NOT NULL,
   `location` varchar(35) NOT NULL,
   `status` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -183,7 +183,7 @@ CREATE TABLE `locations` (
 -- Dumping data for table `locations`
 --
 
-INSERT INTO `locations` (`locationid`, `location`, `status`) VALUES
+INSERT INTO `locations` (`id`, `location`, `status`) VALUES
 (1, 'ALAPPUZHA', 1),
 (2, 'ERANAKULAM', 1),
 (3, 'IDUKKI', 1),
@@ -206,26 +206,24 @@ INSERT INTO `locations` (`locationid`, `location`, `status`) VALUES
 --
 
 CREATE TABLE `notifications` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
+  `user` int NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `action_link` text COLLATE utf8_unicode_ci,
-  `type` int NOT NULL,
+  `type` enum('info','warning','error') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'info',
   `status` enum('active','inactive') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `notification_types`
+-- Dumping data for table `notifications`
 --
 
-CREATE TABLE `notification_types` (
-  `id` int NOT NULL,
-  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`) VALUES
+(1, 1, 'Test Notification', 'Test Notification details', '', 'info', 'active', '2020-04-26 19:07:52'),
+(2, 1, 'Test Notification 2', 'Test Notification 2 details', '/student/test2', 'info', 'active', '2020-04-26 19:17:52');
 
 -- --------------------------------------------------------
 
@@ -315,39 +313,67 @@ CREATE TABLE `students` (
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `mobile_number` varchar(15) NOT NULL,
-  `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other'
+  `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other',
+  `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`) VALUES
-(5, 8, 'Haritha', 'N H', '9856231478', 'Female'),
-(6, 9, 'athul', 'S N', '9947266566', 'Female'),
-(7, 15, 'sruthi', 'kumar', '9633679875', 'Female'),
-(8, 17, 'anitta', 's', '6677889900', 'Female'),
-(9, 18, 'anu', 'a', '9876543212', 'Female'),
-(10, 23, 'ammu', 's', '8956231452', 'Female'),
-(11, 24, 'asif', 'ali', '8956231478', 'Female'),
-(12, 25, 'arya', 'kumar', '9856231478', 'Female'),
-(13, 26, 'arun', 'k s', '8956231478', 'Female'),
-(14, 27, 'Achu', 'l', '8956231478', 'Female'),
-(15, 28, 'aathira', 'ajith', '9895623145', 'Female'),
-(16, 29, 'akil', 'achu', '9865231478', 'Male'),
-(17, 31, 'athira', 'Ajith', '9856231478', 'Male'),
-(18, 32, 'sharon ', 'kurian', '9856231455', 'Female'),
-(19, 34, 'smriti', 'kumar', '8956231478', 'Female'),
-(20, 35, 'anju', 'mathew', '9856231230', 'Female'),
-(21, 36, 'teenu', 'v therese', '0', 'Female'),
-(22, 37, 'Raj', 's', '8956231478', 'Female'),
-(23, 38, 'amala', 'saji', '9856231230', 'Female'),
-(24, 39, 'Rincy', 'mol', '8956231452', 'Female'),
-(25, 40, 'sruthi', 'kumar', '9856231452', 'Female'),
-(26, 42, 'lavanya', 's', '8596321230', 'Female'),
-(27, 45, 'ganesh', 'prakash', '9856230236', 'Female'),
-(28, 47, 'rahul', 's', '8956231023', 'Female'),
-(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female');
+INSERT INTO `students` (`student_id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `payment_status`, `created_at`) VALUES
+(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(6, 9, 'athul', 'S N', '9947266566', 'Female', 'pending', '2020-04-26 21:23:40'),
+(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 'pending', '2020-04-26 21:23:40'),
+(8, 17, 'anitta', 's', '6677889900', 'Female', 'pending', '2020-04-26 21:23:40'),
+(9, 18, 'anu', 'a', '9876543212', 'Female', 'pending', '2020-04-26 21:23:40'),
+(10, 23, 'ammu', 's', '8956231452', 'Female', 'pending', '2020-04-26 21:23:40'),
+(11, 24, 'asif', 'ali', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(12, 25, 'arya', 'kumar', '9856231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(13, 26, 'arun', 'k s', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(14, 27, 'Achu', 'l', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 'pending', '2020-04-26 21:23:40'),
+(16, 29, 'akil', 'achu', '9865231478', 'Male', 'pending', '2020-04-26 21:23:40'),
+(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 'pending', '2020-04-26 21:23:40'),
+(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 'pending', '2020-04-26 21:23:40'),
+(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(20, 35, 'anju', 'mathew', '9856231230', 'Female', 'pending', '2020-04-26 21:23:40'),
+(21, 36, 'teenu', 'v therese', '0', 'Female', 'pending', '2020-04-26 21:23:40'),
+(22, 37, 'Raj', 's', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
+(23, 38, 'amala', 'saji', '9856231230', 'Female', 'pending', '2020-04-26 21:23:40'),
+(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 'pending', '2020-04-26 21:23:40'),
+(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 'pending', '2020-04-26 21:23:40'),
+(26, 42, 'lavanya', 's', '8596321230', 'Female', 'pending', '2020-04-26 21:23:40'),
+(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 'pending', '2020-04-26 21:23:40'),
+(28, 47, 'rahul', 's', '8956231023', 'Female', 'pending', '2020-04-26 21:23:40'),
+(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 'pending', '2020-04-26 21:23:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` int NOT NULL,
+  `user` int NOT NULL,
+  `user_type` enum('student','recruiter') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('approved','pending','rejected') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `created_at`) VALUES
+(1, 15, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37'),
+(2, 8, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37'),
+(3, 6, 'recruiter', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37');
 
 -- --------------------------------------------------------
 
@@ -426,20 +452,21 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`dpid`);
 
 --
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cid` (`recruiter`),
+  ADD KEY `job type` (`job type`),
+  ADD KEY `location` (`location`);
+
+--
 -- Indexes for table `job_applications`
 --
 ALTER TABLE `job_applications`
   ADD PRIMARY KEY (`jid`),
   ADD KEY `logid` (`logid`),
   ADD KEY `pid` (`pid`);
-
---
--- Indexes for table `job_posts`
---
-ALTER TABLE `job_posts`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `cid` (`cid`),
-  ADD KEY `job type` (`job type`);
 
 --
 -- Indexes for table `job_types`
@@ -451,20 +478,14 @@ ALTER TABLE `job_types`
 -- Indexes for table `locations`
 --
 ALTER TABLE `locations`
-  ADD PRIMARY KEY (`locationid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `type` (`type`);
-
---
--- Indexes for table `notification_types`
---
-ALTER TABLE `notification_types`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `user` (`user`);
 
 --
 -- Indexes for table `profiles`
@@ -486,6 +507,13 @@ ALTER TABLE `recruiters`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`),
   ADD KEY `login-id` (`user_id`);
+
+--
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`);
 
 --
 -- Indexes for table `users`
@@ -511,16 +539,16 @@ ALTER TABLE `departments`
   MODIFY `dpid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
   MODIFY `jid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `job_posts`
---
-ALTER TABLE `job_posts`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `job_types`
@@ -532,7 +560,13 @@ ALTER TABLE `job_types`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `locationid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -553,6 +587,12 @@ ALTER TABLE `students`
   MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -569,24 +609,25 @@ ALTER TABLE `branches`
   ADD CONSTRAINT `branches_ibfk_1` FOREIGN KEY (`dpid`) REFERENCES `departments` (`dpid`);
 
 --
+-- Constraints for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`recruiter`) REFERENCES `recruiters` (`recruiter_id`),
+  ADD CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`job type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `jobs_ibfk_3` FOREIGN KEY (`location`) REFERENCES `locations` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `job_applications`
 --
 ALTER TABLE `job_applications`
   ADD CONSTRAINT `logid` FOREIGN KEY (`logid`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `job_posts` (`pid`);
-
---
--- Constraints for table `job_posts`
---
-ALTER TABLE `job_posts`
-  ADD CONSTRAINT `job_posts_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `recruiters` (`recruiter_id`),
-  ADD CONSTRAINT `job_posts_ibfk_2` FOREIGN KEY (`job type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `jobs` (`id`);
 
 --
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`type`) REFERENCES `notification_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `profiles`
@@ -605,6 +646,12 @@ ALTER TABLE `recruiters`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD CONSTRAINT `testimonials_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

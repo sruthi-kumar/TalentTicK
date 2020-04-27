@@ -39,9 +39,9 @@ function validate_form($form_data) {
 if (validate_form($_POST)) {
 
 	$user = new User();
-	$user->setUserData('username', $_POST['email']);
-	$user->setUserData('password', md5($_POST['password']));
-	$user->setUserData('type', 'student');
+	$user->setData('username', $_POST['email']);
+	$user->setData('password', md5($_POST['password']));
+	$user->setData('type', 'student');
 
 	//debug($user);
 
@@ -52,16 +52,34 @@ if (validate_form($_POST)) {
 	if ($result) {
 
 		$student = new Student();
-		$student->setStudentData('user_id', $result['user_id']);
-		$student->setStudentData('firstname', $_POST['firstname']);
-		$student->setStudentData('lastname', $_POST['lastname']);
-		$student->setStudentData('mobile_number', $_POST['mobile_number']);
-		$student->setStudentData('gender', $_POST['gender']);
+		$student->setData('user_id', $result['user_id']);
+		$student->setData('firstname', $_POST['firstname']);
+		$student->setData('lastname', $_POST['lastname']);
+		$student->setData('mobile_number', $_POST['mobile_number']);
+		$student->setData('gender', $_POST['gender']);
 
 		$result = $student->createStudent();
 		//debug($result);
 
-		if (!$result) {
+		if ($result) {
+
+
+			$to_address = $_POST['email'];
+			$subject = "TalenTick Job Portal Registration Successfull!";
+			$body = "
+
+			Hi $_POST['firstname'] $_POST['lastname']  , <br>
+
+			Your Profile has been successfully registered wih our portal. <br>
+
+			Please login and complete your payment.
+
+			";
+
+			send_email_notification($to_address, $subject, $body);
+
+
+		}else{
 			$status = 'failed';
 			$_SESSION['errors']['register'] = "Registration Failed!";
 		}

@@ -47,6 +47,15 @@
   
   <!-- Bootstrap Core JavaScript -->
   <script src="<?=$this->data['assets']?>/js/bootstrap.js"> </script>
+
+  <script src="<?=$this->data['assets']?>/js/jquery.dataTables.min.js"> </script>
+  <script src="<?=$this->data['assets']?>/js/dataTables.bootstrap.min.js "> </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#datatable').DataTable(); 
+    } );
+  </script> 
    
 </body>
 </html>

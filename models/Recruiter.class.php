@@ -2,6 +2,8 @@
 
 class Recruiter extends Dbh {
 
+/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
+
 	private $recruiter_id;
 	private $user_id;
 	private $company_name;
@@ -15,7 +17,21 @@ class Recruiter extends Dbh {
 
 	private $table_name = "recruiters";
 
-	function setRecruiterData($type, $data) {
+	function toArray() {
+		$params = [];
+		$params['user_id'] = $this->user_id ?? '';
+		$params['company_name'] = $this->company_name ?? '';
+		$params['email'] = $this->email ?? '';
+		$params['website'] = $this->website ?? '';
+		$params['phone'] = $this->phone ?? '';
+		$params['address'] = $this->address ?? '';
+		$params['license'] = $this->license ?? '';
+		$params['city'] = $this->city ?? '';
+		$params['pincode'] = $this->pincode ?? '';
+		return $params;
+	}
+
+	function setData($type, $data) {
 
 		switch ($type) {
 		case 'recruiter_id':
@@ -60,7 +76,7 @@ class Recruiter extends Dbh {
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
-			$recruiter[] = $row;
+			$recruiters[] = $row;
 		}
 
 		return $recruiters;
@@ -130,22 +146,6 @@ class Recruiter extends Dbh {
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
-	}
-
-	function toArray() {
-
-/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
-		$params = [];
-		$params['user_id'] = $this->user_id ?? '';
-		$params['company_name'] = $this->company_name ?? '';
-		$params['email'] = $this->email ?? '';
-		$params['website'] = $this->website ?? '';
-		$params['phone'] = $this->phone ?? '';
-		$params['address'] = $this->address ?? '';
-		$params['license'] = $this->license ?? '';
-		$params['city'] = $this->city ?? '';
-		$params['pincode'] = $this->pincode ?? '';
-		return $params;
 	}
 
 }
