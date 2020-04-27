@@ -2,7 +2,7 @@
 
 class Location extends Dbh {
 
-	private $user_id;
+	private $id;
 	private $username;
 	private $password;
 	private $type;
@@ -25,8 +25,8 @@ class Location extends Dbh {
 	function setData($type, $data) {
 
 		switch ($type) {
-		case 'user_id':
-			$this->user_id = $data;
+		case 'id':
+			$this->id = $data;
 			break;
 		case 'username':
 			$this->username = $data;
@@ -44,7 +44,7 @@ class Location extends Dbh {
 
 	}
 
-	function getStates($limit = null) {
+	function getStates() {
 
 		$states = [];
 
@@ -57,37 +57,59 @@ class Location extends Dbh {
 
 		return $states;
 
-	}function getDistricts($limit = null) {
+	}function getDistricts($state_id = null) {
 
-		$users = [];
+		$districts = [];
 
 		$sql = " SELECT $this->table_name_district.* , $this->table_name_state.name as state FROM $this->table_name_district ";
 		$sql .= " JOIN $this->table_name_state ON $this->table_name_state.id =  $this->table_name_district.state_id ";
+
+		if (isset($state_id)) {
+
+			$sql .= " WHERE $this->table_name_district.state_id = $state_id ";
+
+		}
 
 		//debug($sql);
 
 		$result = $this->connect()->query($sql);
 		while ($row = $result->fetch()) {
-			$users[] = $row;
+			$districts[] = $row;
 		}
 
-		return $users;
+		return $districts;
 
 	}
 
-	function getStateById($user_id = null) {
+	function getStateById($id = null) {
 
-		$this->user_id = $user_id ?? $this->user_id;
+		$this->id = $id ?? $this->id;
 
-		$user_data = [];
+		$state = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE user_id=?";
+		$sql = "SELECT * FROM $this->table_name_state WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->user_id];
+		$params = [$this->id];
 		$stmt->execute($params);
-		$user_data = $stmt->fetch();
+		$state = $stmt->fetch();
 
-		return $user_data;
+		return $state;
+
+	}
+
+	function getDistrictById($id = null) {
+
+		$this->id = $id ?? $this->id;
+
+		$district = [];
+
+		$sql = "SELECT * FROM $this->table_name_district WHERE id=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->id];
+		$stmt->execute($params);
+		$district = $stmt->fetch();
+
+		return $district;
 
 	}
 
@@ -99,7 +121,7 @@ class Location extends Dbh {
 
 		$params = $model_data['values'];
 
-		$sql = " INSERT INTO $this->table_name (" . $model_data['fields'] . ") VALUES (" . $model_data['placeholder'] . " )";
+		$sql = " INSERT INTO $this->table_name_state (" . $model_data['fields'] . ") VALUES (" . $model_data['placeholder'] . " )";
 		$stmt = $this->connect()->prepare($sql);
 
 		if ($stmt->execute($params)) {
@@ -112,15 +134,50 @@ class Location extends Dbh {
 		}
 	}
 
-	function updateLocation($user_id = null) {
+	function createDistrict() {
+
+		$model_data = set_model_data($this->toArray());
+
+		//debug($model_data);
+
+		$params = $model_data['values'];
+
+		$sql = " INSERT INTO $this->table_name_district (" . $model_data['fields'] . ") VALUES (" . $model_data['placeholder'] . " )";
+		$stmt = $this->connect()->prepare($sql);
+
+		if ($stmt->execute($params)) {
+			//return $this->connect()->lastInsertId($this->table_name);
+			return $this->getLocationByLocationname($this->username);
+		} else {
+			debug($this->connect()->errorCode(), false);
+			debug($this->connect()->errorInfo());
+			return false;
+		}
+	}
+
+	function updateState($id = null) {
 
 		$model_data = set_model_data($this->toArray());
 
 		$params = $model_data['values'];
 
-		$params[] = $user_id ?? $this->user_id;
+		$params[] = $id ?? $this->id;
 
-		$sql = "UPDATE $this->table_name ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE user_id = ?";
+		$sql = "UPDATE $this->table_name_state( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE id = ?";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute($params);
+
+	}
+
+	function updateState($id = null) {
+
+		$model_data = set_model_data($this->toArray());
+
+		$params = $model_data['values'];
+
+		$params[] = $id ?? $this->id;
+
+		$sql = "UPDATE $this->table_name_district ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
