@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 27, 2020 at 11:02 PM
+-- Generation Time: Apr 28, 2020 at 12:30 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `branches` (
-  `bid` int NOT NULL,
+  `id` int NOT NULL,
   `branch` varchar(30) NOT NULL,
-  `dpid` int NOT NULL
+  `department_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `branches`
 --
 
-INSERT INTO `branches` (`bid`, `branch`, `dpid`) VALUES
+INSERT INTO `branches` (`id`, `branch`, `department_id`) VALUES
 (1, 'Civil Engineering', 1),
 (2, 'Software Engineering', 1),
 (3, 'Mechanical Engineering', 1),
@@ -61,7 +61,7 @@ INSERT INTO `branches` (`bid`, `branch`, `dpid`) VALUES
 --
 
 CREATE TABLE `departments` (
-  `dpid` int NOT NULL,
+  `id` int NOT NULL,
   `department` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,7 +69,7 @@ CREATE TABLE `departments` (
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`dpid`, `department`) VALUES
+INSERT INTO `departments` (`id`, `department`) VALUES
 (1, 'M.Tech'),
 (2, 'MCA'),
 (3, 'B.Tech');
@@ -299,35 +299,37 @@ CREATE TABLE `profiles` (
   `student_id` int NOT NULL,
   `dob` date NOT NULL,
   `address` varchar(40) NOT NULL,
-  `addressline2` varchar(50) NOT NULL,
-  `addressline3` varchar(50) NOT NULL,
+  `addressline2` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `addressline3` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `state_id` int NOT NULL,
+  `district_id` int NOT NULL,
+  `pincode` int NOT NULL,
+  `cgpa` float NOT NULL,
   `gpg` float NOT NULL,
   `gug` float NOT NULL,
   `gplus` float NOT NULL,
   `g10` float NOT NULL,
   `backlogs` int NOT NULL,
-  `resume` varchar(30) NOT NULL,
-  `city` varchar(40) NOT NULL,
-  `Highest Qualification` varchar(30) NOT NULL,
-  `pincode` int NOT NULL
+  `resume` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `highest_qualification` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `city`, `Highest Qualification`, `pincode`) VALUES
-(8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 89, 65, 78, 87, 0, '', 'Kottayam', '', 985623),
-(9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 76, 85, 87, 98, 0, '', 'Kollam', '', 688034),
-(18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 80, 6.77778e20, 0, 655444, 0, '', 'Trivandrum', '', 654321),
-(24, 11, '2001-12-10', 'asif manzil', 'kottiyam', 'kollam', 89, 87, 0, 0, 0, '', 'Kollam', '', 895623),
-(26, 13, '1999-07-07', 'arun villa', 'karunagapally', '', 89, 85, 65, 85, 2, '', 'Kollam', '', 895623),
-(27, 14, '1999-02-08', 'Achubhavan', 'palarivattam', '', 80, 85, 0, 91, 0, '', 'Ernakulam', '', 985623),
-(28, 15, '1997-06-18', 'villa', 'mavelikara', '', 89, 65, 0, 75, 0, '', 'Alappuzha', '', 989562),
-(32, 18, '1998-02-18', 'sharon villa', 'kanjirapally', '', 99, 99, 98, 89, 0, '', 'Kottayam', '', 985623),
-(34, 19, '1997-06-30', 'gananadam', 'kappil', '', 73, 69, 85, 93, 0, '', 'Trivandrum', '', 895623),
-(36, 21, '2001-11-25', 'asdfg', 'asdf', '', 99, 99, 99, 99, 0, '', 'Trivandrum', '', 6865188),
-(38, 23, '0000-00-00', 'amala villa', 'manimala', '', 85, 80, 75, 90, 0, 'sruthicv.docx', 'Kottayam', '', 895623);
+INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`) VALUES
+(8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 13, 1, 985623, 0, 89, 65, 78, 87, 0, NULL, NULL),
+(9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 13, 1, 688034, 0, 76, 85, 87, 98, 0, NULL, NULL),
+(18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 13, 1, 654321, 0, 80, 6.77778e20, 0, 655444, 0, NULL, NULL),
+(24, 11, '2001-12-10', 'asif manzil', 'kottiyam', 'kollam', 13, 1, 895623, 0, 89, 87, 0, 0, 0, NULL, NULL),
+(26, 13, '1999-07-07', 'arun villa', 'karunagapally', '', 13, 1, 895623, 0, 89, 85, 65, 85, 2, NULL, NULL),
+(27, 14, '1999-02-08', 'Achubhavan', 'palarivattam', '', 13, 1, 985623, 0, 80, 85, 0, 91, 0, NULL, NULL),
+(28, 15, '1997-06-18', 'villa', 'mavelikara', '', 13, 1, 989562, 0, 89, 65, 0, 75, 0, NULL, NULL),
+(32, 18, '1998-02-18', 'sharon villa', 'kanjirapally', '', 13, 1, 985623, 0, 99, 99, 98, 89, 0, NULL, NULL),
+(34, 19, '1997-06-30', 'gananadam', 'kappil', '', 13, 1, 895623, 0, 73, 69, 85, 93, 0, NULL, NULL),
+(36, 21, '2001-11-25', 'asdfg', 'asdf', '', 13, 1, 6865188, 0, 99, 99, 99, 99, 0, NULL, NULL),
+(38, 23, '2001-11-25', 'amala villa', 'manimala', '', 13, 1, 895623, 0, 85, 80, 75, 90, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -374,12 +376,13 @@ INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `
 --
 
 CREATE TABLE `students` (
-  `student_id` int NOT NULL,
+  `id` int NOT NULL,
   `user_id` int NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `mobile_number` varchar(15) NOT NULL,
   `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other',
+  `branch_id` int NOT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -389,32 +392,32 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `payment_status`, `created_at`) VALUES
-(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(6, 9, 'athul', 'S N', '9947266566', 'Female', 'pending', '2020-04-26 21:23:40'),
-(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 'pending', '2020-04-26 21:23:40'),
-(8, 17, 'anitta', 's', '6677889900', 'Female', 'pending', '2020-04-26 21:23:40'),
-(9, 18, 'anu', 'a', '9876543212', 'Female', 'pending', '2020-04-26 21:23:40'),
-(10, 23, 'ammu', 's', '8956231452', 'Female', 'pending', '2020-04-26 21:23:40'),
-(11, 24, 'asif', 'ali', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(12, 25, 'arya', 'kumar', '9856231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(13, 26, 'arun', 'k s', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(14, 27, 'Achu', 'l', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 'pending', '2020-04-26 21:23:40'),
-(16, 29, 'akil', 'achu', '9865231478', 'Male', 'pending', '2020-04-26 21:23:40'),
-(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 'pending', '2020-04-26 21:23:40'),
-(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 'pending', '2020-04-26 21:23:40'),
-(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(20, 35, 'anju', 'mathew', '9856231230', 'Female', 'pending', '2020-04-26 21:23:40'),
-(21, 36, 'teenu', 'v therese', '0', 'Female', 'pending', '2020-04-26 21:23:40'),
-(22, 37, 'Raj', 's', '8956231478', 'Female', 'pending', '2020-04-26 21:23:40'),
-(23, 38, 'amala', 'saji', '9856231230', 'Female', 'pending', '2020-04-26 21:23:40'),
-(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 'pending', '2020-04-26 21:23:40'),
-(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 'pending', '2020-04-26 21:23:40'),
-(26, 42, 'lavanya', 's', '8596321230', 'Female', 'pending', '2020-04-26 21:23:40'),
-(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 'pending', '2020-04-26 21:23:40'),
-(28, 47, 'rahul', 's', '8956231023', 'Female', 'pending', '2020-04-26 21:23:40'),
-(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 'pending', '2020-04-26 21:23:40');
+INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`) VALUES
+(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 3, 'pending', '2020-04-26 21:23:40'),
+(6, 9, 'athul', 'S N', '9947266566', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 7, 'pending', '2020-04-26 21:23:40'),
+(8, 17, 'anitta', 's', '6677889900', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(9, 18, 'anu', 'a', '9876543212', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(10, 23, 'ammu', 's', '8956231452', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(11, 24, 'asif', 'ali', '8956231478', 'Female', 10, 'pending', '2020-04-26 21:23:40'),
+(12, 25, 'arya', 'kumar', '9856231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(13, 26, 'arun', 'k s', '8956231478', 'Female', 12, 'pending', '2020-04-26 21:23:40'),
+(14, 27, 'Achu', 'l', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(16, 29, 'akil', 'achu', '9865231478', 'Male', 1, 'pending', '2020-04-26 21:23:40'),
+(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 1, 'pending', '2020-04-26 21:23:40'),
+(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(20, 35, 'anju', 'mathew', '9856231230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(21, 36, 'teenu', 'v therese', '0', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(22, 37, 'Raj', 's', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(23, 38, 'amala', 'saji', '9856231230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 4, 'pending', '2020-04-26 21:23:40'),
+(26, 42, 'lavanya', 's', '8596321230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(28, 47, 'rahul', 's', '8956231023', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
+(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', '2020-04-26 21:23:40');
 
 -- --------------------------------------------------------
 
@@ -509,14 +512,14 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `status`, `creat
 -- Indexes for table `branches`
 --
 ALTER TABLE `branches`
-  ADD PRIMARY KEY (`bid`),
-  ADD KEY `dpid` (`dpid`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dpid` (`department_id`);
 
 --
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
-  ADD PRIMARY KEY (`dpid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobs`
@@ -567,7 +570,9 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `profiles`
   ADD PRIMARY KEY (`profile_id`),
-  ADD KEY `regid` (`student_id`);
+  ADD KEY `regid` (`student_id`),
+  ADD KEY `district_id` (`district_id`),
+  ADD KEY `state_id` (`state_id`);
 
 --
 -- Indexes for table `recruiters`
@@ -580,8 +585,9 @@ ALTER TABLE `recruiters`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`),
-  ADD KEY `login-id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `login-id` (`user_id`),
+  ADD KEY `branch_id` (`branch_id`);
 
 --
 -- Indexes for table `testimonials`
@@ -605,13 +611,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `bid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `dpid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -665,7 +671,7 @@ ALTER TABLE `recruiters`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -687,7 +693,7 @@ ALTER TABLE `users`
 -- Constraints for table `branches`
 --
 ALTER TABLE `branches`
-  ADD CONSTRAINT `branches_ibfk_1` FOREIGN KEY (`dpid`) REFERENCES `departments` (`dpid`);
+  ADD CONSTRAINT `branches_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
 
 --
 -- Constraints for table `jobs`
@@ -721,7 +727,9 @@ ALTER TABLE `notifications`
 -- Constraints for table `profiles`
 --
 ALTER TABLE `profiles`
-  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
+  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `profiles_ibfk_2` FOREIGN KEY (`district_id`) REFERENCES `location_districts` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `profiles_ibfk_3` FOREIGN KEY (`state_id`) REFERENCES `location_states` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `recruiters`
@@ -733,7 +741,8 @@ ALTER TABLE `recruiters`
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `students_ibfk_3` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `testimonials`
