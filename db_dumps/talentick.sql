@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 27, 2020 at 10:58 AM
+-- Generation Time: Apr 27, 2020 at 11:28 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -85,27 +85,34 @@ CREATE TABLE `jobs` (
   `recruiter` int NOT NULL,
   `job title` varchar(30) NOT NULL,
   `job_description` text NOT NULL,
-  `job type` int NOT NULL,
-  `location` int NOT NULL,
-  `last date to apply` date NOT NULL,
-  `backlog` int NOT NULL,
-  `CGPA` double NOT NULL,
-  `vacancies` tinyint(1) NOT NULL
+  `job_type` int NOT NULL,
+  `state_id` int NOT NULL,
+  `district_id` int NOT NULL,
+  `last_date_to_apply` date NOT NULL,
+  `backlog_count` int NOT NULL,
+  `CGPA_min` double NOT NULL,
+  `CGPA_max` double NOT NULL,
+  `salary_min` double NOT NULL,
+  `salary_max` double NOT NULL,
+  `vacancies` tinyint(1) NOT NULL,
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `recruiter`, `job title`, `job_description`, `job type`, `location`, `last date to apply`, `backlog`, `CGPA`, `vacancies`) VALUES
-(35, 6, 'CODING', '', 1, 1, '2020-02-12', 2, 98, 1),
-(43, 7, 'EXECUTE MANAGER', '', 1, 1, '2020-02-26', 1, 50, 1),
-(44, 1, 'FRONT-END MANAGER', '', 5, 1, '2020-02-26', 0, 75, 0),
-(45, 5, 'ADMINISTATOR', '', 1, 1, '2020-02-26', 3, 85, 0),
-(46, 3, 'TESTING', '', 2, 1, '2020-02-27', 1, 65, 0),
-(50, 3, 'FRONT-END MANAGER', '', 1, 1, '2020-02-27', 2, 63, 0),
-(51, 1, 'EXECUTE MANAGER', '', 1, 1, '2020-03-27', 0, 90, 0),
-(52, 1, 'ADMINISTATOR', '', 1, 1, '2020-03-01', 1, 20, 0);
+INSERT INTO `jobs` (`id`, `recruiter`, `job title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`) VALUES
+(35, 6, 'CODING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-12', 2, 98, 0, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
+(43, 7, 'EXECUTE MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-26', 1, 50, 0, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
+(44, 1, 'FRONT-END MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 5, 1, 1, '2020-02-26', 0, 75, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
+(45, 5, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-26', 3, 85, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
+(46, 3, 'TESTING', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 2, 1, 1, '2020-02-27', 1, 65, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
+(50, 3, 'FRONT-END MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-02-27', 2, 63, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
+(51, 1, 'EXECUTE MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 1, 1, 1, '2020-03-27', 0, 90, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
+(52, 1, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, 1, '2020-03-01', 1, 20, 0, 0, 0, 0, 'active', '2020-04-27 05:36:41');
 
 -- --------------------------------------------------------
 
@@ -170,34 +177,88 @@ INSERT INTO `job_types` (`id`, `job_type`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locations`
+-- Table structure for table `location_districts`
 --
 
-CREATE TABLE `locations` (
+CREATE TABLE `location_districts` (
   `id` int NOT NULL,
-  `location` varchar(35) NOT NULL,
+  `state_id` int NOT NULL,
+  `district` varchar(35) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `locations`
+-- Dumping data for table `location_districts`
 --
 
-INSERT INTO `locations` (`id`, `location`, `status`) VALUES
-(1, 'ALAPPUZHA', 1),
-(2, 'ERANAKULAM', 1),
-(3, 'IDUKKI', 1),
-(4, 'KANNUR', 1),
-(5, 'KASARGOD', 1),
-(6, 'KOLLAM', 1),
-(7, 'KOTTAYAM', 1),
-(8, 'KOZHIKOD', 1),
-(9, 'MALAPURAM', 1),
-(10, 'PATHANAMTHITTA', 1),
-(11, 'PALAKKAD', 1),
-(12, 'THRISSUR', 1),
-(13, 'TRIVANDRUM', 1),
-(14, 'WAYYANADU', 1);
+INSERT INTO `location_districts` (`id`, `state_id`, `district`, `status`) VALUES
+(1, 1, 'ALAPPUZHA', 1),
+(2, 1, 'ERANAKULAM', 1),
+(3, 1, 'IDUKKI', 1),
+(4, 1, 'KANNUR', 1),
+(5, 1, 'KASARGOD', 1),
+(6, 1, 'KOLLAM', 1),
+(7, 1, 'KOTTAYAM', 1),
+(8, 1, 'KOZHIKOD', 1),
+(9, 1, 'MALAPURAM', 1),
+(10, 1, 'PATHANAMTHITTA', 1),
+(11, 1, 'PALAKKAD', 1),
+(12, 1, 'THRISSUR', 1),
+(13, 1, 'TRIVANDRUM', 1),
+(14, 1, 'WAYYANADU', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location_states`
+--
+
+CREATE TABLE `location_states` (
+  `id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `location_states`
+--
+
+INSERT INTO `location_states` (`id`, `name`) VALUES
+(1, 'Andra Pradesh'),
+(2, 'Arunachal Pradesh'),
+(3, 'Assam'),
+(4, 'Bihar'),
+(5, 'Chhattisgarh'),
+(6, 'Goa'),
+(7, 'Gujarat'),
+(8, 'Haryana'),
+(9, 'Himachal Pradesh'),
+(10, 'Jammu and Kashmir'),
+(11, 'Jharkhand'),
+(12, 'Karnataka'),
+(13, 'Kerala'),
+(14, 'Madhya Pradesh'),
+(15, 'Maharashtra'),
+(16, 'Manipur'),
+(17, 'Meghalaya'),
+(18, 'Mizoram'),
+(19, 'Nagaland'),
+(20, 'Odisha'),
+(21, 'Punjab'),
+(22, 'Rajasthan'),
+(23, 'Sikkim'),
+(24, 'Tamil Nadu'),
+(25, 'Telangana'),
+(26, 'Tripura'),
+(27, 'Uttaranchal'),
+(28, 'Uttar Pradesh'),
+(29, 'West Bengal'),
+(30, 'Andaman and Nicobar Islands'),
+(31, 'Chandigarh'),
+(32, 'Dadar and Nagar Haveli'),
+(33, 'Daman and Diu'),
+(34, 'Delhi'),
+(35, 'Lakshadeep'),
+(36, 'Pondicherry');
 
 -- --------------------------------------------------------
 
@@ -282,24 +343,27 @@ CREATE TABLE `recruiters` (
   `address` varchar(40) NOT NULL,
   `license` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `city` varchar(30) NOT NULL,
-  `pincode` varchar(6) NOT NULL
+  `pincode` varchar(6) NOT NULL,
+  `status` enum('pending','approved') NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recruiters`
 --
 
-INSERT INTO `recruiters` (`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`) VALUES
-(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623'),
-(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623'),
-(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623'),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623'),
-(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', NULL, '89562314566', 'software solutions private limited', '0', 'Bihar', '859623'),
-(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232'),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85'),
-(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523'),
-(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623'),
-(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047');
+INSERT INTO `recruiters` (`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`) VALUES
+(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'pending', '2020-04-27 05:41:02'),
+(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'pending', '2020-04-27 05:41:02'),
+(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'pending', '2020-04-27 05:41:02'),
+(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'pending', '2020-04-27 05:41:02'),
+(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', NULL, '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'pending', '2020-04-27 05:41:02'),
+(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'pending', '2020-04-27 05:41:02'),
+(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85', 'pending', '2020-04-27 05:41:02'),
+(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'pending', '2020-04-27 05:41:02'),
+(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', 'pending', '2020-04-27 05:41:02'),
+(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'pending', '2020-04-27 05:41:02');
 
 -- --------------------------------------------------------
 
@@ -457,8 +521,9 @@ ALTER TABLE `departments`
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cid` (`recruiter`),
-  ADD KEY `job type` (`job type`),
-  ADD KEY `location` (`location`);
+  ADD KEY `job type` (`job_type`),
+  ADD KEY `state_id` (`state_id`),
+  ADD KEY `district_id` (`district_id`);
 
 --
 -- Indexes for table `job_applications`
@@ -475,9 +540,15 @@ ALTER TABLE `job_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `locations`
+-- Indexes for table `location_districts`
 --
-ALTER TABLE `locations`
+ALTER TABLE `location_districts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `location_states`
+--
+ALTER TABLE `location_states`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -557,10 +628,16 @@ ALTER TABLE `job_types`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `locations`
+-- AUTO_INCREMENT for table `location_districts`
 --
-ALTER TABLE `locations`
+ALTER TABLE `location_districts`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `location_states`
+--
+ALTER TABLE `location_states`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -613,8 +690,9 @@ ALTER TABLE `branches`
 --
 ALTER TABLE `jobs`
   ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`recruiter`) REFERENCES `recruiters` (`recruiter_id`),
-  ADD CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`job type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `jobs_ibfk_3` FOREIGN KEY (`location`) REFERENCES `locations` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`job_type`) REFERENCES `job_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `jobs_ibfk_3` FOREIGN KEY (`state_id`) REFERENCES `location_states` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `jobs_ibfk_4` FOREIGN KEY (`district_id`) REFERENCES `location_districts` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `job_applications`
