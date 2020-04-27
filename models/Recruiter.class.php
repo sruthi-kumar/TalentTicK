@@ -68,11 +68,15 @@ class Recruiter extends Dbh {
 
 	}
 
-	function getRecruiters($limit = null) {
+	function getRecruiters($type = 'list') {
 
 		$recruiters = [];
 
 		$sql = "SELECT * FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name   ";
+		}
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {

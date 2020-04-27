@@ -43,11 +43,16 @@ class User extends Dbh {
 
 	}
 
-	function getUsers($limit = null) {
+	function getUsers($type = 'list') {
 
 		$users = [];
 
 		$sql = "SELECT * FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name   ";
+		}
+
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {

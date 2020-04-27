@@ -49,11 +49,16 @@ class Testimonial extends Dbh {
 
 	}
 
-	function getTestimonials($limit = null) {
+	function getTestimonials($type = 'list') {
 
 		$testimonials = [];
 
 		$sql = "SELECT * FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name   ";
+		}
+
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
@@ -77,6 +82,20 @@ class Testimonial extends Dbh {
 		$testimonial_data = $stmt->fetch();
 
 		return $testimonial_data;
+
+	}
+
+	function getTopTestimonials() {
+
+		$top_testimonials = [];
+
+		$sql = "SELECT * FROM $this->table_name WHERE show_in_web=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = ['yes'];
+		$stmt->execute($params);
+		$top_testimonials = $stmt->fetch();
+
+		return $top_testimonials;
 
 	}
 

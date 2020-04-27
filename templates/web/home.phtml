@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-10 ftco-animate mb-5 pb-5" data-scrollax=" properties: { translateY: '70%' }">
-          	<p class="mb-4 mt-5 pt-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">We have <span class="number" data-number="<?=$this->data['total_jobs']?>">0</span> great job offers you deserve!</p>
+          	<p class="mb-4 mt-5 pt-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">We have <span class="number" data-number="<?=$this->data['total_jobs'][0]['count']?>">0</span> great job offers you deserve!</p>
             <h1 class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Your Dream <br><span>Job is Waiting</span></h1>
  
           </div>
@@ -23,7 +23,7 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="<?=$this->data['total_jobs']?>">0</strong>
+		                <strong class="number" data-number="<?=$this->data['total_jobs'][0]['count']?>">0</strong>
 		                <span>Jobs</span>
 		              </div>
 		            </div>
@@ -31,7 +31,7 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="<?=$this->data['total_members']?>">0</strong>
+		                <strong class="number" data-number="<?=$this->data['total_members'][0]['count']?>">0</strong>
 		                <span>Members</span>
 		              </div>
 		            </div>
@@ -39,7 +39,7 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="<?=$this->data['total_resumes']?>">0</strong>
+		                <strong class="number" data-number="<?=$this->data['total_resumes'][0]['count']?>">0</strong>
 		                <span>Resume</span>
 		              </div>
 		            </div>
@@ -47,7 +47,7 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="<?=$this->data['total_companies']?>">0</strong>
+		                <strong class="number" data-number="<?=$this->data['total_companies'][0]['count']?>">0</strong>
 		                <span>Company</span>
 		              </div>
 		            </div>

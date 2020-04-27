@@ -21,7 +21,6 @@ class Student extends Dbh {
 		return $params;
 	}
 
-
 	function setData($type, $data) {
 
 		switch ($type) {
@@ -47,11 +46,15 @@ class Student extends Dbh {
 
 	}
 
-	function getStudents($limit = null) {
+	function getStudents($type = 'list') {
 
 		$students = [];
 
 		$sql = "SELECT * FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
+		}
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
@@ -96,12 +99,11 @@ class Student extends Dbh {
 
 	function createStudent() {
 
-		
 		$model_data = set_model_data($this->toArray());
 
 		$params = $model_data['values'];
 
-		$sql = "INSERT INTO $this->table_name ( $model_data['fields'] ) values( $model_data['placeholder']) ";
+		$sql = "INSERT INTO " . $this->table_name . " (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") ";
 		$stmt = $this->connect()->prepare($sql);
 
 		if ($stmt->execute($params)) {
@@ -116,14 +118,12 @@ class Student extends Dbh {
 
 	function updateStudent($student_id = null) {
 
-		
-
 		$model_data = set_model_data($this->toArray());
 
 		$params = $model_data['values'];
 		$params[] = $student_id ?? $this->student_id;
 
-		$sql = "UPDATE $this->table_name ( $model_data['fields'] ) values( $model_data['placeholder']) WHERE student_id = ?";
+		$sql = "UPDATE " . $this->table_name . " (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ")  WHERE student_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

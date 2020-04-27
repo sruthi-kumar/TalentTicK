@@ -65,13 +65,20 @@ class Job extends Dbh {
 
 	}
 
-	function getJobs($limit = null) {
+	function getJobs($type = 'list') {
 
 		$jobs = [];
 
 		$sql = "SELECT $this->table_name.* , recruiters.company_name , job_types.job_type as JobType FROM $this->table_name ";
 		$sql .= " JOIN recruiters ON recruiters.id = $this->table_name.recruiter ";
 		$sql .= " JOIN job_types ON job_types.id = $this->table_name.job_type ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
+		}
+
+		//debug($sql);
+
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
