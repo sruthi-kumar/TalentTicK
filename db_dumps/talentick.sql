@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 27, 2020 at 09:57 PM
+-- Generation Time: Apr 27, 2020 at 11:02 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -428,6 +428,7 @@ CREATE TABLE `testimonials` (
   `user_type` enum('student','recruiter') COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('approved','pending','rejected') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'pending',
+  `show_in_web` enum('yes','no') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -436,10 +437,10 @@ CREATE TABLE `testimonials` (
 -- Dumping data for table `testimonials`
 --
 
-INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `created_at`) VALUES
-(1, 15, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37'),
-(2, 8, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37'),
-(3, 6, 'recruiter', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', '2020-04-26 21:06:37');
+INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
+(1, 15, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', 'no', '2020-04-26 21:06:37'),
+(2, 8, 'student', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', 'yes', '2020-04-26 21:06:37'),
+(3, 6, 'recruiter', 'Blah Bhalh lzkdncklnsd sdl dsdfh knfkvjn xckvnxcjkvn xckjv c vxcjvncbv', 'pending', 'no', '2020-04-26 21:06:37');
 
 -- --------------------------------------------------------
 
