@@ -14,8 +14,7 @@ $page_data['page_title'] = "Testimonial";
 
 $testimonial = new Testimonial();
 
-$login_details = get_current_user_set();
-$user_id = $login_details['user_data']['user_id'];
+$user_id = $page_data['user_data']['user_id'];
 
 $page_data['testimonial'] = $testimonial->getTestimonialByUser($user_id);
 

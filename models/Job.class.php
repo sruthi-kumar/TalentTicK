@@ -133,4 +133,20 @@ class Job extends Dbh {
 		return $job_data;
 
 	}
+
+	function getJobByRecruiter($recruiter = null) {
+
+		$this->recruiter = $recruiter ?? $this->recruiter;
+
+		$job_data = [];
+
+		$sql = "SELECT * FROM $this->table_name WHERE recruiter=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->recruiter];
+		$stmt->execute($params);
+		$job_data = $stmt->fetchAll();
+
+		return $job_data;
+
+	}
 }

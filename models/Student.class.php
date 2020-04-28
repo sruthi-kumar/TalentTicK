@@ -104,6 +104,22 @@ class Student extends Dbh {
 
 	}
 
+	function getStudentByUserId($user_id = null) {
+
+		$this->user_id = $user_id ?? $this->user_id;
+
+		$recruiter_data = [];
+
+		$sql = "SELECT * FROM $this->table_name WHERE user_id=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->user_id];
+		$stmt->execute($params);
+		$recruiter_data = $stmt->fetch();
+
+		return $recruiter_data;
+
+	}
+
 	function getStudentByStudentname($studentname = null) {
 
 		$this->studentname = $studentname ?? $this->studentname;

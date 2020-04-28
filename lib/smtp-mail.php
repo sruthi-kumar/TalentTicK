@@ -9,6 +9,12 @@ require __DIR__ . '/vendor/autoload.php';
 
 function send_email_notification($to_address, $subject, $body, $alt_body = null) {
 
+	if (!config('send_mail')) {
+
+		return true;
+
+	}
+
 	if (!empty($to_address)) {
 
 		// Instantiation and passing `true` enables exceptions

@@ -51,7 +51,7 @@ if (validate_form($_POST)) {
 
 	if ($result) {
 
-		$to_address = conf('admin_email');
+		$to_address = config('admin_email');
 
 		$subject = "Tetsimonial Posted/Updated By Member";
 
@@ -59,7 +59,7 @@ if (validate_form($_POST)) {
 
 		$notification = new Notification();
 
-		$notification->setData('user', conf('admin_id'));
+		$notification->setData('user', config('admin_id'));
 		$notification->setData('title', $subject);
 		$notification->setData('description', $body);
 

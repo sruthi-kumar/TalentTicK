@@ -85,7 +85,7 @@ if (validate_form($_POST)) {
 
 			$notification = new Notification();
 
-			$notification->setData('user', conf('admin_id'));
+			$notification->setData('user', config('admin_id'));
 			$notification->setData('title', "New Recruiter Registered");
 			$notification->setData('description', "New Recruiter Registerd in Portal.\n Please check & verify");
 

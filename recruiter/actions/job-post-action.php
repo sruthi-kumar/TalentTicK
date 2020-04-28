@@ -1,7 +1,7 @@
 <?php
 include_once '../autoload.php';
 
-//debug($_POST);
+debug($_POST);
 
 $status = 'success';
 
