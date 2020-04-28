@@ -57,16 +57,16 @@ if (validate_form($_POST)) {
 
 	//debug($user);
 
-	$result = $user->create();
+	if ($user->create()) {
 
-	//debug($result);
+		$result = $user->getUserByUsername();
+
+		//debug($result);
 
 /*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
 
-	if ($result) {
-
 		$recruiter = new Recruiter();
-		$recruiter->setData('user_id', $result['user_id']);
+		$recruiter->setData('user_id', $result['id']);
 		$recruiter->setData('company_name', $_POST['company_name']);
 		$recruiter->setData('email', $_POST['email']);
 		$recruiter->setData('website', $_POST['website']);
@@ -78,10 +78,7 @@ if (validate_form($_POST)) {
 
 		//debug($recruiter);
 
-		$result = $recruiter->create();
-		//debug($result);
-
-		if ($result) {
+		if ($recruiter->create()) {
 
 			$notification = new Notification();
 

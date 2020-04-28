@@ -22,7 +22,7 @@ function get_district_list() {
 	if (isset($_GET['state'])) {
 		$state_id = trim($_GET['state']);
 		$location = new Location();
-		$results = $location->getDistricts($state_id);
+		$results['districts'] = $location->getDistricts($state_id);
 
 		//debug($results);
 

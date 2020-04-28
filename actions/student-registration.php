@@ -45,23 +45,20 @@ if (validate_form($_POST)) {
 
 	//debug($user);
 
-	$result = $user->create();
+	if ($user->create()) {
 
-	//debug($result);
+		$result = $user->getUserByUsername();
 
-	if ($result) {
+		//debug($result);
 
 		$student = new Student();
-		$student->setData('user_id', $result['user_id']);
+		$student->setData('user_id', $result['id']);
 		$student->setData('firstname', $_POST['firstname']);
 		$student->setData('lastname', $_POST['lastname']);
 		$student->setData('mobile_number', $_POST['mobile_number']);
 		$student->setData('gender', $_POST['gender']);
 
-		$result = $student->create();
-		//debug($result);
-
-		if ($result) {
+		if ($student->create()) {
 
 			$notification = new Notification();
 

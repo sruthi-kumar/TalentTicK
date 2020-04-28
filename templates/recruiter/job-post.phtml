@@ -150,11 +150,14 @@
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
 
-            console.log(this.responseText) ;
+            //console.log(this.responseText) ;
 
             if(this.responseText != "") {
 
-              var districts = JSON.parse(this.responseText); 
+              var response = JSON.parse(this.responseText);  
+              //console.log(response) ;
+
+              var districts = response.districts;
 
               console.log(districts) ;
 
@@ -164,12 +167,15 @@
               element.innerText = "--Select District--"; 
               districtDropdown.append(element);
 
-              //  for (district in districts) { 
-              //   var element = document.createElement("option");
-              //   element.innerText = district['name']; 
-              //   element.value = district['id']; 
-              //   districtDropdown.append(element);
-              // }
+               for (var i=0; i<districts.lenght ; i++ ) { 
+
+                console.log(districts[i]) ;
+
+                // var element = document.createElement("option");
+                // element.innerText = district['district']; 
+                // element.value = district['id']; 
+                // districtDropdown.append(element);
+              }
               
             }
           }
