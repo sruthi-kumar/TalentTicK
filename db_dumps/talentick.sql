@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 28, 2020 at 10:16 PM
+-- Generation Time: Apr 29, 2020 at 01:31 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -87,13 +87,14 @@ CREATE TABLE `jobs` (
   `job_description` text NOT NULL,
   `job_type` int NOT NULL,
   `district_id` int NOT NULL,
-  `last_date_to_apply` date NOT NULL,
-  `backlog_count` int NOT NULL,
+  `qualified_branches` text,
   `CGPA_min` double NOT NULL,
+  `backlog_count` int NOT NULL,
   `salary_min` double NOT NULL,
   `salary_max` double NOT NULL,
   `vacancies` tinyint(1) NOT NULL,
-  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `status` enum('active','inactive') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'active',
+  `last_date_to_apply` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -102,15 +103,16 @@ CREATE TABLE `jobs` (
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`) VALUES
-(35, 6, 'CODING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '2020-02-12', 2, 98, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
-(43, 7, 'EXECUTE MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '2020-02-26', 1, 50, 0, 0, 1, 'active', '2020-04-27 05:36:41'),
-(44, 1, 'FRONT-END MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 5, 1, '2020-02-26', 0, 75, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
-(45, 5, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '2020-02-26', 3, 85, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
-(46, 3, 'TESTING', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 2, 1, '2020-02-27', 1, 65, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
-(50, 3, 'FRONT-END MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '2020-02-27', 2, 63, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
-(51, 1, 'EXECUTE MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 1, 1, '2020-03-27', 0, 90, 0, 0, 0, 'active', '2020-04-27 05:36:41'),
-(52, 1, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '2020-03-01', 1, 20, 0, 0, 0, 'active', '2020-04-27 05:36:41');
+INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
+(35, 6, 'CODING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '[1,4]', 98, 2, 0, 0, 1, 'active', '2020-02-12', '2020-04-27 05:36:41'),
+(43, 7, 'EXECUTE MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '[3,4]', 50, 1, 0, 0, 1, 'active', '2020-02-26', '2020-04-27 05:36:41'),
+(44, 1, 'FRONT-END MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 5, 1, NULL, 75, 0, 0, 0, 0, 'active', '2020-02-26', '2020-04-27 05:36:41'),
+(45, 5, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 85, 3, 0, 0, 0, 'active', '2020-02-26', '2020-04-27 05:36:41'),
+(46, 3, 'TESTING', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 2, 1, NULL, 65, 1, 0, 0, 0, 'active', '2020-02-27', '2020-04-27 05:36:41'),
+(50, 3, 'FRONT-END MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 63, 2, 0, 0, 0, 'active', '2020-02-27', '2020-04-27 05:36:41'),
+(51, 1, 'EXECUTE MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 1, 1, NULL, 90, 0, 0, 0, 0, 'active', '2020-03-27', '2020-04-27 05:36:41'),
+(52, 1, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 20, 1, 0, 0, 0, 'active', '2020-03-01', '2020-04-27 05:36:41'),
+(68, 14, 'WEB DEVELOPER', 'zczxczxc', 1, 6, '[\"1\",\"9\",\"11\"]', 60, 5, 50000, 100000, 1, 'active', '2020-08-27', '2020-04-28 19:46:56');
 
 -- --------------------------------------------------------
 
@@ -286,7 +288,17 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (1, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 09:20:40'),
 (2, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:16:29'),
 (3, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:18:07'),
-(4, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-04-28 16:31:55');
+(4, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-04-28 16:31:55'),
+(7, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 19:45:34'),
+(8, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(9, 38, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(10, 36, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(11, 34, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(12, 32, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(13, 28, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(14, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(15, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
+(16, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56');
 
 -- --------------------------------------------------------
 
@@ -295,7 +307,7 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 --
 
 CREATE TABLE `profiles` (
-  `profile_id` int NOT NULL,
+  `id` int NOT NULL,
   `student_id` int NOT NULL,
   `dob` date NOT NULL,
   `address` varchar(40) NOT NULL,
@@ -318,7 +330,7 @@ CREATE TABLE `profiles` (
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`) VALUES
+INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`) VALUES
 (8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 13, 1, 985623, 0, 89, 65, 78, 87, 0, NULL, NULL),
 (9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 13, 1, 688034, 0, 76, 85, 87, 98, 0, NULL, NULL),
 (18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 13, 1, 654321, 0, 80, 6.77778e20, 0, 655444, 0, NULL, NULL),
@@ -442,7 +454,7 @@ CREATE TABLE `testimonials` (
 --
 
 INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
-(1, 76, 'recruiter', 'Testing testimonials  updated  3 for admin notification ', 'pending', 'no', '2020-04-28 08:55:55'),
+(1, 76, 'recruiter', 'Testing testimonials  updated  3 for admin notification  asdsdf d', 'pending', 'no', '2020-04-28 08:55:55'),
 (2, 15, 'student', 'Student testimonial updated ', 'pending', 'no', '2020-04-28 10:16:29');
 
 -- --------------------------------------------------------
@@ -569,7 +581,7 @@ ALTER TABLE `notifications`
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`profile_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `regid` (`student_id`),
   ADD KEY `district_id` (`district_id`),
   ADD KEY `state_id` (`state_id`);
@@ -623,7 +635,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
@@ -653,13 +665,13 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `profile_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `recruiters`
