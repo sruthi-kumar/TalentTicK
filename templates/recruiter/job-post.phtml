@@ -159,7 +159,7 @@
 
               var districts = response.districts;
 
-              console.log(districts) ;
+              //console.log(districts) ;
 
               districtDropdown.innerText = null; 
 
@@ -167,14 +167,16 @@
               element.innerText = "--Select District--"; 
               districtDropdown.append(element);
 
-               for (var i=0; i<districts.lenght ; i++ ) { 
+               for (district in districts) { 
 
-                console.log(districts[i]) ;
+                item = districts[district] ; 
 
-                // var element = document.createElement("option");
-                // element.innerText = district['district']; 
-                // element.value = district['id']; 
-                // districtDropdown.append(element);
+                //console.log(districts[district]) ;
+
+                var element = document.createElement("option");
+                element.innerText = item['district']; 
+                element.value = item['id']; 
+                districtDropdown.append(element);
               }
               
             }
