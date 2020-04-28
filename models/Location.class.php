@@ -17,7 +17,7 @@ class Location extends Dbh {
 
 		parent::__construct();
 
-		$this->set_table_name($this->table_name);
+		//$this->set_table_name($this->table_name);
 	}
 
 	function toArray() {
@@ -122,6 +122,8 @@ class Location extends Dbh {
 
 	function createState() {
 
+		$this->set_table_name($this->table_name_state);
+
 		$model_data = set_model_data($this->toArray());
 
 		//debug($model_data);
@@ -142,6 +144,8 @@ class Location extends Dbh {
 	}
 
 	function createDistrict() {
+
+		$this->set_table_name($this->table_name_state);
 
 		$model_data = set_model_data($this->toArray());
 

@@ -71,3 +71,10 @@ function set_model_data($data, $operation = 'insert') {
 	return $model_data;
 
 }
+
+function json_api_response($data) {
+
+	header("Content-Type: application/json; charset=UTF-8");
+	echo json_encode($data);
+	return;
+}

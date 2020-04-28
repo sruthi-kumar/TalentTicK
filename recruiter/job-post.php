@@ -16,7 +16,15 @@ $page_data['page_title'] = "Job List";
 
 //debug($page_data);
 
+$location = new Location();
 $job = new Job();
+
+$page_data['states'] = $location->getStates();
+$page_data['job_types'] = $job->getJobTypes();
+
+//debug($page_data['states'], false);
+//debug($page_data['districts']);
+//debug($page_data['job_types']);
 
 if (isset($_GET['id'])) {
 

@@ -6,8 +6,10 @@ debug($_POST);
 $status = 'success';
 
 /*
-<!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
-`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode` -->  */
+		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at``
+
+		`job_types` WHERE 1 `id`, `job_type`, `status`
+	*/
 
 function validate_form($form_data) {
 

@@ -3,7 +3,7 @@
 class Job extends Dbh {
 
 	/*
-		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at``
+		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, ``, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at``
 
 		`job_types` WHERE 1 `id`, `job_type`, `status`
 	*/
@@ -72,6 +72,19 @@ class Job extends Dbh {
 			$this->gender = $data;
 			break;
 		}
+
+	}
+
+	function getJobTypes() {
+		$job_types = [];
+		$sql = "SELECT * FROM job_types";
+		$result = $this->connect()->query($sql);
+
+		while ($row = $result->fetch()) {
+			$job_types[] = $row;
+		}
+
+		return $job_types;
 
 	}
 
