@@ -12,7 +12,7 @@ class Job extends Dbh {
 	private $recruiter;
 	private $job_title;
 	private $job_description;
-	private $job_type;
+	private $job_type = 1;
 	private $district_id;
 	private $qualified_branches;
 	private $last_date_to_apply;
@@ -36,6 +36,7 @@ class Job extends Dbh {
 		$params = [];
 		$params['recruiter'] = $this->recruiter ?? '';
 		$params['job_title'] = $this->job_title ?? '';
+		$params['job_type'] = $this->job_type ?? '';
 		$params['job_description'] = $this->job_description ?? '';
 		$params['district_id'] = $this->district_id ?? '';
 		$params['qualified_branches'] = $this->qualified_branches ?? '';
@@ -52,23 +53,44 @@ class Job extends Dbh {
 	function setData($type, $data) {
 
 		switch ($type) {
-		case 'id':
-			$this->id = $data;
+		case 'recruiter':
+			$this->recruiter = $data;
 			break;
-		case 'user_id':
-			$this->user_id = $data;
+		case 'job_title':
+			$this->job_title = $data;
 			break;
-		case 'firstname':
-			$this->firstname = $data;
+		case 'job_type':
+			$this->job_type = $data;
 			break;
-		case 'lastname':
-			$this->lastname = $data;
+		case 'job_description':
+			$this->job_description = $data;
 			break;
-		case 'mobile_number':
-			$this->mobile_number = $data;
+		case 'district_id':
+			$this->district_id = $data;
 			break;
-		case 'gender':
-			$this->gender = $data;
+		case 'qualified_branches':
+			$this->qualified_branches = $data;
+			break;
+		case 'last_date_to_apply':
+			$this->last_date_to_apply = $data;
+			break;
+		case 'backlog_count':
+			$this->backlog_count = $data;
+			break;
+		case 'CGPA_min':
+			$this->CGPA_min = $data;
+			break;
+		case 'salary_min':
+			$this->salary_min = $data;
+			break;
+		case 'salary_max':
+			$this->salary_max = $data;
+			break;
+		case 'vacancies':
+			$this->vacancies = $data;
+			break;
+		case 'status':
+			$this->status = $data;
 			break;
 		}
 
@@ -87,7 +109,7 @@ class Job extends Dbh {
 
 	}
 
-	function getJobs($type = 'list') {
+	function getJobs($type = 'list', $recruiter = null) {
 
 		$jobs = [];
 
@@ -99,6 +121,10 @@ class Job extends Dbh {
 
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
+		}
+
+		if (isset($recruiter)) {
+			$sql .= " WHERE recruiter = $recruiter";
 		}
 
 		//debug($sql);

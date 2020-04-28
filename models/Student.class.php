@@ -4,15 +4,21 @@ class Student extends Dbh {
 
 	/*
 
-		`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
+				`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
 
-		`students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`, `updated_at`
+				`students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`, `updated_at`
 
-		`departments` WHERE 1 `id`, `department`
+				`departments` WHERE 1 `id`, `department`
 
-		`branches` WHERE  `id`, `branch`, `department_id`
+				`branches` WHERE  `id`, `branch`, `department_id`
 
-		 `profiles` WHERE 1 `profile_id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`
+				 `profiles` WHERE 1 `id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id
+		cgpa
+		backlogs`, `pincode`, `district_id
+		cgpa
+		backlogs`, `gpg`, `gug`, `gplus`, `g10`, `district_id
+		cgpa
+		backlogs`, `resume`, `highest_qualification`
 
 	*/
 
@@ -67,14 +73,22 @@ class Student extends Dbh {
 
 	}
 
-	function getStudents($type = 'list') {
+	function getStudents($type = 'list', $filters = null) {
 
 		$students = [];
 
-		$sql = " SELECT $this->table_name.* ,branches.branch , departments.department  FROM $this->table_name ";
+		$sql = " SELECT $this->table_name.*,  users.username as email ,branches.branch , departments.department ,branches.id as branch_id  , profiles.district_id , profiles.cgpa, profiles.backlogs FROM $this->table_name ";
 		$sql .= " JOIN branches ON branches.id = $this->table_name.branch_id ";
 		$sql .= " JOIN departments ON departments.id = branches.department_id ";
+		$sql .= " JOIN profiles ON profiles.student_id = $this->table_name.id ";
+		$sql .= " JOIN users ON users.id = $this->table_name.user_id ";
 
+		/*if (isset($filters)) {
+
+				$sql .= " WHERE ";
+
+			}
+		*/
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
 		}

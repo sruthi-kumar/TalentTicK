@@ -60,7 +60,7 @@
                 <div class="form-group">
                   <label for="qualified_branches" class="col-sm-2 control-label">  Qualified Branches*</label>
                   <div class="col-sm-8">
-                    <select multiple="" name="qualified_branches" id="qualified_branches" class="form-control1"   > 
+                    <select multiple  name="qualified_branches[]" id="qualified_branches" class="form-control1"   > 
                       <?php foreach ($this->data['branches'] as $branches ) { ?>
                        <option value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
                        <?php }?>
@@ -89,7 +89,7 @@
                 <div class="form-group">
                   <label for="salary_min" class="col-sm-2 control-label">Minimum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="salary_min" id="salary_min" placeholder="salary_min" required="required">
+                    <input type="text" class="form-control1" name="salary_min" id="salary_min" placeholder="Maximum Salary" required="required">
                   </div>
                 </div>
 
@@ -97,7 +97,7 @@
                 <div class="form-group">
                   <label for="salary_max" class="col-sm-2 control-label">Maximum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="salary_max" id="salary_max" placeholder="salary_max" required="required">
+                    <input type="text" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" required="required">
                   </div>
                 </div>  
 
@@ -105,7 +105,7 @@
                 <div class="form-group">
                   <label for="last_date_to_apply" class="col-sm-2 control-label">Last Date to Apply</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" placeholder="last_date_to_apply" required="required">
+                    <input type="text" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" placeholder="DD-MM-YYYY" required="required">
                   </div>
                 </div>
 
@@ -133,7 +133,7 @@
                 <div class="form-group"> 
                   <div class="col-sm-8"> </div>
                   <div class="col-sm-2">
-                    <input type="submit" class="btn btn-info" name="submit" value="Post Job">
+                    <input type="submit" class="btn btn-info" name="submit" value="submit">
                   </div>
                 </div> 
 
