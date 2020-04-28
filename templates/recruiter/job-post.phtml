@@ -109,6 +109,18 @@
                   </div>
                 </div>
 
+                 <?php if( isset($this->data['job']) && !empty ($this->data['job']) ) { ?>
+
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Status</label>
+                  <div class="col-sm-8"> <?=$this->data['job']['status']?> </div>
+                </div>
+
+                <input type="hidden"  name="action" value="update">
+                <input type="hidden"  name="id" value="<?=$this->data['job']['id']?>">
+
+                <?php } ?>
+
 
                 <div class="form-group"> 
                   <div class="col-sm-8"> </div>

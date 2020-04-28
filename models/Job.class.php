@@ -22,7 +22,7 @@ class Job extends Dbh {
 	private $salary_min;
 	private $salary_max;
 	private $vacancies;
-	private $status;
+	private $status = 'active';
 
 	private $table_name = "jobs";
 
@@ -38,7 +38,6 @@ class Job extends Dbh {
 		$params['recruiter'] = $this->recruiter ?? '';
 		$params['job_title'] = $this->job_title ?? '';
 		$params['job_description'] = $this->job_description ?? '';
-		$params['state_id'] = $this->state_id ?? '';
 		$params['district_id'] = $this->district_id ?? '';
 		$params['last_date_to_apply'] = $this->last_date_to_apply ?? '';
 		$params['backlog_count'] = $this->backlog_count ?? '';

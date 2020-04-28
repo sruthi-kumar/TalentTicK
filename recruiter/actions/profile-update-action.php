@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../../autoload.php';
 
 //debug($_POST);
 

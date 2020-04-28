@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../autoload.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
