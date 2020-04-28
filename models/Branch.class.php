@@ -77,7 +77,7 @@ class Branch extends Dbh {
 		$branchs = [];
 
 		$sql = " SELECT $this->table_name.* , departments.department FROM $this->table_name ";
-		$sql .= " JOIN departments ON departments.id =  $this->table_name.department_id ";
+		$sql .= " JOIN departments ON departments.id =  $this->table_name.department_id ORDER BY $this->table_name.branch";
 
 		if (isset($department_id)) {
 

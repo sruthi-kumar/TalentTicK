@@ -18,12 +18,15 @@ $page_data['page_title'] = "Job List";
 
 $location = new Location();
 $job = new Job();
+$branch = new Branch();
 
 $page_data['states'] = $location->getStates();
 $page_data['job_types'] = $job->getJobTypes();
+$page_data['branches'] = $branch->getBranches();
 
 //debug($page_data['states'], false);
 //debug($page_data['districts']);
+//debug($page_data['job_types']);
 //debug($page_data['job_types']);
 
 if (isset($_GET['id'])) {

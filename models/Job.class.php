@@ -3,7 +3,7 @@
 class Job extends Dbh {
 
 	/*
-		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, ``, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at``
+		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`, `updated_at`
 
 		`job_types` WHERE 1 `id`, `job_type`, `status`
 	*/
@@ -13,12 +13,11 @@ class Job extends Dbh {
 	private $job_title;
 	private $job_description;
 	private $job_type;
-	private $state_id;
 	private $district_id;
+	private $qualified_branches;
 	private $last_date_to_apply;
 	private $backlog_count;
 	private $CGPA_min;
-	private $CGPA_max;
 	private $salary_min;
 	private $salary_max;
 	private $vacancies;
@@ -39,10 +38,10 @@ class Job extends Dbh {
 		$params['job_title'] = $this->job_title ?? '';
 		$params['job_description'] = $this->job_description ?? '';
 		$params['district_id'] = $this->district_id ?? '';
+		$params['qualified_branches'] = $this->qualified_branches ?? '';
 		$params['last_date_to_apply'] = $this->last_date_to_apply ?? '';
 		$params['backlog_count'] = $this->backlog_count ?? '';
 		$params['CGPA_min'] = $this->CGPA_min ?? '';
-		$params['CGPA_max'] = $this->CGPA_max ?? '';
 		$params['salary_min'] = $this->salary_min ?? '';
 		$params['salary_max'] = $this->salary_max ?? '';
 		$params['vacancies'] = $this->vacancies ?? '';
