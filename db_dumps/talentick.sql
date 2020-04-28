@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 28, 2020 at 08:56 PM
+-- Generation Time: Apr 28, 2020 at 10:16 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -285,7 +285,8 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`) VALUES
 (1, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 09:20:40'),
 (2, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:16:29'),
-(3, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:18:07');
+(3, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:18:07'),
+(4, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-04-28 16:31:55');
 
 -- --------------------------------------------------------
 
@@ -381,7 +382,7 @@ CREATE TABLE `students` (
   `lastname` varchar(30) NOT NULL,
   `mobile_number` varchar(15) NOT NULL,
   `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other',
-  `branch_id` int NOT NULL,
+  `branch_id` int DEFAULT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -416,7 +417,8 @@ INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number
 (26, 42, 'lavanya', 's', '8596321230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
 (27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
 (28, 47, 'rahul', 's', '8956231023', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', '2020-04-26 21:23:40');
+(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', '2020-04-26 21:23:40'),
+(30, 85, 'John', 'Doe', '9876543210', 'Male', NULL, 'pending', '2020-04-28 16:31:55');
 
 -- --------------------------------------------------------
 
@@ -500,7 +502,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at
 (46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
 (47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (62, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-04-22 13:59:45'),
-(76, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 16:45:43');
+(76, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 16:45:43'),
+(85, 'johndoe@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-28 16:31:55');
 
 --
 -- Indexes for dumped tables
@@ -650,7 +653,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -668,7 +671,7 @@ ALTER TABLE `recruiters`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -680,7 +683,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- Constraints for dumped tables
