@@ -1,0 +1,54 @@
+<!-- main content start-->
+
+<!-- 
+  `testimonials` WHERE 1  `id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`, `updated_at`
+
+ -->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="forms">
+          <h2 class="title1">Post Testimonial</h2> 
+
+          <div class="row"> 
+            <div class="form-three widget-shadow">
+              <form action="<?=base_url()?>/actions/testimonial-post-action.php" method="post" class="form-horizontal"> 
+                
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Testimonial</label>
+                  <div class="col-sm-8">
+                    <textarea style="height: 200px;" name="description" id="description" cols="50" rows="4" class="form-control1" required="required"><?=$this->data['testimonial']['description']??""?></textarea>
+                  </div>
+                </div>   
+
+                <?php if( isset($this->data['testimonial']) && !empty ($this->data['testimonial']) ) { ?>
+
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Status</label>
+                  <div class="col-sm-8"> <?=$this->data['testimonial']['status']?> </div>
+                </div>
+
+                <input type="hidden"  name="action" value="update">
+                <input type="hidden"  name="id" value="<?=$this->data['testimonial']['id']?>">
+
+                <?php } ?>
+
+                <div class="form-group"> 
+                  <div class="col-sm-8"> </div>
+                  <div class="col-sm-2">
+                    <input type="submit" class="btn btn-info" name="submit" value="Submit">
+                  </div>
+                </div>  
+
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+ 
+
+    <script type="text/javascript">
+      <?php if( $this->data['status'] == "success"){ ?> alert("<?=$_SESSION['message']['testimonial']?>") <?php } ?>
+      <?php if( $this->data['status'] == "failed"){ ?> alert("<?=$_SESSION['errors']['testimonial']?>") <?php } ?>
+    </script>

@@ -151,7 +151,7 @@ class Recruiter extends Dbh {
 
 		$params[] = $recruiter_id ?? $this->recruiter_id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE recruiter_id = ?";
+		$sql = "UPDATE $this->table_name SET (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE recruiter_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

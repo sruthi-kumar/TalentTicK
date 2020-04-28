@@ -2,7 +2,11 @@
 
 class Job extends Dbh {
 
-	/*`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at`*/
+	/*
+		`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at``
+
+		`job_types` WHERE 1 `id`, `job_type`, `status`
+	*/
 
 	private $id;
 	private $recruiter;
@@ -69,9 +73,11 @@ class Job extends Dbh {
 
 		$jobs = [];
 
-		$sql = "SELECT $this->table_name.* , recruiters.company_name , job_types.job_type as JobType FROM $this->table_name ";
+		$sql = "SELECT $this->table_name.* , recruiters.company_name , job_types.job_type as JobType  , location_districts.district as District , location_states.name as State  FROM $this->table_name ";
 		$sql .= " JOIN recruiters ON recruiters.id = $this->table_name.recruiter ";
 		$sql .= " JOIN job_types ON job_types.id = $this->table_name.job_type ";
+		$sql .= " JOIN location_districts ON location_districts.id = $this->table_name.district_id ";
+		$sql .= " JOIN location_states ON location_states.id = location_districts.state_id ";
 
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
@@ -147,7 +153,7 @@ class Job extends Dbh {
 		$params = $model_data['values'];
 		$params[] = $id ?? $this->id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE id = ?";
+		$sql = "UPDATE $this->table_name SET (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

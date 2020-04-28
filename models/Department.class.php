@@ -145,7 +145,7 @@ class Department extends Dbh {
 		$params = $model_data['values'];
 		$params[] = $id ?? $this->id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE id = ?";
+		$sql = "UPDATE $this->table_name SET (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

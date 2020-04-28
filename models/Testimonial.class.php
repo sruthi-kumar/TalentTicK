@@ -2,24 +2,26 @@
 
 class Testimonial extends Dbh {
 
-	/* `testimonials` WHERE 1 `id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`, `updated_at`*/
+/*
 
-	private $user;
-	private $title;
+`testimonials` WHERE 1  `id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`, `updated_at`
+
+ */
+
+	private $id;
+	private $user_type;
 	private $description;
-	private $action_link;
-	private $type;
-	private $status;
+	private $show_in_web = 'no';
+	private $status = 'pending';
 
 	private $table_name = "testimonials";
 
 	function toArray() {
 		$params = [];
 		$params['user'] = $this->user ?? '';
-		$params['title'] = $this->title ?? '';
+		$params['user_type'] = $this->user_type ?? '';
 		$params['description'] = $this->description ?? '';
-		$params['action_link'] = $this->action_link ?? '';
-		$params['type'] = $this->type ?? '';
+		$params['show_in_web'] = $this->show_in_web ?? '';
 		$params['status'] = $this->status ?? '';
 		return $params;
 	}
@@ -30,17 +32,14 @@ class Testimonial extends Dbh {
 		case 'user':
 			$this->user = $data;
 			break;
-		case 'title':
-			$this->title = $data;
+		case 'user_type':
+			$this->user_type = $data;
 			break;
 		case 'description':
 			$this->description = $data;
 			break;
-		case 'action_link':
-			$this->action_link = $data;
-			break;
-		case 'type':
-			$this->type = $data;
+		case 'show_in_web':
+			$this->show_in_web = $data;
 			break;
 		case 'status':
 			$this->status = $data;
@@ -69,15 +68,15 @@ class Testimonial extends Dbh {
 
 	}
 
-	function getTestimonialById($testimonial_id = null) {
+	function getTestimonialById($id = null) {
 
-		$this->testimonial_id = $testimonial_id ?? $this->testimonial_id;
+		$this->id = $id ?? $this->id;
 
 		$testimonial_data = [];
 
 		$sql = "SELECT * FROM $this->table_name WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->testimonial_id];
+		$params = [$this->id];
 		$stmt->execute($params);
 		$testimonial_data = $stmt->fetch();
 
@@ -99,22 +98,18 @@ class Testimonial extends Dbh {
 
 	}
 
-	function getTestimonialByUser($user = null, $date = null) {
+	function getTestimonialByUser($user = null) {
 
 		$this->user = $user ?? $this->user;
 
 		$testimonial_data = [];
 
-		if (isset($date)) {
-			$sql = "SELECT * FROM $this->table_name WHERE created_at=? AND user=? AND status=? ORDER BY id DESC ";
-			$params = [Date($date), $this->user, 'active'];
-		} else {
-			$sql = "SELECT * FROM $this->table_name WHERE user=? AND status=? ";
-			$params = [$this->user, 'active'];
-		}
+		$sql = "SELECT * FROM $this->table_name WHERE user=?";
+		$params = [$this->user];
+
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
-		$testimonial_data = $stmt->fetchAll();
+		$testimonial_data = $stmt->fetch();
 
 		return $testimonial_data;
 
@@ -139,17 +134,27 @@ class Testimonial extends Dbh {
 		}
 	}
 
-	function updateTestimonial($testimonial_id = null) {
+	function updateTestimonial($id = null) {
 
-		$model_data = set_model_data($this->toArray());
+		$model_data = set_model_data($this->toArray(), 'update');
+
+		//debug($model_data);
 
 		$params = $model_data['values'];
 
-		$params[] = $testimonial_id ?? $this->testimonial_id;
+		$params[] = $id ?? $this->id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE testimonial_id = ?";
+		$sql = "UPDATE $this->table_name SET " . $model_data['feild_assignments'] . " WHERE id = ?";
 		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
+		//debug($stmt);
+		if ($stmt->execute($params)) {
+			//return $this->connect()->lastInsertId($this->table_name);
+			return true;
+		} else {
+			debug($this->connect()->errorCode(), false);
+			debug($this->connect()->errorInfo());
+			return false;
+		}
 
 	}
 

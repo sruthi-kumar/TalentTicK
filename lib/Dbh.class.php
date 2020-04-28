@@ -6,23 +6,23 @@ include_once __DIR__ . '/../config/database.php';
  *
  */
 class Dbh {
-	private $host;
-	private $user;
-	private $password;
-	private $database;
+	protected $db_host;
+	protected $db_user;
+	protected $db_password;
+	protected $database;
 
 	function __construct() {
 		$conf = getDbConfig();
 
-		$this->host = $conf['db_host'];
-		$this->user = $conf['db_user'];
-		$this->password = $conf['db_password'];
+		$this->db_host = $conf['db_host'];
+		$this->db_user = $conf['db_user'];
+		$this->db_password = $conf['db_password'];
 		$this->database = $conf['db_name'];
 	}
 
 	protected function connect() {
-		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database;
-		$pdo = new PDO($dsn, $this->user, $this->password);
+		$dsn = 'mysql:host=' . $this->db_host . ';dbname=' . $this->database;
+		$pdo = new PDO($dsn, $this->db_user, $this->db_password);
 		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 		return $pdo;

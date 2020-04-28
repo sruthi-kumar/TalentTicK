@@ -124,7 +124,7 @@ class User extends Dbh {
 
 		$params[] = $user_id ?? $this->user_id;
 
-		$sql = "UPDATE $this->table_name ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE user_id = ?";
+		$sql = "UPDATE $this->table_name SET ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE user_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 

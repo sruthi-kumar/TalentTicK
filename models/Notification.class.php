@@ -8,8 +8,8 @@ class Notification extends Dbh {
 	private $title;
 	private $description;
 	private $action_link;
-	private $type;
-	private $status;
+	private $type = 'info';
+	private $status = 'active';
 
 	private $table_name = "notifications";
 
@@ -128,7 +128,7 @@ class Notification extends Dbh {
 
 		$params[] = $notification_id ?? $this->notification_id;
 
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE notification_id = ?";
+		$sql = "UPDATE $this->table_name SET (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE notification_id = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute($params);
 
