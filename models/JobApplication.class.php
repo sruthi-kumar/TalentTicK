@@ -25,6 +25,13 @@ class JobApplication extends Dbh {
 
 	private $table_name = "job_applications";
 
+	function __construct() {
+
+		parent::__construct();
+
+		$this->set_table_name($this->table_name);
+	}
+
 	function toArray() {
 		$params = [];
 		$params['user'] = $this->user ?? '';
@@ -110,38 +117,6 @@ class JobApplication extends Dbh {
 		$job_data = $stmt->fetch();
 
 		return $job_data;
-
-	}
-
-	function createJobApplication() {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$sql = "INSERT INTO  $this->table_name ( " . $model_data['fields'] . " ) values( " . $model_data['placeholder'] . ") ";
-		$stmt = $this->connect()->prepare($sql);
-
-		if ($stmt->execute($params)) {
-			//return $this->connect()->lastInsertId($this->table_name);
-			return true;
-		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
-			return false;
-		}
-	}
-
-	function updateJobApplication($id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-		$params[] = $id ?? $this->id;
-
-		$sql = "UPDATE $this->table_name SET (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
 
 	}
 }

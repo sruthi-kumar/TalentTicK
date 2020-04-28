@@ -45,7 +45,7 @@ if (validate_form($_POST)) {
 
 	//debug($user);
 
-	$result = $user->createUser();
+	$result = $user->create();
 
 	//debug($result);
 
@@ -58,28 +58,31 @@ if (validate_form($_POST)) {
 		$student->setData('mobile_number', $_POST['mobile_number']);
 		$student->setData('gender', $_POST['gender']);
 
-		$result = $student->createStudent();
+		$result = $student->create();
 		//debug($result);
 
 		if ($result) {
 
+			$notification = new Notification();
 
-			$to_address = $_POST['email'];
-			$subject = "TalenTick Job Portal Registration Successfull!";
-			$body = "
+			$notification->setData('user', conf('admin_id'));
+			$notification->setData('title', "New Recruiter Registered");
+			$notification->setData('description', "New Recruiter Registerd in Portal.\n Please check & verify");
 
-			Hi $_POST['firstname'] $_POST['lastname']  , <br>
+			if ($notification->create()) {
 
+				$to_address = $_POST['email'];
+				$subject = "TalenTick Job Portal Registration Successfull!";
+				$body = "Hi" . $_POST['company_name'] . " , <br>
 			Your Profile has been successfully registered wih our portal. <br>
-
-			Please login and complete your payment.
-
+			We will notify you once your profile has been approved.
 			";
 
-			send_email_notification($to_address, $subject, $body);
+				//send_email_notification($to_address, $subject, $body);
 
+			}
 
-		}else{
+		} else {
 			$status = 'failed';
 			$_SESSION['errors']['register'] = "Registration Failed!";
 		}

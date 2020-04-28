@@ -40,11 +40,11 @@ if (validate_form($_POST)) {
 
 	if (isset($_POST['action']) && $_POST['action'] == "update") {
 
-		$result = $testimonial->updateTestimonial($_POST['id']);
+		$result = $testimonial->update($_POST['id']);
 
 	} else {
 
-		$result = $testimonial->createTestimonial();
+		$result = $testimonial->create();
 	}
 
 	//debug($result);
@@ -63,7 +63,7 @@ if (validate_form($_POST)) {
 		$notification->setData('title', $subject);
 		$notification->setData('description', $body);
 
-		if ($notification->createNotification()) {
+		if ($notification->create()) {
 
 			//send_email_notification($to_address, $subject, $body);
 

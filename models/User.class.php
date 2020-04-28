@@ -12,6 +12,13 @@ class User extends Dbh {
 
 	private $table_name = "users";
 
+	function __construct() {
+
+		parent::__construct();
+
+		$this->set_table_name($this->table_name);
+	}
+
 	function toArray() {
 		$params = [];
 		$params['username'] = $this->username ?? '';
@@ -92,41 +99,6 @@ class User extends Dbh {
 		$user_data = $stmt->fetch();
 
 		return $user_data;
-
-	}
-
-	function createUser() {
-
-		$model_data = set_model_data($this->toArray());
-
-		//debug($model_data);
-
-		$params = $model_data['values'];
-
-		$sql = " INSERT INTO $this->table_name (" . $model_data['fields'] . ") VALUES (" . $model_data['placeholder'] . " )";
-		$stmt = $this->connect()->prepare($sql);
-
-		if ($stmt->execute($params)) {
-			//return $this->connect()->lastInsertId($this->table_name);
-			return $this->getUserByUsername($this->username);
-		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
-			return false;
-		}
-	}
-
-	function updateUser($user_id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$params[] = $user_id ?? $this->user_id;
-
-		$sql = "UPDATE $this->table_name SET ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE user_id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
 
 	}
 

@@ -13,6 +13,13 @@ class Location extends Dbh {
 	private $table_name_state = "location_states";
 	private $table_name_district = "location_districts";
 
+	function __construct() {
+
+		parent::__construct();
+
+		$this->set_table_name($this->table_name);
+	}
+
 	function toArray() {
 		$params = [];
 		$params['username'] = $this->username ?? '';
@@ -153,34 +160,6 @@ class Location extends Dbh {
 			debug($this->connect()->errorInfo());
 			return false;
 		}
-	}
-
-	function updateState($id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$params[] = $id ?? $this->id;
-
-		$sql = "UPDATE $this->table_name_state( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
-
-	}
-
-	function updateState($id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$params[] = $id ?? $this->id;
-
-		$sql = "UPDATE $this->table_name_district ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") WHERE id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
-
 	}
 
 }

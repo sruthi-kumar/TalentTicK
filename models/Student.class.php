@@ -25,6 +25,13 @@ class Student extends Dbh {
 
 	private $table_name = "students";
 
+	function __construct() {
+
+		parent::__construct();
+
+		$this->set_table_name($this->table_name);
+	}
+
 	function toArray() {
 		$params = [];
 		$params['user_id'] = $this->user_id ?? '';
@@ -110,38 +117,6 @@ class Student extends Dbh {
 		$student_data = $stmt->fetch();
 
 		return $student_data;
-
-	}
-
-	function createStudent() {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$sql = "INSERT INTO " . $this->table_name . " (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") ";
-		$stmt = $this->connect()->prepare($sql);
-
-		if ($stmt->execute($params)) {
-			//return $this->connect()->lastInsertId($this->table_name);
-			return true;
-		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
-			return false;
-		}
-	}
-
-	function updateStudent($student_id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-		$params[] = $student_id ?? $this->student_id;
-
-		$sql = "UPDATE " . $this->table_name . " (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ")  WHERE student_id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
 
 	}
 }
