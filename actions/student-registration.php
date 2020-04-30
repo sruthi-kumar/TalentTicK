@@ -70,10 +70,7 @@ if (validate_form($_POST)) {
 
 				$to_address = $_POST['email'];
 				$subject = "TalenTick Job Portal Registration Successfull!";
-				$body = "Hi" . $_POST['company_name'] . " , <br>
-			Your Profile has been successfully registered wih our portal. <br>
-			We will notify you once your profile has been approved.
-			";
+				$body = "Hi" . $_POST['company_name'] . " , <br> Your Profile has been successfully registered wih our portal. <br> We will notify you once your profile has been approved. ";
 
 				//send_email_notification($to_address, $subject, $body);
 

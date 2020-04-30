@@ -77,7 +77,7 @@ class Notification extends Dbh {
 
 		$notification_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE id=?";
+		$sql = "SELECT * FROM $this->table_name WHERE id=?  ORDER BY id DESC";
 		$stmt = $this->connect()->prepare($sql);
 		$params = [$this->notification_id];
 		$stmt->execute($params);
