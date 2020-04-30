@@ -56,7 +56,7 @@ class Notification extends Dbh {
 
 	}
 
-	function getNotifications($limit = null) {
+	function getNotifications() {
 
 		$notifications = [];
 
