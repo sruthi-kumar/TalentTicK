@@ -99,7 +99,7 @@ class Testimonial extends Dbh {
 		$stmt = $this->connect()->prepare($sql);
 		$params = ['yes'];
 		$stmt->execute($params);
-		$top_testimonials = $stmt->fetch();
+		$top_testimonials = $stmt->fetchAll();
 
 		return $top_testimonials;
 

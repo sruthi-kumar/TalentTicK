@@ -21,9 +21,9 @@ $page_data['total_members'] = $user->getUsers('count');
 $page_data['total_resumes'] = $student->getStudents('count');
 $page_data['total_companies'] = $recruiter->getRecruiters('count');
 
-//debug($page_data);
-
 $page_data['testimonials'] = $testimonial->getTopTestimonials();
+
+//debug($page_data);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');
