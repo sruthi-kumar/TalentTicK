@@ -17,20 +17,26 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/student-registration.php" method="post" class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/student-registration.php" method="post" name="registration_form"class="p-5 bg-white">
               
               
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="firstname">FirstName</label>
-                  <input type="text" id="firstname"  name="firstname" class="form-control" placeholder="Your FirstName " required="required">
+                  <input type="text" id="firstname"  name="firstname" class="form-control" placeholder="Your FirstName " onchange="return validatefirstname()" required="required">
+                                    <label class="errortext" style="display:no ne; color:red" id="firstname"></label>
+                                    <div id="firstname_error" style="color:red;">  </div>
+                                                      
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="lastname">LastName</label>
-                  <input type="text" id="lastname"  name="lastname" class="form-control" placeholder="Your LastName" required="required">
+                  <input type="text" id="lastname"  name="lastname" class="form-control" placeholder="Your LastName"  onchange="return validatelastname()"required="required">
+                                  <label class="errortext" style="display:nne; color:red" id="lastname"></label>
+
+
                 </div>
               </div>
 
@@ -47,28 +53,41 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="email">Email ID</label>
-                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Email Id" required="required">
+                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Email Id" onchange="return validatemail()" required="required">
+                                              <label class="errormail" style="display:none; color:red" id="email"></label>
+                     
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="mobile_number">Mobile Number</label>
-                  <input type="text" id="mobile_number"  name="mobile_number" class="form-control" placeholder="Your Phone Number" required="required">
+                  <input type="text" id="mobile_number"  name="mobile_number" class="form-control" placeholder="Your Phone Number" onchange="return validatemobile()"required="true">
+                   <label class="errormob" style="display:none; color:red" id="mobile_number"></label><br>
+
                 </div>
               </div>
 
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" required="required">
+                  <input type="password" id="password" name="password" class="form-control" onchange="Validatepass()" required="required">
+                          <label class="errortext" style="display:nne; color:red" id="pass"></label>
+                                              
                 </div>
               </div>
 
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="confirmpassword">Confirm Password</label>
-                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required="required">
+                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" onchange="validatecpass()" required="required">
+                                  <label class="errortext" style="display:nne; color:red" id="cpass"></label>
+               
+
+
+
+
+
                 </div>
               </div>
 
@@ -107,3 +126,152 @@
         </div>
       </div>
     </section>
+
+
+
+
+
+
+
+<script type="text/javascript">
+var  reg_form = document.registration_form;
+
+function validatefirstname(){
+
+  document.getElementById('firstname_error').innerHTML = "" ; 
+  var firstname =reg_form.firstname.value;
+  
+  if(firstname==""){ 
+    document.getElementById('firstname').focus();
+    document.getElementById('firstname_error').innerHTML = "Error! Firstname is empty " ; 
+    return false;
+  }
+
+  if ((firstname.length < 3) || (firstname.length > 30))
+  {
+  document.getElementById('firstname_error').innerHTML = "Error! characters between 3 and 30" ; 
+  document.getElementById('firstname').focus();
+  return false;
+  }
+  var pattern1 = new RegExp("^[a-zA-Z ]*$");
+  if(!pattern1.test(document.registration_form.firstname.value))
+  {
+  document.getElementById('firstname_error').innerHTML ="Error: Please enter first name!" ; 
+  document.registration_form.name.focus();
+  return false;
+  }
+  return true;
+}
+
+
+
+
+function validatelastname()
+{
+var x=document.forms["registration_form"]["lastname"].value;
+if(x=="")
+{
+alert("Please Fill name Field");
+document.getElementById('lastname').focus();
+return false;
+}
+
+if ((x.length < 1) || (x.length > 30))
+{
+alert("Your Character must be 1 to 15 Character");
+document.getElementById('lastname').focus();
+return false;
+}
+var pattern1 = new RegExp("^[a-zA-Z ]*$");
+if(!pattern1.test(document.registration_form.lastname.value))
+{
+alert("Error: Please enter last name!");
+registration_form.name.focus();
+return false;
+}
+return true;
+}
+
+
+
+function Validatemail()
+{
+ var email = document.getElementById('email');
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (!filter.test(email.value)) 
+{
+    email.value="";
+    alert("please provide valid email");
+    
+    return false;
+    }
+return true;
+}
+
+
+
+function Validatemobile()
+{
+
+if(document.registration_form.mobile_number.value == "" ||
+isNaN(document.registration_form.mobile_number.value) ||
+document.registration_form.mobile_number.value.length != 10 )
+{
+alert( "Please provide a Mobile No upto 10 digit" );
+document.getElementById('mobile_number').focus();
+return false;
+}
+var pattern = new RegExp("^([6-9]{1})([0-9]{9})$");
+if(!pattern.test(document.registration_form.mobile_number.value))
+{
+alert("Error: Phone Number is invalid!");
+registration_form.mobile_number.focus();
+return false;
+}
+return true;
+}
+
+
+
+function validatepass()
+{
+
+var o=document.forms["registration_form"]["password"].value;
+if(o=="")
+{
+alert("Please Fill password Field");
+document.getElementById('password').focus();
+return false;
+}
+if(o.length<8){  
+alert("Password must be at least 8 characters long.");  
+document.getElementById('password').focus();
+return false;  
+}
+return true
+}
+
+
+
+function validatecpass()
+{
+
+var h=document.forms["registration_form"]["confirmpassword"].value;
+if(h=="")
+{
+alert("Please Fill confirm password Field");
+document.getElementById('confirmpassword').focus();
+return false;
+}
+var p = document.getElementById("password").value;
+var cp = document.getElementById("confirmpassword").value;
+if (p != cp) {
+alert("Passwords do not match.");
+document.getElementById('confirmpassword').focus();
+return false;
+}
+return (true);
+}
+</script>
+
+
