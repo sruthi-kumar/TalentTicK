@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../autoload.php';
 validate_user('admin');
 
 $t = new TemplateEngine('admin');
@@ -11,6 +11,12 @@ $page_data['assets'] = $admin_assets;
 
 $page_data['page'] = "dashboard";
 $page_data['page_title'] = "Dashboard";
+
+$page_data['student_count'] = "100";
+$page_data['job_count'] = "100";
+$page_data['recruiter_count'] = "100";
+$page_data['testimonial_count'] = "100";
+$page_data['notification_count'] = "100";
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

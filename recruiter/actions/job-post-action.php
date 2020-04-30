@@ -1,98 +1,146 @@
 <?php
-include_once '../autoload.php';
+require_once '../../autoload.php';
 
 //debug($_POST);
 
 $status = 'success';
 
 /*
-<!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
-`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode` -->  */
+`jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`, `updated_at`
+
+`job_types` WHERE 1 `id`, `job_type`, `status`
+ */
 
 function validate_form($form_data) {
 
 	$status = true;
 
-	if (empty($form_data['company_name'])) {
+	if (empty($form_data['job_title'])) {
 		$status = false;
 	}
 
-	if (empty($form_data['phone'])) {
+	if (empty($form_data['job_description'])) {
 		$status = false;
 	}
 
-	if (empty($form_data['address'])) {
+	if (empty($form_data['job_type'])) {
 		$status = false;
 	}
 
-	if (empty($form_data['license'])) {
+	if (empty($form_data['district_id'])) {
 		$status = false;
 	}
 
-	if (empty($form_data['city'])) {
+	if (empty($form_data['vacancies'])) {
 		$status = false;
 	}
 
-	if (empty($form_data['pincode'])) {
-		$status = false;
-	}
-
-	if (empty($form_data['username'])) {
-		$status = false;
-	}
-
-	if (empty($form_data['email'])) {
+	if (empty($form_data['qualified_branches'])) {
 		$status = false;
 	}
 
 	return $status;
 }
 
+$login_details = get_current_user_set();
+
+//debug($login_details['user_data']['recruiter_id']);
+
 if (validate_form($_POST)) {
 
-	$user = new User();
-	$user->setUserData('username', $_POST['username']);
-	$user->setUserData('password', md5($_POST['password']));
-	$user->setUserData('type', 'recruiter');
+	debug($_POST, false);
 
-	//debug($user);
+	$job = new Job();
+	$job->setData('recruiter', $login_details['user_data']['recruiter_id']);
+	$job->setData('job_title', $_POST['job_title']);
+	$job->setData('job_description', $_POST['job_description']);
+	$job->setData('district_id', $_POST['district_id']);
+	$job->setData('qualified_branches', json_encode($_POST['qualified_branches']));
+	$job->setData('last_date_to_apply', date("Y-m-d", strtotime($_POST['last_date_to_apply'])));
+	$job->setData('backlog_count', $_POST['backlog_count']);
+	$job->setData('CGPA_min', $_POST['CGPA_min']);
+	$job->setData('salary_min', $_POST['salary_min']);
+	$job->setData('salary_max', $_POST['salary_max']);
+	$job->setData('vacancies', $_POST['vacancies']);
 
-	$result = $user->createUser();
+	//debug($job);
 
-	//debug($result);
+	if ($job->create()) {
 
-/*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
-
-	if ($result) {
-
-		$recruiter = new Recruiter();
-		$recruiter->setRecruiterData('user_id', $result['user_id']);
-		$recruiter->setRecruiterData('company_name', $_POST['company_name']);
-		$recruiter->setRecruiterData('email', $_POST['email']);
-		$recruiter->setRecruiterData('website', $_POST['website']);
-		$recruiter->setRecruiterData('phone', $_POST['phone']);
-		$recruiter->setRecruiterData('address', $_POST['address']);
-		$recruiter->setRecruiterData('license', $_POST['license']);
-		$recruiter->setRecruiterData('city', $_POST['city']);
-		$recruiter->setRecruiterData('pincode', $_POST['pincode']);
-
-		//debug($recruiter);
-
-		$result = $recruiter->createRecruiter();
-		//debug($result);
-
-		if (!$result) {
-			$status = 'failed';
-			$_SESSION['errors']['register'] = "Registration Failed!";
-		}
+		notify_users();
 
 	} else {
 		$status = 'failed';
-		$_SESSION['errors']['register'] = "Registration Failed!";
+		$_SESSION['errors']['register'] = "Job Post Failed!";
 	}
 } else {
 	$status = 'failed';
-	$_SESSION['errors']['register'] = "Invalid Registration Data!";
+	$_SESSION['errors']['register'] = "Invalid Job Data!";
 }
 
-header("location:../registration-status.php?type=recruiter&status=$status");
+header("location:../job-list.php?status=$status");
+
+function notify_users() {
+
+	$users[] = [
+		"user_id" => config('admin_id'),
+		"email" => config('admin_email'),
+	];
+
+	$student = new Student();
+
+	$students_list = $student->getStudents();
+
+	//debug($students_list);
+
+	//debug($_POST['qualified_branches']);
+
+	foreach ($students_list as $student_details) {
+
+		if (in_array($student_details['branch_id'], $_POST['qualified_branches'])) {
+
+			if (
+				floatval($_POST['CGPA_min']) >= floatval($student_details['cgpa']) &&
+				intval($_POST['backlogs']) <= intval($student_details['backlogs'])
+			) {
+				$users[] = [
+					"user_id" => $student_details['user_id'],
+					"email" => $student_details['email'],
+				];
+			}
+
+		}
+
+	}
+
+	//debug($users);
+
+	foreach ($users as $user) {
+
+		$subject = "Job Posted By Recruiter";
+
+		$body = "
+		Job Posted By Recruiter.<br>
+
+		Job Title : " . $_POST['job_title'] . "  <br>
+
+		Job Description : " . $_POST['job_description'] . "  <br>
+
+		Last Date to Apply : " . $_POST['last_date_to_apply'] . "  <br>
+
+		Please check <br> ";
+
+		$notification = new Notification();
+
+		$notification->setData('user', $user['user_id']);
+		$notification->setData('title', $subject);
+		$notification->setData('description', $body);
+
+		if ($notification->create()) {
+
+			send_email_notification($user['email'], $subject, $body);
+
+		}
+
+	}
+}

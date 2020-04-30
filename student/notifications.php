@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../autoload.php';
 validate_user('student');
 
 $t = new TemplateEngine('student');

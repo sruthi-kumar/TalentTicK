@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../autoload.php';
 validate_user('admin');
 
 $t = new TemplateEngine('admin');
@@ -15,5 +15,5 @@ $page_data['page_title'] = "Location Add";
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');
-$t->render('location-details.phtml');
+$t->render('location-district.phtml');
 $t->render('inc/footer.phtml');

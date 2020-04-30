@@ -1,4 +1,7 @@
 <!-- main content start-->
+
+<!-- `jobs` WHERE 1 `id`, `recruiter`, `job_title`, `job_description`, `job_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at`
+ -->
     <div id="page-wrapper">
       <div class="main-page">
         <div class="forms">
@@ -6,110 +9,197 @@
 
           <div class="row"> 
             <div class="form-three widget-shadow">
-              <form class="form-horizontal">
+              <form action="<?=base_url()?>/recruiter/actions/job-post-action.php" method="post" class="form-horizontal">
+
                 <div class="form-group">
-                  <label for="focusedinput" class="col-sm-2 control-label">Focused Input</label>
+                  <label for="job_title" class="col-sm-2 control-label">Job Title</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="focusedinput" placeholder="Default Input">
-                  </div>
-                  <div class="col-sm-2">
-                    <p class="help-block">Your help text!</p>
+                    <input type="text" class="form-control1" name="job_title" id="job_title" placeholder="Job Title" required="required">
                   </div>
                 </div>
+                
                 <div class="form-group">
-                  <label for="disabledinput" class="col-sm-2 control-label">Disabled Input</label>
+                  <label for="job_description" class="col-sm-2 control-label">Job Description</label>
+                  <div class="col-sm-8"><textarea name="job_description" id="job_description" cols="50" rows="4" class="form-control1"></textarea></div>
+                </div> 
+
+                <div class="form-group">
+                  <label for="job_type" class="col-sm-2 control-label"> Select Job Type</label>
                   <div class="col-sm-8">
-                    <input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Disabled Input">
-                  </div>
+                    <select name="job_type" id="job_type" class="form-control1">
+                    <?php foreach ($this->data['job_types'] as $job_type ) { ?>
+                        <option value="<?=$job_type['id'] ?>" ><?=$job_type['job_type'] ?></option> 
+                       <?php }?>
+                  </select>
                 </div>
+                </div>
+
                 <div class="form-group">
-                  <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                  <label for="state_id" class="col-sm-2 control-label">  Select State*</label>
                   <div class="col-sm-8">
-                    <input type="password" class="form-control1" id="inputPassword" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="checkbox" class="col-sm-2 control-label">Checkbox</label>
-                  <div class="col-sm-8">
-                    <div class="checkbox-inline1"><label><input type="checkbox"> Unchecked</label></div>
-                    <div class="checkbox-inline1"><label><input type="checkbox" checked=""> Checked</label></div>
-                    <div class="checkbox-inline1"><label><input type="checkbox" disabled=""> Disabled Unchecked</label></div>
-                    <div class="checkbox-inline1"><label><input type="checkbox" disabled="" checked=""> Disabled Checked</label></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="checkbox" class="col-sm-2 control-label">Checkbox Inline</label>
-                  <div class="col-sm-8">
-                    <div class="checkbox-inline"><label><input type="checkbox"> Unchecked</label></div>
-                    <div class="checkbox-inline"><label><input type="checkbox" checked=""> Checked</label></div>
-                    <div class="checkbox-inline"><label><input type="checkbox" disabled=""> Disabled Unchecked</label></div>
-                    <div class="checkbox-inline"><label><input type="checkbox" disabled="" checked=""> Disabled Checked</label></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="selector1" class="col-sm-2 control-label">Dropdown Select</label>
-                  <div class="col-sm-8"><select name="selector1" id="selector1" class="form-control1">
-                    <option>Lorem ipsum dolor sit amet.</option>
-                    <option>Dolore, ab unde modi est!</option>
-                    <option>Illum, fuga minus sit eaque.</option>
-                    <option>Consequatur ducimus maiores voluptatum minima.</option>
-                  </select></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Multiple Select</label>
-                  <div class="col-sm-8">
-                    <select multiple="" class="form-control1">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
+                    <select name="state_id" id="state_id" class="form-control1" onchange="updateDistricts()" >
+                      <option >--Select State--</option>  
+                      <?php foreach ($this->data['states'] as $state ) { ?>
+                       <option value="<?=$state['id'] ?>" ><?=$state['name'] ?></option> 
+                       <?php }?>
                     </select>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <label for="txtarea1" class="col-sm-2 control-label">Textarea</label>
-                  <div class="col-sm-8"><textarea name="txtarea1" id="txtarea1" cols="50" rows="4" class="form-control1"></textarea></div>
-                </div>
-                <div class="form-group">
-                  <label for="radio" class="col-sm-2 control-label">Radio</label>
+                  <label for="district_id" class="col-sm-2 control-label">  Select District </label>
                   <div class="col-sm-8">
-                    <div class="radio block"><label><input type="radio"> Unchecked</label></div>
-                    <div class="radio block"><label><input type="radio" checked=""> Checked</label></div>
-                    <div class="radio block"><label><input type="radio" disabled=""> Disabled Unchecked</label></div>
-                    <div class="radio block"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div>
+                    <select disabled="disabled" name="district_id" id="district_id" class="form-control1"> 
+                        <option>--Select a State First-- </option>  
+                    </select>
+                  </div>
+                </div> 
+
+
+
+                <div class="form-group">
+                  <label for="qualified_branches" class="col-sm-2 control-label">  Qualified Branches*</label>
+                  <div class="col-sm-8">
+                    <select multiple  name="qualified_branches[]" id="qualified_branches" class="form-control1"   > 
+                      <?php foreach ($this->data['branches'] as $branches ) { ?>
+                       <option value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
+                       <?php }?>
+                    </select>
                   </div>
                 </div>
+
+                
+
                 <div class="form-group">
-                  <label for="radio" class="col-sm-2 control-label">Radio Inline</label>
+                  <label for="CGPA_min" class="col-sm-2 control-label">Minimum CGPA</label>
                   <div class="col-sm-8">
-                    <div class="radio-inline"><label><input type="radio"> Unchecked</label></div>
-                    <div class="radio-inline"><label><input type="radio" checked=""> Checked</label></div>
-                    <div class="radio-inline"><label><input type="radio" disabled=""> Disabled Unchecked</label></div>
-                    <div class="radio-inline"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div>
+                    <input type="text" class="form-control1" name="CGPA_min" id="CGPA_min" placeholder="Minimum CGPA" required="required">
                   </div>
                 </div>
+
+
                 <div class="form-group">
-                  <label for="smallinput" class="col-sm-2 control-label label-input-sm">Small Input</label>
+                  <label for="backlog_count" class="col-sm-2 control-label">Backlog Count</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1 input-sm" id="smallinput" placeholder="Small Input">
+                    <input type="number" value="0" class="form-control1" name="backlog_count" id="backlog_count" placeholder="Backlog Count" required="required">
                   </div>
                 </div>
+
+
                 <div class="form-group">
-                  <label for="mediuminput" class="col-sm-2 control-label">Medium Input</label>
+                  <label for="salary_min" class="col-sm-2 control-label">Minimum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="mediuminput" placeholder="Medium Input">
+                    <input type="text" class="form-control1" name="salary_min" id="salary_min" placeholder="Maximum Salary" required="required">
                   </div>
                 </div>
-                <div class="form-group mb-n">
-                  <label for="largeinput" class="col-sm-2 control-label label-input-lg">Large Input</label>
+
+
+                <div class="form-group">
+                  <label for="salary_max" class="col-sm-2 control-label">Maximum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1 input-lg" id="largeinput" placeholder="Large Input">
+                    <input type="text" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" required="required">
+                  </div>
+                </div>  
+
+
+                <div class="form-group">
+                  <label for="last_date_to_apply" class="col-sm-2 control-label">Last Date to Apply</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" placeholder="DD-MM-YYYY" required="required">
                   </div>
                 </div>
+
+
+                <div class="form-group">
+                  <label for="vacancies" class="col-sm-2 control-label">No of Vacancies</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control1" name="vacancies" id="vacancies" placeholder="Vacancies" value="1" required="required">
+                  </div>
+                </div>
+
+                 <?php if( isset($this->data['job']) && !empty ($this->data['job']) ) { ?>
+
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Status</label>
+                  <div class="col-sm-8"> <?=$this->data['job']['status']?> </div>
+                </div>
+
+                <input type="hidden"  name="action" value="update">
+                <input type="hidden"  name="id" value="<?=$this->data['job']['id']?>">
+
+                <?php } ?>
+
+
+                <div class="form-group"> 
+                  <div class="col-sm-8"> </div>
+                  <div class="col-sm-2">
+                    <input type="submit" class="btn btn-info" name="submit" value="submit">
+                  </div>
+                </div> 
+
+
               </form>
             </div>
           </div>
           
         </div>
       </div>
+    </div>
+
+
+    <script type="text/javascript"> 
+
+        function updateDistricts() {   
+
+        var selectedState = document.getElementById('state_id');
+
+        var districtDropdown =  document.getElementById('district_id');
+
+        districtDropdown.removeAttribute("disabled");
+
+        console.log( selectedState.value ); 
+
+        var state_id = selectedState.value ; 
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+
+            //console.log(this.responseText) ;
+
+            if(this.responseText != "") {
+
+              var response = JSON.parse(this.responseText);  
+              //console.log(response) ;
+
+              var districts = response.districts;
+
+              //console.log(districts) ;
+
+              districtDropdown.innerText = null; 
+
+              var element = document.createElement("option");
+              element.innerText = "--Select District--"; 
+              districtDropdown.append(element);
+
+               for (district in districts) { 
+
+                item = districts[district] ; 
+
+                //console.log(districts[district]) ;
+
+                var element = document.createElement("option");
+                element.innerText = item['district']; 
+                element.value = item['id']; 
+                districtDropdown.append(element);
+              }
+              
+            }
+          }
+        };
+        xmlhttp.open("GET", "<?=base_url()?>/apis/lists.php?type=districts&state="+state_id, true);
+        xmlhttp.send();  
+
+    } 
+
+    </script>

@@ -12,9 +12,12 @@ function validate_user($module) {
 
 	global $login_type;
 
-	if ($login_type != $module) {
-		header('location:../login.php');
-		exit;
+	if ($module != 'valid_user') {
+
+		if ($module != $login_type) {
+			header('location:../login.php');
+			exit;
+		}
 	}
 
 }

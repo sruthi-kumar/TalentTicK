@@ -1,0 +1,32 @@
+<!-- main content start-->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="tables">
+          <h2 class="title1">Tables</h2>
+           
+          
+          <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+            <h4>Hover Rows Table:</h4>
+            <table id="datatable"  class="table table-hover"> 
+
+             <!--   `id`, `state_id`, `district`, `status`  -->
+
+              <thead> <tr> 
+                <th>#</th> <th>Name</th>    <th>Actions</th> </tr> 
+              </thead> 
+              <tbody> 
+                <?php $i = 1;  foreach ($this->data['states']  as $state) { ?> 
+                <tr> 
+                  <th scope="row"><?=$i++?></th> 
+                  <td><?=$state['name']?></td>  
+                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/location-state-details.php?id='.$state['id']?>">View</a> </td> 
+                </tr>  
+                <?php } ?>
+              </tbody> 
+            </table>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>

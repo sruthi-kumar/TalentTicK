@@ -10,12 +10,20 @@ $page_data['assets'] = $web_assets;
 
 $page_data['page_title'] = "Home";
 
-$page_data['total_jobs'] = 500;
-$page_data['total_members'] = 1563;
-$page_data['total_resumes'] = 250;
-$page_data['total_companies'] = 80;
+$job = new Job();
+$user = new User();
+$student = new Student();
+$recruiter = new Recruiter();
+$testimonial = new Testimonial();
 
-$page_data['testimonials'] = [1, 2, 3, 4, 5];
+$page_data['total_jobs'] = $job->getJobs('count');
+$page_data['total_members'] = $user->getUsers('count');
+$page_data['total_resumes'] = $student->getStudents('count');
+$page_data['total_companies'] = $recruiter->getRecruiters('count');
+
+$page_data['testimonials'] = $testimonial->getTopTestimonials();
+
+//debug($page_data);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

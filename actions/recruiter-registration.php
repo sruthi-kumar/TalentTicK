@@ -1,5 +1,5 @@
 <?php
-include_once '../autoload.php';
+require_once '../autoload.php';
 
 //debug($_POST);
 
@@ -57,16 +57,16 @@ if (validate_form($_POST)) {
 
 	//debug($user);
 
-	$result = $user->createUser();
+	if ($user->create()) {
 
-	//debug($result);
+		$result = $user->getUserByUsername();
+
+		//debug($result);
 
 /*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
 
-	if ($result) {
-
 		$recruiter = new Recruiter();
-		$recruiter->setData('user_id', $result['user_id']);
+		$recruiter->setData('user_id', $result['id']);
 		$recruiter->setData('company_name', $_POST['company_name']);
 		$recruiter->setData('email', $_POST['email']);
 		$recruiter->setData('website', $_POST['website']);
@@ -78,26 +78,28 @@ if (validate_form($_POST)) {
 
 		//debug($recruiter);
 
-		$result = $recruiter->createRecruiter();
-		//debug($result);
+		if ($recruiter->create()) {
 
-		if ($result) { 
+			$notification = new Notification();
 
-			$to_address = $_POST['email'];
-			$subject = "TalenTick Job Portal Registration Successfull!";
-			$body = "
+			$notification->setData('user', config('admin_id'));
+			$notification->setData('title', "New Recruiter Registered");
+			$notification->setData('description', "New Recruiter Registerd in Portal.\n Please check & verify");
 
-			Hi $_POST['company_name'] , <br>
+			if ($notification->create()) {
 
+				$to_address = $_POST['email'];
+				$subject = "TalenTick Job Portal Registration Successfull!";
+				$body = "Hi" . $_POST['company_name'] . " , <br>
 			Your Profile has been successfully registered wih our portal. <br>
-
 			We will notify you once your profile has been approved.
-
-
 			";
 
-			send_email_notification($to_address, $subject, $body);
-		}else{ 
+				//send_email_notification($to_address, $subject, $body);
+
+			}
+
+		} else {
 			$status = 'failed';
 			$_SESSION['errors']['register'] = "Registration Failed!";
 		}

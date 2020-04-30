@@ -2,7 +2,12 @@
 
 class Recruiter extends Dbh {
 
-/* recruiter_id ,  user_id ,  company_name ,  email ,  website ,  phone ,  address ,  license ,  city ,  pincode*/
+	/*
+		`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
+
+		`recruiters` WHERE 1  `id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`, `updated_at`
+
+	*/
 
 	private $recruiter_id;
 	private $user_id;
@@ -16,6 +21,13 @@ class Recruiter extends Dbh {
 	private $pincode;
 
 	private $table_name = "recruiters";
+
+	function __construct() {
+
+		parent::__construct();
+
+		$this->set_table_name($this->table_name);
+	}
 
 	function toArray() {
 		$params = [];
@@ -68,11 +80,15 @@ class Recruiter extends Dbh {
 
 	}
 
-	function getRecruiters($limit = null) {
+	function getRecruiters($type = 'list') {
 
 		$recruiters = [];
 
 		$sql = "SELECT * FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name   ";
+		}
 		$result = $this->connect()->query($sql);
 
 		while ($row = $result->fetch()) {
@@ -99,6 +115,22 @@ class Recruiter extends Dbh {
 
 	}
 
+	function getRecruiterByUserId($user_id = null) {
+
+		$this->user_id = $user_id ?? $this->user_id;
+
+		$recruiter_data = [];
+
+		$sql = "SELECT * FROM $this->table_name WHERE user_id=?";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->user_id];
+		$stmt->execute($params);
+		$recruiter_data = $stmt->fetch();
+
+		return $recruiter_data;
+
+	}
+
 	function getRecruiterByRecruitername($company_name = null) {
 
 		$this->company_name = $company_name ?? $this->company_name;
@@ -112,39 +144,6 @@ class Recruiter extends Dbh {
 		$recruiter_data = $stmt->fetch();
 
 		return $recruiter_data;
-
-	}
-
-	function createRecruiter() {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$sql = "INSERT INTO $this->table_name ( " . $model_data['fields'] . " ) values(" . $model_data['placeholder'] . ") ";
-		$stmt = $this->connect()->prepare($sql);
-
-		if ($stmt->execute($params)) {
-			//return $this->connect()->lastInsertId($this->table_name);
-			return true;
-		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
-			return false;
-		}
-	}
-
-	function updateRecruiter($recruiter_id = null) {
-
-		$model_data = set_model_data($this->toArray());
-
-		$params = $model_data['values'];
-
-		$params[] = $recruiter_id ?? $this->recruiter_id;
-
-		$sql = "UPDATE $this->table_name (" . $model_data['fields'] . ") values(" . $model_data['placeholder'] . ") WHERE recruiter_id = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
 
 	}
 
