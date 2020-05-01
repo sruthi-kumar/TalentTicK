@@ -1,27 +1,29 @@
 <?php
 require_once '../autoload.php';
-validate_user('recruiter');
+validate_user('student');
 
-$t = new TemplateEngine('recruiter');
+$t = new TemplateEngine('student');
 $t->data = [];
 
 $page_data = get_current_user_set();
 
 $page_data['assets'] = $admin_assets;
 
-$page_data['page'] = "job-applications";
-$page_data['page_title'] = "Job Applications";
+$page_data['page'] = "job-application-details";
+$page_data['page_title'] = "Job Application Details";
 
 $application = new JobApplication();
 
 $application->setData('user', $_SESSION['user_data']['user_id']);
 
-$page_data['applications'] = $application->getJobApplications($page_data['user_data']['recruiter_id'], 'recruiter');
+$id = $_GET['id'];
 
-//debug($page_data['applications']);
+$page_data['application_details'] = $application->getJobApplicationById($id);
+
+//debug($page_data['application_details']);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');
-$t->render('job-applications.phtml');
+$t->render('job-application-details.phtml');
 $t->render('inc/footer.phtml');

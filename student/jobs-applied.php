@@ -13,16 +13,16 @@ $page_data['assets'] = $admin_assets;
 $page_data['page'] = "jobs-applied";
 $page_data['page_title'] = "Applied Job List";
 
-$job = new Job();
+$application = new JobApplication();
 
-//$job->setData('user', $_SESSION['user_data']['user_id']);
-$page_data['jobs'] = $job->getJobs();
+$application->setData('user', $_SESSION['user_data']['user_id']);
 
-//debug($page_data['jobs']);
+$page_data['applications'] = $application->getJobApplications($page_data['user_data']['student_id'], $page_data['login_type']);
+
+//debug($page_data['applications']);
 
 $t->data = $page_data;
-
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');
-$t->render('job-list.phtml');
+$t->render('jobs-applied.phtml');
 $t->render('inc/footer.phtml');

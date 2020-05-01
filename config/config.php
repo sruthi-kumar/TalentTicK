@@ -12,7 +12,7 @@ function config($key) {
 		'admin_id' => '1',
 		'admin_email' => 'sreekuttan.m.achari@gmail.com',
 		'env' => 'local',
-		'send_mail' => false,
+		'send_mail' => true,
 
 	);
 

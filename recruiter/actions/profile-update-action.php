@@ -5,10 +5,6 @@ require_once '../../autoload.php';
 
 $status = 'success';
 
-/*
-<!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
-`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode` -->  */
-
 function validate_form($form_data) {
 
 	$status = true;
@@ -37,62 +33,40 @@ function validate_form($form_data) {
 		$status = false;
 	}
 
-	if (empty($form_data['username'])) {
-		$status = false;
-	}
-
-	if (empty($form_data['email'])) {
-		$status = false;
-	}
-
 	return $status;
 }
 
+$login_details = get_current_user_set();
+
 if (validate_form($_POST)) {
-
-	$user = new User();
-	$user->setUserData('username', $_POST['username']);
-	$user->setUserData('password', md5($_POST['password']));
-	$user->setUserData('type', 'recruiter');
-
-	//debug($user);
-
-	$result = $user->createUser();
-
-	//debug($result);
 
 /*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
 
-	if ($result) {
+	$recruiter = new Recruiter();
+	$recruiter->setData('user_id', trim($_POST['user_id']));
+	$recruiter->setData('company_name', trim($_POST['company_name']));
+	$recruiter->setData('email', trim($_POST['email']));
+	$recruiter->setData('website', trim($_POST['website']));
+	$recruiter->setData('phone', trim($_POST['phone']));
+	$recruiter->setData('address', trim($_POST['address']));
+	$recruiter->setData('license', trim($_POST['license']));
+	$recruiter->setData('city', trim($_POST['city']));
+	$recruiter->setData('pincode', trim($_POST['pincode']));
+	$recruiter->setData('status', trim($_POST['status']));
 
-		$recruiter = new Recruiter();
-		$recruiter->setRecruiterData('user_id', $result['user_id']);
-		$recruiter->setRecruiterData('company_name', $_POST['company_name']);
-		$recruiter->setRecruiterData('email', $_POST['email']);
-		$recruiter->setRecruiterData('website', $_POST['website']);
-		$recruiter->setRecruiterData('phone', $_POST['phone']);
-		$recruiter->setRecruiterData('address', $_POST['address']);
-		$recruiter->setRecruiterData('license', $_POST['license']);
-		$recruiter->setRecruiterData('city', $_POST['city']);
-		$recruiter->setRecruiterData('pincode', $_POST['pincode']);
+	//debug($recruiter);
 
-		//debug($recruiter);
+	$result = $recruiter->update($login_details['user_data']['recruiter_id']);
+	//debug($result);
 
-		$result = $recruiter->createRecruiter();
-		//debug($result);
-
-		if (!$result) {
-			$status = 'failed';
-			$_SESSION['errors']['register'] = "Registration Failed!";
-		}
-
-	} else {
+	if (!$result) {
 		$status = 'failed';
-		$_SESSION['errors']['register'] = "Registration Failed!";
+		$_SESSION['errors']['register'] = "Update Failed!";
 	}
+
 } else {
 	$status = 'failed';
-	$_SESSION['errors']['register'] = "Invalid Registration Data!";
+	$_SESSION['errors']['register'] = "Invalid Update Data!";
 }
 
-header("location:../registration-status.php?type=recruiter&status=$status");
+header("location:../profile-details.php?type=recruiter&status=$status");

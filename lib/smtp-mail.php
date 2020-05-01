@@ -34,7 +34,7 @@ function send_email_notification($to_address, $subject, $body, $alt_body = null)
 			//Recipients
 			$mail->setFrom('talentickjobportal@gmail.com', "TalenTick Job Portal");
 
-			$mail->addAddress($to_list);
+			$mail->addAddress($to_address);
 
 			// Content
 			$mail->isHTML(true); // Set email format to HTML
@@ -44,10 +44,12 @@ function send_email_notification($to_address, $subject, $body, $alt_body = null)
 
 			$mail->send();
 			echo 'Message has been sent';
+			//exit;
 			return true;
 
 		} catch (Exception $e) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			exit;
 		}
 	} else {
 		return false;

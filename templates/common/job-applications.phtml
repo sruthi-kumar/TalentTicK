@@ -2,15 +2,13 @@
     <div id="page-wrapper">
       <div class="main-page">
         <div class="tables">
-          <h2 class="title1">Tables</h2> 
+          <h2 class="title1">Job Applications</h2> 
  
 
 
             <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
-            <h4>Hover Rows Table:</h4>
-            <table id="datatable"  class="table table-hover"> 
-
-             <!--  `id`, `recruiter`, `job_title`, -->
+            <h4>Application List:</h4>
+            <table id="datatable"  class="table table-hover">  
 
               <thead> <tr> 
                 <th>#</th> <th>Job Title</th> <th>Job  Type</th> <th>Applicant</th> <th>Status</th>  <th>Actions</th> </tr> 
@@ -23,7 +21,7 @@
                   <td><?=$application['job_type']?></td>
                   <td><?=$application['firstname']?> <?=$application['lastname']?></td> 
                   <td><?=$application['status'] ?></td> 
-                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/job-details.php?id='.$application['id']?>">View</a> </td> 
+                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/job-application-details.php?id='.$application['id']?>">View</a> </td> 
                 </tr>  
                 <?php } ?>
               </tbody> 

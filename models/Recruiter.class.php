@@ -9,7 +9,7 @@ class Recruiter extends Dbh {
 
 	*/
 
-	private $recruiter_id;
+	private $id;
 	private $user_id;
 	private $company_name;
 	private $email;
@@ -46,8 +46,8 @@ class Recruiter extends Dbh {
 	function setData($type, $data) {
 
 		switch ($type) {
-		case 'recruiter_id':
-			$this->recruiter_id = $data;
+		case 'id':
+			$this->id = $data;
 			break;
 		case 'user_id':
 			$this->user_id = $data;
@@ -99,15 +99,15 @@ class Recruiter extends Dbh {
 
 	}
 
-	function getRecruiterById($recruiter_id = null) {
+	function getRecruiterById($id = null) {
 
-		$this->recruiter_id = $recruiter_id ?? $this->recruiter_id;
+		$this->id = $id ?? $this->id;
 
 		$recruiter_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE recruiter_id=?";
+		$sql = "SELECT * FROM $this->table_name WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->recruiter_id];
+		$params = [$this->id];
 		$stmt->execute($params);
 		$recruiter_data = $stmt->fetch();
 

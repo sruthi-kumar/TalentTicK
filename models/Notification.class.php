@@ -108,4 +108,17 @@ class Notification extends Dbh {
 
 	}
 
+	function delete($notification_id = null) {
+
+		$this->notification_id = $notification_id ?? $this->notification_id;
+
+		$notification_data = [];
+
+		$sql = "UPDATE $this->table_name SET status = 'inactive' WHERE $this->table_name.id = ? ";
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$this->notification_id];
+		return $stmt->execute($params);
+
+	}
+
 }
