@@ -21,7 +21,7 @@ class JobApplication extends Dbh {
 	private $id;
 	private $user;
 	private $job;
-	private $status;
+	private $status = 'pending';
 
 	private $table_name = "job_applications";
 

@@ -16,6 +16,13 @@
           <p> JobType: <?=$this->data['job_details']['JobType']?> </p>
           <p> District: <?=$this->data['job_details']['District']?> </p>
           <p> State: <?=$this->data['job_details']['State']?> </p>
+
+            <?php if($this->data['user_data']['type'] == 'student'){ ?>
+            <div> <br>
+              <a class="btn btn-success btn-sm" href="<?=base_url()?>/student/actions/job-apply-action.php?id=<?=$this->data['job_details']['id']?>">Apply</a>      
+            </div>
+          <?php } ?>
+
         </div>
       </div>
     </div>
