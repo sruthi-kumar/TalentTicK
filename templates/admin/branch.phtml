@@ -1,0 +1,65 @@
+<!-- main content start-->
+
+ 
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="forms">
+          <h2 class="title1">Post Branch</h2> 
+
+            <?=$this->data['op_status']??""?> 
+
+          <div class="row"> 
+            <div class="form-three widget-shadow">
+              <form id="job_post_form"  action="<?=base_url()?>/admin/actions/branch-process.php" method="post" class="form-horizontal"> 
+
+                
+
+                <div class="form-group">
+                  <label for="department_id" class="col-sm-2 control-label"> Select Department</label>
+                  <div class="col-sm-8">
+                    <select required="required" name="department_id" id="department_id" class="form-control1">
+                    <?php foreach ($this->data['departments'] as $department ) { ?>
+                        <option 
+
+                        <?php if( isset($this->data['branch_details']) &&  $department['id'] == $this->data['branch_details']['department_id']){?> selected="selected" <?php } ?>
+
+                         value="<?=$department['id'] ?>" ><?=$department['department'] ?></option> 
+                       <?php }?>
+                  </select>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="branch" class="col-sm-2 control-label">Branch Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control1" name="branch" id="branch" placeholder="Branch" required="required" 
+
+                    value="<?=($this->data['branch_details']['branch']??"")?>" 
+
+                    >
+                  </div>
+                </div> 
+
+                 <?php if( isset($this->data['branch_details']) && !empty ($this->data['branch_details']) ) { ?> 
+
+                <input type="hidden"  name="action" value="update">
+                <input type="hidden"  name="id" value="<?=$this->data['branch_details']['id']?>">
+
+                <?php } ?>
+
+
+                <div class="form-group"> 
+                  <div class="col-sm-8"></div>
+                  <div class="col-sm-2">
+                    <input type="submit" class="btn btn-info" value="submit">
+                  </div>
+                </div> 
+
+
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div> 

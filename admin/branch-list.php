@@ -12,6 +12,16 @@ $page_data['assets'] = $admin_assets;
 $page_data['page'] = "branch-list";
 $page_data['page_title'] = "Settings: Branches";
 
+if (isset($_GET['status'])) {
+
+	if ($_GET['status'] == 'success') {
+		$page_data['op_status'] = '<label style="color: green" > Post Successfull </label> ';
+	}if ($_GET['status'] == 'failed') {
+		$page_data['op_status'] = '<label style="color: red" >Post Failed</label> ';
+	}
+
+}
+
 $branch = new Branch();
 
 $page_data['branches'] = $branch->getBranches();
