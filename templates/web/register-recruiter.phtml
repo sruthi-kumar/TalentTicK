@@ -17,7 +17,7 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/recruiter-registration.php" method="post" class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/recruiter-registration.php" name="registration_form" method="post" class="p-5 bg-white">
 
 
         <!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
@@ -27,7 +27,10 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="company_name">Company/Organization </label>
-                  <input type="text" id="company_name"  name="company_name" class="form-control" placeholder="Your Company/Organization name " required="required">
+                  <input type="text" id="company_name"  name="company_name" class="form-control" placeholder="Your Company/Organization name " onchange= "return ValidateCompanyName()"required="required">
+                                    <label class="errortext" style="display:no ne; color:red" id="company_name"></label>
+                                    <div id="company_error" style="color:red;">  </div>
+                                                      
                 </div>
               </div>
 
@@ -35,7 +38,11 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="phone">Phone Number</label>
-                  <input type="text" id="phone"  name="phone" class="form-control" placeholder="Your Official Phone Number" required="required">
+                  <input type="text" id="phone"  name="phone" class="form-control" placeholder="Your Official Phone Number" onchange="return ValidatePhone()"required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="phone"></label>
+                  <div id="phone_error" style="color:red;">  </div>
+                                                      
+
                 </div>
               </div>
 
@@ -51,7 +58,9 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="city">City</label>
-                  <input type="text" id="city"  name="city" class="form-control" placeholder="Your City" required="required">
+                  <input type="text" id="city"  name="city" class="form-control" placeholder="Your City" onchange="return ValidateCity()" required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="city"></label>
+                  <div id="city_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -59,7 +68,9 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="pincode">PinCode</label>
-                  <input type="text" id="pincode"  name="pincode" class="form-control" placeholder="Your PinCode" required="required">
+                  <input type="text" id="pincode"  name="pincode" class="form-control" placeholder="Your PinCode" onchange="return ValidatePincode()"required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="pincode"></label>
+                  <div id="pincode_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -67,21 +78,27 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="license">Licence/Registration</label>
-                  <input type="text" id="text"  name="license" class="form-control" placeholder="Your License/Registration " required="required">
+                  <input type="text" id="text"  name="license" class="form-control" placeholder="Your License/Registration " onchange="return ValidateLicense()" required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="license"></label>
+                  <div id="license_error" style="color:red;">  </div>
                 </div>
               </div>
 
                <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="website">Company Website</label>
-                  <input type="text" id="website"  name="website" class="form-control" placeholder="Your Company Website" required="required">
+                  <input type="text" id="website"  name="website" class="form-control" placeholder="Your Company Website" onchange="return ValidateWebsite()"required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="website"></label>
+                  <div id="website_error" style="color:red;">  </div>
                 </div>
               </div> 
 
                <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="email">Company Email ID</label>
-                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Company Email Id" required="required">
+                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Company Email Id" onchange="return ValidateEmail()" required="required">
+                   <label class="errortext" style="display:no ne; color:red" id="email"></label>
+                  <div id="email_error" style="color:red;">  </div>
                 </div>
               </div> 
  
@@ -89,21 +106,27 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="username">Email ID/Username</label>
-                  <input type="email" id="email"  name="username" class="form-control" placeholder="Your Email Id" required="required">
+                  <input type="email" id="email"  name="username" class="form-control" placeholder="Your Email Id" onchange="return ValidateUsername()" required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="username"></label>
+                  <div id="username_error" style="color:red;">  </div>
                 </div>
               </div> 
 
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" required="required">
+                  <input type="password" id="password" name="password" class="form-control" onchange="return ValidatePassword()"required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="password"></label>
+                  <div id="password_error" style="color:red;">  </div>
                 </div>
               </div>
 
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="confirmpassword">Confirm Password</label>
-                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required="required">
+                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" onchange="return ValidateCpassword()" required="required">
+                  <label class="errortext" style="display:no ne; color:red" id="password"></label>
+                  <div id="confirmpassword_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -140,5 +163,210 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </section>
+
+
+
+<script type="text/javascript">
+var  reg_form = document.registration_form;
+
+function ValidateCompanyName(){
+
+  document.getElementById('company_error').innerHTML = "" ; 
+  var company_name =reg_form.company_name.value;
+  
+  if(company_name==""){ 
+    document.getElementById('company_name').focus();
+    document.getElementById('company_error').innerHTML = "Error! company Name is empty " ; 
+    return false;
+  }
+
+  if ((company_name.length < 3) || (company_name.length > 30))
+  {
+  document.getElementById('company_error').innerHTML = "Error! characters between 3 and 30" ; 
+  document.getElementById('company_name').focus();
+  return false;
+  }
+  var pattern1 = new RegExp("^[a-zA-Z ]*$");
+  if(!pattern1.test(document.registration_form.company_name.value))
+  {
+  document.getElementById('company_error').innerHTML ="Error: Please enter Company Name!" ; 
+  document.registration_form.name.focus();
+  return false;
+  }
+  return true;
+}
+function ValidatePhone()
+{
+ document.getElementById('phone_error').innerHTML = "" ;
+if(document.registration_form.phone.value == "" ||
+isNaN(document.registration_form.phone.value) ||
+document.registration_form.phone.value.length != 10 )
+{
+ document.getElementById('phone_error').innerHTML = "Please provide a Mobile No upto 10 digit" ;     
+
+  
+document.getElementById('phone').focus();
+return false;
+}
+var pattern = new RegExp("^([6-9]{1})([0-9]{9})$");
+if(!pattern.test(document.registration_form.phone.value))
+{
+ document.getElementById('phone_error').innerHTML = "Phone Number is invalid!" ; 
+registration_form.phone.focus();
+return false;
+}
+return true;
+}
+function ValidateCity(){
+
+  document.getElementById('city_error').innerHTML = "" ; 
+  var city_error =reg_form.city.value;
+  
+  if(city==""){ 
+    document.getElementById('city').focus();
+    document.getElementById('city_error').innerHTML = "Error! City  is empty " ; 
+    return false;
+  }
+
+  
+  var pattern1 = new RegExp("^[a-zA-Z ]*$");
+  if(!pattern1.test(document.registration_form.city.value))
+  {
+  document.getElementById('city_error').innerHTML ="Error: Please enter City!" ; 
+  document.registration_form.name.focus();
+  return false;
+  }
+  return true;
+}
+function ValidatePincode()
+{
+ document.getElementById('pincode_error').innerHTML = "" ;
+if(document.registration_form.pincode.value == "" ||
+isNaN(document.registration_form.pincode.value) ||
+document.registration_form.pincode.value.length != 6 )
+{
+ document.getElementById('pincode_error').innerHTML = "Please provide a Pincode upto 6 digit" ;     
+
+  
+document.getElementById('pincode').focus();
+return false;
+}
+var pattern = new RegExp("^([1-9]{1})([0-9]{5})$");
+if(!pattern.test(document.registration_form.pincode.value))
+{
+ document.getElementById('pincode_error').innerHTML = "Pincode is invalid!" ; 
+registration_form.pincode.focus();
+return false;
+}
+return true;
+}
+function ValidateLicense()
+{
+ document.getElementById('license_error').innerHTML = "" ;
+if(document.registration_form.license.value == "" ||
+isNaN(document.registration_form.license.value) ||
+document.registration_form.license.value.length != 10 )
+{
+ document.getElementById('license_error').innerHTML = "Please provide a license No upto 21 digit" ;     
+
+  
+document.getElementById('license').focus();
+return false;
+}
+var pattern = new RegExp("^([L,U]{2})([0-9]{20})$");
+if(!pattern.test(document.registration_form.license.value))
+{
+ document.getElementById('license_error').innerHTML = "License Number is invalid!" ; 
+registration_form.license.focus();
+return false;
+}
+return true;
+}
+function ValidateWebsite()
+{
+  document.getElementById('website_error').innerHTML = "" ;
+ var website = document.getElementById('website');
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (!filter.test(website.value)) 
+{
+    website.value="";
+    document.getElementById('website').focus();
+    document.getElementById('website_error').innerHTML ="Error: Please enter website!" ; 
+    
+    return false;
+    }
+return true;
+}
+function ValidateEmail()
+{
+  document.getElementById('email_error').innerHTML = "" ;
+ var email = document.getElementById('email');
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (!filter.test(email.value)) 
+{
+    email.value="";
+    document.getElementById('email').focus();
+    document.getElementById('email_error').innerHTML ="Error: Please enter email!" ; 
+    
+    return false;
+    }
+return true;
+}
+function ValidateUsername()
+{
+  document.getElementById('username_error').innerHTML = "" ;
+ var username = document.getElementById('username');
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (!filter.test(username.value)) 
+{
+    username.value="";
+    document.getElementById('username').focus();
+    document.getElementById('username_error').innerHTML ="Error: Please enter email!" ; 
+    
+    return false;
+    }
+return true;
+}
+
+function validatePassword()
+{
+document.getElementById('password_error').innerHTML = "" ;
+var o=document.forms["registration_form"]["password"].value;
+if(o=="")
+{
+document.getElementById('password_error').innerHTML = "Please Fill password Field" ;
+document.getElementById('password').focus();
+return false;
+}
+if(o.length<8){  
+document.getElementById('password_error').innerHTML = "Password must be at least 8 characters long." ;
+document.getElementById('password').focus();
+return false;  
+}
+return true
+}
+
+
+
+function ValidateCpassword()
+{
+document.getElementById('confirmpassword_error').innerHTML = "" ;
+var h=document.forms["registration_form"]["confirmpassword"].value;
+if(h=="")
+{
+document.getElementById('confirmpassword_error').innerHTML = "Please Fill password Field" ;
+document.getElementById('confirmpassword').focus();
+return false;
+}
+var p = document.getElementById("password").value;
+var cp = document.getElementById("confirmpassword").value;
+if (p != cp) {
+document.getElementById('confirmpassword_error').innerHTML = "Passwords do not match" ;
+document.getElementById('confirmpassword').focus();
+return false;
+}
+return (true);
+}
+</script>
