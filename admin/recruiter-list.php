@@ -14,7 +14,12 @@ $page_data['page_title'] = "Recruiter List";
 
 $recruiter = new Recruiter();
 
-$page_data['recruiters'] = $recruiter->getRecruiters();
+if (isset($_GET['type']) && $_GET['type'] == "pending") {
+	$page_data['recruiters'] = $recruiter->getRecruiters('list', 'pending');
+
+} else {
+	$page_data['recruiters'] = $recruiter->getRecruiters('list', 'approved');
+}
 
 //debug($page_data['recruiters']);
 
