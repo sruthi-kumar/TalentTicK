@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 30, 2020 at 08:56 PM
+-- Generation Time: May 01, 2020 at 04:30 PM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -113,7 +113,8 @@ INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type
 (51, 1, 'EXECUTE MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 1, 1, NULL, 90, 0, 0, 0, 0, 'active', '2020-03-27', '2020-04-27 05:36:41'),
 (52, 1, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 20, 1, 0, 0, 0, 'active', '2020-03-01', '2020-04-27 05:36:41'),
 (68, 14, 'WEB DEVELOPER', 'zczxczxc', 1, 6, '[\"1\",\"9\",\"11\"]', 60, 5, 50000, 100000, 1, 'active', '2020-08-27', '2020-04-28 19:46:56'),
-(69, 14, 'WEB DEVELOPER', 'asds dsd', 1, 4, '[\"11\",\"10\",\"6\"]', 50, 0, 100000, 100000, 1, 'active', '2020-08-27', '2020-04-30 14:04:39');
+(69, 14, 'WEB DEVELOPER', 'asds dsd', 1, 4, '[\"11\",\"10\",\"6\"]', 50, 0, 100000, 100000, 1, 'active', '2020-08-27', '2020-04-30 14:04:39'),
+(70, 14, 'test', 'sdfsd', 1, 5, '[\"1\",\"9\",\"11\"]', 80, 0, 50000, 150000, 1, 'active', '2020-08-27', '2020-05-01 10:33:30');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ CREATE TABLE `job_applications` (
 INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VALUES
 (13, 23, 35, 'pending', '2020-04-27 13:36:29'),
 (15, 24, 35, 'pending', '2020-04-27 13:36:29'),
-(16, 24, 43, 'pending', '2020-04-27 13:36:29'),
+(16, 24, 43, 'accepted', '2020-04-27 13:36:29'),
 (17, 24, 44, 'pending', '2020-04-27 13:36:29'),
 (18, 9, 45, 'pending', '2020-04-27 13:36:29'),
 (19, 9, 50, 'pending', '2020-04-27 13:36:29'),
@@ -147,7 +148,7 @@ INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VAL
 (26, 27, 46, 'pending', '2020-04-27 13:36:29'),
 (27, 27, 44, 'pending', '2020-04-27 13:36:29'),
 (28, 24, 45, 'pending', '2020-04-27 13:36:29'),
-(29, 28, 43, 'pending', '2020-04-27 13:36:29'),
+(29, 28, 43, 'rejected', '2020-04-27 13:36:29'),
 (30, 8, 43, 'pending', '2020-04-27 13:36:29'),
 (31, 32, 44, 'pending', '2020-04-27 13:36:29'),
 (32, 32, 35, 'pending', '2020-04-27 13:36:29'),
@@ -301,7 +302,17 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (15, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
 (16, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
 (17, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : asds dsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-30 14:04:39'),
-(18, 24, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : asds dsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-30 14:04:39');
+(18, 24, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : asds dsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'inactive', '2020-04-30 14:04:39'),
+(19, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-30 22:37:03'),
+(20, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:30'),
+(21, 38, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:33'),
+(22, 36, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:37'),
+(23, 34, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:40'),
+(24, 32, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:44'),
+(25, 28, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:47'),
+(26, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:50'),
+(27, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:53'),
+(28, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:56');
 
 -- --------------------------------------------------------
 
@@ -363,6 +374,7 @@ CREATE TABLE `recruiters` (
   `license` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `city` varchar(30) NOT NULL,
   `pincode` varchar(6) NOT NULL,
+  `image` varchar(255) DEFAULT 'default.jpg',
   `status` enum('pending','approved') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -372,17 +384,17 @@ CREATE TABLE `recruiters` (
 -- Dumping data for table `recruiters`
 --
 
-INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `status`, `created_at`) VALUES
-(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'pending', '2020-04-27 05:41:02'),
-(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'pending', '2020-04-27 05:41:02'),
-(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'pending', '2020-04-27 05:41:02'),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'pending', '2020-04-27 05:41:02'),
-(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', NULL, '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'pending', '2020-04-27 05:41:02'),
-(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'pending', '2020-04-27 05:41:02'),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85', 'pending', '2020-04-27 05:41:02'),
-(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'pending', '2020-04-27 05:41:02'),
-(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', 'pending', '2020-04-27 05:41:02'),
-(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'pending', '2020-04-27 05:41:02');
+INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `status`, `created_at`) VALUES
+(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 'soft.com', '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'NTczNTA4LmpwZzc2.jpg', 'pending', '2020-04-27 05:41:02');
 
 -- --------------------------------------------------------
 
@@ -399,6 +411,7 @@ CREATE TABLE `students` (
   `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other',
   `branch_id` int DEFAULT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
+  `image` varchar(255) DEFAULT 'default.jpg',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -407,33 +420,33 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`) VALUES
-(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 3, 'pending', '2020-04-26 21:23:40'),
-(6, 9, 'athul', 'S N', '9947266566', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 7, 'pending', '2020-04-26 21:23:40'),
-(8, 17, 'anitta', 's', '6677889900', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(9, 18, 'anu', 'a', '9876543212', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(10, 23, 'ammu', 's', '8956231452', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(11, 24, 'asif', 'ali', '8956231478', 'Female', 10, 'pending', '2020-04-26 21:23:40'),
-(12, 25, 'arya', 'kumar', '9856231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(13, 26, 'arun', 'k s', '8956231478', 'Female', 12, 'pending', '2020-04-26 21:23:40'),
-(14, 27, 'Achu', 'l', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(16, 29, 'akil', 'achu', '9865231478', 'Male', 1, 'pending', '2020-04-26 21:23:40'),
-(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 1, 'pending', '2020-04-26 21:23:40'),
-(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(20, 35, 'anju', 'mathew', '9856231230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(21, 36, 'teenu', 'v therese', '0', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(22, 37, 'Raj', 's', '8956231478', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(23, 38, 'amala', 'saji', '9856231230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 4, 'pending', '2020-04-26 21:23:40'),
-(26, 42, 'lavanya', 's', '8596321230', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(28, 47, 'rahul', 's', '8956231023', 'Female', 1, 'pending', '2020-04-26 21:23:40'),
-(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', '2020-04-26 21:23:40'),
-(30, 85, 'John', 'Doe', '9876543210', 'Male', NULL, 'pending', '2020-04-28 16:31:55');
+INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `image`, `created_at`) VALUES
+(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 3, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(6, 9, 'athul', 'S N', '9947266566', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 7, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(8, 17, 'anitta', 's', '6677889900', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(9, 18, 'anu', 'a', '9876543212', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(10, 23, 'ammu', 's', '8956231452', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(11, 24, 'asif', 'ali', '8956231478', 'Female', 10, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(12, 25, 'arya', 'kumar', '9856231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(13, 26, 'arun', 'k s', '8956231478', 'Female', 12, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(14, 27, 'Achu', 'l', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(16, 29, 'akil', 'achu', '9865231478', 'Male', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(20, 35, 'anju', 'mathew', '9856231230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(21, 36, 'teenu', 'v therese', '0', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(22, 37, 'Raj', 's', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(23, 38, 'amala', 'saji', '9856231230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 4, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(26, 42, 'lavanya', 's', '8596321230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(28, 47, 'rahul', 's', '8956231023', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
+(30, 85, 'John', 'Doe', '9876543210', 'Male', NULL, 'pending', 'default.jpg', '2020-04-28 16:31:55');
 
 -- --------------------------------------------------------
 
@@ -458,7 +471,8 @@ CREATE TABLE `testimonials` (
 
 INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
 (1, 76, 'recruiter', 'Testing testimonials  updated  3 for admin notification  asdsdf d', 'pending', 'no', '2020-04-28 08:55:55'),
-(2, 15, 'student', 'Student testimonial updated ', 'pending', 'no', '2020-04-28 10:16:29');
+(2, 15, 'student', 'Student testimonial updated ', 'pending', 'no', '2020-04-28 10:16:29'),
+(3, 22, 'recruiter', 'testing testing ', 'pending', 'no', '2020-04-30 22:37:03');
 
 -- --------------------------------------------------------
 
@@ -487,12 +501,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at
 (8, 'haritha@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (9, 'athul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (13, 'ibm@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(15, 'sruthi@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
+(15, 'sruthi@gmail.com', '98506495661c8c6c17af958c5d8b1a29', 'student', 'active', '2020-04-22 07:59:44'),
 (16, 'federal@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
 (17, 'anitta@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (18, 'a@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (20, 'ust@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(22, 'soft@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
+(22, 'soft@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'recruiter', 'active', '2020-04-22 07:59:44'),
 (23, 'ammu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (24, 'asif@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (25, 'arya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
@@ -517,7 +531,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at
 (46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
 (47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
 (62, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-04-22 13:59:45'),
-(76, 'sreekuttan@maximprof.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'recruiter', 'active', '2020-04-22 16:45:43'),
+(76, 'sreekuttan@maximprof.com', 'acedf82e8d2a7ae1d3ca452b5e3ef483', 'recruiter', 'active', '2020-04-22 16:45:43'),
 (85, 'johndoe@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-28 16:31:55');
 
 --
@@ -638,7 +652,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
@@ -668,7 +682,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -692,7 +706,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

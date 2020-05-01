@@ -3,14 +3,13 @@ require_once '../autoload.php';
 
 $current_user = get_current_user_set();
 
-//debug($current_user);
+//debug($current_user);JECjeYu9
+
+//debug($_POST);
 
 $user_id = $current_user['user_data']['user_id'];
 
-$password = $_POST['password'];
-
-if (!empty($password)) {
-	$password = md5($password);
+if (!empty($_POST['current_password']) && !empty($_POST['new_password'])) {
 
 	$user = new User();
 
@@ -18,12 +17,26 @@ if (!empty($password)) {
 
 	//debug($user_details);
 
-	$user->setData('username', $user_details['username']);
-	$user->setData('password', md5($_POST['password']));
-	$user->setData('type', $user_details['type']);
-	$user->setData('status', $user_details['status']);
+	if (md5($_POST['currrent_password']) == $user_details['password']) {
 
-	$user->update($user_id);
+		$user->setData('username', $user_details['username']);
+		$user->setData('password', md5($_POST['new_password']));
+		$user->setData('type', $user_details['type']);
+		$user->setData('status', $user_details['status']);
 
-	header('location:../../actions/logout.php');
+		$user->update($user_id);
+
+		header('location:../' . $user_details['type'] . '/update-password.php?status=success');
+		exit;
+
+	} else {
+		$_SESSION['errors']['update_password'] = "Error: Current Password Does not match!";
+		header('location:../' . $user_details['type'] . '/update-password.php?status=failed');
+		exit;
+	}
+
+} else {
+	$_SESSION['errors']['update_password'] = "Invalid Form Data";
+	header('location:../' . $user_details['type'] . '/update-password.php?status=failed');
+	exit;
 }

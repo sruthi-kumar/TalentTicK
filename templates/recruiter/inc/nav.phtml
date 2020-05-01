@@ -75,10 +75,10 @@
             <li class="dropdown profile_details_drop">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <div class="profile_img"> 
-                  <span class="prfil-img"><img width="50" class="img img-responsive"  src="<?=base_url()?>/uploads/images/<?=$this->data['user_data']['image']?>" alt=""> </span> 
+                  <span class="prfil-img"><img width="50" class="img img-responsive"  src="<?=base_url()?>/uploads/images/<?=$this->data['user_data']['image']?>" alt="Profile Image"> </span> 
                   <div class="user-name">
-                    <p>Recruiter Name</p>
-                    <span>Profile</span>
+                    <p><?=$this->data['user_data']['company_name']?></p>
+                    <span><?=strtoupper($this->data['user_data']['type'])?></span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
                   <i class="fa fa-angle-up lnr"></i>

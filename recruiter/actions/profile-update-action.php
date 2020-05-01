@@ -49,17 +49,25 @@ if (validate_form($_POST)) {
 
 	if (isset($_FILES) && !empty($_FILES['image'])) {
 
-		//echo ($_FILES["image"]["name"]);
-		//echo ($_FILES["image"]["tmp_name"]);
+		/*echo ($_FILES["image"]["name"]);
+			echo "<br>";
+			echo ($_FILES["image"]["tmp_name"]);
+		*/
 
 		$target_dir = "../../uploads/images/";
-		$target_file = $target_dir . basename($_FILES["image"]["name"]);
-		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+		$imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+
+		$enc_name = base64_encode($_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+		$target_file = $target_dir . $enc_name;
 
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-			$image_file = base64_encode($_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+
+			$image_file = $enc_name;
+			echo ("File Uploaded");
+
 		} else {
-			echo "File Upload Failed";
+			echo ("File Upload Failed");
 		}
 
 	}

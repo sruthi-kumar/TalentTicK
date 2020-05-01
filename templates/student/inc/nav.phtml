@@ -78,8 +78,8 @@
                 <div class="profile_img"> 
                   <span class="prfil-img"><img width="50" class="img img-responsive"  src="<?=base_url()?>/uploads/images/<?=$this->data['user_data']['image']?>" alt=""> </span> 
                   <div class="user-name">
-                    <p>Student Name</p>
-                    <span>Profile</span>
+                     <p><?=$this->data['user_data']['full_name']?></p>
+                    <span><?=strtoupper($this->data['user_data']['type'])?></span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
                   <i class="fa fa-angle-up lnr"></i>
