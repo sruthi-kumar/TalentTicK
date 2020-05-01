@@ -27,6 +27,7 @@ class Student extends Dbh {
 	private $firstname;
 	private $lastname;
 	private $mobile_number;
+	private $image;
 	private $gender = "Other";
 
 	private $table_name = "students";
@@ -45,6 +46,7 @@ class Student extends Dbh {
 		$params['lastname'] = $this->lastname ?? '';
 		$params['mobile_number'] = $this->mobile_number ?? '';
 		$params['gender'] = $this->gender ?? '';
+		$params['image'] = $this->gender ?? 'default.jpg';
 		return $params;
 	}
 
@@ -68,6 +70,9 @@ class Student extends Dbh {
 			break;
 		case 'gender':
 			$this->gender = $data;
+			break;
+		case 'image':
+			$this->image = $data;
 			break;
 		}
 
