@@ -25,6 +25,10 @@ if (isset($_GET['id'])) {
 	if (!$result) {
 		$status = 'failed';
 		$_SESSION['errors']['apply_job'] = "Job Application Failed!";
+	} else {
+
+		//notify recruiter
+
 	}
 
 } else {
