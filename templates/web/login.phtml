@@ -17,14 +17,16 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/authenticate.php" method="post" class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/authenticate.php" name="loginform"method="post" class="p-5 bg-white">
 
        
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="email">Username</label>
-                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Registerd Email Id" required="required">
+                  <input type="email" id="email"  name="email" class="form-control" placeholder="Your Registerd Email Id" onchange="return ValidateEmail()" required="required">
+                     <label class="errormail" style="display:none; color:red" id="email"></label>
+                      <div id="email_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -32,6 +34,8 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
                   <input type="password" id="password" name="password" class="form-control" required="required">
+                  
+
                 </div>
               </div>
 
@@ -79,3 +83,24 @@
         </div>
       </div>
     </section>
+
+    <script type="text/javascript">
+var  reg_form = document.login_form;
+
+function ValidateEmail(){
+  document.getElementById('email_error').innerHTML = "" ;
+ var email = document.getElementById('email');
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (!filter.test(email.value)) 
+{
+    email.value="";
+    document.getElementById('email').focus();
+    document.getElementById('email_error').innerHTML ="Error: Please enter email!" ; 
+    
+    return false;
+    }
+return true;
+}
+
+
+</script>
