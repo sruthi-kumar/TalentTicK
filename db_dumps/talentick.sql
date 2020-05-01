@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 02, 2020 at 01:34 AM
+-- Generation Time: May 02, 2020 at 04:36 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -161,7 +161,11 @@ INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VAL
 (33, 36, 51, 'pending', '2020-04-27 13:36:29'),
 (34, 36, 50, 'pending', '2020-04-27 13:36:29'),
 (35, 34, 52, 'pending', '2020-04-27 13:36:29'),
-(36, 9, 43, 'pending', '2020-04-27 13:36:29');
+(36, 9, 43, 'pending', '2020-04-27 13:36:29'),
+(37, 15, 68, 'pending', '2020-05-01 21:33:59'),
+(38, 15, 68, 'pending', '2020-05-01 21:34:30'),
+(39, 15, 68, 'pending', '2020-05-01 22:18:34'),
+(40, 15, 70, 'pending', '2020-05-01 22:22:17');
 
 -- --------------------------------------------------------
 
@@ -397,9 +401,9 @@ INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `
 (6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
 (7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 'soft.com', '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
 (8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', '', '203', 'k', '44', 'Bihar', '85', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
 (10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(11, 46, 'ABCD', 'abcd@gmail.com', '', '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', '', 'pending', '2020-04-27 05:41:02'),
 (14, 76, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'aW1hZ2VzLmpwZWc3Ng==.jpeg', 'pending', '2020-04-27 05:41:02');
 
 -- --------------------------------------------------------
@@ -664,7 +668,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `job_types`
