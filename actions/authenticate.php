@@ -34,6 +34,7 @@ if (!empty($user_data)) {
 			$user_data['recruiter_id'] = $recruiter_data['id'];
 			$user_data['company_name'] = $recruiter_data['company_name'];
 			$user_data['recruiter_status'] = $recruiter_data['status'];
+			$user_data['image'] = $recruiter_data['image'];
 
 			//debug($user_data);
 
@@ -57,6 +58,7 @@ if (!empty($user_data)) {
 			$user_data['student_id'] = $student_data['id'];
 			$user_data['full_name'] = $student_data['firstname'] . " " . $student_data['lastname'];
 			$user_data['payment_status'] = $student_data['payment_status'];
+			$user_data['image'] = $student_data['image'];
 
 			//debug($user_data);
 

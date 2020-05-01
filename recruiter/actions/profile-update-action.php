@@ -1,7 +1,8 @@
 <?php
 require_once '../../autoload.php';
 
-//debug($_POST);
+//debug($_POST, false);
+//debug($_FILES);
 
 $status = 'success';
 
@@ -40,10 +41,30 @@ $login_details = get_current_user_set();
 
 if (validate_form($_POST)) {
 
-/*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
+/*`recruiter_id`, image `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
 
 	$recruiter = new Recruiter();
-	$recruiter->setData('user_id', trim($_POST['user_id']));
+
+	$image_file = $login_details['user_data']['image'];
+
+	if (isset($_FILES) && !empty($_FILES['image'])) {
+
+		//echo ($_FILES["image"]["name"]);
+		//echo ($_FILES["image"]["tmp_name"]);
+
+		$target_dir = "../../uploads/images/";
+		$target_file = $target_dir . basename($_FILES["image"]["name"]);
+		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+			$image_file = base64_encode($_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+		} else {
+			echo "File Upload Failed";
+		}
+
+	}
+
+	$recruiter->setData('user_id', $login_details['user_data']['user_id']);
 	$recruiter->setData('company_name', trim($_POST['company_name']));
 	$recruiter->setData('email', trim($_POST['email']));
 	$recruiter->setData('website', trim($_POST['website']));
@@ -52,6 +73,7 @@ if (validate_form($_POST)) {
 	$recruiter->setData('license', trim($_POST['license']));
 	$recruiter->setData('city', trim($_POST['city']));
 	$recruiter->setData('pincode', trim($_POST['pincode']));
+	$recruiter->setData('image', $image_file);
 	$recruiter->setData('status', trim($_POST['status']));
 
 	//debug($recruiter);
@@ -62,6 +84,10 @@ if (validate_form($_POST)) {
 	if (!$result) {
 		$status = 'failed';
 		$_SESSION['errors']['register'] = "Update Failed!";
+	} else {
+
+		$_SESSION['user_data']['image'] = $image_file;
+
 	}
 
 } else {

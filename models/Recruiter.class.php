@@ -19,6 +19,7 @@ class Recruiter extends Dbh {
 	private $license;
 	private $city;
 	private $pincode;
+	private $image;
 
 	private $table_name = "recruiters";
 
@@ -40,6 +41,7 @@ class Recruiter extends Dbh {
 		$params['license'] = $this->license ?? '';
 		$params['city'] = $this->city ?? '';
 		$params['pincode'] = $this->pincode ?? '';
+		$params['image'] = $this->image ?? '';
 		return $params;
 	}
 
@@ -75,6 +77,9 @@ class Recruiter extends Dbh {
 			break;
 		case 'pincode':
 			$this->pincode = $data;
+			break;
+		case 'image':
+			$this->image = $data;
 			break;
 		}
 
