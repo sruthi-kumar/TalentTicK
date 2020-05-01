@@ -7,8 +7,6 @@ $t->data = [];
 
 $page_data = get_current_user_set();
 
-$page_data = get_current_user_set();
-
 //debug($page_data);
 
 $page_data['assets'] = $admin_assets;
