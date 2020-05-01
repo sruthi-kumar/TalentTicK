@@ -1,0 +1,32 @@
+<!-- main content start-->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <h2 class="title1">Recruiter Details</h2>
+        <div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+          <p> <img src="<?=base_url()?>/uploads/images/<?=$this->data['recruiter_details']['image']?>">  </p> 
+          <p> Company Name : <?=$this->data['recruiter_details']['company_name']?> </p> 
+          <p> Email : <?=$this->data['recruiter_details']['email']?> </p> 
+          <p> Website : <?=$this->data['recruiter_details']['website']?> </p> 
+          <p> Phone : <?=$this->data['recruiter_details']['phone']?> </p> 
+          <p> Address : <?=$this->data['recruiter_details']['address']?> </p> 
+          <p> License : <?=$this->data['recruiter_details']['license']?> </p> 
+          <p> City : <?=$this->data['recruiter_details']['city']?> </p> 
+          <p> Pincode : <?=$this->data['recruiter_details']['pincode']?> </p> 
+          <p> Status : <?=$this->data['recruiter_details']['status']?> </p> 
+          <p> Created : <?=$this->data['recruiter_details']['created_at']?> </p> 
+
+          
+          <?php if($this->data['user_data']['type'] == 'admin' && $this->data['recruiter_details']['status'] == 'pending'){ ?>
+            <div> <br>
+              <a class="btn btn-success btn-sm" href="<?=base_url()?>/admin/actions/recruiter-process.php?id=<?=$this->data['recruiter_details']['id']?>&action=accepted">Verify</a>  
+              
+             <!--  <a class="btn btn-danger btn-sm" href="<?=base_url()?>/admin/actions/recruiter-process.php?id=<?=$this->data['recruiter_details']['id']?>&action=rejected">Reject</a>  
+            </div> -->
+          <?php } ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+    
