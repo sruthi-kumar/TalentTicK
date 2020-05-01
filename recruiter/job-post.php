@@ -5,9 +5,7 @@ validate_user('recruiter');
 $t = new TemplateEngine('recruiter');
 $t->data = [];
 
-$current_user = get_current_user_set();
-
-$page_data['user_data'] = $current_user;
+$page_data = get_current_user_set();
 
 $page_data['assets'] = $admin_assets;
 
@@ -35,7 +33,7 @@ if (isset($_GET['id'])) {
 
 	debug($page_data['job']);
 
-	if ($page_data['job']['recruiter'] == $current_user['recruiter_id']) {
+	if ($page_data['job']['recruiter'] == $page_data['recruiter_id']) {
 
 	}
 
