@@ -262,28 +262,7 @@ return false;
 }
 return true;
 }
-function ValidateLicense()
-{
- document.getElementById('license_error').innerHTML = "" ;
-if(document.registration_form.license.value == "" ||
-isNaN(document.registration_form.license.value) ||
-document.registration_form.license.value.length != 10 )
-{
- document.getElementById('license_error').innerHTML = "Please provide a license No upto 21 digit" ;     
 
-  
-document.getElementById('license').focus();
-return false;
-}
-var pattern = new RegExp("^([L,U]{2})([0-9]{20})$");
-if(!pattern.test(document.registration_form.license.value))
-{
- document.getElementById('license_error').innerHTML = "License Number is invalid!" ; 
-registration_form.license.focus();
-return false;
-}
-return true;
-}
 function ValidateWebsite()
 {
   document.getElementById('website_error').innerHTML = "" ;
