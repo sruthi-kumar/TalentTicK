@@ -1,7 +1,7 @@
 <?php
 require_once '../../autoload.php';
 
-validate_user('recruiter');
+validate_user('admin');
 
 $status = 'success';
 
@@ -14,7 +14,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
 	//debug($recruiter_details);
 
-	$recruiter->setData('user_id', $login_details['user_data']['user_id']);
+	$recruiter->setData('user_id', $recruiter_details['user_id']);
 	$recruiter->setData('company_name', $recruiter_details['company_name']);
 	$recruiter->setData('email', $recruiter_details['email']);
 	$recruiter->setData('website', $recruiter_details['website']);
@@ -23,11 +23,13 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 	$recruiter->setData('license', $recruiter_details['license']);
 	$recruiter->setData('city', $recruiter_details['city']);
 	$recruiter->setData('pincode', $recruiter_details['pincode']);
-	$recruiter->setData('image', $image_file);
+	$recruiter->setData('image', $recruiter_details['image']);
 	$recruiter->setData('status', $_GET['action']);
 
+	//debug($recruiter);
+
 	$result = $recruiter->update($recruiter_id);
-	//debug($result);
+//	debug($result);
 
 	if (!$result) {
 		$status = 'failed';
@@ -43,4 +45,4 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 	$_SESSION['errors']['register'] = "Invalid Update Data!";
 }
 
-header("location:../profile-details.php?type=recruiter&status=$status");
+header("location:../recruiter-details.php?id=" . $_GET['id'] . "&status=$status");

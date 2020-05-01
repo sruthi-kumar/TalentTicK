@@ -1,7 +1,8 @@
 <!-- main content start-->
     <div id="page-wrapper">
       <div class="main-page">
-        <h2 class="title1">Job Details</h2>
+        <h2 class="title1">Job Details</h2> 
+             <?=$this->data['op_status']??""?>  
         <div class="blank-page widget-shadow scroll" id="style-2 div1">
           <p> Job Title: <?=$this->data['job_details']['job_title']?> </p>
           <p> Job Description: <?=$this->data['job_details']['job_description']?> </p>
