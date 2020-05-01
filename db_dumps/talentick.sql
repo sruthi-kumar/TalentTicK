@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2020 at 04:30 PM
+-- Generation Time: May 02, 2020 at 01:34 AM
 -- Server version: 8.0.19-0ubuntu0.19.10.3
 -- PHP Version: 7.3.11-0ubuntu0.19.10.4
 
@@ -52,7 +52,8 @@ INSERT INTO `branches` (`id`, `branch`, `department_id`) VALUES
 (11, 'Computer Science', 3),
 (12, 'Electrical Engineering', 3),
 (13, 'Mechanical Engineering', 3),
-(14, 'Electrical and Electronics Eng', 3);
+(14, 'Electrical and Electronics Eng', 3),
+(15, 'Electronics & Communications', 1);
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,12 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`id`, `department`) VALUES
 (1, 'M.Tech'),
 (2, 'MCA'),
-(3, 'B.Tech');
+(3, 'B.Tech'),
+(4, 'Test'),
+(5, 'Test 2'),
+(6, 'Test 3'),
+(7, 'Test 4'),
+(8, 'Test 5');
 
 -- --------------------------------------------------------
 
@@ -375,7 +381,7 @@ CREATE TABLE `recruiters` (
   `city` varchar(30) NOT NULL,
   `pincode` varchar(6) NOT NULL,
   `image` varchar(255) DEFAULT 'default.jpg',
-  `status` enum('pending','approved') NOT NULL DEFAULT 'pending',
+  `status` enum('pending','approved','rejected') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -386,15 +392,15 @@ CREATE TABLE `recruiters` (
 
 INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `status`, `created_at`) VALUES
 (1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
+(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
+(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
 (7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 'soft.com', '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
+(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
 (9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', NULL, '203', 'k', '44', 'Bihar', '85', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
 (10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
 (11, 46, 'ABCD', 'abcd@gmail.com', NULL, '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'NTczNTA4LmpwZzc2.jpg', 'pending', '2020-04-27 05:41:02');
+(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'aW1hZ2VzLmpwZWc3Ng==.jpeg', 'pending', '2020-04-27 05:41:02');
 
 -- --------------------------------------------------------
 
@@ -640,13 +646,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jobs`
