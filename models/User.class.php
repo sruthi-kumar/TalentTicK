@@ -2,7 +2,7 @@
 
 class User extends Dbh {
 
-	private $user_id;
+	private $id;
 	private $username;
 	private $password;
 	private $type;
@@ -31,8 +31,8 @@ class User extends Dbh {
 	function setData($type, $data) {
 
 		switch ($type) {
-		case 'user_id':
-			$this->user_id = $data;
+		case 'id':
+			$this->id = $data;
 			break;
 		case 'username':
 			$this->username = $data;
@@ -70,15 +70,15 @@ class User extends Dbh {
 
 	}
 
-	function getUserById($user_id = null) {
+	function getUserById($id = null) {
 
-		$this->user_id = $user_id ?? $this->user_id;
+		$this->id = $id ?? $this->id;
 
 		$user_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE user_id=?";
+		$sql = "SELECT * FROM $this->table_name WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->user_id];
+		$params = [$this->id];
 		$stmt->execute($params);
 		$user_data = $stmt->fetch();
 

@@ -1,142 +1,23 @@
-    <!-- main content start-->
-  <div id="page-wrapper">
-    <div class="main-page">
-      <h2 class="title1">Profile Details</h2>
-        <div class="elements">
-          <div class="col-md-4 chart-layer1-right"> 
-            <div class="user-marorm">
-            <div class="malorum-top">     </div>
-            <div class="malorm-bottom">
-              <span class="malorum-pro"> </span>
-               <h2>Calorine ELiza</h2>
-              <p>Fusce elit sem, dictum non gravida vitae, pulv
-              inar ac mi. Proin aliquet ex nunc, sodales efficitur 
-              ris imperdiet et. Vestibulum antei psum primis in faucibus orci luctus et </p>
-              <ul class="malorum-icons">
-                <li><a href="#"><i class="fa fa-facebook"> </i>
-                  <div class="tooltip"><span>Facebook</span></div>
-                </a></li>
-                <li><a href="#"><i class="fa fa-twitter"> </i>
-                  <div class="tooltip"><span>Twitter</span></div>
-                </a></li>
-                <li><a href="#"><i class="fa fa-google-plus"> </i>
-                  <div class="tooltip"><span>Google</span></div>
-                </a></li>
-              </ul>
-            </div>
-          </div>
+<!-- main content start-->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <h2 class="title1">Profile Details</h2>
+        <div class="blank-page widget-shadow scroll" id="style-2 div1">
+          <p> Company Name : <?=$this->data['profile_details']['company_name']?> </p> 
+          <p> Email : <?=$this->data['profile_details']['email']?> </p> 
+          <p> Website : <?=$this->data['profile_details']['website']?> </p> 
+          <p> Phone : <?=$this->data['profile_details']['phone']?> </p> 
+          <p> Address : <?=$this->data['profile_details']['address']?> </p> 
+          <p> License : <?=$this->data['profile_details']['license']?> </p> 
+          <p> City : <?=$this->data['profile_details']['city']?> </p> 
+          <p> Pincode : <?=$this->data['profile_details']['pincode']?> </p> 
+          <p> Status : <?=$this->data['profile_details']['status']?> </p> 
+          <p> Created : <?=$this->data['profile_details']['created_at']?> </p> 
 
-          <div class="clearfix"></div>  
-
-          <div class="stats-info-agileits">
-              <header class="widget-header">
-                  <h4 class="widget-title"><br>Profile Status</h4>
-              </header>
-              <hr class="widget-separator">
-              <div class="stats-body">
-                <ul class="list-unstyled">
-                  <li>Personal Details <span class="pull-right">85%</span>  
-                    <div class="progress progress-striped active progress-right">
-                      <div class="bar green" style="width:85%;"></div> 
-                    </div>
-                  </li>
-                  <li>Academic Details <span class="pull-right">35%</span>  
-                    <div class="progress progress-striped active progress-right">
-                      <div class="bar yellow" style="width:35%;"></div>
-                    </div>
-                  </li>
-                  <li>Extra Caricular <span class="pull-right">78%</span>  
-                    <div class="progress progress-striped active progress-right">
-                      <div class="bar red" style="width:78%;"></div>
-                    </div>
-                  </li> 
-                </ul>
-              </div>
-            </div>
-
+          <div>
+             <a class="btn btn-info btn-sm" href="<?=base_url()?>/recruiter/profile-update.php">Update</a>  
+           </div>
         </div>
-
-        <div class="col-md-8 chart-layer1-left">
-          <h4 class="title2">Contextual alternatives :</h4>
-         <div class="panel-group tool-tips widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
-          <h4 class="title2"> Accordion example :</h4>
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Product 1
-            </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingTwo">
-            <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Product 2
-            </a>
-            </h4>
-          </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="panel-body">
-            Eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Anim pariatur cliche reprehenderit, enim  Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingThree">
-            <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Product 3
-            </a>
-            </h4>
-          </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="panel-body">
-            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.  apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingFour">
-            <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              Product 4
-            </a>
-            </h4>
-          </div>
-          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-            <div class="panel-body">
-            Cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingFive">
-            <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-              Product 5
-            </a>
-            </h4>
-          </div>
-          <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-            <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
-        </div>
-
-      </div>  
-
-      <div class="clearfix"></div>  
+      </div>
     </div>
-  </div>
-  </div> 
- 
-       
+    

@@ -122,6 +122,11 @@ class Job extends Dbh {
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
 		}
+		if ($type != "list_all" && $recruiter == null) {
+
+			$sql .= " WHERE date(last_date_to_apply)>curdate()";
+
+		}
 
 		if (isset($recruiter)) {
 			$sql .= " WHERE recruiter = $recruiter";
@@ -145,7 +150,13 @@ class Job extends Dbh {
 
 		$job_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE id=?";
+		$sql = "SELECT $this->table_name.* , recruiters.company_name , job_types.job_type as JobType  , location_districts.district as District , location_states.name as State  FROM $this->table_name ";
+		$sql .= " JOIN recruiters ON recruiters.id = $this->table_name.recruiter ";
+		$sql .= " JOIN job_types ON job_types.id = $this->table_name.job_type ";
+		$sql .= " JOIN location_districts ON location_districts.id = $this->table_name.district_id ";
+		$sql .= " JOIN location_states ON location_states.id = location_districts.state_id ";
+
+		$sql .= " WHERE  $this->table_name.id=?";
 		$stmt = $this->connect()->prepare($sql);
 		$params = [$this->id];
 		$stmt->execute($params);

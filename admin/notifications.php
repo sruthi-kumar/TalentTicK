@@ -18,7 +18,7 @@ $notification->setData('user', $_SESSION['user_data']['user_id']);
 
 $page_data['notifications'] = $notification->getNotificationByUser();
 
-debug($page_data['notifications']);
+//debug($page_data['notifications']);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

@@ -10,9 +10,9 @@ function config($key) {
 	$conf_array = array(
 		'site_name' => 'TalenTick',
 		'admin_id' => '1',
-		'admin_email' => 'sreekuttan.m.achari@gmail.com',
+		'admin_email' => 'shrutiskumar9633@gmail.com',
 		'env' => 'local',
-		'send_mail' => false,
+		'send_mail' => true,
 
 	);
 

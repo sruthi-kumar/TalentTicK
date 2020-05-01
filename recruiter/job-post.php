@@ -11,8 +11,8 @@ $page_data['user_data'] = $current_user;
 
 $page_data['assets'] = $admin_assets;
 
-$page_data['page'] = "job-list";
-$page_data['page_title'] = "Job List";
+$page_data['page'] = "job-post";
+$page_data['page_title'] = "Post Job";
 
 //debug($page_data);
 
