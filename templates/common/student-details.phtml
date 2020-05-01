@@ -1,34 +1,119 @@
-<!-- main content start-->
-    <div id="page-wrapper">
-      <div class="main-page">
-        <h2 class="title1">Student Details</h2>
+  
+        <!-- main content start-->
+  <div id="page-wrapper">
+    <div class="main-page">
+      <h2 class="title1">Student Details</h2>
 
-             <?=$this->data['op_status']??""?>  
+        <?=$this->data['op_status']??""?>  
 
-        <div class="blank-page widget-shadow scroll" id="style-2 div1">
 
-          <p> <img src="<?=base_url()?>/uploads/images/<?=$this->data['recruiter_details']['image']?>">  </p> 
-          <p> Company Name : <?=$this->data['recruiter_details']['company_name']?> </p> 
-          <p> Email : <?=$this->data['recruiter_details']['email']?> </p> 
-          <p> Website : <?=$this->data['recruiter_details']['website']?> </p> 
-          <p> Phone : <?=$this->data['recruiter_details']['phone']?> </p> 
-          <p> Address : <?=$this->data['recruiter_details']['address']?> </p> 
-          <p> License : <?=$this->data['recruiter_details']['license']?> </p> 
-          <p> City : <?=$this->data['recruiter_details']['city']?> </p> 
-          <p> Pincode : <?=$this->data['recruiter_details']['pincode']?> </p> 
-          <p> Status : <?=$this->data['recruiter_details']['status']?> </p> 
-          <p> Created : <?=$this->data['recruiter_details']['created_at']?> </p> 
+        <div class="elements">
+          <div class="col-md-4 chart-layer1-right"> 
+            <div class="user-marorm">
+            <div class="malorum-top">     </div>
+            <div class="malorm-bottom">
+              <span class="malorum-pro" 
+              style=" background: url(<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>)no-repeat;" > 
+            </span>
 
-          
-          <?php if($this->data['user_data']['type'] == 'admin' && $this->data['recruiter_details']['status'] == 'pending'){ ?>
-            <div> <br>
-              <a class="btn btn-success btn-sm" href="<?=base_url()?>/admin/actions/recruiter-process.php?id=<?=$this->data['recruiter_details']['id']?>&action=accepted">Verify</a>  
+               <h2><?=$this->data['profile_details']['firstname']?> <?=$this->data['profile_details']['lastname']?>  </h2>
+
+                <p> Mobile Number : <?=$this->data['profile_details']['mobile_number']?> </p>
+                <p> Gender : <?=$this->data['profile_details']['gender']?></p>
+                <p> Payment Status : <?=$this->data['profile_details']['payment_status']?></p> 
+                <p> Created At : <?=$this->data['profile_details']['created_at']?></p>
               
-              <a class="btn btn-danger btn-sm" href="<?=base_url()?>/admin/actions/recruiter-process.php?id=<?=$this->data['recruiter_details']['id']?>&action=rejected">Reject</a>  
             </div>
-          <?php } ?>
+          </div>
+
+          <div class="clearfix"></div>  
+
+          <div class="stats-info-agileits">
+              <header class="widget-header">
+                  <h4 class="widget-title"><br>Profile Status</h4>
+              </header>
+              <hr class="widget-separator">
+              <div class="stats-body">
+                <ul class="list-unstyled">
+                  <li>Personal Details <span class="pull-right">85%</span>  
+                    <div class="progress progress-striped active progress-right">
+                      <div class="bar green" style="width:85%;"></div> 
+                    </div>
+                  </li>
+                  <li>Academic Details <span class="pull-right">35%</span>  
+                    <div class="progress progress-striped active progress-right">
+                      <div class="bar yellow" style="width:35%;"></div>
+                    </div>
+                  </li>
+                  <li>Extra Caricular <span class="pull-right">78%</span>  
+                    <div class="progress progress-striped active progress-right">
+                      <div class="bar red" style="width:78%;"></div>
+                    </div>
+                  </li> 
+                </ul>
+              </div>
+            </div>
 
         </div>
-      </div>
+
+        <div class="col-md-8 chart-layer1-left">
+          <h4 class="title2">Profile:</h4>
+         <div class="panel-group tool-tips widget-shadow" id="accordion" role="tablist" aria-multiselectable="true"> 
+          <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Personal Details
+            </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
+            </div>
+          </div>
+          </div>
+
+          <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Contact Details
+            </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+            Eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Anim pariatur cliche reprehenderit, enim  Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
+            </div>
+          </div>
+          </div>
+
+
+          <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Education Details
+            </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+            Eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Anim pariatur cliche reprehenderit, enim  Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
+            </div>
+          </div>
+          </div>
+
+
+        </div>
+
+      </div>  
+
+      <div class="clearfix"></div>  
     </div>
+  </div>
+  </div> 
+ 
+       
     
