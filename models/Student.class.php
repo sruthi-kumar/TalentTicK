@@ -53,8 +53,8 @@ class Student extends Dbh {
 	function setData($type, $data) {
 
 		switch ($type) {
-		case 'student_id':
-			$this->student_id = $data;
+		case 'id':
+			$this->id = $data;
 			break;
 		case 'user_id':
 			$this->user_id = $data;
@@ -109,13 +109,45 @@ class Student extends Dbh {
 
 	function getStudentById($id = null) {
 
-		$this->student_id = $id ?? $this->student_id;
+		/*`
+
+			users` WHERE 1 `id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
+
+			`students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `image`, `created_at`, `updated_at`
+
+			 `profiles` WHERE 1 `id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`
+
+			 `location_districts` WHERE 1 `id`, `state_id`, `district`, `status`
+
+			  `location_states` WHERE 1 `id`, `name`
+
+		*/
+
+		$this->id = $id ?? $this->id;
 
 		$student_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE id=?";
+		$sql = " SELECT $this->table_name.* ";
+		$sql .= ", users.username as email ,
+		branches.branch ,
+		departments.department ,
+		location_districts.district,
+		location_states.name as state,
+		profiles.* ";
+		$sql .= "FROM $this->table_name ";
+		$sql .= " JOIN users ON users.id = $this->table_name.user_id ";
+		$sql .= " LEFT JOIN profiles ON profiles.student_id = $this->table_name.id ";
+		$sql .= " LEFT JOIN branches ON branches.id = $this->table_name.branch_id ";
+		$sql .= " LEFT JOIN departments ON departments.id = branches.department_id ";
+		$sql .= " LEFT JOIN location_districts ON location_districts.id =  profiles.district_id ";
+		$sql .= " LEFT JOIN location_states ON location_states.id = location_districts.state_id ";
+
+		$sql .= " WHERE  $this->table_name.id=?";
+
+		//debug($sql);
+
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->student_id];
+		$params = [$this->id];
 		$stmt->execute($params);
 		$student_data = $stmt->fetch();
 

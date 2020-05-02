@@ -4,31 +4,32 @@
     <div class="main-page">
       <h2 class="title1">Student Details</h2>
 
-        <?=$this->data['op_status']??""?>  
-
+        <?=$this->data['op_status']??""?>   
 
         <div class="elements">
+
           <div class="col-md-4 chart-layer1-right"> 
             <div class="user-marorm">
             <div class="malorum-top">     </div>
             <div class="malorm-bottom">
               <span class="malorum-pro" 
-              style=" background: url(<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>)no-repeat;" > 
+              style=" background: url(<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>)no-repeat;width: 200px;height: 200px;top: -150px;left: 25%;-webkit-border-radius: 36px;-moz-border-radius: 63px;-o-border-radius: 63px;background-size: contain;"" > 
             </span>
 
                <h2><?=$this->data['profile_details']['firstname']?> <?=$this->data['profile_details']['lastname']?>  </h2>
 
-                <p> Mobile Number : <?=$this->data['profile_details']['mobile_number']?> </p>
-                <p> Gender : <?=$this->data['profile_details']['gender']?></p>
-                <p> Payment Status : <?=$this->data['profile_details']['payment_status']?></p> 
-                <p> Created At : <?=$this->data['profile_details']['created_at']?></p>
+                <p> Mobile Number : <?=$this->data['profile_details']['mobile_number']??"N/A"?> </p>
+                <p> DOB : <?=$this->data['profile_details']['dob']??"N/A"?></p>
+                <p> Gender : <?=$this->data['profile_details']['gender']??"N/A"?></p>
+                <p> Payment Status : <?=$this->data['profile_details']['payment_status']??"N/A"?></p> 
+                <p> Created At : <?=$this->data['profile_details']['created_at']??"N/A"?></p>
               
             </div>
           </div>
 
           <div class="clearfix"></div>  
 
-          <div class="stats-info-agileits">
+          <!-- <div class="stats-info-agileits">
               <header class="widget-header">
                   <h4 class="widget-title"><br>Profile Status</h4>
               </header>
@@ -52,39 +53,31 @@
                   </li> 
                 </ul>
               </div>
-            </div>
+            </div> -->
 
         </div>
 
         <div class="col-md-8 chart-layer1-left">
           <h4 class="title2">Profile:</h4>
-         <div class="panel-group tool-tips widget-shadow" id="accordion" role="tablist" aria-multiselectable="true"> 
-          <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Personal Details
-            </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
-            </div>
-          </div>
-          </div>
+
+         <div class="panel-group tool-tips widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">   
 
           <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#contactDetails" aria-expanded="false" aria-controls="contactDetails">
               Contact Details
             </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="contactDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-            Eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Anim pariatur cliche reprehenderit, enim  Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
+                <p> Address   : <?=$this->data['profile_details']['address']??"N/A"?></p>
+                <p> AddressLine2   : <?=$this->data['profile_details']['addressline2']??"N/A"?></p>
+                <p> AddressLine3   : <?=$this->data['profile_details']['addressline3']??"N/A"?></p>
+                <p> Pincode   : <?=$this->data['profile_details']['pincode']??"N/A"?></p>
+                <p> District   : <?=$this->data['profile_details']['district']??"N/A"?></p>
+                <p> State   : <?=$this->data['profile_details']['state']??"N/A"?></p>
             </div>
           </div>
           </div>
@@ -93,20 +86,49 @@
           <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#educationDetails" aria-expanded="false" aria-controls="educationDetails">
               Education Details
             </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="educationDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-            Eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Anim pariatur cliche reprehenderit, enim  Food truck quinoa nesciunt laborum eiusmod. apiente ea proident. Ad vegan excepteur butcher vice lomo.  labore sustainable VHS.
+                <p> Branch   : <?=$this->data['profile_details']['branch']??"N/A"?></p>
+                <p> Department   : <?=$this->data['profile_details']['department']??"N/A"?></p>
+                <p> Highest Qualification   : <?=$this->data['profile_details']['highest_qualification']??"N/A"?></p>
+                <p> CGPA   : <?=$this->data['profile_details']['cgpa']??"N/A"?></p>
+                <p> GPG   : <?=$this->data['profile_details']['gpg']??"N/A"?></p>
+                <p> GUG   : <?=$this->data['profile_details']['gug']??"N/A"?></p>
+                <p> G-PLUS   : <?=$this->data['profile_details']['gplus']??"N/A"?></p>
+                <p> G-10   : <?=$this->data['profile_details']['g10']??"N/A"?></p>
+                <p> BackLogs   : <?=$this->data['profile_details']['backlogs']??"N/A"?></p>
+
             </div>
           </div>
           </div>
 
+         
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p> Resume   : 
+               <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
+                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['resume']?>">View</a>
+             <?php } else{ echo "N/A" ; }?>
+              </p> 
+           </div>
+         </div>
+
 
         </div>
+
+        <?php if( $this->data['login_type'] == 'student' ) { ?>     
+
+        <div> 
+          <a class="btn btn-info btn-small" href="<?=base_url()?>/student/profile-update.php"> <i class="fa fa-edit"></i> Update</a>
+        </div>
+
+        <?php } ?> 
 
       </div>  
 

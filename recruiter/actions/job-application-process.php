@@ -22,7 +22,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 		$user = new User();
 
 		$user_details = $user->getUserById($job_appication_details['user']);
-		debug($user_details);
+		//debug($user_details);
 
 		$subject = "Your Application has been accepted by Recruiter";
 
@@ -30,7 +30,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
 		$notification = new Notification();
 
-		$notification->setData('user', $user_details['user_id']);
+		$notification->setData('user', $user_details['id']);
 		$notification->setData('title', $subject);
 		$notification->setData('description', $body);
 

@@ -6,9 +6,9 @@
           <p> Job Title: <?=$this->data['application_details']['job_title']?> </p>
           <p> Job Description: <?=$this->data['application_details']['created_at']?> </p> 
           <p> JobType: <?=$this->data['application_details']['job_type']?> </p>
-          <p> firstname: <?=$this->data['application_details']['firstname']?> </p>
-          <p> lastname: <?=$this->data['application_details']['lastname']?> </p>
-          <p> status: <?=$this->data['application_details']['status']?> </p>
+          <p> Applicant: <a  href="<?=base_url().'/'.$this->data['login_type'].'/student-details.php?id='.$this->data['application_details']['student_id']?>">  <?= strtoupper( $this->data['application_details']['firstname'] ." ". $this->data['application_details']['lastname']) ?>   </a> 
+          </p>
+          <p> Status: <?=$this->data['application_details']['status']?> </p> 
 
           <?php if($this->data['user_data']['type'] == 'recruiter' && $this->data['application_details']['status'] == 'pending'){ ?>
             <div> <br>
