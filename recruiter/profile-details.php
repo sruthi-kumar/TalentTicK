@@ -18,11 +18,9 @@ $recruiter = new Recruiter();
 
 $recruiter_id = $page_data['user_data']['recruiter_id'];
 
-$profile_details = $recruiter->getRecruiterById($recruiter_id);
+$page_data['profile_details'] = $recruiter->getRecruiterById($recruiter_id);
 
-//debug($profile_details);
-
-$page_data['profile_details'] = $profile_details;
+//debug($page_data['profile_details']  );
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

@@ -22,7 +22,7 @@ class Student extends Dbh {
 
 	*/
 
-	private $student_id;
+	private $id;
 	private $user_id;
 	private $firstname;
 	private $lastname;
@@ -107,13 +107,13 @@ class Student extends Dbh {
 
 	}
 
-	function getStudentById($student_id = null) {
+	function getStudentById($id = null) {
 
-		$this->student_id = $student_id ?? $this->student_id;
+		$this->student_id = $id ?? $this->student_id;
 
 		$student_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE student_id=?";
+		$sql = "SELECT * FROM $this->table_name WHERE id=?";
 		$stmt = $this->connect()->prepare($sql);
 		$params = [$this->student_id];
 		$stmt->execute($params);

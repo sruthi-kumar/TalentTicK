@@ -14,6 +14,16 @@ $page_data['page_title'] = "Recruiter List";
 
 $recruiter = new Recruiter();
 
+if (isset($_GET['status'])) {
+
+	if ($_GET['status'] == 'success') {
+		$page_data['op_status'] = '<label style="color: green" > Post Successfull </label> ';
+	}if ($_GET['status'] == 'failed') {
+		$page_data['op_status'] = '<label style="color: red" >Post Failed</label> ';
+	}
+
+}
+
 if (isset($_GET['type']) && $_GET['type'] == "pending") {
 	$page_data['recruiters'] = $recruiter->getRecruiters('list', 'pending');
 

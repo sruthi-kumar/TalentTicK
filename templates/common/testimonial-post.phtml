@@ -9,6 +9,9 @@
         <div class="forms">
           <h2 class="title1">Post Testimonial</h2> 
 
+          
+             <?=$this->data['op_status']??""?>  
+
           <div class="row"> 
             <div class="form-three widget-shadow">
               <form action="<?=base_url()?>/actions/testimonial-post-action.php" method="post" class="form-horizontal"> 

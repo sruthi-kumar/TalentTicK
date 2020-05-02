@@ -12,12 +12,9 @@ $page_data['assets'] = $admin_assets;
 $page_data['page'] = "job-details";
 $page_data['page_title'] = "Job Details";
 
-$id = $_GET['id'];
+$student = new Student();
 
-$job = new Job();
-
-//$job->setData('user', $_SESSION['user_data']['user_id']);
-$page_data['job_details'] = $job->getJobById($id);
+$page_data['profile_details'] = $student->getStudentById($_GET['id']);
 
 //debug($page_data['job_details']);
 

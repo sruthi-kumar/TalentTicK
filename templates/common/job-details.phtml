@@ -1,7 +1,8 @@
 <!-- main content start-->
     <div id="page-wrapper">
       <div class="main-page">
-        <h2 class="title1">Job Details</h2>
+        <h2 class="title1">Job Details</h2> 
+             <?=$this->data['op_status']??""?>  
         <div class="blank-page widget-shadow scroll" id="style-2 div1">
           <p> Job Title: <?=$this->data['job_details']['job_title']?> </p>
           <p> Job Description: <?=$this->data['job_details']['job_description']?> </p>
@@ -15,6 +16,19 @@
           <p> JobType: <?=$this->data['job_details']['JobType']?> </p>
           <p> District: <?=$this->data['job_details']['District']?> </p>
           <p> State: <?=$this->data['job_details']['State']?> </p>
+
+            <?php if($this->data['user_data']['type'] == 'student' && !$this->data['job_application_details'] ){ ?>
+            <div> <br>
+              <a class="btn btn-success btn-sm" href="<?=base_url()?>/student/actions/job-apply-action.php?id=<?=$this->data['job_details']['id']?>">Apply</a>      
+            </div>
+          <?php } else{ ?>
+
+          <p> Application Status : <?=$this->data['job_application_details']['status']?> </p>
+
+          <?php }  ?>
+
+
+
         </div>
       </div>
     </div>

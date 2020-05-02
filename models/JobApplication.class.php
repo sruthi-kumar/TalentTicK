@@ -21,7 +21,7 @@ class JobApplication extends Dbh {
 	private $id;
 	private $user;
 	private $job;
-	private $status;
+	private $status = 'pending';
 
 	private $table_name = "job_applications";
 
@@ -96,6 +96,25 @@ class JobApplication extends Dbh {
 
 	}
 
+	function getJobApplicationByIdStudent($job, $user) {
+
+		$job_data = [];
+
+		$sql = "SELECT $this->table_name.* FROM $this->table_name ";
+
+		$sql .= "  WHERE $this->table_name.job = ? AND $this->table_name.user = ? ";
+
+		//debug($sql);
+
+		$stmt = $this->connect()->prepare($sql);
+		$params = [$job, $user];
+		$stmt->execute($params);
+		$job_data = $stmt->fetch();
+
+		return $job_data;
+
+	}
+
 	function getJobApplicationById($id = null) {
 
 		$this->id = $id ?? $this->id;
@@ -118,7 +137,7 @@ class JobApplication extends Dbh {
 
 	}
 
-	function getJobApplicationByJobApplicationname($jobname = null) {
+	function getJobApplicationByUserJobApplicationname($jobname = null) {
 
 		$this->jobname = $jobname ?? $this->jobname;
 

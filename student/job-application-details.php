@@ -14,7 +14,7 @@ $page_data['page_title'] = "Job Application Details";
 
 $application = new JobApplication();
 
-$application->setData('user', $_SESSION['user_data']['user_id']);
+$application->setData('user', $page_data['user_data']['user_id']);
 
 $id = $_GET['id'];
 

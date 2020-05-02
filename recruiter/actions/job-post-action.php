@@ -1,6 +1,8 @@
 <?php
 require_once '../../autoload.php';
 
+validate_user('recruiter');
+
 //debug($_POST);
 
 $status = 'success';

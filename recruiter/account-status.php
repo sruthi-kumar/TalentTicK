@@ -4,6 +4,7 @@ require_once '../autoload.php';
 $t = new TemplateEngine('recruiter');
 $t->data = [];
 
+$page_data = get_current_user_set();
 $page_data['assets'] = $admin_assets;
 
 $page_data['page'] = "account-status";
