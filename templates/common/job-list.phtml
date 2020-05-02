@@ -35,7 +35,7 @@
                   <td><?=$job['District']?> (<?=$job['State']?>)</td> 
                   <td><?=date_format( date_create($job['created_at']) , "Y-M-d")?></td> 
                   <td><?=date_format( date_create($job['last_date_to_apply']) , "Y-M-d")?></td> 
-                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/job-details.php?id='.$job['id']?>">View</a> </td> 
+                  <td> <a class="btn btn-sm btn-info"  href="<?=base_url().'/'.$this->data['login_type'].'/job-details.php?id='.$job['id']?>"><i class="fa fa-eye"></i> View</a> </td> 
                 </tr>  
                 <?php } ?>
               </tbody> 
