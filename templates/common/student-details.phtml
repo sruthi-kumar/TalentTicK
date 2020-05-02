@@ -122,9 +122,13 @@
 
         </div>
 
+        <?php if( $this->data['login_type'] == 'student' ) { ?>     
+
         <div> 
           <a class="btn btn-info btn-small" href="<?=$this->data['profile_details']['resume']?>"> <i class="fa fa-edit"></i> Update</a>
         </div>
+
+        <?php } ?> 
 
       </div>  
 

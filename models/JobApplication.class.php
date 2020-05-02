@@ -121,7 +121,9 @@ class JobApplication extends Dbh {
 
 		$job_data = [];
 
-		$sql = "SELECT $this->table_name.*, jobs.job_title , job_types.job_type, students.firstname,students.lastname FROM $this->table_name ";
+		$sql = "SELECT $this->table_name.*";
+		$sql .= ", jobs.job_title , job_types.job_type, students.firstname,students.lastname , students.id as student_id ";
+		$sql .= " FROM $this->table_name ";
 		$sql .= " JOIN users ON users.id = $this->table_name.user ";
 		$sql .= " JOIN students ON students.user_id =  users.id ";
 		$sql .= " JOIN jobs ON jobs.id = $this->table_name.job ";

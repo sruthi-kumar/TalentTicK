@@ -21,7 +21,7 @@
             <div> <br>
               <a class="btn btn-success btn-sm" href="<?=base_url()?>/student/actions/job-apply-action.php?id=<?=$this->data['job_details']['id']?>">Apply</a>      
             </div>
-          <?php } else{ ?>
+          <?php } else if($this->data['user_data']['type'] == 'student'){ ?>
 
           <p> Application Status : <?=$this->data['job_application_details']['status']?> </p>
 
