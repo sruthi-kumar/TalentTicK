@@ -2,23 +2,11 @@
 
 class Branch extends Dbh {
 
-	/*`branchs` WHERE 1 `id`, `recruiter`, `branch_title`, `branch_description`, `branch_type`, `department_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at`*/
+	/*`branches` WHERE 1 `id`, `branch`, `department_id` */
 
 	private $id;
-	private $recruiter;
-	private $branch_title;
-	private $branch_description;
-	private $branch_type;
+	private $branch;
 	private $department_id;
-	private $district_id;
-	private $last_date_to_apply;
-	private $backlog_count;
-	private $CGPA_min;
-	private $CGPA_max;
-	private $salary_min;
-	private $salary_max;
-	private $vacancies;
-	private $status;
 
 	private $table_name = "branches";
 
@@ -31,19 +19,8 @@ class Branch extends Dbh {
 
 	function toArray() {
 		$params = [];
-		$params['recruiter'] = $this->recruiter ?? '';
-		$params['branch_title'] = $this->branch_title ?? '';
-		$params['branch_description'] = $this->branch_description ?? '';
+		$params['branch'] = $this->branch ?? '';
 		$params['department_id'] = $this->department_id ?? '';
-		$params['district_id'] = $this->district_id ?? '';
-		$params['last_date_to_apply'] = $this->last_date_to_apply ?? '';
-		$params['backlog_count'] = $this->backlog_count ?? '';
-		$params['CGPA_min'] = $this->CGPA_min ?? '';
-		$params['CGPA_max'] = $this->CGPA_max ?? '';
-		$params['salary_min'] = $this->salary_min ?? '';
-		$params['salary_max'] = $this->salary_max ?? '';
-		$params['vacancies'] = $this->vacancies ?? '';
-		$params['status'] = $this->status ?? '';
 		return $params;
 	}
 
@@ -53,20 +30,11 @@ class Branch extends Dbh {
 		case 'id':
 			$this->id = $data;
 			break;
-		case 'user_id':
-			$this->user_id = $data;
+		case 'branch':
+			$this->branch = $data;
 			break;
-		case 'firstname':
-			$this->firstname = $data;
-			break;
-		case 'lastname':
-			$this->lastname = $data;
-			break;
-		case 'mobile_number':
-			$this->mobile_number = $data;
-			break;
-		case 'gender':
-			$this->gender = $data;
+		case 'department_id':
+			$this->department_id = $data;
 			break;
 		}
 

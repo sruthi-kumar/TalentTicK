@@ -12,7 +12,15 @@
              <!--  `id`, `recruiter`, `job_title`, -->
 
               <thead> <tr> 
-                <th>#</th> <th>Job Title</th> <th>Job Type</th>   <th>Location</th>  <th>Posted On</th> <th>Last Date</th>  <th>Actions</th> </tr> 
+                <th>#</th> 
+                  <th>Job Title</th> 
+                  <th>Job Type</th>   
+                    <?php if( $this->data['login_type'] != 'recruiter' ) { ?>  <th>Company</th>   <?php } ?> 
+                   <th>Location</th>  
+                   <th>Posted On</th> 
+                   <th>Last Date</th>  
+                   <th>Actions</th> 
+                 </tr> 
               </thead> 
               <tbody> 
                 <?php $i = 1;  foreach ($this->data['jobs']  as $job) { ?> 
@@ -20,10 +28,11 @@
                   <th scope="row"><?=$i++?></th> 
                   <td><?=$job['job_title']?></td> 
                   <td><?=$job['JobType']?></td> 
+                  <?php if( $this->data['login_type'] != 'recruiter' ) { ?>  <td><?=$job['company_name']?></td>    <?php } ?> 
                   <td><?=$job['District']?> (<?=$job['State']?>)</td> 
                   <td><?=date_format( date_create($job['created_at']) , "Y-M-d")?></td> 
                   <td><?=date_format( date_create($job['last_date_to_apply']) , "Y-M-d")?></td> 
-                  <td> <a href="<?=base_url().'/'.$this->data['user_data']['login_type'].'/job-details.php?id='.$job['id']?>">View</a> </td> 
+                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/job-details.php?id='.$job['id']?>">View</a> </td> 
                 </tr>  
                 <?php } ?>
               </tbody> 

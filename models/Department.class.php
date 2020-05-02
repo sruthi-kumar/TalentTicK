@@ -2,23 +2,10 @@
 
 class Department extends Dbh {
 
-	/*`departments` WHERE 1 `id`, `recruiter`, `department_title`, `department_description`, `department_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at`*/
+	/*`departments` WHERE 1 `id`, `department`, `department_title`, `department_description`, `department_type`, `state_id`, `district_id`, `last_date_to_apply`, `backlog_count`, `CGPA_min`, `CGPA_max`, `salary_min`, `salary_max`, `vacancies`, `status`, `created_at`, `updated_at`*/
 
 	private $id;
-	private $recruiter;
-	private $department_title;
-	private $department_description;
-	private $department_type;
-	private $state_id;
-	private $district_id;
-	private $last_date_to_apply;
-	private $backlog_count;
-	private $CGPA_min;
-	private $CGPA_max;
-	private $salary_min;
-	private $salary_max;
-	private $vacancies;
-	private $status;
+	private $department;
 
 	private $table_name = "departments";
 
@@ -31,19 +18,7 @@ class Department extends Dbh {
 
 	function toArray() {
 		$params = [];
-		$params['recruiter'] = $this->recruiter ?? '';
-		$params['department_title'] = $this->department_title ?? '';
-		$params['department_description'] = $this->department_description ?? '';
-		$params['state_id'] = $this->state_id ?? '';
-		$params['district_id'] = $this->district_id ?? '';
-		$params['last_date_to_apply'] = $this->last_date_to_apply ?? '';
-		$params['backlog_count'] = $this->backlog_count ?? '';
-		$params['CGPA_min'] = $this->CGPA_min ?? '';
-		$params['CGPA_max'] = $this->CGPA_max ?? '';
-		$params['salary_min'] = $this->salary_min ?? '';
-		$params['salary_max'] = $this->salary_max ?? '';
-		$params['vacancies'] = $this->vacancies ?? '';
-		$params['status'] = $this->status ?? '';
+		$params['department'] = $this->department ?? '';
 		return $params;
 	}
 
@@ -53,20 +28,8 @@ class Department extends Dbh {
 		case 'id':
 			$this->id = $data;
 			break;
-		case 'user_id':
-			$this->user_id = $data;
-			break;
-		case 'firstname':
-			$this->firstname = $data;
-			break;
-		case 'lastname':
-			$this->lastname = $data;
-			break;
-		case 'mobile_number':
-			$this->mobile_number = $data;
-			break;
-		case 'gender':
-			$this->gender = $data;
+		case 'department':
+			$this->department = $data;
 			break;
 		}
 
@@ -76,7 +39,7 @@ class Department extends Dbh {
 
 		$departments = [];
 
-		$sql = "SELECT * FROM $this->table_name";
+		$sql = "SELECT * FROM $this->table_name ORDER BY department ";
 
 		if ($type == 'count') {
 			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";

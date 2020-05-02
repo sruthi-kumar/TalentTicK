@@ -2,11 +2,12 @@
     <div id="page-wrapper">
       <div class="main-page">
         <div class="tables">
-          <h2 class="title1">Tables</h2>
-           
+          <h2 class="title1">Departments</h2> 
+
+             <?=$this->data['op_status']??""?>  
           
           <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
-            <h4>Hover Rows Table:</h4>
+            <h4>Department List:</h4>
             <table id="datatable"  class="table table-hover"> 
 
              <!--   `id`, `department_id`, `district`, `status`  -->
@@ -19,7 +20,7 @@
                 <tr> 
                   <th scope="row"><?=$i++?></th> 
                   <td><?=$department['department']?></td>  
-                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/location-department-details.php?id='.$department['id']?>">View</a> </td> 
+                  <td> <a href="<?=base_url().'/'.$this->data['login_type'].'/department.php?id='.$department['id']?>">Edit</a> </td> 
                 </tr>  
                 <?php } ?>
               </tbody> 

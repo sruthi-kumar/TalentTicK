@@ -1,0 +1,48 @@
+<!-- main content start-->
+
+ 
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="forms">
+          <h2 class="title1">Post Department</h2> 
+
+            <?=$this->data['op_status']??""?> 
+
+          <div class="row"> 
+            <div class="form-three widget-shadow">
+              <form id="job_post_form"  action="<?=base_url()?>/admin/actions/department-process.php" method="post" class="form-horizontal"> 
+
+                <div class="form-group">
+                  <label for="department" class="col-sm-2 control-label">Department Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control1" name="department" id="department" placeholder="Department" required="required" 
+
+                    value="<?=($this->data['department_details']['department']??"")?>" 
+
+                    >
+                  </div>
+                </div> 
+
+                 <?php if( isset($this->data['department_details']) && !empty ($this->data['department_details']) ) { ?> 
+
+                <input type="hidden"  name="action" value="update">
+                <input type="hidden"  name="id" value="<?=$this->data['department_details']['id']?>">
+
+                <?php } ?>
+
+
+                <div class="form-group"> 
+                  <div class="col-sm-8"></div>
+                  <div class="col-sm-2">
+                    <input type="submit" class="btn btn-info" value="submit">
+                  </div>
+                </div> 
+
+
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div> 
