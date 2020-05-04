@@ -9,18 +9,26 @@
 
           <div class="row"> 
             <div class="form-three widget-shadow">
-              <form id="job_post_form"  action="<?=base_url()?>/recruiter/actions/job-post-action.php" method="post" class="form-horizontal">
+              <form id="job_post_form" name="job_post_form" action="<?=base_url()?>/recruiter/actions/job-post-action.php" method="post" class="form-horizontal">
 
                 <div class="form-group">
                   <label for="job_title" class="col-sm-2 control-label">Job Title</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="job_title" id="job_title" placeholder="Job Title" required="required">
+                    <input type="text" class="form-control1" name="job_title" id="job_title" placeholder="Job Title" onchange="return ValidateJobTitle()" required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="job_title"></label>
+                                    <div id="job_title_error" style="color:red;">  </div>
+
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label for="job_description" class="col-sm-2 control-label">Job Description</label>
-                  <div class="col-sm-8"><textarea name="job_description" id="job_description" cols="50" rows="4" class="form-control1"></textarea></div>
+                  <div class="col-sm-8"><textarea name="job_description" id="job_description" cols="50" rows="4" class="form-control1" onchange="return ValidateJobDescription()" required="required"></textarea>
+                  <label class="errortext" style="display:no ne; color:red" id="job_description"></label>
+                  <div id="job_description_error" style="color:red;">  </div>
+
+
+                  </div>
                 </div> 
 
                 <div class="form-group">
@@ -73,7 +81,11 @@
                 <div class="form-group">
                   <label for="CGPA_min" class="col-sm-2 control-label">Minimum CGPA</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="CGPA_min" id="CGPA_min" placeholder="Minimum CGPA" required="required">
+                    <input type="number" class="form-control1" name="CGPA_min" id="CGPA_min" placeholder="Minimum CGPA" onchange="return ValidateCgpa()"required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="CGPA_min"></label>
+                    <div id="CGPA_min_error" style="color:red;">  </div>
+
+
                   </div>
                 </div>
 
@@ -81,7 +93,10 @@
                 <div class="form-group">
                   <label for="backlog_count" class="col-sm-2 control-label">Backlog Count</label>
                   <div class="col-sm-8">
-                    <input type="number" value="0" class="form-control1" name="backlog_count" id="backlog_count" placeholder="Backlog Count" required="required">
+                    <input type="number" value="0" class="form-control1" name="backlog_count" id="backlog_count" placeholder="Backlog Count" onchange="return ValidateBacklog()" required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="backlog_count"></label>
+                    <div id="backlog_count_error" style="color:red;">  </div>
+
                   </div>
                 </div>
 
@@ -89,7 +104,9 @@
                 <div class="form-group">
                   <label for="salary_min" class="col-sm-2 control-label">Minimum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="salary_min" id="salary_min" placeholder="Maximum Salary" required="required">
+                    <input type="number" class="form-control1" name="salary_min" id="salary_min" placeholder="Minimum Salary" onchange="return ValidateSalaryMin()" required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="salary_min"></label>
+                    <div id="salary_min_error" style="color:red;">  </div>
                   </div>
                 </div>
 
@@ -97,7 +114,9 @@
                 <div class="form-group">
                   <label for="salary_max" class="col-sm-2 control-label">Maximum Salary</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" required="required">
+                    <input type="number" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" onchange="return ValidateSalaryMax()" required="required">
+                     <label class="errortext" style="display:no ne; color:red" id="salary_max"></label>
+                    <div id="salary_max_error" style="color:red;">  </div>
                   </div>
                 </div>  
 
@@ -105,7 +124,7 @@
                 <div class="form-group">
                   <label for="last_date_to_apply" class="col-sm-2 control-label">Last Date to Apply</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" placeholder="DD-MM-YYYY" required="required">
+                    <input type="date" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" placeholder="DD-MM-YYYY" required="required">
                   </div>
                 </div>
 
@@ -246,5 +265,146 @@ vacancies
         xmlhttp.send();  
 
     } 
+
+var  job_form = document.job_post_form;
+function ValidateJobTitle(){
+
+  document.getElementById('job_title_error').innerHTML = "" ; 
+  var job_title =job_form.job_title.value;
+  
+  if(job_title==""){ 
+    document.getElementById('job_title').focus();
+    document.getElementById('job_title_error').innerHTML = "Error! Job Title is empty " ; 
+    return false;
+  }
+
+  if ((job_title.length < 8) || (job_title.length > 50))
+  {
+  document.getElementById('job_title_error').innerHTML = "Error! characters between 8 and 50" ; 
+  document.getElementById('job_title').focus();
+  return false;
+  }
+  var pattern1 = new RegExp("^[a-zA-Z ]*$");
+  if(!pattern1.test(document.job_post_form.job_title.value))
+  {
+  document.getElementById('job_title_error').innerHTML ="Error: Please enter Job Title!" ; 
+  document.job_post_form.name.focus();
+  return false;
+  }
+  return true;
+}
+function ValidateJobDescription(){
+
+  document.getElementById('job_description_error').innerHTML = "" ; 
+  var job_description =job_form.job_description.value;
+  
+  if(job_description==""){ 
+    document.getElementById('job_description').focus();
+    document.getElementById('job_description_error').innerHTML = "Error! Job Description is empty " ; 
+    return false;
+  }
+
+  if ((job_description.length < 10) || (job_description.length > 50))
+  {
+  document.getElementById('job_description_error').innerHTML = "Error! characters between 10 and 50" ; 
+  document.getElementById('job_description').focus();
+  return false;
+  }
+  var pattern1 = new RegExp("^[a-zA-Z ]*$");
+  if(!pattern1.test(document.job_post_form.job_description.value))
+  {
+  document.getElementById('job_description_error').innerHTML ="Error: Please enter Job Description!" ; 
+  document.job_post_form.name.focus();
+  return false;
+  }
+  return true;
+}
+function ValidateCgpa()
+{
+ document.getElementById('CGPA_min_error').innerHTML = "" ;
+if(document.job_post_form.CGPA_min.value == "" ||
+isNaN(document.job_post_form.CGPA_min.value) ||
+document.job_post_form.CGPA_min.value.length != 6 )
+{
+ document.getElementById('CGPA_min_error').innerHTML = "Please provide a valid CGPA " ;     
+
+  
+document.getElementById('CGPA_min').focus();
+return false;
+}
+var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
+if(!pattern.test(document.job_post_form.CGPA_min.value))
+{
+ document.getElementById('CGPA_min_error').innerHTML = "CGPA is invalid!" ; 
+job_post_form.CGPA_min.focus();
+return false;
+}
+return true;
+}
+function ValidateBacklog()
+{
+ document.getElementById('backlog_count_error').innerHTML = "" ;
+if(document.job_post_form.backlog_count.value == "" ||
+isNaN(document.job_post_form.backlog_count.value) ||
+ )
+{
+ document.getElementById('backlog_count_error').innerHTML = "Please provide a valid Backlog count " ;      
+document.getElementById('backlog_count').focus();
+return false;
+}
+//var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
+if(!pattern.test(document.job_post_form.backlog_count.value))
+{
+ document.getElementById('backlog_count_error').innerHTML = "Backlog Count is invalid!" ; 
+job_post_form.backlog_count.focus();
+return false;
+}
+return true;
+}
+function ValidateSalary_min()
+{
+ document.getElementById('salary_min_error').innerHTML = "" ;
+if(document.job_post_form.salary_min.value == "" ||
+isNaN(document.job_post_form.salary_min.value) ||
+document.job_post_form.salary_min.value.length != 3 )
+{
+ document.getElementById('salary_min_error').innerHTML = "Please provide a accurate salary " ;     
+
+  
+document.getElementById('salary_min').focus();
+return false;
+}
+var pattern = new RegExp("^([5]{1})([0-9]{3})$");
+if(!pattern.test(document.job_post_form.salary_min.value))
+{
+ document.getElementById('salary_min_error').innerHTML = "salary is invalid!" ; 
+job_post_form.salary_min.focus();
+return false;
+}
+return true;
+}
+function ValidateSalaryMax()
+{
+ document.getElementById('salary_max_error').innerHTML = "" ;
+if(document.job_post_form.salary_max.value == "" ||
+isNaN(document.job_post_form.salary_max.value) ||
+document.job_post_form.salary_max.value.length != 3 )
+{
+ document.getElementById('salary_max_error').innerHTML = "Please provide a accurate salary " ;     
+
+  
+document.getElementById('salary_max').focus();
+return false;
+}
+var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
+if(!pattern.test(document.job_post_form.salary_max.value))
+{
+ document.getElementById('salary_max_error').innerHTML = "salary  is invalid!" ; 
+job_post_form.salary_max_min.focus();
+return false;
+}
+return true;
+}
+
 
     </script>
