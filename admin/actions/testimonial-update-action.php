@@ -1,98 +1,65 @@
 <?php
-require_once '../autoload.php';
+require_once '../../autoload.php';
 
-//debug($_POST);
+validate_user('admin');
 
 $status = 'success';
 
-/*
-<!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
-`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode` -->  */
+$login_details = get_current_user_set();
 
-function validate_form($form_data) {
+$testimonial = new Testimonial();
 
-	$status = true;
+if (isset($_GET['id'])) {
 
-	if (empty($form_data['company_name'])) {
-		$status = false;
-	}
+	/*array(8) {
+		  ["id"]=>
+		  string(1) "1"
+		  ["user"]=>
+		  string(1) "2"
+		  ["user_type"]=>
+		  string(7) "student"
+		  ["description"]=>
+		  string(16) "Testing testing "
+		  ["status"]=>
+		  string(7) "pending"
+		  ["show_in_web"]=>
+		  string(2) "no"
+		  ["created_at"]=>
+		  string(19) "2020-05-06 01:27:30"
+		  ["updated_at"]=>
+		  string(19) "2020-05-06 01:27:30"
+		}
+	*/
 
-	if (empty($form_data['phone'])) {
-		$status = false;
-	}
+	$testimonial_details = $testimonial->getTestimonialById($_GET['id']);
 
-	if (empty($form_data['address'])) {
-		$status = false;
-	}
+	//debug($testimonial_details);
 
-	if (empty($form_data['license'])) {
-		$status = false;
-	}
+	$testimonial->setData('user', $testimonial_details['user']);
+	$testimonial->setData('user_type', $testimonial_details['user_type']);
+	$testimonial->setData('description', $testimonial_details['description']);
+	$testimonial->setData('user', $testimonial_details['user']);
+	$testimonial->setData('user', $testimonial_details['user']);
+	$testimonial->setData('status', $_GET['action']);
 
-	if (empty($form_data['city'])) {
-		$status = false;
-	}
+	//debug($testimonial);
 
-	if (empty($form_data['pincode'])) {
-		$status = false;
-	}
-
-	if (empty($form_data['username'])) {
-		$status = false;
-	}
-
-	if (empty($form_data['email'])) {
-		$status = false;
-	}
-
-	return $status;
-}
-
-if (validate_form($_POST)) {
-
-	$user = new User();
-	$user->setUserData('username', $_POST['username']);
-	$user->setUserData('password', md5($_POST['password']));
-	$user->setUserData('type', 'recruiter');
-
-	//debug($user);
-
-	$result = $user->createUser();
+	$result = $testimonial->update($_GET['id']);
 
 	//debug($result);
 
-/*`recruiter_id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
-
-	if ($result) {
-
-		$recruiter = new Recruiter();
-		$recruiter->setRecruiterData('user_id', $result['user_id']);
-		$recruiter->setRecruiterData('company_name', $_POST['company_name']);
-		$recruiter->setRecruiterData('email', $_POST['email']);
-		$recruiter->setRecruiterData('website', $_POST['website']);
-		$recruiter->setRecruiterData('phone', $_POST['phone']);
-		$recruiter->setRecruiterData('address', $_POST['address']);
-		$recruiter->setRecruiterData('license', $_POST['license']);
-		$recruiter->setRecruiterData('city', $_POST['city']);
-		$recruiter->setRecruiterData('pincode', $_POST['pincode']);
-
-		//debug($recruiter);
-
-		$result = $recruiter->createRecruiter();
-		//debug($result);
-
-		if (!$result) {
-			$status = 'failed';
-			$_SESSION['errors']['register'] = "Registration Failed!";
-		}
-
-	} else {
+	if (!$result) {
 		$status = 'failed';
-		$_SESSION['errors']['register'] = "Registration Failed!";
+		$_SESSION['errors']['testimonial_update'] = "Testimonial Update Failed!";
+	} else {
+
+		//notify recruiter
+
 	}
+
 } else {
 	$status = 'failed';
-	$_SESSION['errors']['register'] = "Invalid Registration Data!";
+	$_SESSION['errors']['testimonial_update'] = "Invalid Data!";
 }
 
-header("location:../registration-status.php?type=recruiter&status=$status");
+header("location:../testimonial-details.php?id=" . $_GET['id'] . "&status=$status");
