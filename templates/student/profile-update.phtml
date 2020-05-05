@@ -24,51 +24,25 @@
                 </div>  
 
                  <div class="form-group">
-                  <label for="gender" class="col-sm-2 control-label">Gender</label>
-<<<<<<< HEAD
-                  <div class="col-sm-8">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <input type="text" class="form-control1" id="gender" name="gender"  value="<?=$this->data['profile_details']['gender']?> " readonly />
-                  </div>
+                  <label for="gender" class="col-sm-2 control-label">Gender</label> 
+                    <div class="col-sm-8">  
+                      <select name="gender" id="job_type" class="form-control1"> 
+                          <option 
+                          <?php if ($this->data['profile_details']['gender'] == "Male"): ?>
+                            selected = "selected"
+                          <?php endif ?>  value="Male" >Male</option> 
+                          <option 
+                          <?php if ($this->data['profile_details']['gender'] == "Female"): ?>
+                            selected = "selected"
+                          <?php endif ?> value="Female" >Female</option> 
+                          <option
+                          <?php if ($this->data['profile_details']['gender'] == "Other"): ?>
+                            selected = "selected"
+                          <?php endif ?> value="Other" >Other</option> 
+                          
+                    </select>
+                  </div> 
                 </div> 
-=======
-=======
->>>>>>> development
-=======
-                  <div class="col-sm-8"> 
->>>>>>> origin/master
-                    <select name="gender" id="job_type" class="form-control1"> 
-                        <option 
-                        <?php if ($this->data['profile_details']['gender'] == "Male"): ?>
-                          selected = "selected"
-                        <?php endif ?>  value="Male" >Male</option> 
-                        <option 
-                        <?php if ($this->data['profile_details']['gender'] == "Female"): ?>
-                          selected = "selected"
-                        <?php endif ?> value="Female" >Female</option> 
-                        <option
-                        <?php if ($this->data['profile_details']['gender'] == "Other"): ?>
-                          selected = "selected"
-                        <?php endif ?> value="Other" >Other</option> 
-                        
-                  </select>
-                </div>
-<<<<<<< HEAD
-                </div>
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
-=======
-                    <input type="text" class="form-control1" id="gender" name="gender"  value="<?=$this->data['profile_details']['gender']?> " readonly />
-                  </div>
-                </div> 
->>>>>>> master
->>>>>>> development
-=======
-                </div> 
->>>>>>> origin/master
-
                 
                 <div class="form-group">
                   <label for="dob" class="col-sm-2 control-label">DOB</label>
