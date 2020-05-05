@@ -83,9 +83,9 @@ class Student extends Dbh {
 		$students = [];
 
 		$sql = " SELECT $this->table_name.*,  users.username as email ,branches.branch , departments.department ,branches.id as branch_id  , profiles.district_id , profiles.cgpa, profiles.backlogs FROM $this->table_name ";
-		$sql .= " JOIN LEFT branches ON branches.id = $this->table_name.branch_id ";
-		$sql .= " JOIN LEFT departments ON departments.id = branches.department_id ";
-		$sql .= " JOIN LEFT profiles ON profiles.student_id = $this->table_name.id ";
+		$sql .= " LEFT JOIN branches ON branches.id = $this->table_name.branch_id ";
+		$sql .= " LEFT JOIN departments ON departments.id = branches.department_id ";
+		$sql .= " LEFT JOIN profiles ON profiles.student_id = $this->table_name.id ";
 		$sql .= " JOIN users ON users.id = $this->table_name.user_id ";
 
 		/*if (isset($filters)) {
