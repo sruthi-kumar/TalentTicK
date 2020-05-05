@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1deb2
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 02, 2020 at 04:36 AM
--- Server version: 8.0.19-0ubuntu0.19.10.3
--- PHP Version: 7.3.11-0ubuntu0.19.10.4
+-- Generation Time: May 05, 2020 at 11:47 PM
+-- Server version: 8.0.20-0ubuntu0.20.04.1
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,14 +71,9 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `department`) VALUES
-(1, 'M.Tech'),
-(2, 'MCA'),
 (3, 'B.Tech'),
-(4, 'Test'),
-(5, 'Test 2'),
-(6, 'Test 3'),
-(7, 'Test 4'),
-(8, 'Test 5');
+(1, 'M.Tech'),
+(2, 'MCA');
 
 -- --------------------------------------------------------
 
@@ -105,23 +100,6 @@ CREATE TABLE `jobs` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
-(35, 6, 'CODING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '[1,4]', 98, 2, 0, 0, 1, 'active', '2020-02-12', '2020-04-27 05:36:41'),
-(43, 7, 'EXECUTE MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, '[3,4]', 50, 1, 0, 0, 1, 'active', '2020-02-26', '2020-04-27 05:36:41'),
-(44, 1, 'FRONT-END MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 5, 1, NULL, 75, 0, 0, 0, 0, 'active', '2020-02-26', '2020-04-27 05:36:41'),
-(45, 5, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 85, 3, 0, 0, 0, 'active', '2020-02-26', '2020-04-27 05:36:41'),
-(46, 3, 'TESTING', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 2, 1, NULL, 65, 1, 0, 0, 0, 'active', '2020-02-27', '2020-04-27 05:36:41'),
-(50, 3, 'FRONT-END MANAGER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 63, 2, 0, 0, 0, 'active', '2020-02-27', '2020-04-27 05:36:41'),
-(51, 1, 'EXECUTE MANAGER', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur', 1, 1, NULL, 90, 0, 0, 0, 0, 'active', '2020-03-27', '2020-04-27 05:36:41'),
-(52, 1, 'ADMINISTATOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1, NULL, 20, 1, 0, 0, 0, 'active', '2020-03-01', '2020-04-27 05:36:41'),
-(68, 14, 'WEB DEVELOPER', 'zczxczxc', 1, 6, '[\"1\",\"9\",\"11\"]', 60, 5, 50000, 100000, 1, 'active', '2020-08-27', '2020-04-28 19:46:56'),
-(69, 14, 'WEB DEVELOPER', 'asds dsd', 1, 4, '[\"11\",\"10\",\"6\"]', 50, 0, 100000, 100000, 1, 'active', '2020-08-27', '2020-04-30 14:04:39'),
-(70, 14, 'test', 'sdfsd', 1, 5, '[\"1\",\"9\",\"11\"]', 80, 0, 50000, 150000, 1, 'active', '2020-08-27', '2020-05-01 10:33:30');
-
 -- --------------------------------------------------------
 
 --
@@ -136,36 +114,6 @@ CREATE TABLE `job_applications` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `job_applications`
---
-
-INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VALUES
-(13, 23, 35, 'pending', '2020-04-27 13:36:29'),
-(15, 24, 35, 'pending', '2020-04-27 13:36:29'),
-(16, 24, 43, 'accepted', '2020-04-27 13:36:29'),
-(17, 24, 44, 'pending', '2020-04-27 13:36:29'),
-(18, 9, 45, 'pending', '2020-04-27 13:36:29'),
-(19, 9, 50, 'pending', '2020-04-27 13:36:29'),
-(20, 24, 50, 'pending', '2020-04-27 13:36:29'),
-(21, 26, 50, 'pending', '2020-04-27 13:36:29'),
-(22, 27, 50, 'pending', '2020-04-27 13:36:29'),
-(26, 27, 46, 'pending', '2020-04-27 13:36:29'),
-(27, 27, 44, 'pending', '2020-04-27 13:36:29'),
-(28, 24, 45, 'pending', '2020-04-27 13:36:29'),
-(29, 28, 43, 'rejected', '2020-04-27 13:36:29'),
-(30, 8, 43, 'pending', '2020-04-27 13:36:29'),
-(31, 32, 44, 'pending', '2020-04-27 13:36:29'),
-(32, 32, 35, 'pending', '2020-04-27 13:36:29'),
-(33, 36, 51, 'pending', '2020-04-27 13:36:29'),
-(34, 36, 50, 'pending', '2020-04-27 13:36:29'),
-(35, 34, 52, 'pending', '2020-04-27 13:36:29'),
-(36, 9, 43, 'pending', '2020-04-27 13:36:29'),
-(37, 15, 68, 'pending', '2020-05-01 21:33:59'),
-(38, 15, 68, 'pending', '2020-05-01 21:34:30'),
-(39, 15, 68, 'pending', '2020-05-01 22:18:34'),
-(40, 15, 70, 'pending', '2020-05-01 22:22:17');
 
 -- --------------------------------------------------------
 
@@ -186,7 +134,7 @@ CREATE TABLE `job_types` (
 INSERT INTO `job_types` (`id`, `job_type`, `status`) VALUES
 (1, 'FULL-TIME', 'active'),
 (2, 'PART-TIME', 'active'),
-(5, 'CONTRACT', 'active');
+(3, 'CONTRACT', 'active');
 
 -- --------------------------------------------------------
 
@@ -322,7 +270,8 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (25, 28, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:47'),
 (26, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:50'),
 (27, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:53'),
-(28, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:56');
+(28, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:56'),
+(29, 15, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-05-02 18:58:28');
 
 -- --------------------------------------------------------
 
@@ -336,7 +285,6 @@ CREATE TABLE `profiles` (
   `dob` date NOT NULL,
   `address` varchar(40) NOT NULL,
   `addressline2` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `addressline3` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `state_id` int NOT NULL,
   `district_id` int NOT NULL,
   `pincode` int NOT NULL,
@@ -349,23 +297,6 @@ CREATE TABLE `profiles` (
   `resume` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `highest_qualification` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `profiles`
---
-
-INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `addressline3`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `resume`, `highest_qualification`) VALUES
-(8, 5, '2001-12-07', 'haritha bhavan', 'guruvayoor', 'thrissur', 13, 1, 985623, 0, 89, 65, 78, 87, 0, NULL, NULL),
-(9, 6, '2001-12-20', 'athul villa', 'kottiyam', 'kollam', 13, 1, 688034, 0, 76, 85, 87, 98, 0, NULL, NULL),
-(18, 9, '2001-12-19', 'adsffsdgDS', 'ewaar', '', 13, 1, 654321, 0, 80, 6.77778e20, 0, 655444, 0, NULL, NULL),
-(24, 11, '2001-12-10', 'asif manzil', 'kottiyam', 'kollam', 13, 1, 895623, 0, 89, 87, 0, 0, 0, NULL, NULL),
-(26, 13, '1999-07-07', 'arun villa', 'karunagapally', '', 13, 1, 895623, 0, 89, 85, 65, 85, 2, NULL, NULL),
-(27, 14, '1999-02-08', 'Achubhavan', 'palarivattam', '', 13, 1, 985623, 0, 80, 85, 0, 91, 0, NULL, NULL),
-(28, 15, '1997-06-18', 'villa', 'mavelikara', '', 13, 1, 989562, 0, 89, 65, 0, 75, 0, NULL, NULL),
-(32, 18, '1998-02-18', 'sharon villa', 'kanjirapally', '', 13, 1, 985623, 0, 99, 99, 98, 89, 0, NULL, NULL),
-(34, 19, '1997-06-30', 'gananadam', 'kappil', '', 13, 1, 895623, 0, 73, 69, 85, 93, 0, NULL, NULL),
-(36, 21, '2001-11-25', 'asdfg', 'asdf', '', 13, 1, 6865188, 0, 99, 99, 99, 99, 0, NULL, NULL),
-(38, 23, '2001-11-25', 'amala villa', 'manimala', '', 13, 1, 895623, 0, 85, 80, 75, 90, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -390,22 +321,6 @@ CREATE TABLE `recruiters` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `recruiters`
---
-
-INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `status`, `created_at`) VALUES
-(1, 3, 'TCS', 'tcs@gmail.com', NULL, '9856231478', 'tcstcs', '0', 'Bihar', '985623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(3, 13, 'Ibm', 'ibm@gmail.com', NULL, '9856231478', 'ibmcity', '0', 'delhi', '985623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(5, 16, 'FEDERAL', 'federal@gmail.com', NULL, '9856231147', 'federal care ', '0', 'Kerala', '985623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(6, 20, 'UST GLOBAL', 'ust@gmail.com', NULL, '8956231478', 'ust global tvm', '0', 'Kerala', '895623', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(7, 22, 'SOFTWARE SOLUTIONS', 'soft@gmail.com', 'soft.com', '89562314566', 'software solutions private limited', '0', 'Bihar', '859623', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(8, 30, 'mu', 'ww@gmail.com', NULL, '856', 'adafsd', '0', 'Arunachal pradesh', '12232', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(9, 43, 'jhhhhhhhhhhhhhhh', 's@gmail.com', '', '203', 'k', '44', 'Bihar', '85', 'default.jpg', 'approved', '2020-04-27 05:41:02'),
-(10, 44, 'ABC', 'abc@gmail.com', NULL, '8956231023', 'abcdhiiu', '789632', 'Kerala', '784523', 'default.jpg', 'pending', '2020-04-27 05:41:02'),
-(11, 46, 'ABCD', 'abcd@gmail.com', '', '9856230233', 'abcdoijug', '12365985', 'Bihar', '985623', '', 'pending', '2020-04-27 05:41:02'),
-(14, 76, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '+919847980829', '21/1, 20th I Cross, Ejippura', 'UIHIUHC3495846', 'Bangalore', '560047', 'aW1hZ2VzLmpwZWc3Ng==.jpeg', 'pending', '2020-04-27 05:41:02');
-
 -- --------------------------------------------------------
 
 --
@@ -426,38 +341,6 @@ CREATE TABLE `students` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `image`, `created_at`) VALUES
-(5, 8, 'Haritha', 'N H', '9856231478', 'Female', 3, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(6, 9, 'athul', 'S N', '9947266566', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(7, 15, 'sruthi', 'kumar', '9633679875', 'Female', 7, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(8, 17, 'anitta', 's', '6677889900', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(9, 18, 'anu', 'a', '9876543212', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(10, 23, 'ammu', 's', '8956231452', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(11, 24, 'asif', 'ali', '8956231478', 'Female', 10, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(12, 25, 'arya', 'kumar', '9856231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(13, 26, 'arun', 'k s', '8956231478', 'Female', 12, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(14, 27, 'Achu', 'l', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(15, 28, 'aathira', 'ajith', '9895623145', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(16, 29, 'akil', 'achu', '9865231478', 'Male', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(17, 31, 'athira', 'Ajith', '9856231478', 'Male', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(18, 32, 'sharon ', 'kurian', '9856231455', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(19, 34, 'smriti', 'kumar', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(20, 35, 'anju', 'mathew', '9856231230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(21, 36, 'teenu', 'v therese', '0', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(22, 37, 'Raj', 's', '8956231478', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(23, 38, 'amala', 'saji', '9856231230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(24, 39, 'Rincy', 'mol', '8956231452', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(25, 40, 'sruthi', 'kumar', '9856231452', 'Female', 4, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(26, 42, 'lavanya', 's', '8596321230', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(27, 45, 'ganesh', 'prakash', '9856230236', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(28, 47, 'rahul', 's', '8956231023', 'Female', 1, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(29, 62, 'Krishnapriya', 'TM', '9497133973', 'Female', 6, 'pending', 'default.jpg', '2020-04-26 21:23:40'),
-(30, 85, 'John', 'Doe', '9876543210', 'Male', NULL, 'pending', 'default.jpg', '2020-04-28 16:31:55');
-
 -- --------------------------------------------------------
 
 --
@@ -474,15 +357,6 @@ CREATE TABLE `testimonials` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `testimonials`
---
-
-INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
-(1, 76, 'recruiter', 'Testing testimonials  updated  3 for admin notification  asdsdf d', 'pending', 'no', '2020-04-28 08:55:55'),
-(2, 15, 'student', 'Student testimonial updated ', 'pending', 'no', '2020-04-28 10:16:29'),
-(3, 22, 'recruiter', 'testing testing ', 'pending', 'no', '2020-04-30 22:37:03');
 
 -- --------------------------------------------------------
 
@@ -505,44 +379,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at`) VALUES
-(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44'),
-(3, 'tcs@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(6, 'wipro@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(8, 'haritha@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(9, 'athul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(13, 'ibm@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(15, 'sruthi@gmail.com', '98506495661c8c6c17af958c5d8b1a29', 'student', 'active', '2020-04-22 07:59:44'),
-(16, 'federal@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(17, 'anitta@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(18, 'a@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(20, 'ust@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(22, 'soft@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(23, 'ammu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(24, 'asif@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(25, 'arya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(26, 'arun@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(27, 'achu@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(28, 'athira@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(29, 'akil@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(30, 'percyjack288@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(31, 'athira@gail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(32, 'sharon@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(34, 'smriti@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(35, 'Anju@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(36, 'teenuvtherese@amaljyothi.ac.in', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(37, 'raj@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(38, 'amala@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(39, 'rincymol.reji@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(40, 'shrutiskumar9633@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(42, 'lavanya@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(43, 's@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(44, 'abc@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(45, 'ganesh@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(46, 'abcd@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-04-22 07:59:44'),
-(47, 'rahul@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-22 07:59:44'),
-(62, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-04-22 13:59:45'),
-(76, 'sreekuttan@maximprof.com', 'acedf82e8d2a7ae1d3ca452b5e3ef483', 'recruiter', 'active', '2020-04-22 16:45:43'),
-(85, 'johndoe@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-04-28 16:31:55');
+(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44');
 
 --
 -- Indexes for dumped tables
@@ -559,7 +396,8 @@ ALTER TABLE `branches`
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `department` (`department`);
 
 --
 -- Indexes for table `jobs`
@@ -656,25 +494,25 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `job_types`
 --
 ALTER TABLE `job_types`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `location_districts`
@@ -692,37 +530,37 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
