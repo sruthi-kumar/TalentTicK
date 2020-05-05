@@ -278,9 +278,9 @@ function ValidateJobTitle(){
     return false;
   }
 
-  if ((job_title.length < 8) || (job_title.length > 50))
+  if ((job_title.length < 6) || (job_title.length > 50))
   {
-  document.getElementById('job_title_error').innerHTML = "Error! characters between 8 and 50" ; 
+  document.getElementById('job_title_error').innerHTML = "Error! characters between 6 and 50" ; 
   document.getElementById('job_title').focus();
   return false;
   }
@@ -319,7 +319,7 @@ function ValidateJobDescription(){
   }
   return true;
 }
-function ValidateCgpa()
+/*function ValidateCgpa()
 {
  document.getElementById('CGPA_min_error').innerHTML = "" ;
 if(document.job_post_form.CGPA_min.value == "" ||
@@ -404,7 +404,7 @@ job_post_form.salary_max_min.focus();
 return false;
 }
 return true;
-}
+}*/
 
 
     </script>
