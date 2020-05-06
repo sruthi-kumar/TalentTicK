@@ -17,7 +17,8 @@ if (isset($_GET['status'])) {
 	if ($_GET['status'] == 'success') {
 		$page_data['op_status'] = '<label style="color: green" > Post Successfull </label> ';
 	}if ($_GET['status'] == 'failed') {
-		$page_data['op_status'] = '<label style="color: red" >Post Failed</label> ';
+		$page_data['op_status'] = '<label style="color: red" >' . $_SESSION['errors']['branch'] . '</label> ';
+		unset($_SESSION['errors']['branch']);
 	}
 
 }

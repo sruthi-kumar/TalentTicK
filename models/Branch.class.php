@@ -85,15 +85,25 @@ class Branch extends Dbh {
 
 	}
 
-	function getBranchByBranchname($branchname = null) {
+	function getBranchByBranchname($branch = null, $department_id = null) {
 
-		$this->branchname = $branchname ?? $this->branchname;
+		$this->branch = $branch ?? $this->branch;
 
 		$branch_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE branchname=?";
+		if (isset($department_id)) {
+
+			$sql = "SELECT * FROM $this->table_name WHERE branch=? AND department_id=?";
+
+			$params = [$this->branch, $department_id];
+
+		} else {
+
+			$sql = "SELECT * FROM $this->table_name WHERE branch=?";
+			$params = [$this->branch];
+		}
+
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->branchname];
 		$stmt->execute($params);
 		$branch_data = $stmt->fetch();
 

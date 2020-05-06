@@ -8,6 +8,32 @@ $page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
 $page_data['assets'] = $web_assets;
 
 $page_data['page_title'] = "Student Registration";
+$page_data['registration_fees'] = 1000;
+
+$month_data = array(
+	['month' => 1, 'month_display' => "JAN(01)"],
+	['month' => 2, 'month_display' => "FEB(02)"],
+	['month' => 3, 'month_display' => "MAR(03)"],
+	['month' => 4, 'month_display' => "APR(04)"],
+	['month' => 5, 'month_display' => "MAY(05)"],
+	['month' => 6, 'month_display' => "JUN(06)"],
+	['month' => 7, 'month_display' => "JUL(07)"],
+	['month' => 8, 'month_display' => "AUG(08)"],
+	['month' => 9, 'month_display' => "SEP(09)"],
+	['month' => 10, 'month_display' => "OCT(10)"],
+	['month' => 11, 'month_display' => "NOV(11)"],
+	['month' => 12, 'month_display' => "DEC(12)"],
+);
+
+$page_data['months'] = $month_data;
+
+$year_data = [];
+
+for ($year = 20; $year < 99; $year++) {
+	$year_data[] = ['year' => "20$year"];
+}
+
+$page_data['years'] = $year_data;
 
 $t->data = $page_data;
 
