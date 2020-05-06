@@ -27,4 +27,6 @@ if (!empty($user_data)) {
 	$invoice_html = $t->render('inc/invoice.phtml');
 
 	echo $invoice_html;
+
+	//makePdf($invoice_html)
 }
