@@ -219,6 +219,28 @@ return false;
 }
 return true;
 }
+function ValidateLicense()
+{
+ document.getElementById('license_error').innerHTML = "" ;
+if(document.registration_form.license.value == "" ||
+//isNaN(document.registration_form.license.value) ||
+document.registration_form.license.value.length != 13 )
+{
+ document.getElementById('license_error').innerHTML = "Please provide a License No upto 13 digit" ;     
+
+  
+document.getElementById('license').focus();
+return false;
+}
+var pattern = new RegExp("^([a-zA-Z]{3})([0-9]{10})$");
+if(!pattern.test(document.registration_form.license.value))
+{
+ document.getElementById('license_error').innerHTML = "license Number is invalid! (First 3 character remaining 10 digits)" ; 
+registration_form.license.focus();
+return false;
+}
+return true;
+}
 function ValidateCity(){
 
   document.getElementById('city_error').innerHTML = "" ; 

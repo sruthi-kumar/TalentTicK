@@ -47,7 +47,7 @@
                 <div class="form-group">
                   <label for="dob" class="col-sm-2 control-label">DOB</label>
                   <div class="col-sm-8">
-                    <input type="date" class="form-control1" id="dob" name="dob" min="1995-01-01" max="2001-12-31"  value="<?=$this->data['profile_details']['dob']?> "  />
+                    <input type="date" class="form-control1" id="dob" name="dob" min="1995-01-01" max="2001-12-31"  value="<?=$this->data['profile_details']['dob']?> " required="required" />
                   </div>
                 </div>  
 
@@ -132,13 +132,13 @@
                 </div>
    
                 <div class="form-group">
-                  <label for="cgpa" class="col-sm-2 control-label">CGPA</label>
+                  <label for="cgpa" class="col-sm-2 control-label">Percentage</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="cgpa" name="cgpa"  value="<?=$this->data['profile_details']['cgpa']?> " >
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="gug" class="col-sm-2 control-label">Grade in Graduation</label>
+                  <label for="gug" class="col-sm-2 control-label">Percentage in Graduation</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="gug" name="gug"  value="<?=$this->data['profile_details']['gug']?>" >
                   </div>
@@ -146,7 +146,7 @@
 
 
                 <div class="form-group">
-                  <label for="gplus" class="col-sm-2 control-label">Grade in +2</label>
+                  <label for="gplus" class="col-sm-2 control-label">Percentage in +2</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="gplus" name="gplus"  value="<?=$this->data['profile_details']['gplus']?>" >
                   </div>
@@ -154,7 +154,7 @@
 
 
                 <div class="form-group">
-                  <label for="g10" class="col-sm-2 control-label">Grade in 10th </label>
+                  <label for="g10" class="col-sm-2 control-label">Percentage in 10th </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="g10" name="g10"  value="<?=$this->data['profile_details']['g10']?>" >
                   </div>
