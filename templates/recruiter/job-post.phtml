@@ -124,7 +124,7 @@
                 <div class="form-group">
                   <label for="last_date_to_apply" class="col-sm-2 control-label">Last Date to Apply</label>
                   <div class="col-sm-8">
-                    <input type="date" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" onchange="return ValidateDate()" placeholder="DD-MM-YYYY" min="2020-05-06" max="2021-05-05" required="required" >
+                    <input type="date" class="form-control1" name="last_date_to_apply" id="last_date_to_apply" onchange="return ValidateDate()" placeholder="DD-MM-YYYY" required="required" >
                     <label class="errortext" style="display:no ne; color:red" id="last_date_to_apply"></label>
                     <div id="last_date_to_apply_error" style="color:red;">  </div>
                   </div>
@@ -319,10 +319,42 @@ function ValidateJobDescription(){
   document.job_post_form.name.focus();
   return false;
   }
-  return true;
+  return true; 
 }
 
-       
+ function ValidateDate()
+ {
+  document.getElementById('last_date_to_apply_error').innerHTML = "" ;
+   var last_date_to_apply =job_post_form.last_date_to_apply.value;
+   if(last_date_to_apply=""){
+    document.getElementById('last_date_to_apply').focus();
+    document.getElementById('last_date_to_apply_error').innerHTML = "Error! last date to apply  is empty " ; 
+    return false;
+
+   }
+   var GivenDate =document.forms["job_post_form"]["last_date_to_apply"].value;
+   var CurrentDate  = new Date();
+   GivenDate = new Date(GivenDate);
+
+   if(GivenDate < CurrentDate)
+   {
+    document.getElementById('last_date_to_apply_error').innerHTML = "Error! Given date is less than current date" ; 
+    document.getElementById('last_date_to_apply').focus();
+document.getElementById('last_date_to_apply').value="";
+return false;
+   }
+var last_date_to_apply=document.forms["job_post_form"]["last_date_to_apply"].value;
+var y="2021-01-01";
+if(last_date_to_apply > y)
+{
+  document.getElementById('last_date_to_apply_error').innerHTML = "Error! please enter year below 2021" ;
+   document.getElementById('last_date_to_apply').focus(); 
+   document.getElementById('last_date_to_apply').value="";
+   return false;
+}
+return true;
+
+ }      
 
 /*function ValidateCgpa() 
 {
