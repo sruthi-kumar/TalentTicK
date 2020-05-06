@@ -21,12 +21,27 @@ if (!empty($user_data)) {
 	$student = new Student();
 	$student_data = $student->getStudentByUserId($user_data['id']);
 
-	debug($student_data);
+	//debug($student_data);
+
+	$page_data['title'] = "Invoice";
 
 	$t->data = $page_data;
-	$invoice_html = $t->render('inc/invoice.phtml');
+	$invoice_html = $t->render('invoice.phtml');
 
-	echo $invoice_html;
+	$invoice_html = "<html>
+<head>
 
-	//makePdf($invoice_html)
+</head>
+<body>
+	<h1>Payment Invoice</h1>
+	<table>
+		<tr> <th>Details</th> </tr>
+		<tr><td>hello</td></tr>
+	</table>
+</body>
+</html> ";
+
+	//echo $invoice_html;
+
+	makePdf($invoice_html);
 }
