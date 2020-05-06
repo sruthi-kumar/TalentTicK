@@ -43,9 +43,7 @@ $login_details = get_current_user_set();
 
 if (validate_form($_POST)) {
 
-/*`recruiter_id`, image `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode*/
-
-	$recruiter = new Recruiter();
+	$student = new Student();
 
 	$image_file = $login_details['user_data']['image'];
 
@@ -74,21 +72,21 @@ if (validate_form($_POST)) {
 
 	}
 
-	$recruiter->setData('user_id', $login_details['user_data']['user_id']);
-	$recruiter->setData('company_name', trim($_POST['company_name']));
-	$recruiter->setData('email', trim($_POST['email']));
-	$recruiter->setData('website', trim($_POST['website']));
-	$recruiter->setData('phone', trim($_POST['phone']));
-	$recruiter->setData('address', trim($_POST['address']));
-	$recruiter->setData('license', trim($_POST['license']));
-	$recruiter->setData('city', trim($_POST['city']));
-	$recruiter->setData('pincode', trim($_POST['pincode']));
-	$recruiter->setData('image', $image_file);
-	$recruiter->setData('status', trim($_POST['status']));
+	$student->setData('user_id', $login_details['user_data']['user_id']);
+	$student->setData('company_name', trim($_POST['company_name']));
+	$student->setData('email', trim($_POST['email']));
+	$student->setData('website', trim($_POST['website']));
+	$student->setData('phone', trim($_POST['phone']));
+	$student->setData('address', trim($_POST['address']));
+	$student->setData('license', trim($_POST['license']));
+	$student->setData('city', trim($_POST['city']));
+	$student->setData('pincode', trim($_POST['pincode']));
+	$student->setData('image', $image_file);
+	$student->setData('status', trim($_POST['status']));
 
-	//debug($recruiter);
+	//debug($student);
 
-	$result = $recruiter->update($login_details['user_data']['recruiter_id']);
+	$result = $student->update($login_details['user_data']['student_id']);
 	//debug($result);
 
 	if (!$result) {
@@ -105,4 +103,4 @@ if (validate_form($_POST)) {
 	$_SESSION['errors']['register'] = "Invalid Update Data!";
 }
 
-header("location:../profile-details.php?type=recruiter&status=$status");
+header("location:../profile-details.php?type=student&status=$status");
