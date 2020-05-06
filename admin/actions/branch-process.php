@@ -9,7 +9,39 @@ $status = 'success';
 
 $branch = new Branch();
 /*
-`branchs` WHERE 1 `id`, `branch`*/
+`branchs` WHERE 1 `id`, `branch`*/.
+
+
+
+$department_details = $department->getDepartmentByDepartmentname($_POST['department']);
+
+//debug($department_details);
+
+if (!$department_details) {
+	$status = 'failed';
+	$_SESSION['errors']['department'] = "Department $_POST['department'] Already Exists!";
+} else {
+	header("location:../department-list.php?status=$status");
+	exit;
+
+}
+
+$branch_details = $branch->getBranchByBranchname($_POST['branch'] , $_POST['department_id'] ) ; 
+debug($branch_details);
+
+if (!$branch_details) {
+		$status = 'failed';
+		$_SESSION['errors']['branch'] = "Post Failed! Branch ";
+	} else {
+		if (isset($_POST['action'])) {
+		header("location:../branch.php?status=failed&action=" . $_POST['action']);
+	} else {
+		header("location:../branch.php?status=failed");
+	}
+	exit;
+
+	}
+
 
 if (isset($_POST['id']) && isset($_POST['action'])) {
 
@@ -26,7 +58,7 @@ if (isset($_POST['id']) && isset($_POST['action'])) {
 
 	if (!$result) {
 		$status = 'failed';
-		$_SESSION['errors']['register'] = "Update Failed!";
+		$_SESSION['errors']['branch'] = "Update Failed!";
 	}
 
 } else {

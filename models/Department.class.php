@@ -73,15 +73,15 @@ class Department extends Dbh {
 
 	}
 
-	function getDepartmentByDepartmentname($departmentname = null) {
+	function getDepartmentByDepartmentname($department = null) {
 
-		$this->departmentname = $departmentname ?? $this->departmentname;
+		$this->department = $department ?? $this->department;
 
 		$department_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE departmentname=?";
+		$sql = "SELECT * FROM $this->table_name WHERE department=?";
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->departmentname];
+		$params = [$this->department];
 		$stmt->execute($params);
 		$department_data = $stmt->fetch();
 

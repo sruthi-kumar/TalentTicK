@@ -17,7 +17,7 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/student-registration.php" method="post" name="registration_form"class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/student-registration.php" method="post" id="registration_form" name="registration_form"class="p-5 bg-white">
               
               
               <div class="row form-group">
@@ -72,33 +72,91 @@
               </div>
 
               <div class="row form-group mb-5">
-                <div class="col-md-12 mb-3 mb-md-0">
+                <div class="col-md-6 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
                   <input type="password" id="password" name="password" class="form-control" onchange="Validatepass()" required="required">
-                          <label class="errortext" style="display:nne; color:red" id="pass"></label>
-                          <div id="password_error" style="color:red;">  </div>
-                                              
+                  <label class="errortext" style="display:nne; color:red" id="pass"></label>
+                  <div id="password_error" style="color:red;">  </div>
                 </div>
-              </div>
-
-              <div class="row form-group mb-5">
-                <div class="col-md-12 mb-3 mb-md-0">
+             
+                <div class="col-md-6 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="confirmpassword">Confirm Password</label>
                   <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" onchange="validatecpass()" required="required">
-                                  <label class="errortext" style="display:nne; color:red" id="cpass"></label>
-               
+                  <label class="errortext" style="display:nne; color:red" id="cpass"></label>
+                  <div id="cpassword_error" style="color:red;">  </div>
+                </div>
+              </div>
 
-                                  <div id="cpassword_error" style="color:red;">  </div>
 
+              <div>
+                <h2>Make Payment : <?=$this->data['registration_fees']?> ₹</h2>
+              </div>
+
+                <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="card_no">Credit/Debit Card</label>
+                  <input type="text" id="card_no"  name="card_no" class="form-control" placeholder="Credit/Debit Card" maxlength="16" onchange="return validatecardno()" required="required">
+                                    <label class="errortext" style="display:no ne; color:red" id="card_no"></label>
+                                    <div id="firstname_error" style="color:red;">  </div>
+                                                      
+                </div>
+
+                 <div class="col-md-2 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="cvv">CVV</label>
+                  <input type="password" id="cvv"  name="cvv" class="form-control" placeholder="CVV" minlength="3" maxlength="3" onchange="return validatecvv()" required="required">
+                                    <label class="errortext" style="display:no ne; color:red" id="cvv"></label>
+                                    <div id="firstname_error" style="color:red;">  </div>
+                                                      
+                </div>
+
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="card_name">Name on Card</label>
+                  <input type="text" id="card_name"  name="card_name" class="form-control" placeholder="Name on Card"   onchange="return validatelastname()"required="required">
+                                  <label class="errortext" style="display:nne; color:red" id="card_name"></label>
+                                  <div id="lastname_error" style="color:red;">  </div>
 
 
                 </div>
               </div>
 
-              <div class="row form-group"> 
+
+              <div class="row form-group">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="month_expiry">Month of Expiry</label>
+                  <select name="month_expiry" id="month_expiry" class="form-control1" onchange="updateDistricts()" >
+                      <option >--Select Month--</option>  
+                      <?php foreach ($this->data['months'] as $month_data ) { ?>
+                       <option value="<?=$month_data['month'] ?>" ><?=$month_data['month_display'] ?></option> 
+                       <?php }?>
+                    </select>
+                    <label class="errortext" style="display:no ne; color:red" id="firstname"></label>
+                    <div id="firstname_error" style="color:red;">  </div>
+                                                      
+                </div>
+
+                 <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="year_expiry">Year of Expiry</label>
+                  <select name="year_expiry" id="year_expiry" class="form-control1" onchange="updateDistricts()" >
+                      <option >--Select Year--</option>  
+                      <?php foreach ($this->data['years'] as $year_data ) { ?>
+                       <option value="<?=$year_data['year'] ?>" ><?=$year_data['year'] ?></option> 
+                       <?php }?>
+                    </select>
+                    <label class="errortext" style="display:no ne; color:red" id="firstname"></label>
+                    <div id="firstname_error" style="color:red;">  </div>
+                                                      
+                </div>
+
+              </div> 
+
+               <div class="row form-group"> 
                 <div class="col-md-12 mb-3 mb-md-0">
-                    <button class="btn btn-success" type="submit"  > Register  </button>
+                    <button class="btn btn-success" type="button"  data-toggle="modal" data-target="#otpModal"  > Register </button>
                 </div> 
+              </div> 
   
             </form>
           </div>
@@ -106,6 +164,44 @@
         </div>
       </div>
     </div>
+
+
+<!-- Modal -->
+<div id="otpModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Verify OTP</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="otp_form" class="form-horizontal">
+          <p>Please check your registerd phone for the payment OTP </p>
+
+          <div class="form-group">
+            <label for="otp" class="col-sm-2 control-label">OTP</label>
+            <div class="col-md-2">
+            <input type="password" name="otp" id="otp"  class="form-control1" minlength="6" maxlength="6" >
+            </div>
+            <div class="col-md-2">
+            <a href="#">Resend</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+          <div class="col-sm-8"> </div>
+          <div class="col-sm-2">
+          <button type="button"   onclick="verifyOTP()" class="btn btn-info">  VERIFY </button>
+          </div>
+          </div>
+        </form>
+      </div> 
+    </div>
+
+  </div>
+</div>
 
 		
 		<section class="ftco-section-parallax">
@@ -130,14 +226,50 @@
         </div>
       </div>
     </section>
+ 
 
 
 
+    <script type="text/javascript"> 
+
+        function verifyOTP() {   
+
+        var otp = document.getElementById('otp').value; 
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+
+            //console.log(this.responseText) ;
+
+            if(this.responseText != "") {
+
+              var response = JSON.parse(this.responseText);  
+              console.log(response) ;
+
+              var validateionStatus = response.status;
+
+              if(validateionStatus == "success"){
+
+                $('#otpModal').modal('hide');
+
+                 document.getElementById("registration_form").submit(); 
+
+              }else{
+                alert("Payment Failed! Invalid OTP") ;
+              }
+
+              
+            }
+          }
+        };
+        xmlhttp.open("GET", "<?=base_url()?>/actions/verity-otp.php?otp="+otp, true);
+        xmlhttp.send();  
+
+    } 
 
 
 
-
-<script type="text/javascript">
 var  reg_form = document.registration_form;
 
 function validatefirstname(){

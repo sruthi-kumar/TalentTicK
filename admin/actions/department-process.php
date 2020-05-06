@@ -9,6 +9,22 @@ $department = new Department();
 /*
 `departments` WHERE 1 `id`, `department`*/
 
+$department_details = $department->getDepartmentByDepartmentname($_POST['department']);
+
+//debug($department_details);
+
+if (!$department_details) {
+	$status = 'failed';
+	$_SESSION['errors']['department'] = "Department" . $_POST['department'] . "Already Exists!";
+} else {
+	if (isset($_POST['action'])) {
+		header("location:../department.php?status=failed&action=" . $_POST['action']);
+	} else {
+		header("location:../department.php?status=failed");
+	}
+
+}
+
 if (isset($_POST['id']) && isset($_POST['action'])) {
 
 	//$department_details = $department->getDepartmentById($_POST['id']);
@@ -28,7 +44,7 @@ if (isset($_POST['id']) && isset($_POST['action'])) {
 
 } else {
 
-	$department->setData('department', $_POST['department']);
+	$department->setData('department', strtoupper($_POST['department']));
 
 	$result = $department->create();
 

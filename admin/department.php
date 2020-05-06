@@ -14,10 +14,13 @@ $page_data['page_title'] = "Department Details";
 
 if (isset($_GET['status'])) {
 
+	debug($_SESSION['errors']);
+
 	if ($_GET['status'] == 'success') {
 		$page_data['op_status'] = '<label style="color: green" > Post Successfull </label> ';
 	}if ($_GET['status'] == 'failed') {
-		$page_data['op_status'] = '<label style="color: red" >Post Failed</label> ';
+		$page_data['op_status'] = '<label style="color: red" >' . $_SESSION['errors']['department'] . '</label> ';
+		unset($_SESSION['errors']['department']);
 	}
 
 }
