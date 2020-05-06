@@ -29,6 +29,7 @@ class Student extends Dbh {
 	private $mobile_number;
 	private $image;
 	private $gender = "Other";
+	private $payment_status = "pending";
 
 	private $table_name = "students";
 
@@ -44,6 +45,7 @@ class Student extends Dbh {
 		$params['user_id'] = $this->user_id ?? '';
 		$params['firstname'] = $this->firstname ?? '';
 		$params['lastname'] = $this->lastname ?? '';
+		$params['payment_status'] = $this->payment_status ?? 'pending';
 		$params['mobile_number'] = $this->mobile_number ?? '';
 		$params['gender'] = $this->gender ?? '';
 		$params['image'] = $this->gender ?? 'default.jpg';
@@ -64,6 +66,9 @@ class Student extends Dbh {
 			break;
 		case 'lastname':
 			$this->lastname = $data;
+			break;
+		case 'payment_status':
+			$this->payment_status = $data;
 			break;
 		case 'mobile_number':
 			$this->mobile_number = $data;

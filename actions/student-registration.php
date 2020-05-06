@@ -57,22 +57,21 @@ if (validate_form($_POST)) {
 		$student->setData('lastname', $_POST['lastname']);
 		$student->setData('mobile_number', $_POST['mobile_number']);
 		$student->setData('gender', $_POST['gender']);
+		$student->setData('payment_status', 'paid');
 
 		if ($student->create()) {
 
 			$notification = new Notification();
 
 			$notification->setData('user', config('admin_id'));
-			$notification->setData('title', "New Recruiter Registered");
-			$notification->setData('description', "New Recruiter Registerd in Portal.\n Please check & verify");
+			$notification->setData('title', "New Student Registered");
+			$notification->setData('description', "New Student Registerd in Portal.");
 
 			if ($notification->create()) {
 
 				$to_address = $_POST['email'];
 				$subject = "TalenTick Job Portal Registration Successfull!";
-				$body = "Hi" . $_POST['company_name'] . " , <br> Your Profile has been successfully registered wih our portal. <br> We will notify you once your profile has been approved. ";
-
-				$body .= "<br>Please download the invoice here : <a target='_blank' href='".."'> INVOICE <a>";
+				$body = "Hi" . $_POST['firstname'] . " " . $_POST['lastname'] . " , <br> Your Profile has been successfully registered wih our portal. <br>Please download the invoice of your payment here : <a target='_blank' href='" . base_url() . "/actions/download-invoice.php?=email" . urlencode($_POST['email']) . "'> INVOICE <a>";
 
 				send_email_notification($to_address, $subject, $body);
 
