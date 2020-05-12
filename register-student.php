@@ -22,9 +22,9 @@ $max_entry = $student->getMaxId();
 
 //debug($max_entry);
 
-$page_data['receipt'] = "RECPT_0" . ((int) $max_entry['max_id'] + 1);
+$page_data['receipt'] = "RECPT_" . (rand(10, 100)) . "_" . ((int) $max_entry['max_id'] + 1);
 
-debug($page_data);
+//debug($page_data);
 
 $payment_gateway = new PaymentGateway();
 $order_details = $payment_gateway->createOrder($page_data['receipt'], $page_data['registration_fees']);

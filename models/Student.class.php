@@ -102,7 +102,7 @@ class Student extends Dbh {
 
 		$sql = "SELECT MAX(id) as max_id FROM $this->table_name";
 		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute($params);
+		$stmt->execute();
 		$student_data = $stmt->fetch();
 		return $student_data;
 
