@@ -95,7 +95,7 @@
                 <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="card_no">Credit/Debit Card Number</label>
-                  <input type="Number" id="card_no"  name="card_no" class="form-control" placeholder="Credit/Debit Card Number" onchange="return validatecardno()" required="required">
+                  <input type="Number" id="card_no" minlength="16" name="card_no" class="form-control" placeholder="Credit/Debit Card Number" onchange="return validatecardno()" required="required">
                                     <label class="errortext" style="display:no ne; color:red" id="card_no"></label>
                                     <div id="card_no_error" style="color:red;">  </div>
                                                       
