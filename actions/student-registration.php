@@ -114,9 +114,11 @@ if (validate_form($_POST)) {
 
 					$to_address = $_POST['email'];
 					$subject = "TalenTick Job Portal Registration Successfull!";
-					$body = "Hi" . $_POST['firstname'] . " " . $_POST['lastname'] . " , <br> Your Profile has been successfully registered wih our portal. <br>Please download the invoice of your payment here : <a target='_blank' href='" . base_url() . "/actions/download-invoice.php?email=" . urlencode($_POST['email']) . "'> INVOICE <a>";
+					$body = "Hi " . $_POST['firstname'] . " " . $_POST['lastname'] . " , <br> Your Profile has been successfully registered wih our portal. <br>Please download the invoice of your payment here : <a target='_blank' href='" . base_url() . "/actions/download-invoice.php?email=" . urlencode(base64_encode($_POST['email'])) . "'> INVOICE <a>";
 
 					send_email_notification($to_address, $subject, $body);
+
+					$str = 'Some String';
 
 				}
 

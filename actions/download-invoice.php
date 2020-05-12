@@ -5,7 +5,7 @@ $result = [];
 $t = new TemplateEngine('student', "get-html");
 $t->data = [];
 
-$email = urldecode($_GET['email']);
+$email = base64_decode(urldecode($_GET['email']));
 
 $user = new User();
 
