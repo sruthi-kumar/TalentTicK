@@ -2,11 +2,10 @@
 include_once '../autoload.php';
 $result = [];
 
-$t = new TemplateEngine('student');
+$t = new TemplateEngine('student', "get-html");
 $t->data = [];
-$t->output = "get";
 
-$email = urldecode($_GET['email']);
+$email = base64_decode(urldecode($_GET['invoice_id']));
 
 $user = new User();
 
@@ -21,12 +20,21 @@ if (!empty($user_data)) {
 	$student = new Student();
 	$student_data = $student->getStudentByUserId($user_data['id']);
 
-	debug($student_data);
+	//debug($student_data);
+
+	$page_data['title'] = "Invoice";
+	$page_data['student_data'] = $student_data;
+	$page_data['invoice_details'] = [
+		'amount' => config('registration_fees') / 100,
+		'currency' => config('currency'),
+	];
+
+	//debug($page_data['student_data']);
 
 	$t->data = $page_data;
-	$invoice_html = $t->render('inc/invoice.phtml');
+	$invoice_html = $t->render('invoice.phtml');
 
-	echo $invoice_html;
+	//echo $invoice_html;
 
-	//makePdf($invoice_html)
+	makePdf($invoice_html);
 }

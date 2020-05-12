@@ -76,7 +76,7 @@ if (!empty($user_data)) {
 		header('location:../' . $user_data['type'] . '/index.php');
 		exit;
 	} else {
-		$_SESSION['errors']['auth'] = "Wrong Password! Please try again";
+		$_SESSION['errors']['auth'] = "Authentication Error! Please try again";
 		header('location:../login.php?status=fail');
 		exit;
 	}

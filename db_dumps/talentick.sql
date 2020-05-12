@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 05, 2020 at 11:47 PM
+-- Generation Time: May 12, 2020 at 12:35 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -73,6 +73,7 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`id`, `department`) VALUES
 (3, 'B.Tech'),
 (1, 'M.Tech'),
+(4, 'manga'),
 (2, 'MCA');
 
 -- --------------------------------------------------------
@@ -271,7 +272,30 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (26, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:50'),
 (27, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:53'),
 (28, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:56'),
-(29, 15, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-05-02 18:58:28');
+(29, 15, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-05-02 18:58:28'),
+(30, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-05-05 19:56:39'),
+(31, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-05-05 19:57:30'),
+(32, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-06 07:03:10'),
+(33, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:03:29'),
+(34, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:14:12'),
+(35, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:25:43'),
+(36, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 07:05:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int NOT NULL,
+  `reciept` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_id` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `signature` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -336,10 +360,20 @@ CREATE TABLE `students` (
   `gender` enum('Male','Female','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Other',
   `branch_id` int DEFAULT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
+  `payment_id` varchar(100) DEFAULT NULL,
+  `payment_method` varchar(100) DEFAULT NULL,
+  `payment_date` varchar(10) DEFAULT NULL,
   `image` varchar(255) DEFAULT 'default.jpg',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`) VALUES
+(3, 7, 'John', 'Achari', '9847980829', 'Male', NULL, 'paid', 'pay_EpMBwdFqpEk0sh', 'card', '2020-05-12', 'Male', '2020-05-12 07:05:14');
 
 -- --------------------------------------------------------
 
@@ -357,6 +391,13 @@ CREATE TABLE `testimonials` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
+(1, 2, 'student', 'Testing testing ', 'approved', 'no', '2020-05-05 19:57:30');
 
 -- --------------------------------------------------------
 
@@ -379,7 +420,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at`) VALUES
-(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44');
+(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44'),
+(2, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-05 19:56:39'),
+(3, 'tcs@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-06 07:03:10'),
+(7, 'mohanansreekuttan@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-12 07:05:14');
 
 --
 -- Indexes for dumped tables
@@ -443,6 +487,13 @@ ALTER TABLE `notifications`
   ADD KEY `user` (`user`);
 
 --
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reciept` (`reciept`);
+
+--
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
@@ -494,7 +545,7 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -530,7 +581,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -548,19 +599,19 @@ ALTER TABLE `recruiters`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

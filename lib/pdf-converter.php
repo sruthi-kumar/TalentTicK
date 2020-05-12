@@ -5,8 +5,11 @@
 // Load Composer's autoloader
 require __DIR__ . '/vendor/autoload.php';
 
+//echo (__DIR__ . '/vendor/autoload.php');exit;
+
 function makePdf($html) {
-	$mpdf = new mPDF();
+	$mpdf = new \Mpdf\Mpdf();
+
 	$mpdf->WriteHTML($html);
 	$mpdf->Output();
 }

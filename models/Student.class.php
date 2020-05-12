@@ -30,6 +30,9 @@ class Student extends Dbh {
 	private $image;
 	private $gender = "Other";
 	private $payment_status = "pending";
+	private $payment_id;
+	private $payment_method;
+	private $payment_date;
 
 	private $table_name = "students";
 
@@ -47,6 +50,9 @@ class Student extends Dbh {
 		$params['lastname'] = $this->lastname ?? '';
 		$params['payment_status'] = $this->payment_status ?? 'pending';
 		$params['mobile_number'] = $this->mobile_number ?? '';
+		$params['payment_id'] = $this->payment_id ?? '';
+		$params['payment_method'] = $this->payment_method ?? '';
+		$params['payment_date'] = $this->payment_date ?? '';
 		$params['gender'] = $this->gender ?? '';
 		$params['image'] = $this->gender ?? 'default.jpg';
 		return $params;
@@ -70,6 +76,15 @@ class Student extends Dbh {
 		case 'payment_status':
 			$this->payment_status = $data;
 			break;
+		case 'payment_id':
+			$this->payment_id = $data;
+			break;
+		case 'payment_method':
+			$this->payment_method = $data;
+			break;
+		case 'payment_date':
+			$this->payment_date = $data;
+			break;
 		case 'mobile_number':
 			$this->mobile_number = $data;
 			break;
@@ -80,6 +95,16 @@ class Student extends Dbh {
 			$this->image = $data;
 			break;
 		}
+
+	}
+
+	function getMaxId() {
+
+		$sql = "SELECT MAX(id) as max_id FROM $this->table_name";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute();
+		$student_data = $stmt->fetch();
+		return $student_data;
 
 	}
 

@@ -6,10 +6,15 @@ class TemplateEngine {
 	protected $vars = array();
 	protected $output = "show";
 
-	public function __construct($template_dir = null) {
+	public function __construct($template_dir = null, $output = null) {
 		if ($template_dir !== null) {
 			// you should check here if this dir really exists
 			$this->template_dir .= $template_dir . '/';
+		}
+
+		if ($output !== null) {
+			// you should check here if this dir really exists
+			$this->output .= $output;
 		}
 	}
 
