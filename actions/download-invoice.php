@@ -2,9 +2,8 @@
 include_once '../autoload.php';
 $result = [];
 
-$t = new TemplateEngine('student');
+$t = new TemplateEngine('student', "get-html");
 $t->data = [];
-$t->output = "get";
 
 $email = urldecode($_GET['email']);
 
@@ -24,22 +23,13 @@ if (!empty($user_data)) {
 	//debug($student_data);
 
 	$page_data['title'] = "Invoice";
+	$page_data['student_data'] = $student_data;
+	$page_data['invoice_details'] = ['amount' => 1000];
+
+	//debug($page_data['student_data']);
 
 	$t->data = $page_data;
 	$invoice_html = $t->render('invoice.phtml');
-
-	$invoice_html = "<html>
-<head>
-
-</head>
-<body>
-	<h1>Payment Invoice</h1>
-	<table>
-		<tr> <th>Details</th> </tr>
-		<tr><td>hello</td></tr>
-	</table>
-</body>
-</html> ";
 
 	//echo $invoice_html;
 

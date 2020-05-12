@@ -1,6 +1,7 @@
 <?php
 include_once 'autoload.php';
 $t = new TemplateEngine('web');
+
 $t->data = [];
 
 $page_data['login'] = $_SESSION['user_data']['type'] ?? false;
@@ -8,7 +9,20 @@ $page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
 $page_data['assets'] = $web_assets;
 
 $page_data['page_title'] = "Student Registration";
-$page_data['registration_fees'] = 1000;
+$page_data['registration_fees'] = 500 * 100;
+$page_data['payment_key'] = 'rzp_test_QQujy8RekXMXbQ';
+
+/*razorpay_payment_id, razorpay_order_id and razorpay_signature
+ */
+
+$page_data['receipt'] = "RECPT_00" . (rand(10, 100));
+
+$payment_gateway = new PaymentGateway();
+$order_details = $payment_gateway->createOrder($page_data['receipt'], $page_data['registration_fees']);
+
+//debug($order_details);
+
+$page_data['order_id'] = $order_details['id'];
 
 $month_data = array(
 	['month' => 1, 'month_display' => "JAN(01)"],
