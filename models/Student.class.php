@@ -98,6 +98,16 @@ class Student extends Dbh {
 
 	}
 
+	function getMaxId() {
+
+		$sql = "SELECT MAX(id) as max_id FROM $this->table_name";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute($params);
+		$student_data = $stmt->fetch();
+		return $student_data;
+
+	}
+
 	function getStudents($type = 'list', $filters = null) {
 
 		$students = [];

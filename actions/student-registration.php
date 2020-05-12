@@ -59,7 +59,7 @@ function validate_form($form_data) {
 
 if (validate_form($_POST)) {
 
-	$payment_status = 'panding';
+	$payment_status = 'pending';
 
 	$payment_gateway = new PaymentGateway();
 

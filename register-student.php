@@ -16,7 +16,15 @@ $page_data['currency'] = config('currency');
 /*razorpay_payment_id, razorpay_order_id and razorpay_signature
  */
 
-$page_data['receipt'] = "RECPT_00" . (rand(10, 100));
+$student = new Student();
+
+$max_entry = $student->getMaxId();
+
+//debug($max_entry);
+
+$page_data['receipt'] = "RECPT_0" . ((int) $max_entry['max_id'] + 1);
+
+debug($page_data);
 
 $payment_gateway = new PaymentGateway();
 $order_details = $payment_gateway->createOrder($page_data['receipt'], $page_data['registration_fees']);
