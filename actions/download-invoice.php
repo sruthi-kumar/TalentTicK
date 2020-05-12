@@ -5,7 +5,7 @@ $result = [];
 $t = new TemplateEngine('student', "get-html");
 $t->data = [];
 
-$email = base64_decode(urldecode($_GET['email']));
+$email = base64_decode(urldecode($_GET['invoice_id']));
 
 $user = new User();
 
@@ -24,7 +24,7 @@ if (!empty($user_data)) {
 
 	$page_data['title'] = "Invoice";
 	$page_data['student_data'] = $student_data;
-	$page_data['invoice_details'] = ['amount' => 1000];
+	$page_data['invoice_details'] = ['amount' => 500];
 
 	//debug($page_data['student_data']);
 

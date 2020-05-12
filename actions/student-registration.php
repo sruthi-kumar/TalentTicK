@@ -94,9 +94,9 @@ if (validate_form($_POST)) {
 
 			$student = new Student();
 			$student->setData('user_id', $result['id']);
-			$student->setData('firstname', $_POST['firstname']);
-			$student->setData('lastname', $_POST['lastname']);
-			$student->setData('mobile_number', $_POST['mobile_number']);
+			$student->setData('firstname', trim($_POST['firstname']));
+			$student->setData('lastname', trim($_POST['lastname']));
+			$student->setData('mobile_number', trim($_POST['mobile_number']));
 			$student->setData('gender', $_POST['gender']);
 			$student->setData('payment_status', $payment_status);
 			$student->setData('payment_id', $payment_id);
@@ -112,9 +112,9 @@ if (validate_form($_POST)) {
 
 				if ($notification->create()) {
 
-					$to_address = $_POST['email'];
+					$to_address = trim($_POST['email']);
 					$subject = "TalenTick Job Portal Registration Successfull!";
-					$body = "Hi " . $_POST['firstname'] . " " . $_POST['lastname'] . " , <br> Your Profile has been successfully registered wih our portal. <br>Please download the invoice of your payment here : <a target='_blank' href='" . base_url() . "/actions/download-invoice.php?email=" . urlencode(base64_encode($_POST['email'])) . "'> INVOICE <a>";
+					$body = "Hi " . $_POST['firstname'] . " " . $_POST['lastname'] . " , <br> Your Profile has been successfully registered wih our portal. <br>Please download the invoice of your payment here : <a target='_blank' href='" . base_url() . "/actions/download-invoice.php?invoice_id=" . urlencode(base64_encode($to_address)) . "'> INVOICE <a>";
 
 					send_email_notification($to_address, $subject, $body);
 

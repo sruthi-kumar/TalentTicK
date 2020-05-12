@@ -8,7 +8,10 @@
 		<tr> <th>Description</th>   <td>TalenTick Registration Fees</td></tr>
 		<tr> <th>Amount</th>   <td><?=$this->data['invoice_details']['amount']?></td></tr>
 		<tr> <th>Payed By</th>   <td> <?=$this->data['student_data']['firstname']?>  <?=$this->data['student_data']['lastname']?>  </td></tr>
-		<tr> <th>Date</th>   <td> <?=$this->data['student_data']['updated_at']?> </td></tr> 
+		<tr> <th>Payment Status</th>   <td><?=$this->data['student_data']['payment_status']?></td></tr>
+		<tr> <th>Payment Id</th>   <td><?=$this->data['student_data']['payment_id']?></td></tr>
+		<tr> <th>Payment Method</th>   <td><?=$this->data['student_data']['payment_method']?></td></tr>
+		<tr> <th>Date</th>   <td> <?=$this->data['student_data']['payment_date']?> </td></tr> 
 	</table>
 </body>
-</html> 
+</html>  
