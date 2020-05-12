@@ -9,8 +9,9 @@ $page_data['login_type'] = $_SESSION['user_data']['type'] ?? "";
 $page_data['assets'] = $web_assets;
 
 $page_data['page_title'] = "Student Registration";
-$page_data['registration_fees'] = 500 * 100;
-$page_data['payment_key'] = 'rzp_test_QQujy8RekXMXbQ';
+$page_data['registration_fees'] = config('registration_fees');
+$page_data['payment_key'] = config('payment_key');
+$page_data['currency'] = config('currency');
 
 /*razorpay_payment_id, razorpay_order_id and razorpay_signature
  */

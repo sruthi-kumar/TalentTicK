@@ -13,7 +13,10 @@ function config($key) {
 		'admin_email' => 'shrutiskumar9633@gmail.com',
 		'env' => 'local',
 		'send_mail' => true,
-
+		'registration_fees' => (500 * 100),
+		'payment_key' => 'rzp_test_QQujy8RekXMXbQ',
+		'payment_secret' => 'iImakcoCjZKIDbk9W2NT6G2l',
+		'currency' => 'INR',
 	);
 
 	return $conf_array[$key] ?? null;

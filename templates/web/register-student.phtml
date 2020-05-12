@@ -101,7 +101,7 @@
                     src="https://checkout.razorpay.com/v1/checkout.js"
                     data-key="<?=$this->data['payment_key']?>"  
                     data-amount="<?=$this->data['registration_fees']?>" 
-                    data-currency="INR"
+                    data-currency="<?=$this->data['currency']?>"
                     data-order_id="<?=$this->data['order_id']?>" 
                     data-buttontext="REGISTER"
                     data-name="TalenTick"

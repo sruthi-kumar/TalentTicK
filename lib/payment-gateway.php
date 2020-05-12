@@ -24,7 +24,7 @@ class PaymentGateway {
 			'receipt' => $receipt,
 			'amount' => $amount,
 			'payment_capture' => 1,
-			'currency' => 'INR',
+			'currency' => config('currency'),
 		)
 		);
 		return $order;
