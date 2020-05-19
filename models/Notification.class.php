@@ -31,29 +31,22 @@ class Notification extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'user':
-			$this->user = $data;
-			break;
-		case 'title':
-			$this->title = $data;
-			break;
-		case 'description':
-			$this->description = $data;
-			break;
-		case 'action_link':
-			$this->action_link = $data;
-			break;
-		case 'type':
-			$this->type = $data;
-			break;
-		case 'status':
-			$this->status = $data;
-			break;
+		$this->__set($property, $value);
+
+	}
+
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
 		}
+	}
 
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
 	}
 
 	function getNotifications() {

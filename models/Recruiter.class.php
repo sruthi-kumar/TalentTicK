@@ -47,47 +47,22 @@ class Recruiter extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'id':
-			$this->id = $data;
-			break;
-		case 'user_id':
-			$this->user_id = $data;
-			break;
-		case 'company_name':
-			$this->company_name = $data;
-			break;
-		case 'email':
-			$this->email = $data;
-			break;
-		case 'website':
-			$this->website = $data;
-			break;
-		case 'phone':
-			$this->phone = $data;
-			break;
-		case 'address':
-			$this->address = $data;
-			break;
-		case 'license':
-			$this->license = $data;
-			break;
-		case 'city':
-			$this->city = $data;
-			break;
-		case 'pincode':
-			$this->pincode = $data;
-			break;
-		case 'image':
-			$this->image = $data;
-			break;
-		case 'status':
-			$this->status = $data;
-			break;
+		$this->__set($property, $value);
+
+	}
+
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
 		}
+	}
 
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
 	}
 
 	function getRecruiters($type = 'list', $status = 'verified') {
