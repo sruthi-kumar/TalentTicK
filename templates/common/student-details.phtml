@@ -107,7 +107,32 @@
           </div>
           </div>
 
-         
+
+          <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#certificates" aria-expanded="false" aria-controls="certificates">
+              Certificates
+            </a>
+            </h4>
+          </div>
+          <div id="certificates" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              <p> SSLC: 
+               <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
+                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['sslc_certificate']?>">View</a>
+             <?php } else{ echo "N/A" ; }?>
+              </p> 
+
+              <p> Higher Secondary: 
+               <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
+                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['highersecondary_certificate']?>">View</a>
+             <?php } else{ echo "N/A" ; }?>
+              </p> 
+
+           </div>
+          </div>
+          </div> 
 
           <div class="panel panel-default">
             <div class="panel-body">
