@@ -27,7 +27,7 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/student-registration.php" method="post" id="registration_form" name="registration_form"class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/student-registration.php" method="post" onsubmit="return validate"id="registration_form" name="registration_form"class="p-5 bg-white">
               
               
               <div class="row form-group">
@@ -367,6 +367,7 @@ function validatecardname(){
   }
   return true;
 }
+
 
 </script>
 
