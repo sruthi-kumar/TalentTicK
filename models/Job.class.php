@@ -50,50 +50,22 @@ class Job extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'recruiter':
-			$this->recruiter = $data;
-			break;
-		case 'job_title':
-			$this->job_title = $data;
-			break;
-		case 'job_type':
-			$this->job_type = $data;
-			break;
-		case 'job_description':
-			$this->job_description = $data;
-			break;
-		case 'district_id':
-			$this->district_id = $data;
-			break;
-		case 'qualified_branches':
-			$this->qualified_branches = $data;
-			break;
-		case 'last_date_to_apply':
-			$this->last_date_to_apply = $data;
-			break;
-		case 'backlog_count':
-			$this->backlog_count = $data;
-			break;
-		case 'CGPA_min':
-			$this->CGPA_min = $data;
-			break;
-		case 'salary_min':
-			$this->salary_min = $data;
-			break;
-		case 'salary_max':
-			$this->salary_max = $data;
-			break;
-		case 'vacancies':
-			$this->vacancies = $data;
-			break;
-		case 'status':
-			$this->status = $data;
-			break;
+		$this->__set($property, $value);
+
+	}
+
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
 		}
+	}
 
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
 	}
 
 	function getJobTypes() {

@@ -58,46 +58,23 @@ class Student extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'id':
-			$this->id = $data;
-			break;
-		case 'user_id':
-			$this->user_id = $data;
-			break;
-		case 'firstname':
-			$this->firstname = $data;
-			break;
-		case 'lastname':
-			$this->lastname = $data;
-			break;
-		case 'payment_status':
-			$this->payment_status = $data;
-			break;
-		case 'payment_id':
-			$this->payment_id = $data;
-			break;
-		case 'payment_method':
-			$this->payment_method = $data;
-			break;
-		case 'payment_date':
-			$this->payment_date = $data;
-			break;
-		case 'mobile_number':
-			$this->mobile_number = $data;
-			break;
-		case 'gender':
-			$this->gender = $data;
-			break;
-		case 'image':
-			$this->image = $data;
-			break;
-		}
+		$this->__set($property, $value);
 
 	}
 
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
+		}
+	}
+
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
+	}
 	function getMaxId() {
 
 		$sql = "SELECT MAX(id) as max_id FROM $this->table_name";
