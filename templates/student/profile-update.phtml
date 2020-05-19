@@ -186,6 +186,34 @@
                   </div>
                  </div>  
 
+                 <div class="form-group">
+                  <label for="pincode" class="col-sm-2 control-label">SSLC Certificate  </label>
+                  <div class="col-sm-4">
+                    <input type="file" class="" id="sslc_certificate" name="sslc_certificate" accept="pdf" required="required" >
+                  </div>
+                  <div class="col-sm-4"> 
+                    <?php if (isset($this->data['profile_details']['sslc_certificate'])) { ?> 
+                   
+                    <a href="<?=base_url()?>/uploads/resumes/<?=$this->data['profile_details']['sslc_certificate']?>"> <i class="fa fa-file"></i> View SSLC Certificate </a>
+                  <?php } ?>
+
+                  </div> 
+                </div>  
+
+                <div class="form-group">
+                  <label for="pincode" class="col-sm-2 control-label">HigherSecondary Certificate  </label>
+                  <div class="col-sm-4">
+                    <input type="file" class="" id="highersecondary_certificate" name="highersecondary_certificate" accept="pdf" required="required" >
+                  </div>
+                  <div class="col-sm-4"> 
+                    <?php if (isset($this->data['profile_details']['highersecondary_certificate'])) { ?> 
+                   
+                    <a href="<?=base_url()?>/uploads/resumes/<?=$this->data['profile_details']['highersecondary_certificate']?>"> <i class="fa fa-file"></i> View HigherSecondary Certificate </a>
+                  <?php } ?>
+
+                  </div> 
+                </div>  
+
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Resume  </label>
                   <div class="col-sm-4">

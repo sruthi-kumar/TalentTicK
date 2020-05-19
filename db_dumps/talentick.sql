@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 12, 2020 at 12:35 PM
+-- Generation Time: May 19, 2020 at 04:59 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -100,6 +100,13 @@ CREATE TABLE `jobs` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
+(1, 1, 'WEB DEVELOPER', 'Web developer trainees', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 2, 100000, 100000, 10, 'active', '2020-05-21', '2020-05-19 10:53:53');
 
 -- --------------------------------------------------------
 
@@ -279,7 +286,9 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (33, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:03:29'),
 (34, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:14:12'),
 (35, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:25:43'),
-(36, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 07:05:14');
+(36, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 07:05:14'),
+(37, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-05-14 15:25:13'),
+(38, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : Web developer trainees  <br>\n\n		Last Date to Apply : 2020-05-21  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-19 10:53:53');
 
 -- --------------------------------------------------------
 
@@ -318,6 +327,8 @@ CREATE TABLE `profiles` (
   `gplus` float NOT NULL,
   `g10` float NOT NULL,
   `backlogs` int NOT NULL,
+  `sslc_certificate` text,
+  `highersecondary_certificate` text,
   `resume` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `highest_qualification` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -344,6 +355,13 @@ CREATE TABLE `recruiters` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `recruiters`
+--
+
+INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `status`, `created_at`) VALUES
+(1, 8, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '9847980829', '21/1, 20th I Cross, Ejippura', 'ABC1234567890', 'Bangalore', '560047', 'default.jpg', 'pending', '2020-05-14 15:25:13');
 
 -- --------------------------------------------------------
 
@@ -373,7 +391,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`) VALUES
-(3, 7, 'John', 'Achari', '9847980829', 'Male', NULL, 'paid', 'pay_EpMBwdFqpEk0sh', 'card', '2020-05-12', 'Male', '2020-05-12 07:05:14');
+(3, 7, 'John', 'Achari', '9847980829', 'Male', NULL, 'paid', 'pay_EpMBwdFqpEk0sh', 'card', '2020-05-12', 'default.jpg', '2020-05-12 07:05:14');
 
 -- --------------------------------------------------------
 
@@ -423,7 +441,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at
 (1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44'),
 (2, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-05 19:56:39'),
 (3, 'tcs@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-06 07:03:10'),
-(7, 'mohanansreekuttan@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-12 07:05:14');
+(7, 'mohanansreekuttan@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-12 07:05:14'),
+(8, 'sreekuttan@maximprof.com', 'fb4160b03096f9f2351e18f3b42bf966', 'recruiter', 'active', '2020-05-14 15:25:13');
 
 --
 -- Indexes for dumped tables
@@ -551,7 +570,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
@@ -581,7 +600,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -593,7 +612,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -611,7 +630,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
