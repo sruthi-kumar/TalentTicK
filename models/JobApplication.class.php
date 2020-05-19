@@ -40,23 +40,22 @@ class JobApplication extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'id':
-			$this->id = $data;
-			break;
-		case 'user':
-			$this->user = $data;
-			break;
-		case 'job':
-			$this->job = $data;
-			break;
-		case 'status':
-			$this->status = $data;
-			break;
+		$this->__set($property, $value);
+
+	}
+
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
 		}
+	}
 
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
 	}
 
 	function getJobApplications($user_id = null, $user_type = null) {

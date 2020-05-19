@@ -33,26 +33,22 @@ class Testimonial extends Dbh {
 		return $params;
 	}
 
-	function setData($type, $data) {
+	function setData($property, $value) {
 
-		switch ($type) {
-		case 'user':
-			$this->user = $data;
-			break;
-		case 'user_type':
-			$this->user_type = $data;
-			break;
-		case 'description':
-			$this->description = $data;
-			break;
-		case 'show_in_web':
-			$this->show_in_web = $data;
-			break;
-		case 'status':
-			$this->status = $data;
-			break;
+		$this->__set($property, $value);
+
+	}
+
+	public function __get($property) {
+		if (property_exists($this, $property)) {
+			return $this->$property;
 		}
+	}
 
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
 	}
 
 	function getTestimonials($type = 'list') {
