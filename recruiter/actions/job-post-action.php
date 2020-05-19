@@ -50,7 +50,7 @@ $login_details = get_current_user_set();
 
 if (validate_form($_POST)) {
 
-	debug($_POST, false);
+	//debug($_POST, false);
 
 	$job = new Job();
 	$job->setData('recruiter', $login_details['user_data']['recruiter_id']);
