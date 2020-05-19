@@ -28,7 +28,6 @@ class User extends Dbh {
 		return $params;
 	}
 
-	
 	function setData($property, $value) {
 
 		$this->__set($property, $value);
@@ -36,16 +35,16 @@ class User extends Dbh {
 	}
 
 	public function __get($property) {
-            if (property_exists($this, $property)) {
-                return $this->$property;
-            }
-    }
+		if (property_exists($this, $property)) {
+			return $this->$property;
+		}
+	}
 
-    public function __set($property, $value) {
-        if (property_exists($this, $property)) {
-            $this->$property = $value;
-        }
-    }]
+	public function __set($property, $value) {
+		if (property_exists($this, $property)) {
+			$this->$property = $value;
+		}
+	}
 
 	function getUsers($type = 'list') {
 
