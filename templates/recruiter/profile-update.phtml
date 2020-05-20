@@ -76,6 +76,22 @@
                   </div>
                 </div> 
 
+                
+                <div class="form-group">
+                  <label for="pincode" class="col-sm-2 control-label">Licence File  </label>
+                  <div class="col-sm-4">
+                    <input type="file" class="" id="license_file" name="license_file" 
+                    <?=(!empty($this->data['profile_details']['license_file']))? "" : ' required="required"'?>  accept="pdf"  >
+                  </div>
+                  <div class="col-sm-4"> 
+                    <?php if (isset($this->data['profile_details']['license_file'])) { ?> 
+                   
+                    <a href="<?=base_url()?>/uploads/licenses/<?=$this->data['profile_details']['license_file']?>"> <i class="fa fa-file"></i> View Licence </a>
+                  <?php } ?>
+
+                  </div> 
+                </div>  
+
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Image  </label>
                   <div class="col-sm-4">
@@ -84,7 +100,8 @@
                   <div class="col-sm-4"> 
                     <img src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">
                   </div> 
-                </div> 
+                </div>  
+
 
 
                 <div class="form-group"> 

@@ -64,7 +64,7 @@ if (validate_form($_POST)) {
 
 		$imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
 
-		$enc_name = base64_encode($_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+		$enc_name = base64_encode("STUDENT_" . $_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
 		$target_file = $target_dir . $enc_name;
 
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {

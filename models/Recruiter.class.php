@@ -20,6 +20,7 @@ class Recruiter extends Dbh {
 	private $city;
 	private $pincode;
 	private $image;
+	private $license_file;
 	private $status = "pending";
 
 	private $table_name = "recruiters";
@@ -43,6 +44,7 @@ class Recruiter extends Dbh {
 		$params['city'] = $this->city ?? '';
 		$params['pincode'] = $this->pincode ?? '';
 		$params['image'] = $this->image ?? '';
+		$params['license_file'] = $this->license_file ?? '';
 		$params['status'] = $this->status ?? '';
 		return $params;
 	}
