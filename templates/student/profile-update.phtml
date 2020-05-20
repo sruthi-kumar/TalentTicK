@@ -203,7 +203,8 @@
                  <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">SSLC Certificate  </label>
                   <div class="col-sm-4">
-                    <input type="file" class="" id="sslc_certificate" name="sslc_certificate" accept="pdf" required="required" >
+                    <input type="file" class="" id="sslc_certificate" name="sslc_certificate" 
+                    <?=(!empty($this->data['profile_details']['sslc_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['sslc_certificate'])) { ?> 
@@ -217,7 +218,9 @@
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">HigherSecondary Certificate  </label>
                   <div class="col-sm-4">
-                    <input type="file" class="" id="highersecondary_certificate" name="highersecondary_certificate" accept="pdf" required="required" >
+                    <input type="file" class="" id="highersecondary_certificate" name="highersecondary_certificate" 
+
+                    <?=(!empty($this->data['profile_details']['highersecondary_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['highersecondary_certificate'])) { ?> 
@@ -231,7 +234,8 @@
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Resume  </label>
                   <div class="col-sm-4">
-                    <input type="file" class="" id="resume" name="resume" accept="pdf" required="required" >
+                    <input type="file" class="" id="resume" name="resume" 
+                    <?=(!empty($this->data['profile_details']['resume']))? "" : ' required="required"'?>  accept="pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['resume'])) { ?> 
