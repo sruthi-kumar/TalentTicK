@@ -1,7 +1,7 @@
 <?php
 require_once '../../autoload.php';
 
-validate_user('student');
+validate_user('student', true);
 
 debug($_POST, false);
 debug($_FILES);
