@@ -8,14 +8,18 @@ if (isset($user_data)) {
 	$login_type = $user_data['type'];
 }
 
-function validate_user($module) {
+function validate_user($module, $is_action = false) {
 
 	global $login_type;
 
 	if ($module != 'valid_user') {
 
 		if ($module != $login_type) {
-			header('location:../login.php');
+			if ($is_action) {
+				header('location:../../login.php');
+			} else {
+				header('location:../login.php');
+			}
 			exit;
 		}
 	}

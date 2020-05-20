@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2020 at 04:59 PM
+-- Generation Time: May 20, 2020 at 01:54 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -316,22 +316,28 @@ CREATE TABLE `profiles` (
   `id` int NOT NULL,
   `student_id` int NOT NULL,
   `dob` date NOT NULL,
-  `address` varchar(40) NOT NULL,
+  `address` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `addressline2` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `state_id` int NOT NULL,
   `district_id` int NOT NULL,
   `pincode` int NOT NULL,
-  `cgpa` float NOT NULL,
-  `gpg` float NOT NULL,
-  `gug` float NOT NULL,
-  `gplus` float NOT NULL,
-  `g10` float NOT NULL,
-  `backlogs` int NOT NULL,
+  `cgpa` float DEFAULT NULL,
+  `gpg` float DEFAULT NULL,
+  `gug` float DEFAULT NULL,
+  `gplus` float DEFAULT NULL,
+  `g10` float DEFAULT NULL,
+  `backlogs` int DEFAULT NULL,
   `sslc_certificate` text,
   `highersecondary_certificate` text,
-  `resume` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `highest_qualification` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
+  `resume` text CHARACTER SET latin1 COLLATE latin1_swedish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `profiles`
+--
+
+INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `sslc_certificate`, `highersecondary_certificate`, `resume`) VALUES
+(1, 3, '1988-08-27', 'Ponnampizhethu House', 'Manappally South', 13, 6, 690539, 65, 65, 60, 74, 72, 6, 'U1NMQ19lcGZvLVVBTi1DYXJkLnBkZjc=.pdf', 'U3JlZWt1dHRhbk1MMjAzMjMyVGVzdC5wZGY3.pdf', 'U1JFRUtVVFRBTl9NX0xfUkVTVU1FLTIwMjAtVXBkYXRlZC5wZGY3.pdf');
 
 -- --------------------------------------------------------
 
@@ -391,7 +397,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`) VALUES
-(3, 7, 'John', 'Achari', '9847980829', 'Male', NULL, 'paid', 'pay_EpMBwdFqpEk0sh', 'card', '2020-05-12', 'default.jpg', '2020-05-12 07:05:14');
+(3, 7, 'John', 'Achari', '9847980829', 'Male', 11, 'paid', 'hgdgcgcirty', 'card', '15-05-2020', 'U3JlZV9QSE9UTy5qcGc3.jpg', '2020-05-12 07:05:14');
 
 -- --------------------------------------------------------
 
@@ -606,7 +612,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `recruiters`

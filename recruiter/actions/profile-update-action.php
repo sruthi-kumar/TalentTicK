@@ -1,7 +1,7 @@
 <?php
 require_once '../../autoload.php';
 
-validate_user('recruiter');
+validate_user('recruiter', ture);
 
 //debug($_POST, false);
 //debug($_FILES);
@@ -60,7 +60,7 @@ if (validate_form($_POST)) {
 
 		$imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
 
-		$enc_name = base64_encode($_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+		$enc_name = base64_encode("RECRUITER_" . $_FILES["image"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
 		$target_file = $target_dir . $enc_name;
 
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
@@ -70,6 +70,33 @@ if (validate_form($_POST)) {
 
 		} else {
 			echo ("File Upload Failed");
+		}
+
+	}
+
+	if (isset($_FILES) && !empty($_FILES['license_file'])) {
+
+		/*echo ($_FILES["license_file"]["name"]);
+			echo "<br>";
+			echo ($_FILES["license_file"]["tmp_name"]);
+		*/
+
+		$target_dir = "../../uploads/licenses/";
+
+		$imageFileType = strtolower(pathinfo($_FILES["license_file"]["name"], PATHINFO_EXTENSION));
+
+		$enc_name = base64_encode("SSLC_" . $_FILES["license_file"]["name"] . $login_details['user_data']['user_id']) . "." . $imageFileType;
+		$target_file = $target_dir . $enc_name;
+
+		if (move_uploaded_file($_FILES["license_file"]["tmp_name"], $target_file)) {
+
+			$license_file = $enc_name;
+			echo ("<br> license_file File Uploaded");
+
+			$recruiter->setData('license_file', $license_file);
+
+		} else {
+			echo ("<br> license_file File Upload Failed");
 		}
 
 	}
