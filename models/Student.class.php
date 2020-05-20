@@ -6,7 +6,7 @@ class Student extends Dbh {
 
 				`users` WHERE 1 `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
 
-				`students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `created_at`, `updated_at`
+				SELECT * FROM `students` WHERE 1 `id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`, `updated_at`
 
 				`departments` WHERE 1 `id`, `department`
 
@@ -29,6 +29,7 @@ class Student extends Dbh {
 	private $mobile_number;
 	private $image;
 	private $gender = "Other";
+	private $branch_id;
 	private $payment_status = "pending";
 	private $payment_id;
 	private $payment_method;
@@ -48,13 +49,14 @@ class Student extends Dbh {
 		$params['user_id'] = $this->user_id ?? '';
 		$params['firstname'] = $this->firstname ?? '';
 		$params['lastname'] = $this->lastname ?? '';
+		$params['branch_id'] = $this->branch_id ?? '';
 		$params['payment_status'] = $this->payment_status ?? 'pending';
 		$params['mobile_number'] = $this->mobile_number ?? '';
 		$params['payment_id'] = $this->payment_id ?? '';
 		$params['payment_method'] = $this->payment_method ?? '';
 		$params['payment_date'] = $this->payment_date ?? '';
 		$params['gender'] = $this->gender ?? '';
-		$params['image'] = $this->gender ?? 'default.jpg';
+		$params['image'] = $this->image ?? 'default.jpg';
 		return $params;
 	}
 

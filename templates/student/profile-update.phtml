@@ -12,14 +12,14 @@
                 <div class="form-group">
                   <label for="firstname" class="col-sm-2 control-label">First Name</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="firstname" name="firstname"  value="<?=$this->data['profile_details']['firstname']?> " readonly />
+                    <input type="text" class="form-control1" id="firstname" name="firstname"  value="<?=$this->data['profile_details']['firstname']?>" readonly />
                   </div>
                 </div> 
 
                 <div class="form-group">
                   <label for="lastname" class="col-sm-2 control-label">Last Name</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="lastname" name="lastname"  value="<?=$this->data['profile_details']['lastname']?> " readonly />
+                    <input type="text" class="form-control1" id="lastname" name="lastname"  value="<?=$this->data['profile_details']['lastname']?>" readonly />
                   </div>
                 </div>  
 
@@ -47,14 +47,14 @@
                 <div class="form-group">
                   <label for="dob" class="col-sm-2 control-label">DOB</label>
                   <div class="col-sm-8">
-                    <input type="date" class="form-control1" id="dob" name="dob" min="<?=(date('d-m-Y', strtotime('-50 year')))?>" max="<?=(date('d-m-Y', strtotime('-20 year')))?>"  value="<?=$this->data['profile_details']['dob']?> " required="required" />
+                    <input type="date" class="form-control1" id="dob" name="dob" min="<?=(date('d-m-Y', strtotime('-50 year')))?>" max="<?=(date('d-m-Y', strtotime('-20 year')))?>"  value="<?=$this->data['profile_details']['dob']?>" required="required" />
                   </div>
                 </div>  
 
                 <div class="form-group">
                   <label for="email" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-8">
-                    <input type="email" required="required" class="form-control1" id="email" onchange="return ValidateEmail()"name="email"  value="<?=$this->data['profile_details']['email']?> " readonly />
+                    <input type="email" required="required" class="form-control1" id="email" onchange="return ValidateEmail()"name="email"  value="<?=$this->data['profile_details']['email']?>" readonly />
                     <label class="errortext" style="display:no ne; color:red" id="email"></label>
                   <div id="email_error" style="color:red;" >  </div>
                   </div>
@@ -62,9 +62,9 @@
 
                 
                 <div class="form-group">
-                  <label for="dob" class="col-sm-2 control-label">mobile_number</label>
+                  <label for="dob" class="col-sm-2 control-label">Mobile Number</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="mobile_number"onchange="return Validatemobile_number()" name="mobile_number"  value="<?=$this->data['profile_details']['mobile_number']?> " >
+                    <input type="text" class="form-control1" id="mobile_number"onchange="return Validatemobile_number()" name="mobile_number"  value="<?=$this->data['profile_details']['mobile_number']?>" >
                     <label class="errortext" style="display:no ne; color:red" id="mobile_number"></label>
                   <div id="mobile_number_error" style="color:red;" >  </div>
 
@@ -96,7 +96,7 @@
                 <div class="form-group">
                   <label for="address" class="col-sm-2 control-label">Address</label>
                   <div class="col-sm-8">
-                    <input type="textarea" class="form-control1" id="address" name="address"  value="<?=$this->data['profile_details']['address']?> " required >
+                    <input type="textarea" class="form-control1" id="address" name="address"  value="<?=$this->data['profile_details']['address']?>" required >
                   </div>
                 </div>  
 
@@ -104,7 +104,7 @@
                 <div class="form-group">
                   <label for="addressline2" class="col-sm-2 control-label">Address Line2</label>
                   <div class="col-sm-8">
-                    <input type="textarea" class="form-control1" id="addressline2" name="addressline2"  value="<?=$this->data['profile_details']['addressline2']?> " required >
+                    <input type="textarea" class="form-control1" id="addressline2" name="addressline2"  value="<?=$this->data['profile_details']['addressline2']?>" required >
                   </div>
                 </div>  
 
@@ -113,7 +113,7 @@
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Pincode</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="pincode" onchange="return ValidatePincode()" name="pincode"  value="<?=$this->data['profile_details']['pincode']?> " >
+                    <input type="text" class="form-control1" id="pincode" onchange="return ValidatePincode()" name="pincode"  value="<?=$this->data['profile_details']['pincode']?>" >
                     <label class="errortext" style="display:no ne; color:red" id="pincode"></label>
                   <div id="pincode_error" style="color:red;" >  
                   </div>
@@ -123,7 +123,8 @@
                 <div class="form-group">
                   <label for="branch_id" class="col-sm-2 control-label">Branch</label>
                   <div class="col-sm-8">
-                    <select  name="branch_id" id="branch_id" class="form-control1"   > 
+                    <select  name="branch_id" id="branch_id" class="form-control1" required="required"   > 
+                      <option>--Select Branch-- </option>  
                       <?php foreach ($this->data['branches'] as $branches ) { ?>
                        <option value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
                        <?php }?>
@@ -134,7 +135,7 @@
                 <div class="form-group">
                   <label for="cgpa" class="col-sm-2 control-label">Percentage</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" onchange="return ValidatePercentage()" id="cgpa"  name="cgpa"  value="<?=$this->data['profile_details']['cgpa']?> " >
+                    <input type="text" class="form-control1" onchange="return ValidatePercentage()" id="cgpa"  name="cgpa"  value="<?=$this->data['profile_details']['cgpa']?>" >
                     <label class="errortext" style="display:no ne; color:red" id="cgpa"></label>
                   <div id="cgpa_error" style="color:red;" >  
                   </div>
@@ -234,7 +235,7 @@
                     <input type="file" class="" accept="png" id="image" name="image" >
                   </div>
                   <div class="col-sm-4"> 
-                    <img src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">
+                    <img class="img img-responsive" width="150" src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">
                   </div> 
                 </div> 
 
@@ -243,8 +244,12 @@
                   <label for="pincode" class="col-sm-2 control-label">   </label>
                   <div class="col-md-8"></div>
                    <div class="col-md-4">
-                    <input type="hidden" name="user_id" value="<?=$this->data['profile_details']['user_id']?> " >
-                    <input type="hidden" name="status" value="<?=$this->data['profile_details']['status']?> " >
+                    <input type="hidden" name="user_id" value="<?=$this->data['profile_details']['user_id']?>" >
+                    <input type="hidden" name="payment_id" value="<?=$this->data['profile_details']['payment_id']?>" >
+                    <input type="hidden" name="payment_status" value="<?=$this->data['profile_details']['payment_status']?>" >
+                    <input type="hidden" name="payment_method" value="<?=$this->data['profile_details']['payment_method']?>" >
+                    <input type="hidden" name="payment_date" value="<?=$this->data['profile_details']['payment_date']?>" > 
+
                     <input type="submit" class="btn btn-info"  value="Update Profile" >
                   </div>
                 </div> 
