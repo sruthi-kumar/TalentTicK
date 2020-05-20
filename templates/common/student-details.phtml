@@ -94,8 +94,7 @@
           <div id="educationDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
                 <p> Branch   : <?=$this->data['profile_details']['branch']??"N/A"?></p>
-                <p> Department   : <?=$this->data['profile_details']['department']??"N/A"?></p>
-                <p> Highest Qualification   : <?=$this->data['profile_details']['highest_qualification']??"N/A"?></p>
+                <p> Department   : <?=$this->data['profile_details']['department']??"N/A"?></p> 
                 <p> CGPA   : <?=$this->data['profile_details']['cgpa']??"N/A"?></p>
                 <p> GPG   : <?=$this->data['profile_details']['gpg']??"N/A"?></p>
                 <p> GUG   : <?=$this->data['profile_details']['gug']??"N/A"?></p>
@@ -120,13 +119,13 @@
             <div class="panel-body">
               <p> SSLC: 
                <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
-                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['sslc_certificate']?>">View</a>
+                <a class="btn btn-info btn-small" target="_blank" href="<?=base_url()?>/uploads/certificates/<?=$this->data['profile_details']['sslc_certificate']?>">View</a>
              <?php } else{ echo "N/A" ; }?>
               </p> 
 
               <p> Higher Secondary: 
                <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
-                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['highersecondary_certificate']?>">View</a>
+                <a class="btn btn-info btn-small" target="_blank" href="<?=base_url()?>/uploads/certificates/<?=$this->data['profile_details']['highersecondary_certificate']?>">View</a>
              <?php } else{ echo "N/A" ; }?>
               </p> 
 
@@ -138,7 +137,7 @@
             <div class="panel-body">
               <p> Resume   : 
                <?php if(!empty($this->data['profile_details']['resume']) ) { ?> 
-                <a class="btn btn-info btn-small" target="_blank" href="<?=$this->data['profile_details']['resume']?>">View</a>
+                <a class="btn btn-info btn-small" target="_blank" href="<?=base_url()?>/uploads/resumes/<?=$this->data['profile_details']['resume']?>">View</a>
              <?php } else{ echo "N/A" ; }?>
               </p> 
            </div>
