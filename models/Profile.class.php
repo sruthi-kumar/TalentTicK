@@ -16,6 +16,7 @@ class Profile extends Dbh {
 	private $addressline2;
 	private $pincode;
 	private $cgpa;
+	private $gpg;
 	private $gug;
 	private $gplus;
 	private $g10;
@@ -43,6 +44,7 @@ class Profile extends Dbh {
 		$params['addressline2'] = $this->addressline2 ?? '';
 		$params['pincode'] = $this->pincode ?? '';
 		$params['cgpa'] = $this->cgpa ?? '';
+		$params['gpg'] = $this->gpg ?? '';
 		$params['gug'] = $this->gug ?? '';
 		$params['gplus'] = $this->gplus ?? '';
 		$params['g10'] = $this->g10 ?? '';

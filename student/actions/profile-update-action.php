@@ -179,6 +179,7 @@ if (validate_form($_POST)) {
 	$profile->setData('addressline2', trim($_POST['addressline2']));
 	$profile->setData('pincode', trim($_POST['pincode']));
 	$profile->setData('cgpa', trim($_POST['cgpa']));
+	$profile->setData('gpg', trim($_POST['gpg']));
 	$profile->setData('gug', trim($_POST['gug']));
 	$profile->setData('gplus', trim($_POST['gplus']));
 	$profile->setData('g10', trim($_POST['g10']));
