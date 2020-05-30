@@ -80,17 +80,23 @@ class Notification extends Dbh {
 
 	}
 
-	function getNotificationByUser($user = null, $date = null) {
+	function getNotificationByUser($user = null, $type = 'list', $date = null) {
 
 		$this->user = $user ?? $this->user;
 
 		$notification_data = [];
 
+		$sql = "SELECT * FROM $this->table_name";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name   ";
+		}
+
 		if (isset($date)) {
-			$sql = "SELECT * FROM $this->table_name WHERE created_at=? AND user=? AND status=? ORDER BY id DESC ";
+			$sql .= " WHERE created_at=? AND user=? AND status=? ORDER BY id DESC ";
 			$params = [Date($date), $this->user, 'active'];
 		} else {
-			$sql = "SELECT * FROM $this->table_name WHERE user=? AND status=? ";
+			$sql .= "  WHERE user=? AND status=? ";
 			$params = [$this->user, 'active'];
 		}
 		$stmt = $this->connect()->prepare($sql);
