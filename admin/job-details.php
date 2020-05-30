@@ -19,7 +19,13 @@ $job = new Job();
 //$job->setData('user', $_SESSION['user_data']['user_id']);
 $page_data['job_details'] = $job->getJobById($id);
 
-debug($page_data['job_details']);
+//debug($page_data['job_details']);
+
+$application = new JobApplication();
+
+$page_data['application_count'] = $application->getJobApplicationByJob($page_data['job_details']['id'], 'count');
+
+//debug($page_data['application_count']);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

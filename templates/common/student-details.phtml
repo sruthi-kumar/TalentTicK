@@ -24,6 +24,12 @@
                 <p> Gender : <?=$this->data['profile_details']['gender']??"N/A"?></p>
                 <p> Payment Status : <?=$this->data['profile_details']['payment_status']??"N/A"?></p> 
                 <p> Created At : <?=$this->data['profile_details']['created_at']??"N/A"?></p>
+
+                <?php if($this->data['user_data']['type'] == 'admin'  ){ ?> 
+
+                  <p> Total Jobs Applied : <?=$this->data['application_count']['count'] ?>   </p> 
+
+                <?php }  ?>
               
             </div>
           </div>
