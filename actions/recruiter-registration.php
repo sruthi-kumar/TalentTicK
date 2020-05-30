@@ -76,6 +76,33 @@ if (validate_form($_POST)) {
 		$recruiter->setData('city', $_POST['city']);
 		$recruiter->setData('pincode', $_POST['pincode']);
 
+		if (isset($_FILES) && !empty($_FILES['license_file'])) {
+
+			/*echo ($_FILES["license_file"]["name"]);
+				echo "<br>";
+				echo ($_FILES["license_file"]["tmp_name"]);
+			*/
+
+			$target_dir = "../../uploads/licenses/";
+
+			$imageFileType = strtolower(pathinfo($_FILES["license_file"]["name"], PATHINFO_EXTENSION));
+
+			$enc_name = base64_encode("SSLC_" . $_FILES["license_file"]["name"] .$result['id'] . "." . $imageFileType;
+			$target_file = $target_dir . $enc_name;
+
+			if (move_uploaded_file($_FILES["license_file"]["tmp_name"], $target_file)) {
+
+				$license_file = $enc_name;
+				echo ("<br> license_file File Uploaded");
+
+				$recruiter->setData('license_file', $license_file);
+
+			} else {
+				echo ("<br> license_file File Upload Failed");
+			}
+
+		}
+
 		//debug($recruiter);
 
 		if ($recruiter->create()) {
