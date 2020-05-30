@@ -273,8 +273,21 @@ document.getElementById('password_error').innerHTML = "Password must be at least
 document.getElementById('password').focus();
 return false;  
 }
-return true
+var passw=  /^[A-Za-z]\w{7,14}$/;
+if(document.forms["registration_form"]["password"].value.match(passw))
+{
+  
+} 
+else
+{ 
+document.getElementById('password_error').innerHTML="Password must contain numbers,characters,underscore and first letter as character.";
+document.getElementById("password").focus();
+return false;
 }
+return true;
+}
+
+
 
 
 
