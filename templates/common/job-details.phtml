@@ -12,7 +12,7 @@
           <p> Salary Max: <?=$this->data['job_details']['salary_max']?> </p>
           <p> Vacancies: <?=$this->data['job_details']['vacancies']?> </p>
           <p> Last Date to Apply: <?=$this->data['job_details']['last_date_to_apply']?> </p>
-          <p> Company Name: <?=$this->data['job_details']['company_name']?> </p>
+          <p> Company Name:  <a target="_blank" href="<?=base_url().'/'.$this->data['login_type'].'/recruiter-details.php?id='.$this->data['job_details']['recruiter']?>"> <?=$this->data['job_details']['company_name']?> </a> </p>
           <p> JobType: <?=$this->data['job_details']['JobType']?> </p>
           <p> District: <?=$this->data['job_details']['District']?> </p>
           <p> State: <?=$this->data['job_details']['State']?> </p>

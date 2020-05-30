@@ -1,8 +1,8 @@
 <?php
 require_once '../autoload.php';
-validate_user('admin');
+validate_user('student');
 
-$t = new TemplateEngine('admin');
+$t = new TemplateEngine('student');
 $t->data = [];
 
 $page_data = get_current_user_set();

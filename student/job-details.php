@@ -19,6 +19,8 @@ $job = new Job();
 //$job->setData('user', $_SESSION['user_data']['user_id']);
 $page_data['job_details'] = $job->getJobById($id);
 
+//debug($page_data['job_details']);
+
 $application = new JobApplication();
 
 //debug($page_data['user_data']['user_id']);
