@@ -58,31 +58,22 @@ class JobApplication extends Dbh {
 		}
 	}
 
-	function getJobApplications($user_id = null, $user_type = null) {
+	function getJobApplications($user_id = null, $user_type = null, $type = 'list') {
 
 		$jobs = [];
 
 		$sql = "SELECT $this->table_name.*, jobs.job_title , job_types.job_type, students.firstname,students.lastname, recruiters.company_name, location_districts.district FROM $this->table_name ";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
+		}
+
 		$sql .= " JOIN users ON users.id = $this->table_name.user ";
 		$sql .= " JOIN students ON students.user_id =  users.id ";
 		$sql .= " JOIN jobs ON jobs.id = $this->table_name.job ";
 		$sql .= " JOIN job_types ON job_types.id = jobs.job_type ";
 		$sql .= " JOIN recruiters ON recruiters.id = jobs.recruiter ";
 		$sql .= " JOIN location_districts ON location_districts.id = jobs.district_id ";
-
-		if (isset($user_id) && isset($user_type)) {
-
-			if ($user_type == "recruiter") {
-
-				$sql .= " WHERE jobs.recruiter = $user_id ";
-			}
-
-			if ($user_type == "student") {
-
-				$sql .= " WHERE students.id = $user_id ";
-			}
-
-		}
 
 		//debug($sql);
 
@@ -96,7 +87,7 @@ class JobApplication extends Dbh {
 
 	}
 
-	function getJobApplicationByIdStudent($job, $user) {
+	function getJobApplicationForJobByStudent($job, $user) {
 
 		$job_data = [];
 
@@ -140,15 +131,20 @@ class JobApplication extends Dbh {
 
 	}
 
-	function getJobApplicationByUserJobApplicationname($jobname = null) {
+	function getJobApplicationByJob($job, $type = 'list') {
 
-		$this->jobname = $jobname ?? $this->jobname;
+		$this->job = $job ?? $this->job;
 
 		$job_data = [];
 
-		$sql = "SELECT * FROM $this->table_name WHERE jobname=?";
+		$sql = "SELECT * FROM $this->table_name WHERE job=?";
+
+		if ($type == 'count') {
+			$sql = "SELECT COUNT(*) as count FROM $this->table_name ";
+		}
+
 		$stmt = $this->connect()->prepare($sql);
-		$params = [$this->jobname];
+		$params = [$this->job];
 		$stmt->execute($params);
 		$job_data = $stmt->fetch();
 

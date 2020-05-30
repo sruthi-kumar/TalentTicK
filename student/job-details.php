@@ -25,7 +25,7 @@ $application = new JobApplication();
 
 //debug($page_data['user_data']['user_id']);
 
-$page_data['job_application_details'] = $application->getJobApplicationByIdStudent($id, $page_data['user_data']['user_id']);
+$page_data['job_application_details'] = $application->getJobApplicationForJobByStudent($id, $page_data['user_data']['user_id']);
 
 //debug($page_data['job_application_details']);
 

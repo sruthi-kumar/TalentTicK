@@ -18,6 +18,14 @@ $page_data['profile_details'] = $student->getStudentById($_GET['id']);
 
 //debug($page_data['job_details']);
 
+$application = new JobApplication();
+
+$page_data['application_count'] = $application->getJobApplications($_GET['id'], 'student', 'count');
+
+$page_data['application_count'] = ($page_data['application_count'][0]) ?? ['count' => 0];
+
+//debug($page_data['application_count']);
+
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');

@@ -11,12 +11,15 @@
           <p> Salary Min: <?=$this->data['job_details']['salary_min']?> </p>
           <p> Salary Max: <?=$this->data['job_details']['salary_max']?> </p>
           <p> Vacancies: <?=$this->data['job_details']['vacancies']?> </p>
+           <?php if($this->data['user_data']['type'] == 'admin'  ){ ?> 
+           <p> Total Applications : <?=$this->data['application_count']['count'] ?>   </p> 
+          <?php }  ?>
           <p> Last Date to Apply: <?=$this->data['job_details']['last_date_to_apply']?> </p>
           <p> Company Name:  <a target="_blank" href="<?=base_url().'/'.$this->data['login_type'].'/recruiter-details.php?id='.$this->data['job_details']['recruiter']?>"> <?=$this->data['job_details']['company_name']?> </a> </p>
           <p> JobType: <?=$this->data['job_details']['JobType']?> </p>
           <p> District: <?=$this->data['job_details']['District']?> </p>
-          <p> State: <?=$this->data['job_details']['State']?> </p>
-
+          <p> State: <?=$this->data['job_details']['State']?> </p> 
+ 
             <?php if($this->data['user_data']['type'] == 'student' && !$this->data['job_application_details'] ){ ?>
             <div> <br>
               <a class="btn btn-success btn-sm" href="<?=base_url()?>/student/actions/job-apply-action.php?id=<?=$this->data['job_details']['id']?>">Apply</a>      
