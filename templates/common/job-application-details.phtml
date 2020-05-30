@@ -5,7 +5,8 @@
         <div class="blank-page widget-shadow scroll" id="style-2 div1">
           <p> Job Title: <?=$this->data['application_details']['job_title']?> </p>
           <p> Job Description: <?=$this->data['application_details']['created_at']?> </p> 
-          <p> JobType: <?=$this->data['application_details']['job_type']?> </p>
+          <p> Job Type: <?=$this->data['application_details']['job_type']?> </p>
+          <p> Job Location: <?=$this->data['application_details']['district']?> </p>
           <p> Applicant: <a  href="<?=base_url().'/'.$this->data['login_type'].'/student-details.php?id='.$this->data['application_details']['student_id']?>">  <?= strtoupper( $this->data['application_details']['firstname'] ." ". $this->data['application_details']['lastname']) ?>   </a> 
           </p>
           <p> Status: <?=$this->data['application_details']['status']?> </p> 

@@ -62,12 +62,13 @@ class JobApplication extends Dbh {
 
 		$jobs = [];
 
-		$sql = "SELECT $this->table_name.*, jobs.job_title , job_types.job_type, students.firstname,students.lastname, recruiters.company_name FROM $this->table_name ";
+		$sql = "SELECT $this->table_name.*, jobs.job_title , job_types.job_type, students.firstname,students.lastname, recruiters.company_name, location_districts.district FROM $this->table_name ";
 		$sql .= " JOIN users ON users.id = $this->table_name.user ";
 		$sql .= " JOIN students ON students.user_id =  users.id ";
 		$sql .= " JOIN jobs ON jobs.id = $this->table_name.job ";
 		$sql .= " JOIN job_types ON job_types.id = jobs.job_type ";
 		$sql .= " JOIN recruiters ON recruiters.id = jobs.recruiter ";
+		$sql .= " JOIN location_districts ON location_districts.id = jobs.district_id ";
 
 		if (isset($user_id) && isset($user_type)) {
 
@@ -121,12 +122,13 @@ class JobApplication extends Dbh {
 		$job_data = [];
 
 		$sql = "SELECT $this->table_name.*";
-		$sql .= ", jobs.job_title , job_types.job_type, students.firstname,students.lastname , students.id as student_id ";
+		$sql .= ", jobs.job_title , job_types.job_type, location_districts.district, students.firstname,students.lastname , students.id as student_id ";
 		$sql .= " FROM $this->table_name ";
 		$sql .= " JOIN users ON users.id = $this->table_name.user ";
 		$sql .= " JOIN students ON students.user_id =  users.id ";
 		$sql .= " JOIN jobs ON jobs.id = $this->table_name.job ";
 		$sql .= " JOIN job_types ON job_types.id = jobs.job_type ";
+		$sql .= " JOIN location_districts ON location_districts.id = jobs.district_id ";
 
 		$sql .= "  WHERE $this->table_name.id=?";
 		$stmt = $this->connect()->prepare($sql);
