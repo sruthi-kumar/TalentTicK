@@ -43,6 +43,20 @@ class Dbh {
 
 	}
 
+	function getCount($status = null, $status_item = 'status') {
+
+		$sql = "SELECT COUNT(*) FROM $this->table_name ";
+
+		if (isset($status)) {
+			$sql .= " WHERE " . $status_item . " = '" . $status . "'";
+		}
+
+		$result = $this->connect()->query($sql)->fetchColumn();
+
+		return $result;
+
+	}
+
 	function create() {
 
 		$model_data = set_model_data($this->toArray());
