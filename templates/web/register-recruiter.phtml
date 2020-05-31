@@ -356,8 +356,27 @@ document.getElementById('password_error').innerHTML = "Password must be at least
 document.getElementById('password').focus();
 return false;  
 }
-return true
+
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
+if( mediumRegex.test(o))
+{
+
+  //console.log("strong pass") ;
+  document.getElementById('password_error').innerHTML = "" ;
+  
+} 
+else
+{ 
+document.getElementById('password_error').innerHTML="Week Password! Password must contain alpabets, numbers & special characters";
+document.getElementById("password").focus();
+return false;
 }
+return true;
+}
+
 
 
 
