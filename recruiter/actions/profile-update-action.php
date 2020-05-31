@@ -1,7 +1,7 @@
 <?php
 require_once '../../autoload.php';
 
-validate_user('recruiter', ture);
+validate_user('recruiter', true);
 
 //debug($_POST, false);
 //debug($_FILES);
