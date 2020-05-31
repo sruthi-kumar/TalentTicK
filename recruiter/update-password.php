@@ -9,22 +9,17 @@ $page_data = get_current_user_set();
 
 $page_data['assets'] = $admin_assets;
 
+$page_data['page'] = "update-password";
+$page_data['page_title'] = "Update Password";
+
 if (isset($_GET['status']) && $_GET['status'] == 'success') {
 
-	$page_data['page'] = "update-password";
-	$page_data['page_title'] = "Update Password";
-
-	$page_data['page'] = "validation-pending";
-	$page_data['page_title'] = "Validation Pending";
 	$t->data = $page_data;
 	$t->render('inc/header.phtml');
 	$t->render('password-updated.phtml');
 	session_destroy();
 	exit;
 } else {
-
-	$page_data['page'] = "update-password";
-	$page_data['page_title'] = "Update Password";
 
 	$t->data = $page_data;
 	$t->render('inc/header.phtml');
