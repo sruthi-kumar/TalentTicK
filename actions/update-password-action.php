@@ -5,7 +5,7 @@ $current_user = get_current_user_set();
 
 //debug($current_user);JECjeYu9
 
-//debug($_POST);
+//debug($_POST, false);
 
 $user_id = $current_user['user_data']['user_id'];
 
@@ -17,7 +17,7 @@ if (!empty($_POST['current_password']) && !empty($_POST['new_password'])) {
 
 	//debug($user_details);
 
-	if (md5($_POST['currrent_password']) == $user_details['password']) {
+	if (md5($_POST['current_password']) == $user_details['password']) {
 
 		$user->setData('username', $user_details['username']);
 		$user->setData('password', md5($_POST['new_password']));
@@ -25,7 +25,6 @@ if (!empty($_POST['current_password']) && !empty($_POST['new_password'])) {
 		$user->setData('status', $user_details['status']);
 
 		$user->update($user_id);
-
 		header('location:../' . $user_details['type'] . '/update-password.php?status=success');
 		exit;
 

@@ -15,7 +15,14 @@
            <p> Total Applications : <?=$this->data['application_count']['count'] ?>   </p> 
           <?php }  ?>
           <p> Last Date to Apply: <?=$this->data['job_details']['last_date_to_apply']?> </p>
+
+           <?php if($this->data['user_data']['type'] == 'student'){ ?>
+
           <p> Company Name:  <a target="_blank" href="<?=base_url().'/'.$this->data['login_type'].'/recruiter-details.php?id='.$this->data['job_details']['recruiter']?>"> <?=$this->data['job_details']['company_name']?> </a> </p>
+
+           <?php }  ?>
+
+
           <p> JobType: <?=$this->data['job_details']['JobType']?> </p>
           <p> District: <?=$this->data['job_details']['District']?> </p>
           <p> State: <?=$this->data['job_details']['State']?> </p> 
