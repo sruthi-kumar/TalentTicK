@@ -85,9 +85,9 @@ if (validate_form($_POST)) {
 
 			$target_dir = "../../uploads/licenses/";
 
-			$imageFileType = strtolower(pathinfo($_FILES["license_file"]["name"], PATHINFO_EXTENSION);
+			$imageFileType = strtolower(pathinfo($_FILES["license_file"]["name"], PATHINFO_EXTENSION));
 
-			$enc_name = base64_encode("SSLC_" . $_FILES["license_file"]["name"] .$result['id'] . "." . $imageFileType;
+			$enc_name = base64_encode("SSLC_" . $_FILES["license_file"]["name"] . $result['id'] . "." . $imageFileType);
 			$target_file = $target_dir . $enc_name;
 
 			if (move_uploaded_file($_FILES["license_file"]["tmp_name"], $target_file)) {

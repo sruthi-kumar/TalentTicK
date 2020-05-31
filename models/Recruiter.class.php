@@ -43,7 +43,7 @@ class Recruiter extends Dbh {
 		$params['license'] = $this->license ?? '';
 		$params['city'] = $this->city ?? '';
 		$params['pincode'] = $this->pincode ?? '';
-		$params['image'] = $this->image ?? '';
+		$params['image'] = $this->image ?? 'default.jpg';
 		$params['license_file'] = $this->license_file ?? '';
 		$params['status'] = $this->status ?? '';
 		return $params;
