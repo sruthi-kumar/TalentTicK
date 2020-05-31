@@ -49,7 +49,7 @@ class Student extends Dbh {
 		$params['user_id'] = $this->user_id ?? '';
 		$params['firstname'] = $this->firstname ?? '';
 		$params['lastname'] = $this->lastname ?? '';
-		$params['branch_id'] = $this->branch_id ?? '';
+		$params['branch_id'] = $this->branch_id ?? null;
 		$params['payment_status'] = $this->payment_status ?? 'pending';
 		$params['mobile_number'] = $this->mobile_number ?? '';
 		$params['payment_id'] = $this->payment_id ?? '';
