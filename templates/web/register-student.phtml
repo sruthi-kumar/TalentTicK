@@ -84,7 +84,7 @@
               <div class="row form-group mb-5">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" onchange="Validatepass()" required="required">
+                  <input type="password" id="password" name="password" class="form-control" onchange="validatepass()" required="required">
                   <label class="errortext" style="display:nne; color:red" id="pass"></label>
                   <div id="password_error" style="color:red;">  </div>
                 </div>
@@ -262,6 +262,7 @@ function validatepass()
 {
 document.getElementById('password_error').innerHTML = "" ;
 var o=document.forms["registration_form"]["password"].value;
+//console.log(o) ;
 if(o=="")
 {
 document.getElementById('password_error').innerHTML = "Please Fill password Field" ;
@@ -273,23 +274,26 @@ document.getElementById('password_error').innerHTML = "Password must be at least
 document.getElementById('password').focus();
 return false;  
 }
-var passw=  /^[A-Za-z]\w{7,14}$/;
-if(document.forms["registration_form"]["password"].value.match(passw))
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
+if( mediumRegex.test(o))
 {
+
+  //console.log("strong pass") ;
+  document.getElementById('password_error').innerHTML = "" ;
   
 } 
 else
 { 
-document.getElementById('password_error').innerHTML="Password must contain numbers,characters,underscore and first letter as character.";
+document.getElementById('password_error').innerHTML="Week Password! Password must contain alpabets, numbers & special characters";
 document.getElementById("password").focus();
 return false;
 }
 return true;
 }
-
-
-
-
+ 
 
 function validatecpass()
 {
@@ -310,6 +314,8 @@ return false;
 }
 return (true);
 }
+
+
 function validatecardno()
 {
  document.getElementById('card_no_error').innerHTML = "" ;
