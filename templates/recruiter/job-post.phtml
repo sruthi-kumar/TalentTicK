@@ -23,7 +23,7 @@
                 
                 <div class="form-group">
                   <label for="job_description" class="col-sm-2 control-label">Job Description</label>
-                  <div class="col-sm-8"><textarea name="job_description" id="job_description" placeholder="Job Description" cols="50" rows="4" class="form-control1" onchange="return ValidateJobDescription()" required="required"></textarea>
+                  <div class="col-sm-8"><textarea name="job_description" type="textarea" id="job_description" placeholder="venue,date,reporting time" cols="50" rows="4" class="form-control1" onchange="return ValidateJobDescription()" required="required"></textarea>
                   <label class="errortext" style="display:no ne; color:red" id="job_description"></label>
                   <div id="job_description_error" style="color:red;">  </div>
 
@@ -104,7 +104,7 @@
                 <div class="form-group">
                   <label for="salary_min" class="col-sm-2 control-label">Minimum Salary</label>
                   <div class="col-sm-8">
-                    <input type="number" class="form-control1" name="salary_min" id="salary_min" placeholder="Minimum Salary" onchange="return ValidateSalaryMin()" required="required">
+                    <input type="number" class="form-control1" name="salary_min" id="salary_min" placeholder="Minimum Salary" onchange="return ValidateSalary_min()" required="required">
                     <label class="errortext" style="display:no ne; color:red" id="salary_min"></label>
                     <div id="salary_min_error" style="color:red;">  </div>
                   </div>
@@ -114,7 +114,7 @@
                 <div class="form-group">
                   <label for="salary_max" class="col-sm-2 control-label">Maximum Salary</label>
                   <div class="col-sm-8">
-                    <input type="number" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" onchange="return ValidateSalaryMax()" required="required">
+                    <input type="number" class="form-control1" name="salary_max" id="salary_max" placeholder="Maximum Salary" onchange="return ValidateSalary_Max()" required="required">
                      <label class="errortext" style="display:no ne; color:red" id="salary_max"></label>
                     <div id="salary_max_error" style="color:red;">  </div>
                   </div>
@@ -134,7 +134,9 @@
                 <div class="form-group">
                   <label for="vacancies" class="col-sm-2 control-label">No of Vacancies</label>
                   <div class="col-sm-8">
-                    <input type="number" class="form-control1" name="vacancies" id="vacancies" placeholder="Vacancies" value="1" required="required">
+                    <input type="number" class="form-control1" name="vacancies" onchange="return Validate_vacancy()" id="vacancies" placeholder="Vacancies" value="1" required="required">
+                    <label class="errortext" style="display:no ne; color:red" id="vacancies"></label>
+                    <div id="vacancies_error" style="color:red;">  </div>
                   </div>
                 </div>
 
@@ -356,12 +358,12 @@ return true;
 
  }      
 
-/*function ValidateCgpa() 
+function ValidateCgpa() 
 {
  document.getElementById('CGPA_min_error').innerHTML = "" ;
 if(document.job_post_form.CGPA_min.value == "" ||
 isNaN(document.job_post_form.CGPA_min.value) ||
-document.job_post_form.CGPA_min.value.length != 6 )
+document.job_post_form.CGPA_min.value.length != 2 )
 {
  document.getElementById('CGPA_min_error').innerHTML = "Please provide a valid CGPA " ;     
 
@@ -369,8 +371,8 @@ document.job_post_form.CGPA_min.value.length != 6 )
 document.getElementById('CGPA_min').focus();
 return false;
 }
-var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
-if(!pattern.test(document.job_post_form.CGPA_min.value))
+var pattern = document.getElementById('CGPA_min_error').value;
+if(isNaN(pattern))
 {
  document.getElementById('CGPA_min_error').innerHTML = "CGPA is invalid!" ; 
 job_post_form.CGPA_min.focus();
@@ -383,14 +385,15 @@ function ValidateBacklog()
  document.getElementById('backlog_count_error').innerHTML = "" ;
 if(document.job_post_form.backlog_count.value == "" ||
 isNaN(document.job_post_form.backlog_count.value) ||
- )
+document.job_post_form.CGPA_min.value.length != 2 )
+
 {
  document.getElementById('backlog_count_error').innerHTML = "Please provide a valid Backlog count " ;      
 document.getElementById('backlog_count').focus();
 return false;
 }
-//var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
-if(!pattern.test(document.job_post_form.backlog_count.value))
+var pattern = document.getElementById('backlog_count').value;
+if(isNaN(pattern))
 {
  document.getElementById('backlog_count_error').innerHTML = "Backlog Count is invalid!" ; 
 job_post_form.backlog_count.focus();
@@ -403,7 +406,7 @@ function ValidateSalary_min()
  document.getElementById('salary_min_error').innerHTML = "" ;
 if(document.job_post_form.salary_min.value == "" ||
 isNaN(document.job_post_form.salary_min.value) ||
-document.job_post_form.salary_min.value.length != 3 )
+document.job_post_form.salary_min.value.length != 6 )
 {
  document.getElementById('salary_min_error').innerHTML = "Please provide a accurate salary " ;     
 
@@ -411,8 +414,8 @@ document.job_post_form.salary_min.value.length != 3 )
 document.getElementById('salary_min').focus();
 return false;
 }
-var pattern = new RegExp("^([5]{1})([0-9]{3})$");
-if(!pattern.test(document.job_post_form.salary_min.value))
+var pattern = document.getElementById('salary_min').value;
+if(isNaN(pattern))
 {
  document.getElementById('salary_min_error').innerHTML = "salary is invalid!" ; 
 job_post_form.salary_min.focus();
@@ -420,12 +423,12 @@ return false;
 }
 return true;
 }
-function ValidateSalaryMax()
+function ValidateSalary_Max()
 {
  document.getElementById('salary_max_error').innerHTML = "" ;
 if(document.job_post_form.salary_max.value == "" ||
 isNaN(document.job_post_form.salary_max.value) ||
-document.job_post_form.salary_max.value.length != 3 )
+document.job_post_form.salary_max.value.length > document.job_post_form.salary_min.value.length )
 {
  document.getElementById('salary_max_error').innerHTML = "Please provide a accurate salary " ;     
 
@@ -433,15 +436,36 @@ document.job_post_form.salary_max.value.length != 3 )
 document.getElementById('salary_max').focus();
 return false;
 }
-var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
-if(!pattern.test(document.job_post_form.salary_max.value))
+var pattern =document.getElementById('salary_max').value;
+
+if(isNaN(pattern))
 {
  document.getElementById('salary_max_error').innerHTML = "salary  is invalid!" ; 
-job_post_form.salary_max_min.focus();
+job_post_form.salary_max.focus();
 return false;
 }
 return true;
-}*/
+}
+function Validate_vacancy()
+{
+ document.getElementById('vacancies_error').innerHTML = "" ;
+if(document.job_post_form.vacancies.value == "" ||
+isNaN(document.job_post_form.Vacancies.value) ||
+document.job_post_form.Vacancies.value.length != 4 )
+{
+ document.getElementById('vacancies_error').innerHTML = "Please provide a accurate vacancies count " ;   
+document.getElementById('vacancies').focus();
+return false;
+}
+var pattern =document.getElementById('vacancies').value;
 
+if(isNaN(pattern))
+{
+ document.getElementById('vacancies_error').innerHTML = "vacancy is invalid!" ; 
+job_post_form.vacancies.focus();
+return false;
+}
+return true;
+}
 
     </script>
