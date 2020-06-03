@@ -48,7 +48,7 @@ class Profile extends Dbh {
 		$params['gug'] = $this->gug ?? '';
 		$params['gplus'] = $this->gplus ?? '';
 		$params['g10'] = $this->g10 ?? '';
-		$params['backlogs'] = $this->backlogs ?? '';
+		$params['backlogs'] = $this->backlogs ?? 0;
 		$params['sslc_certificate'] = $this->sslc_certificate ?? '';
 		$params['highersecondary_certificate'] = $this->highersecondary_certificate ?? '';
 		$params['resume'] = $this->resume ?? '';
