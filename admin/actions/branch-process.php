@@ -9,7 +9,7 @@ $status = 'success';
 
 $branch = new Branch();
 /*
-`branchs` WHERE 1 `id`, `branch`*/.
+`branchs` WHERE 1 `id`, `branch`*/
 
 
 
