@@ -3,8 +3,8 @@ require_once '../../autoload.php';
 
 validate_user('student', true);
 
-debug($_POST, false);
-debug($_FILES, false);
+//debug($_POST, false);
+//debug($_FILES, false);
 
 $status = 'success';
 
@@ -167,7 +167,7 @@ if (validate_form($_POST)) {
 	$student->setData('payment_method', trim($_POST['payment_method']));
 	$student->setData('payment_date', trim($_POST['payment_date']));
 
-	debug($student, false);
+	//debug($student, false);
 
 	$profile->setData('student_id', $login_details['user_data']['student_id']);
 	$profile->setData('dob', trim($_POST['dob']));
@@ -183,11 +183,11 @@ if (validate_form($_POST)) {
 	$profile->setData('g10', trim($_POST['g10']));
 	$profile->setData('backlogs', trim($_POST['backlogs']));
 
-	debug($profile, false);
+	//debug($profile, false);
 
 	$result = $student->update($login_details['user_data']['student_id']);
 
-	debug($result);
+	//debug($result);
 
 	if (!$result) {
 		$status = 'failed';
@@ -222,7 +222,7 @@ if (validate_form($_POST)) {
 
 //debug($result);
 
-if ($status = 'failed') {
+if ($status == 'failed') {
 	header("location:../profile-update.php?type=student&status=$status");
 
 } else {
