@@ -135,7 +135,7 @@
                 <div class="form-group">
                   <label for="cgpa" class="col-sm-2 control-label">Percentage</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" onchange="return ValidatePercentage()" id="cgpa"  name="cgpa"  value="<?=$this->data['profile_details']['cgpa']?>" >
+                    <input type="text" class="form-control1" onchange="return Validate_Percentage()" id="cgpa"  name="cgpa"  value="<?=$this->data['profile_details']['cgpa']?>" >
                     <label class="errortext" style="display:no ne; color:red" id="cgpa"></label>
                   <div id="cgpa_error" style="color:red;" >  
                   </div>
@@ -146,9 +146,9 @@
                 <div class="form-group">
                   <label for="gpg" class="col-sm-2 control-label">Percentage in Post Graduation</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="gpg" onchange="return ValidatePostGraduation()" name="gpg"  value="<?=$this->data['profile_details']['gpg']?>" >
+                    <input type="text" class="form-control1" id="gpg" onchange="return Validate_Post_Graduation()" name="gpg"  value="<?=$this->data['profile_details']['gpg']?>" >
                      <label class="errortext" style="display:no ne; color:red" id="gpg"></label>
-                  <div id="gug_error" style="color:red;" >  
+                  <div id="gpg_error" style="color:red;" >  
                   </div>
 
                   </div>
@@ -157,7 +157,7 @@
                 <div class="form-group">
                   <label for="gug" class="col-sm-2 control-label">Percentage in Graduation</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="gug" onchange="return ValidateGraduation()" name="gug"  value="<?=$this->data['profile_details']['gug']?>" >
+                    <input type="text" class="form-control1" id="gug" onchange="return Validate_Graduation()" name="gug"  value="<?=$this->data['profile_details']['gug']?>" >
                      <label class="errortext" style="display:no ne; color:red" id="gug"></label>
                   <div id="gug_error" style="color:red;" >  
                   </div>
@@ -397,27 +397,120 @@ return false;
 }
 return true;
 }
-function ValidatePercentage()
+function Validate_Percentage()
 {
+document.getElementById('cgpa_error').innerHTML = "" ;
+if(document.update_form.cgpa.value == "" ||
+isNaN(document.update_form.cgpa.value) ||
+document.update_form.cgpa.value.length != 2 )
 
+{
+ document.getElementById('cgpa_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('cgpa').focus();
+return false;
+}
+var pattern = document.getElementById('cgpa').value;
+if(isNaN(pattern))
+{
+ document.getElementById('cgpa_error').innerHTML = "CGPA is invalid!" ; 
+update_form.cgpa.focus();
+return false;
+}
+return true;
 }
 
 
-function ValidatePostGraduation()
+
+
+function Validate_Post_Graduation()
 {
+document.getElementById('gpg_error').innerHTML = "" ;
+if(document.update_form.gpg.value == "" ||
+isNaN(document.update_form.gpg.value) ||
+document.update_form.gpg.value.length != 2 )
+
+{
+ document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gpg').focus();
+return false;
+}
+var pattern = document.getElementById('gpg').value;
+if(isNaN(pattern))
+{
+ document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
+update_form.gpg.focus();
+return false;
+}
+return true;
 
 }
 
-function ValidateGraduation()
+function Validate_Graduation()
 {
+document.getElementById('gug_error').innerHTML = "" ;
+if(document.update_form.gug.value == "" ||
+isNaN(document.update_form.gug.value) ||
+document.update_form.gug.value.length != 2 )
+
+{
+ document.getElementById('gug_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gug').focus();
+return false;
+}
+var pattern = document.getElementById('gug').value;
+if(isNaN(pattern))
+{
+ document.getElementById('gug_error').innerHTML = "CGPA is invalid!" ; 
+update_form.gug.focus();
+return false;
+}
+return true;
+
 
 }
-function ValidateplusTwo()
+function Validate_plusTwo()
 {
+  document.getElementById('gplus_error').innerHTML = "" ;
+if(document.update_form.gplus.value == "" ||
+isNaN(document.update_form.gplus.value) ||
+document.update_form.gplus.value.length != 2 )
+
+{
+ document.getElementById('gplus_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gplus').focus();
+return false;
+}
+var pattern = document.getElementById('gplus').value;
+if(isNaN(pattern))
+{
+ document.getElementById('gplus_error').innerHTML = "CGPA is invalid!" ; 
+update_form.gplus.focus();
+return false;
+}
+return true;
+
 
 }
-function Validatetenth()
+function Validate_tenth()
 {
+  document.getElementById('g10_error').innerHTML = "" ;
+if(document.update_form.g10.value == "" ||
+isNaN(document.update_form.g10.value) ||
+document.update_form.g10.value.length != 2 )
+
+{
+ document.getElementById('g10_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('g10').focus();
+return false;
+}
+var pattern = document.getElementById('g10').value;
+if(isNaN(pattern))
+{
+ document.getElementById('g10_error').innerHTML = "CGPA is invalid!" ; 
+update_form.g10.focus();
+return false;
+}
+return true;
   
 }
     </script>
