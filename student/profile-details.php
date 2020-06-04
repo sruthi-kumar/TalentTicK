@@ -20,6 +20,9 @@ $page_data['profile_details'] = $student->getStudentById($student_id);
 
 //debug($page_data['profile_details']);
 
+$page_data['op_status'] = $_SESSION['errors']['profile_update'] ?? null;
+unset($_SESSION['errors']['profile_update']);
+
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');

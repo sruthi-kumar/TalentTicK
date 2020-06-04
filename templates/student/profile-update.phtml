@@ -4,6 +4,13 @@
         <div class="forms">
           <h2 class="title1">Update Profile</h2>  
 
+          <?php if($this->data['profile_update_error']) {?>
+                      <div class="row">
+                         <div class="col-md-12 mb-3 mb-md-0"> 
+                          <label style="color: red;" class="font-weight-bold" for="password">Error: <?=$this->data['profile_update_error']?></label> </div>
+                      </div>
+                <?php } ?>    
+
           <div class="row"> 
             <div class="form-three widget-shadow">
 
@@ -169,7 +176,7 @@
                 <div class="form-group">
                   <label for="gplus" class="col-sm-2 control-label">Percentage in +2</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="gplus" onchange="return validatePlusTwo()"name="gplus"  value="<?=$this->data['profile_details']['gplus']?>" >
+                    <input type="text" class="form-control1" id="gplus" onchange="return validatePlusTwo()"name="gplus"  value="<?=$this->data['profile_details']['gplus']?>" required='required' >
                       <label class="errortext" style="display:no ne; color:red" id="gplus"></label>
                   <div id="gplus_error" style="color:red;" >  
                   </div>
@@ -181,7 +188,7 @@
                 <div class="form-group">
                   <label for="g10" class="col-sm-2 control-label">Percentage in 10th </label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="g10" onchange=" return Validateten()" name="g10"  value="<?=$this->data['profile_details']['g10']?>" >
+                    <input type="text" class="form-control1" id="g10" onchange=" return Validateten()" name="g10"  value="<?=$this->data['profile_details']['g10']?>" required='required'  >
                      <label class="errortext" style="display:no ne; color:red" id="g10"></label>
                   <div id="g10_error" style="color:red;" >  
                   </div>
@@ -259,13 +266,14 @@
 
                 <div class="form-group"> 
                   <label for="pincode" class="col-sm-2 control-label">   </label>
-                  <div class="col-md-8"></div>
+                  <div class="col-md-8"> 
+                  </div>
                    <div class="col-md-4">
                     <input type="hidden" name="user_id" value="<?=$this->data['profile_details']['user_id']?>" >
                     <input type="hidden" name="payment_id" value="<?=$this->data['profile_details']['payment_id']?>" >
                     <input type="hidden" name="payment_status" value="<?=$this->data['profile_details']['payment_status']?>" >
                     <input type="hidden" name="payment_method" value="<?=$this->data['profile_details']['payment_method']?>" >
-                    <input type="hidden" name="payment_date" value="<?=$this->data['profile_details']['payment_date']?>" > 
+                    <input type="hidden" name="payment_date" value="<?=$this->data['profile_details']['payment_date']?>" >  
 
                     <input type="submit" class="btn btn-info"  value="Update Profile" >
                   </div>

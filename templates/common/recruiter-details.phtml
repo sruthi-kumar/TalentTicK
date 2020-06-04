@@ -13,12 +13,18 @@
           <p> Website : <?=$this->data['recruiter_details']['website']?> </p> 
           <p> Phone : <?=$this->data['recruiter_details']['phone']?> </p> 
           <p> Address : <?=$this->data['recruiter_details']['address']?> </p> 
-          <p> License : <?=$this->data['recruiter_details']['license']?> </p> 
+          <p> License : <?=$this->data['recruiter_details']['license']?> </p>  
+          <p> Licence Document: 
+              <?php if (isset($this->data['recruiter_details']['license_file'])) { ?> 
+             
+              <a target="_blank" href="<?=base_url()?>/uploads/licenses/<?=$this->data['recruiter_details']['license_file']?>"> <i class="fa fa-file"></i> View Licence </a> <?php } else{ echo "N/A"; } ?>
+
+          </p> 
           <p> City : <?=$this->data['recruiter_details']['city']?> </p> 
           <p> Pincode : <?=$this->data['recruiter_details']['pincode']?> </p> 
           <p> Status : <?=$this->data['recruiter_details']['status']?> </p> 
           <p> Created : <?=$this->data['recruiter_details']['created_at']?> </p> 
-
+ 
           
           <?php if($this->data['user_data']['type'] == 'admin' && $this->data['recruiter_details']['status'] == 'pending'){ ?>
             <div> <br>

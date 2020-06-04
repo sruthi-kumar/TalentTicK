@@ -4,6 +4,13 @@
         <h2 class="title1">Profile Details</h2>
         <div class="blank-page widget-shadow scroll" id="style-2 div1">
 
+          <?php if($this->data['profile_update_error']) {?>
+                      <div class="row">
+                         <div class="col-md-12 mb-3 mb-md-0"> 
+                          <label style="color: red;" class="font-weight-bold" >Error: <?=$this->data['profile_update_error']?></label> </div>
+                      </div>
+                <?php } ?>    
+
           <p> <img src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">  </p> 
           <p> Company Name : <?=$this->data['profile_details']['company_name']?> </p> 
           <p> Email : <?=$this->data['profile_details']['email']?> </p> 

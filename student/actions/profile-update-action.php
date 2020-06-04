@@ -3,8 +3,8 @@ require_once '../../autoload.php';
 
 validate_user('student', true);
 
-//debug($_POST, false);
-//debug($_FILES);
+debug($_POST, false);
+debug($_FILES, false);
 
 $status = 'success';
 
@@ -22,22 +22,18 @@ function validate_form($form_data) {
 		'state_id',
 		'district_id',
 		'address',
-		'addressline2',
 		'pincode',
 		'branch_id',
 		'cgpa',
-		'gug',
 		'gplus',
 		'g10',
-		'backlogs',
-		'user_id',
-		'payment_status',
 	];
 
 	foreach ($required_feilds as $required_feild) {
 
 		if (empty($form_data[$required_feild])) {
 			$status = false;
+			echo "<br> Missing: " . $required_feild;
 		}
 	}
 
@@ -47,6 +43,8 @@ function validate_form($form_data) {
 $login_details = get_current_user_set();
 
 if (validate_form($_POST)) {
+
+	echo "Passed form data validations";
 
 	$student = new Student();
 	$profile = new Profile();
@@ -169,7 +167,7 @@ if (validate_form($_POST)) {
 	$student->setData('payment_method', trim($_POST['payment_method']));
 	$student->setData('payment_date', trim($_POST['payment_date']));
 
-	//debug($student);
+	debug($student, false);
 
 	$profile->setData('student_id', $login_details['user_data']['student_id']);
 	$profile->setData('dob', trim($_POST['dob']));
@@ -185,11 +183,11 @@ if (validate_form($_POST)) {
 	$profile->setData('g10', trim($_POST['g10']));
 	$profile->setData('backlogs', trim($_POST['backlogs']));
 
-	//debug($profile);
+	debug($profile, false);
 
 	$result = $student->update($login_details['user_data']['student_id']);
 
-	//debug($result);
+	debug($result);
 
 	if (!$result) {
 		$status = 'failed';
@@ -212,14 +210,22 @@ if (validate_form($_POST)) {
 
 		if (!$result) {
 			$status = 'failed';
-			$_SESSION['errors']['register'] = "Update Failed!";
+			$_SESSION['errors']['profile_update'] = "Update Failed!";
 		}
 
 	}
 
 } else {
 	$status = 'failed';
-	$_SESSION['errors']['register'] = "Invalid Update Data!";
+	$_SESSION['errors']['profile_update'] = "Invalid Update Data!";
 }
 
-header("location:../profile-details.php?type=student&status=$status");
+//debug($result);
+
+if ($status = 'failed') {
+	header("location:../profile-update.php?type=student&status=$status");
+
+} else {
+
+	header("location:../profile-details.php?type=student&status=$status");
+}
