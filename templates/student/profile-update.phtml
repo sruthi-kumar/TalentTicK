@@ -130,10 +130,10 @@
                 <div class="form-group">
                   <label for="branch_id" class="col-sm-2 control-label">Branch</label>
                   <div class="col-sm-8">
-                    <select  name="branch_id" id="branch_id" class="form-control1" required="required"   > 
+                    <select  name="branch_id" id="branch_id" class="form-control1" required="required" onchange="show_grad()"   > 
                       <option>--Select Branch-- </option>  
                       <?php foreach ($this->data['branches'] as $branches ) { ?>
-                       <option value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
+                       <option data-dpt = "<?=$branches['department']?>" value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
                        <?php }?>
                     </select>
                   </div>
@@ -147,21 +147,9 @@
                   <div id="cgpa_error" style="color:red;" >  
                   </div>
                 </div> 
-              </div>
+              </div> 
 
-
-                <div class="form-group">
-                  <label for="gpg" class="col-sm-2 control-label">Percentage in Post Graduation</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="gpg" onchange="return Validate_Post_Graduation()" name="gpg"  value="<?=$this->data['profile_details']['gpg']?>" >
-                     <label class="errortext" style="display:no ne; color:red" id="gpg"></label>
-                  <div id="gpg_error" style="color:red;" >  
-                  </div>
-
-                  </div>
-                </div> 
-
-                <div class="form-group">
+                <div class="form-group" id="grad_grade" style=" display: none;">
                   <label for="gug" class="col-sm-2 control-label">Percentage in Graduation</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="gug" onchange="return Validate_Graduation()" name="gug"  value="<?=$this->data['profile_details']['gug']?>" >
@@ -292,6 +280,25 @@
 
 
     <script type="text/javascript"> 
+
+      function show_grad(){
+
+        const branch = document.getElementById('branch_id');
+
+        var dpt = branch.selectedOptions[0].getAttribute('data-dpt').toString().charAt(0);  
+
+        console.log(dpt);
+
+        if(dpt == "M"){
+
+          document.getElementById('grad_grade').style.display = "block" ;
+
+        }else{
+
+          document.getElementById('grad_grade').style.display = "none" ;
+        }
+
+      }
 
         function updateDistricts() {   
 
@@ -428,30 +435,7 @@ return true;
 }
 
 
-
-
-function Validate_Post_Graduation()
-{
-document.getElementById('gpg_error').innerHTML = "" ;
-if(document.update_form.gpg.value == "" ||
-isNaN(document.update_form.gpg.value) ||
-document.update_form.gpg.value.length != 2 )
-
-{
- document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
-document.getElementById('gpg').focus();
-return false;
-}
-var pattern = document.getElementById('gpg').value;
-if(isNaN(pattern))
-{
- document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
-update_form.gpg.focus();
-return false;
-}
-return true;
-
-}
+  
 
 function Validate_Graduation()
 {
