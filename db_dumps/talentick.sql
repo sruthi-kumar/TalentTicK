@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 20, 2020 at 01:54 PM
+-- Generation Time: Jun 28, 2020 at 07:52 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
--- PHP Version: 7.4.3
+-- PHP Version: 7.3.18-1+ubuntu20.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -73,7 +73,6 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`id`, `department`) VALUES
 (3, 'B.Tech'),
 (1, 'M.Tech'),
-(4, 'manga'),
 (2, 'MCA');
 
 -- --------------------------------------------------------
@@ -106,7 +105,8 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
-(1, 1, 'WEB DEVELOPER', 'Web developer trainees', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 2, 100000, 100000, 10, 'active', '2020-05-21', '2020-05-19 10:53:53');
+(1, 1, 'WEB DEVELOPER', 'Web developer job openings ', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 3, 100000, 150000, 10, 'active', '2020-06-30', '2020-05-31 09:50:22'),
+(2, 1, 'test job post', 'test', 1, 5, '[\"5\",\"14\",\"12\",\"4\",\"15\",\"7\",\"2\"]', 80, 0, 100000, 120000, 10, 'active', '2020-08-29', '2020-06-04 19:31:51');
 
 -- --------------------------------------------------------
 
@@ -253,42 +253,24 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`, `type`, `status`, `created_at`) VALUES
-(1, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 09:20:40'),
-(2, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:16:29'),
-(3, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 10:18:07'),
-(4, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-04-28 16:31:55'),
-(7, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-28 19:45:34'),
-(8, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(9, 38, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(10, 36, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(11, 34, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(12, 32, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(13, 28, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(14, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(15, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(16, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : zczxczxc  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-28 19:46:56'),
-(17, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : asds dsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-04-30 14:04:39'),
-(18, 24, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : asds dsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'inactive', '2020-04-30 14:04:39'),
-(19, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-04-30 22:37:03'),
-(20, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:30'),
-(21, 38, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:33'),
-(22, 36, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:37'),
-(23, 34, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:40'),
-(24, 32, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:44'),
-(25, 28, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:47'),
-(26, 27, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:50'),
-(27, 18, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:53'),
-(28, 9, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test  <br>\n\n		Job Description : sdfsd  <br>\n\n		Last Date to Apply : 27-08-2020  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-01 10:33:56'),
-(29, 15, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-05-02 18:58:28'),
-(30, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-05-05 19:56:39'),
-(31, 1, 'Tetsimonial Posted/Updated By Member', 'Tetsimonial Posted/Updated By Member. \n  Please check and validate ', '', 'info', 'active', '2020-05-05 19:57:30'),
-(32, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-06 07:03:10'),
-(33, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:03:29'),
-(34, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:14:12'),
-(35, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 06:25:43'),
-(36, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-12 07:05:14'),
-(37, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-05-14 15:25:13'),
-(38, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : Web developer trainees  <br>\n\n		Last Date to Apply : 2020-05-21  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-19 10:53:53');
+(1, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-05-31 09:13:48'),
+(2, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-05-31 09:18:50'),
+(3, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : WEB DEVELOPER  <br>\n\n		Job Description : Web developer job openings   <br>\n\n		Last Date to Apply : 2020-06-30  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-05-31 09:50:22'),
+(4, 1, 'New Student Registered', 'New Student Registerd in Portal.', '', 'info', 'active', '2020-06-04 19:27:35'),
+(5, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test job post  <br>\n\n		Job Description : test  <br>\n\n		Last Date to Apply : 2020-08-29  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-06-04 19:31:51'),
+(6, 4, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test job post  <br>\n\n		Job Description : test  <br>\n\n		Last Date to Apply : 2020-08-29  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-06-04 19:31:54'),
+(7, 6, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : test job post  <br>\n\n		Job Description : test  <br>\n\n		Last Date to Apply : 2020-08-29  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-06-04 19:31:58'),
+(8, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-06-28 04:55:44'),
+(9, 5, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:16:08'),
+(10, 7, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:16:08'),
+(11, 5, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:19:30'),
+(12, 7, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:19:34'),
+(13, 4, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:23:04'),
+(14, 6, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:23:07'),
+(15, 4, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:26:16'),
+(16, 6, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:26:19'),
+(17, 5, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:27:05'),
+(18, 7, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:27:08');
 
 -- --------------------------------------------------------
 
@@ -322,7 +304,6 @@ CREATE TABLE `profiles` (
   `district_id` int NOT NULL,
   `pincode` int NOT NULL,
   `cgpa` float DEFAULT NULL,
-  `gpg` float DEFAULT NULL,
   `gug` float DEFAULT NULL,
   `gplus` float DEFAULT NULL,
   `g10` float DEFAULT NULL,
@@ -336,8 +317,9 @@ CREATE TABLE `profiles` (
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `state_id`, `district_id`, `pincode`, `cgpa`, `gpg`, `gug`, `gplus`, `g10`, `backlogs`, `sslc_certificate`, `highersecondary_certificate`, `resume`) VALUES
-(1, 3, '1988-08-27', 'Ponnampizhethu House', 'Manappally South', 13, 6, 690539, 65, 65, 60, 74, 72, 6, 'U1NMQ19lcGZvLVVBTi1DYXJkLnBkZjc=.pdf', 'U3JlZWt1dHRhbk1MMjAzMjMyVGVzdC5wZGY3.pdf', 'U1JFRUtVVFRBTl9NX0xfUkVTVU1FLTIwMjAtVXBkYXRlZC5wZGY3.pdf');
+INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `state_id`, `district_id`, `pincode`, `cgpa`, `gug`, `gplus`, `g10`, `backlogs`, `sslc_certificate`, `highersecondary_certificate`, `resume`) VALUES
+(1, 1, '2000-02-02', 'Ponnampizhethu House', 'Manappally South', 13, 4, 690539, 80, 80, 80, 80, 0, 'U1NMQ19lcGZvLVVBTi1DYXJkLnBkZjQ=.pdf', 'RVBGLUVhcmx5V2l0aGRyYXdhbC1Db3ZpZC5wZGY0.pdf', 'U1JFRUtVVFRBTl9NX0xfUkVTVU1FLTIwMjAtVXBkYXRlZC5wZGY0.pdf'),
+(2, 2, '1993-03-28', 'Ponnampizhethu House', 'Manappally South', 13, 1, 690539, 70, 60, 80, 80, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -357,6 +339,7 @@ CREATE TABLE `recruiters` (
   `city` varchar(30) NOT NULL,
   `pincode` varchar(6) NOT NULL,
   `image` varchar(255) DEFAULT 'default.jpg',
+  `license_file` text,
   `status` enum('pending','approved','rejected') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -366,8 +349,9 @@ CREATE TABLE `recruiters` (
 -- Dumping data for table `recruiters`
 --
 
-INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `status`, `created_at`) VALUES
-(1, 8, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '9847980829', '21/1, 20th I Cross, Ejippura', 'ABC1234567890', 'Bangalore', '560047', 'default.jpg', 'pending', '2020-05-14 15:25:13');
+INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `license_file`, `status`, `created_at`) VALUES
+(1, 5, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '9847980829', '21/1, 20th I Cross, Ejippura', 'ABC1234567890', 'Bangalore', '560047', 'UkVDUlVJVEVSX2ljb24ucG5nNQ==.png', 'U1NMQ19TcmVla3V0dGFuTUwyMDMyMzJUZXN0LnBkZjU=.pdf', 'approved', '2020-05-31 09:18:50'),
+(2, 7, 'Sysnatura', 'info@sysnatura.com', 'sysnatura.com', '9876543210', 'Kalathil House', 'UIH1234534958', 'Kollam', '690539', 'default.jpg', NULL, 'approved', '2020-06-28 04:55:44');
 
 -- --------------------------------------------------------
 
@@ -397,7 +381,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`) VALUES
-(3, 7, 'John', 'Achari', '9847980829', 'Male', 11, 'paid', 'hgdgcgcirty', 'card', '15-05-2020', 'U3JlZV9QSE9UTy5qcGc3.jpg', '2020-05-12 07:05:14');
+(1, 4, 'Sruthi S', 'Kumar', '8139836878', 'Female', 7, 'paid', 'pay_EwuTWZRUYvp2yj', 'card', '2020-05-31', 'U1RVREVOVF9TcmVlX1BIT1RPLW1pbi5qcGc0.jpg', '2020-05-31 09:13:48'),
+(2, 6, 'Krishnapriya', 'TM', '9497133973', 'Female', 14, 'paid', 'pay_Eyf7sDzpxtLxmn', 'card', '2020-06-05', 'U1RVREVOVF9QXzIwMjAwNTI2XzE3MDAwNS5qcGc2.jpg', '2020-06-04 19:27:35');
 
 -- --------------------------------------------------------
 
@@ -415,13 +400,6 @@ CREATE TABLE `testimonials` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `testimonials`
---
-
-INSERT INTO `testimonials` (`id`, `user`, `user_type`, `description`, `status`, `show_in_web`, `created_at`) VALUES
-(1, 2, 'student', 'Testing testing ', 'approved', 'no', '2020-05-05 19:57:30');
 
 -- --------------------------------------------------------
 
@@ -444,11 +422,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at`) VALUES
-(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-04-22 07:59:44'),
-(2, 'krishnapriyatm777@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-05 19:56:39'),
-(3, 'tcs@gmail.com', '1fbd909ece4fcd4c1def26b7fae817d5', 'student', 'active', '2020-05-06 07:03:10'),
-(7, 'mohanansreekuttan@gmail.com', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-12 07:05:14'),
-(8, 'sreekuttan@maximprof.com', 'fb4160b03096f9f2351e18f3b42bf966', 'recruiter', 'active', '2020-05-14 15:25:13');
+(1, 'admin@talentick.com', '2138cb5b0302e84382dd9b3677576b24', 'admin', 'active', '2020-05-31 08:00:17'),
+(4, 'sruthyskumar@mca.ajce.in', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-31 09:13:48'),
+(5, 'sreekuttan@maximprof.com', 'e7c8e3592d3d61e22475baa33ea909bc', 'recruiter', 'active', '2020-05-31 09:18:50'),
+(6, 'krishnapriyatm@mca.ajce.in', 'fb4160b03096f9f2351e18f3b42bf966', 'student', 'active', '2020-06-04 19:27:35'),
+(7, 'hareez@sysnatura.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-06-28 04:55:44');
 
 --
 -- Indexes for dumped tables
@@ -576,7 +554,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
@@ -606,37 +584,37 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
