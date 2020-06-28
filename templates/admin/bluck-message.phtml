@@ -1,0 +1,48 @@
+<!-- main content start-->
+
+<!-- 
+  `bluckmessages` WHERE 1  `id`, `user`, `user_type`, `message`, `status`, `show_in_web`, `created_at`, `updated_at`
+
+ -->
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="forms">
+          <h2 class="title1"><?=$this->data['page_title']?> </h2> 
+
+          
+             <?=$this->data['op_status']??""?>  
+
+          <div class="row"> 
+            <div class="form-three widget-shadow">
+              <form action="<?=base_url()?>/admin/actions/bluckmessage-post-action.php" method="post" class="form-horizontal"> 
+                
+                <div class="form-group">
+                  <label for="message" class="col-sm-2 control-label">Message</label>
+                  <div class="col-sm-8">
+                    <textarea style="height: 200px;" name="message" id="message" cols="50" rows="4" class="form-control1" required="required"></textarea>
+                  </div>
+                </div>   
+
+                
+                <input type="hidden"  name="sendergroup" value="<?=$this->data['sendergroup']?>">
+                
+                <div class="form-group"> 
+                  <div class="col-sm-8"> </div>
+                  <div class="col-sm-2">
+                    <input type="submit" class="btn btn-info" name="submit" value="Send">
+                  </div>
+                </div>  
+
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+ 
+
+    <script type="text/javascript">
+      <?php if( $this->data['status'] == "success"){ ?> alert("<?=$_SESSION['message']['bluckmessage']?>") <?php } ?>
+      <?php if( $this->data['status'] == "failed"){ ?> alert("<?=$_SESSION['errors']['bluckmessage']?>") <?php } ?>
+    </script>
