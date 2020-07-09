@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 28, 2020 at 07:52 PM
+-- Generation Time: Jul 09, 2020 at 10:54 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
--- PHP Version: 7.3.18-1+ubuntu20.04.1+deb.sury.org+1
+-- PHP Version: 7.3.19-1+ubuntu20.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -105,7 +105,7 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
-(1, 1, 'WEB DEVELOPER', 'Web developer job openings ', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 3, 100000, 150000, 10, 'active', '2020-06-30', '2020-05-31 09:50:22'),
+(1, 1, 'WEB DEVELOPER', 'Web developer job openings ', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 3, 100000, 150000, 10, 'active', '2020-10-30', '2020-05-31 09:50:22'),
 (2, 1, 'test job post', 'test', 1, 5, '[\"5\",\"14\",\"12\",\"4\",\"15\",\"7\",\"2\"]', 80, 0, 100000, 120000, 10, 'active', '2020-08-29', '2020-06-04 19:31:51');
 
 -- --------------------------------------------------------
@@ -122,6 +122,13 @@ CREATE TABLE `job_applications` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_applications`
+--
+
+INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VALUES
+(1, 6, 2, 'pending', '2020-07-09 03:03:35');
 
 -- --------------------------------------------------------
 
@@ -270,7 +277,11 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (15, 4, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:26:16'),
 (16, 6, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:26:19'),
 (17, 5, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:27:05'),
-(18, 7, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:27:08');
+(18, 7, 'Message From Talentick Admin', '', '', 'info', 'active', '2020-06-28 11:27:08'),
+(19, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:01:31'),
+(20, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:13:43'),
+(21, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:17:52'),
+(22, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:42:11');
 
 -- --------------------------------------------------------
 
@@ -319,7 +330,7 @@ CREATE TABLE `profiles` (
 
 INSERT INTO `profiles` (`id`, `student_id`, `dob`, `address`, `addressline2`, `state_id`, `district_id`, `pincode`, `cgpa`, `gug`, `gplus`, `g10`, `backlogs`, `sslc_certificate`, `highersecondary_certificate`, `resume`) VALUES
 (1, 1, '2000-02-02', 'Ponnampizhethu House', 'Manappally South', 13, 4, 690539, 80, 80, 80, 80, 0, 'U1NMQ19lcGZvLVVBTi1DYXJkLnBkZjQ=.pdf', 'RVBGLUVhcmx5V2l0aGRyYXdhbC1Db3ZpZC5wZGY0.pdf', 'U1JFRUtVVFRBTl9NX0xfUkVTVU1FLTIwMjAtVXBkYXRlZC5wZGY0.pdf'),
-(2, 2, '1993-03-28', 'Ponnampizhethu House', 'Manappally South', 13, 1, 690539, 70, 60, 80, 80, 0, '', '', '');
+(2, 2, '1993-03-28', 'Ponnampizhethu House', 'Manappally South', 13, 1, 690539, 70, 60, 80, 80, 0, 'U1NMQ19TUkVFS1VUVEFOX01fTF9SRVNVTUUtMjAyMC5wZGY2.pdf', 'U1NMQ19TUkVFS1VUVEFOX01fTF9SRVNVTUUtMjAyMC5wZGY2.pdf', 'U1JFRUtVVFRBTl9NX0xfUkVTVU1FLTIwMjAucGRmNg==.pdf');
 
 -- --------------------------------------------------------
 
@@ -350,8 +361,9 @@ CREATE TABLE `recruiters` (
 --
 
 INSERT INTO `recruiters` (`id`, `user_id`, `company_name`, `email`, `website`, `phone`, `address`, `license`, `city`, `pincode`, `image`, `license_file`, `status`, `created_at`) VALUES
-(1, 5, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '9847980829', '21/1, 20th I Cross, Ejippura', 'ABC1234567890', 'Bangalore', '560047', 'UkVDUlVJVEVSX2ljb24ucG5nNQ==.png', 'U1NMQ19TcmVla3V0dGFuTUwyMDMyMzJUZXN0LnBkZjU=.pdf', 'approved', '2020-05-31 09:18:50'),
-(2, 7, 'Sysnatura', 'info@sysnatura.com', 'sysnatura.com', '9876543210', 'Kalathil House', 'UIH1234534958', 'Kollam', '690539', 'default.jpg', NULL, 'approved', '2020-06-28 04:55:44');
+(1, 5, 'MAXIMPROF', 'info@maximprof.com', 'https://maximprof.com', '9847980829', '21/1, 20th I Cross, Ejippura', 'ABC1243567890', 'Bangalore', '560047', 'UkVDUlVJVEVSX1VrVkRVbFZKVkVWU1gybGpiMjR1Y0c1bk5RPT0ucG5nNQ==.png', 'U1NMQ19lcGZvLVVBTi1DYXJkLnBkZjU=.pdf', 'approved', '2020-05-31 09:18:50'),
+(2, 7, 'Sysnatura', 'info@sysnatura.com', 'sysnatura.com', '9876543210', 'Kalathil House', 'UIH1234534958', 'Kollam', '690539', 'default.jpg', 'TElDRU5TRV9DdXRTaG9ydC1MYXJhdmVsX0NlcnRpZmljYXRlLmpwZzE2.jpg', 'approved', '2020-06-28 04:55:44'),
+(6, 16, 'zxdfdfs', 'soft@gmail.com', 'soft.com', '9847980829', 'Kalathil House', 'ABC1243567890', 'Kollam', '560047', 'default.jpg', 'TElDRU5TRV9DdXRTaG9ydC1MYXJhdmVsX0NlcnRpZmljYXRlLmpwZzE2.jpg', 'approved', '2020-07-09 02:42:11');
 
 -- --------------------------------------------------------
 
@@ -382,7 +394,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `mobile_number`, `gender`, `branch_id`, `payment_status`, `payment_id`, `payment_method`, `payment_date`, `image`, `created_at`) VALUES
 (1, 4, 'Sruthi S', 'Kumar', '8139836878', 'Female', 7, 'paid', 'pay_EwuTWZRUYvp2yj', 'card', '2020-05-31', 'U1RVREVOVF9TcmVlX1BIT1RPLW1pbi5qcGc0.jpg', '2020-05-31 09:13:48'),
-(2, 6, 'Krishnapriya', 'TM', '9497133973', 'Female', 14, 'paid', 'pay_Eyf7sDzpxtLxmn', 'card', '2020-06-05', 'U1RVREVOVF9QXzIwMjAwNTI2XzE3MDAwNS5qcGc2.jpg', '2020-06-04 19:27:35');
+(2, 6, 'Krishnapriya', 'TM', '9497133973', 'Female', 12, 'paid', 'pay_Eyf7sDzpxtLxmn', 'card', '2020-06-05', 'U1RVREVOVF9QXzIwMjAwNTI2XzE3MDAwNS5qcGc2.jpg', '2020-06-04 19:27:35');
 
 -- --------------------------------------------------------
 
@@ -426,7 +438,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`, `status`, `created_at
 (4, 'sruthyskumar@mca.ajce.in', '2138cb5b0302e84382dd9b3677576b24', 'student', 'active', '2020-05-31 09:13:48'),
 (5, 'sreekuttan@maximprof.com', 'e7c8e3592d3d61e22475baa33ea909bc', 'recruiter', 'active', '2020-05-31 09:18:50'),
 (6, 'krishnapriyatm@mca.ajce.in', 'fb4160b03096f9f2351e18f3b42bf966', 'student', 'active', '2020-06-04 19:27:35'),
-(7, 'hareez@sysnatura.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-06-28 04:55:44');
+(7, 'hareez@sysnatura.com', '2138cb5b0302e84382dd9b3677576b24', 'recruiter', 'active', '2020-06-28 04:55:44'),
+(16, 'soft@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'recruiter', 'active', '2020-07-09 02:42:11');
 
 --
 -- Indexes for dumped tables
@@ -560,7 +573,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `job_types`
@@ -584,7 +597,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -596,7 +609,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `recruiters`
 --
 ALTER TABLE `recruiters`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -614,7 +627,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
