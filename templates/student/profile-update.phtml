@@ -84,7 +84,7 @@
                     <select name="state_id" id="state_id" class="form-control1" onchange="updateDistricts()" >
                       <option >--Select State--</option>  
                       <?php foreach ($this->data['states'] as $state ) { ?>
-                       <option value="<?=$state['id'] ?>" ><?=$state['name'] ?></option> 
+                       <option value="<?=$state['id'] ?>"  <?=($this->data['profile_details']['state_id'] == $state['id'])?'selected' : '' ?> ><?=$state['name'] ?></option> 
                        <?php }?>
                     </select>
                   </div>
@@ -93,9 +93,20 @@
                 <div class="form-group">
                   <label for="district_id" class="col-sm-2 control-label">Select District </label>
                   <div class="col-sm-8">
+                    <?php if( isset($this->data['districts'])) { ?> 
+
+                      <select name="district_id" id="district_id" class="form-control1" onchange="updateDistricts()" >
+                      <option >--Select District--</option>  
+                      <?php foreach ($this->data['districts'] as $district ) { ?>
+                       <option value="<?=$district['id'] ?>"  <?=($this->data['profile_details']['district_id'] == $district['id'])?'selected' : '' ?> ><?=$district['district'] ?></option> 
+                       <?php }?>
+                    </select>
+
+                    <?php } else { ?>
                     <select disabled="disabled" name="district_id" id="district_id" class="form-control1"> 
                         <option>--Select a State First-- </option>  
                     </select>
+                  <?php } ?>
                   </div>
                 </div> 
 
@@ -133,7 +144,7 @@
                     <select  name="branch_id" id="branch_id" class="form-control1" required="required"   > 
                       <option>--Select Branch-- </option>  
                       <?php foreach ($this->data['branches'] as $branches ) { ?>
-                       <option value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
+                       <option value="<?=$branches['id'] ?>"  <?=($this->data['profile_details']['branch_id'] == $branches['id'])?'selected' : '' ?> ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
                        <?php }?>
                     </select>
                   </div>
@@ -148,18 +159,6 @@
                   </div>
                 </div> 
               </div>
-
-
-                <div class="form-group">
-                  <label for="gpg" class="col-sm-2 control-label">Percentage in Post Graduation</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="gpg" onchange="return Validate_Post_Graduation()" name="gpg"  value="<?=$this->data['profile_details']['gpg']?>" >
-                     <label class="errortext" style="display:no ne; color:red" id="gpg"></label>
-                  <div id="gpg_error" style="color:red;" >  
-                  </div>
-
-                  </div>
-                </div> 
 
                 <div class="form-group">
                   <label for="gug" class="col-sm-2 control-label">Percentage in Graduation</label>
@@ -199,7 +198,7 @@
                 <div class="form-group">
                   <label for="backlogs" class="col-sm-2 control-label">Backlogs Count</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="backlogs" onchange="return Validatebacklogs()" name="backlogs"  value="<?=($this->data['profile_details']['backlogs']??0) ?>" >
+                    <input type="number" class="form-control1" id="backlogs" onchange="return Validatebacklogs()" name="backlogs"  value="<?=($this->data['profile_details']['backlogs']??0) ?>"  min="0" max="50" >
                     <label class="errortext" style="display:no ne; color:red" id="Backlogs"></label>
                   <div id="backlogs_error" style="color:red;" >  
                   </div>
@@ -335,6 +334,11 @@
                 var element = document.createElement("option");
                 element.innerText = item['district']; 
                 element.value = item['id']; 
+
+                if( item['id'] == '<?=$this->data['profile_details']['district_id']?>' ){
+                    element.selected ='selected' ; 
+                }
+
                 districtDropdown.append(element);
               }
               
