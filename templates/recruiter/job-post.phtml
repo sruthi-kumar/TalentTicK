@@ -95,7 +95,7 @@
                 <div class="form-group">
                   <label for="backlog_count" class="col-sm-2 control-label">Backlog Count</label>
                   <div class="col-sm-8">
-                    <input type="number"min="0"  max="100" class="form-control1" name="backlog_count" id="backlog_count" placeholder="Backlog Count" onchange="return ValidateBacklog()" required="required">
+                    <input type="number" min="0"  max="100" class="form-control1" name="backlog_count" id="backlog_count" placeholder="Backlog Count" onchange="return ValidateBacklog()" required="required">
                      
                     <div id="backlog_count_error" style="color:red;">  </div>
 
@@ -369,7 +369,7 @@ function ValidateCgpa()
 document.getElementById('CGPA_min_error').innerHTML = "" ;
 if(document.job_post_form.CGPA_min.value == "" ||
 isNaN(document.job_post_form.CGPA_min.value) ||
-document.job_post_form.CGPA_min.value.length != 2 )
+document.job_post_form.CGPA_min.value < 0 )
 {
 document.getElementById('CGPA_min_error').innerHTML = "Please provide a valid CGPA " ;     
 document.getElementById('CGPA_min').focus();
@@ -385,7 +385,7 @@ function ValidateBacklog()
 document.getElementById('backlog_count_error').innerHTML = "" ;
 if(document.job_post_form.backlog_count.value == "" ||
 isNaN(document.job_post_form.backlog_count.value) ||
-document.job_post_form.CGPA_min.value.length != 2 )
+document.job_post_form.backlog_count.value < 0  )
 {
 document.getElementById('backlog_count_error').innerHTML = "Please provide a valid Backlog count " ;      
 document.getElementById('backlog_count').focus();
@@ -401,9 +401,9 @@ function ValidateSalary_min()
 document.getElementById('salary_min_error').innerHTML = "" ;
 if(document.job_post_form.salary_min.value == "" ||
 isNaN(document.job_post_form.salary_min.value) ||
-document.job_post_form.salary_min.value.length != 5 )
+document.job_post_form.salary_min.value.length <= 5 )
 {
-document.getElementById('salary_min_error').innerHTML = "Please provide accurate salary " ;
+document.getElementById('salary_min_error').innerHTML = "Please provide valid salary " ;
 document.getElementById('salary_min').focus();
 return false;
 }
@@ -422,7 +422,8 @@ function ValidateSalary_Max()
 {
 document.getElementById('salary_max_error').innerHTML = "" ;
 if(document.job_post_form.salary_max.value == "" ||
-isNaN(document.job_post_form.salary_max.value) )
+isNaN(document.job_post_form.salary_max.value) ||
+document.job_post_form.salary_max.value.length <= 5)
 {
 document.getElementById('salary_max_error').innerHTML = "Please provide accurate salary " ;
 document.getElementById('salary_max').focus();
@@ -443,8 +444,8 @@ function Validate_vacancy()
 {
 document.getElementById('vacancies_error').innerHTML = "" ;
 if(document.job_post_form.vacancies.value == "" ||
-isNaN(document.job_post_form.Vacancies.value) ||
-document.job_post_form.Vacancies.value.length != 4 )
+isNaN(document.job_post_form.vacancies.value) ||
+document.job_post_form.vacancies.value < 0 )
 {
 document.getElementById('vacancies_error').innerHTML = "Please provide a accurate vacancies count " ;   
 document.getElementById('vacancies').focus();
