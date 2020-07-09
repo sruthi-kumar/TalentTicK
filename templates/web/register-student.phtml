@@ -238,6 +238,33 @@ document.getElementById('email_error').innerHTML ="Error: Please you your email 
 return false;
 }
 }
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      //console.log(this.responseText) ;
+
+      if(this.responseText != "") {
+
+        var response = JSON.parse(this.responseText);  
+        //console.log(response) ;
+        var user_status = response.user_status; 
+
+        if(user_status == 'existing'){
+
+          //email.value="";
+          document.getElementById('email').focus();
+          document.getElementById('email_error').innerHTML ="Error: An account with this email id already exists!" ; 
+          return false;
+          }
+      }
+    }
+  };
+
+  xmlhttp.open("GET", "<?=base_url()?>/apis/check-user-email.php?email="+email.value, true);
+  xmlhttp.send();   
+
 document.getElementById('email_error').innerHTML ="";
 return true;
 }

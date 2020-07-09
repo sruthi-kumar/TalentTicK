@@ -1,18 +1,22 @@
 <?php
 require_once '../autoload.php';
 
-$type = $_GET['type'];
+if (isset($_GET['type'])) {
+
+	$type = $_GET['type'];
 
 //debug($_GET);
 
-switch ($type) {
-case 'districts':
-	get_district_list();
-	break;
+	switch ($type) {
+	case 'districts':
+		get_district_list();
+		break;
 
-default:
-	# code...
-	break;
+	default:
+		# code...
+		break;
+	}
+
 }
 
 function get_district_list() {
