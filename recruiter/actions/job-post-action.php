@@ -65,7 +65,7 @@ if (validate_form($_POST)) {
 	$job->setData('salary_max', $_POST['salary_max']);
 	$job->setData('vacancies', $_POST['vacancies']);
 
-	debug($job);
+	//debug($job);
 
 	if ($job->create()) {
 
@@ -115,7 +115,7 @@ function notify_users() {
 
 	}
 
-	debug($users);
+	//debug($users);
 
 	foreach ($users as $user) {
 
