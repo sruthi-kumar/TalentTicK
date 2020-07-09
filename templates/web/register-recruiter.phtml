@@ -17,7 +17,7 @@
        
           <div class="col-md-12 col-lg-8 mb-5">
           
-			<form action="<?=base_url()?>/actions/recruiter-registration.php" name="registration_form" method="post" class="p-5 bg-white">
+			<form action="<?=base_url()?>/actions/recruiter-registration.php" name="registration_form" method="post" class="p-5 bg-white" enctype='multipart/form-data'>
 
 
         <!--  `user_id`, `username`, `password`, `type`, `status`, `created_at`, `updated_at`
@@ -28,8 +28,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="company_name">Company/Organization </label>
                   <input type="text" id="company_name"  name="company_name" class="form-control" placeholder="Your Company/Organization name " onchange= "return ValidateCompanyName()"required="required">
-                                    <label class="errortext" style="display:no ne; color:red" id="company_name"></label>
-                                    <div id="company_error" style="color:red;">  </div>
+                   <div id="company_error" style="color:red;">  </div>
                                                       
                 </div>
               </div>
@@ -39,8 +38,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="phone">Phone Number</label>
                   <input type="text" id="phone"  name="phone" class="form-control" placeholder="Your Official Phone Number" onchange="return ValidatePhone()"required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="phone"></label>
-                  <div id="phone_error" style="color:red;">  </div>
+                   <div id="phone_error" style="color:red;">  </div>
                                                       
 
                 </div>
@@ -59,8 +57,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="city">City</label>
                   <input type="text" id="city"  name="city" class="form-control" placeholder="Your City" onchange="return ValidateCity()" required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="city"></label>
-                  <div id="city_error" style="color:red;">  </div>
+                   <div id="city_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -69,8 +66,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="pincode">PinCode</label>
                   <input type="text" id="pincode"  name="pincode" class="form-control" placeholder="Your PinCode" onchange="return ValidatePincode()"required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="pincode"></label>
-                  <div id="pincode_error" style="color:red;">  </div>
+                   <div id="pincode_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -79,8 +75,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="license">Licence/Registration</label>
                   <input type="text" id="text"  name="license" class="form-control" placeholder="Your License/Registration " onchange="return ValidateLicense()" required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="license"></label>
-                  <div id="license_error" style="color:red;">  </div>
+                   <div id="license_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -89,8 +84,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="license">Licence/Registration File</label>
                    <input type="file" class="" id="license_file" name="license_file"  required="required" accept="pdf"  >
-                  <label class="errortext" style="display:no ne; color:red" id="license"></label>
-                  <div id="license_error" style="color:red;">  </div>
+                   <div id="license_error" style="color:red;">  </div>
                 </div>
               </div> 
 
@@ -98,8 +92,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="website">Company Website</label>
                   <input type="text" id="website"  name="website" class="form-control" placeholder="Your Company Website" onchange="return ValidateWebsite()"required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="website"></label>
-                  <div id="website_error" style="color:red;">  </div>
+                   <div id="website_error" style="color:red;">  </div>
                 </div>
               </div> 
 
@@ -107,8 +100,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="email">Company Email ID</label>
                   <input type="email" id="email"  name="email" class="form-control" placeholder="Your Company Email Id" onchange="return ValidateEmail()" required="required">
-                   <label class="errortext" style="display:no ne; color:red" id="email"></label>
-                  <div id="email_error" style="color:red;">  </div>
+                   <div id="email_error" style="color:red;">  </div>
                 </div>
               </div> 
  
@@ -116,9 +108,8 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="username">Email ID/Username</label>
-                  <input type="email" id="email"  name="username" class="form-control" placeholder="Your Email Id" onchange="return ValidateUsername()" required="required">
-                    <label class="errortext" style="display:no ne; color:red" id="username"></label>
-                  <div id="username_error" style="color:red;">  </div>
+                  <input type="email" id="username"  name="username" class="form-control" placeholder="Your Email ID/Username" onchange="return ValidateUsername()" required="required">
+                   <div id="username_error" style="color:red;">  </div>
                 </div>
               </div> 
 
@@ -126,8 +117,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="password">Password</label>
                   <input type="password" id="password" name="password" class="form-control" onchange="return ValidatePassword()"required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="password"></label>
-                  <div id="password_error" style="color:red;">  </div>
+                   <div id="password_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -135,8 +125,7 @@
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="confirmpassword">Confirm Password</label>
                   <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" onchange="return ValidateCpassword()" required="required">
-                  <label class="errortext" style="display:no ne; color:red" id="password"></label>
-                  <div id="confirmpassword_error" style="color:red;">  </div>
+                   <div id="confirmpassword_error" style="color:red;">  </div>
                 </div>
               </div>
 
@@ -325,23 +314,24 @@ function ValidateEmail()
     }
 return true;
 }
+
 function ValidateUsername()
-{
-  document.getElementById('username_error').innerHTML = "" ;
- var username = document.getElementById('username');
-   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-   if (!filter.test(username.value)) 
-{
-    username.value="";
-    document.getElementById('username').focus();
-    document.getElementById('username_error').innerHTML ="Error: Please enter username!" ; 
-    
-    return false;
+  {
+    document.getElementById('username_error').innerHTML = "" ;
+    var username = document.getElementById('username');
+    console.log(username);
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!filter.test(username.value)) 
+    {
+      username.value="";
+      document.getElementById('username').focus();
+      document.getElementById('username_error').innerHTML ="Error: Please enter username!" ; 
+      return false;
     }
-return true;
+  return true;
 }
 
-function validatePassword()
+function ValidatePassword()
 {
 document.getElementById('password_error').innerHTML = "" ;
 var o=document.forms["registration_form"]["password"].value;

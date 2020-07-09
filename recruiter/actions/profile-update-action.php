@@ -49,11 +49,16 @@ if (validate_form($_POST)) {
 
 	$image_file = $login_details['user_data']['image'];
 
+	$profile_details = $recruiter->getRecruiterById($login_details['user_data']['recruiter_id']);
+
+	//debug($profile_details);
+
+	$license_file = $profile_details['license_file'];
+
 	if (isset($_FILES) && !empty($_FILES['image'])) {
 
 		/*echo ($_FILES["image"]["name"]);
 			echo "<br>";
-			echo ($_FILES["image"]["tmp_name"]);
 		*/
 
 		$target_dir = "../../uploads/images/";

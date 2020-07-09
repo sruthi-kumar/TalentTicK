@@ -25,11 +25,15 @@ $student_id = $page_data['user_data']['student_id'];
 
 $page_data['profile_details'] = $student->getStudentById($student_id);
 
+$page_data['districts'] = $location->getDistricts($page_data['profile_details']['state_id']);
+
 $page_data['profile_update_error'] = $_SESSION['errors']['profile_update'] ?? null;
 
 unset($_SESSION['errors']['profile_update']);
 
 //debug($page_data['profile_details']);
+
+//debug($page_data);
 
 $t->data = $page_data;
 $t->render('inc/header.phtml');

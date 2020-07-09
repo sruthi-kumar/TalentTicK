@@ -24,6 +24,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 	$recruiter->setData('city', $recruiter_details['city']);
 	$recruiter->setData('pincode', $recruiter_details['pincode']);
 	$recruiter->setData('image', $recruiter_details['image']);
+	$recruiter->setData('license_file', $recruiter_details['license_file']);
 	$recruiter->setData('status', $_GET['action']);
 
 	//debug($recruiter);

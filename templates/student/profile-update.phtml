@@ -84,7 +84,7 @@
                     <select name="state_id" id="state_id" class="form-control1" onchange="updateDistricts()" >
                       <option >--Select State--</option>  
                       <?php foreach ($this->data['states'] as $state ) { ?>
-                       <option value="<?=$state['id'] ?>" ><?=$state['name'] ?></option> 
+                       <option value="<?=$state['id'] ?>"  <?=($this->data['profile_details']['state_id'] == $state['id'])?'selected' : '' ?> ><?=$state['name'] ?></option> 
                        <?php }?>
                     </select>
                   </div>
@@ -93,9 +93,20 @@
                 <div class="form-group">
                   <label for="district_id" class="col-sm-2 control-label">Select District </label>
                   <div class="col-sm-8">
+                    <?php if( isset($this->data['districts'])) { ?> 
+
+                      <select name="district_id" id="district_id" class="form-control1" onchange="updateDistricts()" >
+                      <option >--Select District--</option>  
+                      <?php foreach ($this->data['districts'] as $district ) { ?>
+                       <option value="<?=$district['id'] ?>"  <?=($this->data['profile_details']['district_id'] == $district['id'])?'selected' : '' ?> ><?=$district['district'] ?></option> 
+                       <?php }?>
+                    </select>
+
+                    <?php } else { ?>
                     <select disabled="disabled" name="district_id" id="district_id" class="form-control1"> 
                         <option>--Select a State First-- </option>  
                     </select>
+                  <?php } ?>
                   </div>
                 </div> 
 
@@ -130,10 +141,10 @@
                 <div class="form-group">
                   <label for="branch_id" class="col-sm-2 control-label">Branch</label>
                   <div class="col-sm-8">
-                    <select  name="branch_id" id="branch_id" class="form-control1" required="required" onchange="show_grad()"   > 
+                    <select  name="branch_id" id="branch_id" class="form-control1" required="required"   > 
                       <option>--Select Branch-- </option>  
                       <?php foreach ($this->data['branches'] as $branches ) { ?>
-                       <option data-dpt = "<?=$branches['department']?>" value="<?=$branches['id'] ?>" ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
+                       <option value="<?=$branches['id'] ?>"  <?=($this->data['profile_details']['branch_id'] == $branches['id'])?'selected' : '' ?> ><?=$branches['branch'] ?> (<?=$branches['department']?>) </option> 
                        <?php }?>
                     </select>
                   </div>
@@ -147,9 +158,9 @@
                   <div id="cgpa_error" style="color:red;" >  
                   </div>
                 </div> 
-              </div> 
+              </div>
 
-                <div class="form-group" id="grad_grade" style=" display: none;">
+                <div class="form-group">
                   <label for="gug" class="col-sm-2 control-label">Percentage in Graduation</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control1" id="gug" onchange="return Validate_Graduation()" name="gug"  value="<?=$this->data['profile_details']['gug']?>" >
@@ -187,7 +198,7 @@
                 <div class="form-group">
                   <label for="backlogs" class="col-sm-2 control-label">Backlogs Count</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control1" id="backlogs" onchange="return Validatebacklogs()" name="backlogs"  value="<?=($this->data['profile_details']['backlogs']??0) ?>" >
+                    <input type="number" class="form-control1" id="backlogs" onchange="return Validatebacklogs()" name="backlogs"  value="<?=($this->data['profile_details']['backlogs']??0) ?>"  min="0" max="50" >
                     <label class="errortext" style="display:no ne; color:red" id="Backlogs"></label>
                   <div id="backlogs_error" style="color:red;" >  
                   </div>
@@ -199,7 +210,7 @@
                   <label for="pincode" class="col-sm-2 control-label">SSLC Certificate  </label>
                   <div class="col-sm-4">
                     <input type="file" class="" id="sslc_certificate" name="sslc_certificate" 
-                    <?=(!empty($this->data['profile_details']['sslc_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['sslc_certificate']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['sslc_certificate'])) { ?> 
@@ -215,7 +226,7 @@
                   <div class="col-sm-4">
                     <input type="file" class="" id="highersecondary_certificate" name="highersecondary_certificate" 
 
-                    <?=(!empty($this->data['profile_details']['highersecondary_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['highersecondary_certificate']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['highersecondary_certificate'])) { ?> 
@@ -230,7 +241,7 @@
                   <label for="pincode" class="col-sm-2 control-label">Resume  </label>
                   <div class="col-sm-4">
                     <input type="file" class="" id="resume" name="resume" 
-                    <?=(!empty($this->data['profile_details']['resume']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['resume']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf" >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['resume'])) { ?> 
@@ -244,7 +255,7 @@
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Image  </label>
                   <div class="col-sm-4">
-                    <input type="file" class="" accept="png" id="image" name="image" >
+                    <input type="file" class="" accept="image/x-png,image/gif,image/jpeg" id="image" name="image" >
                   </div>
                   <div class="col-sm-4"> 
                     <img class="img img-responsive" width="150" src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">
@@ -280,25 +291,6 @@
 
 
     <script type="text/javascript"> 
-
-      function show_grad(){
-
-        const branch = document.getElementById('branch_id');
-
-        var dpt = branch.selectedOptions[0].getAttribute('data-dpt').toString().charAt(0);  
-
-        console.log(dpt);
-
-        if(dpt == "M"){
-
-          document.getElementById('grad_grade').style.display = "block" ;
-
-        }else{
-
-          document.getElementById('grad_grade').style.display = "none" ;
-        }
-
-      }
 
         function updateDistricts() {   
 
@@ -342,6 +334,11 @@
                 var element = document.createElement("option");
                 element.innerText = item['district']; 
                 element.value = item['id']; 
+
+                if( item['id'] == '<?=$this->data['profile_details']['district_id']?>' ){
+                    element.selected ='selected' ; 
+                }
+
                 districtDropdown.append(element);
               }
               
@@ -435,7 +432,30 @@ return true;
 }
 
 
-  
+
+
+function Validate_Post_Graduation()
+{
+document.getElementById('gpg_error').innerHTML = "" ;
+if(document.update_form.gpg.value == "" ||
+isNaN(document.update_form.gpg.value) ||
+document.update_form.gpg.value.length != 2 )
+
+{
+ document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gpg').focus();
+return false;
+}
+var pattern = document.getElementById('gpg').value;
+if(isNaN(pattern))
+{
+ document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
+update_form.gpg.focus();
+return false;
+}
+return true;
+
+}
 
 function Validate_Graduation()
 {
