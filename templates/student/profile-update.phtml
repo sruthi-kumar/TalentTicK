@@ -349,66 +349,69 @@
         xmlhttp.send();  
 
     } 
-    var  up_form = document.update_form;
-    function ValidateEmail()
+
+var  up_form = document.update_form;
+function ValidateEmail()
 {
-  document.getElementById('email_error').innerHTML = "" ;
- var email = document.getElementById('email');
-   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-   if (!filter.test(email.value)) 
+document.getElementById('email_error').innerHTML = "" ;
+var email = document.getElementById('email');
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+if (!filter.test(email.value)) 
 {
-    email.value="";
-    document.getElementById('email').focus();
-    document.getElementById('email_error').innerHTML ="Error: Please enter email!" ; 
-    
-    return false;
-    }
+email.value="";
+document.getElementById('email').focus();
+document.getElementById('email_error').innerHTML ="Error: Please enter email!" ; 
+
+return false;
+}
+document.getElementById('email_error').innerHTML ="";
 return true;
 }
+
 function Validatemobile_number()
 {
- document.getElementById('mobile_number_error').innerHTML = "" ;
+document.getElementById('mobile_number_error').innerHTML = "" ;
 if(document.update_form.mobile_number.value == "" ||
 isNaN(document.update_form.mobile_number.value) ||
 document.update_form.mobile_number.value.length != 10 )
 {
- document.getElementById('mobile_number_error').innerHTML = "Please provide a Mobile No upto 10 digit" ;     
-
-  
+document.getElementById('mobile_number_error').innerHTML = "Please provide a Mobile No upto 10 digit" ;     
 document.getElementById('mobile_number').focus();
 return false;
 }
 var pattern = new RegExp("^([6-9]{1})([0-9]{9})$");
 if(!pattern.test(document.update_form.mobile_number.value))
 {
- document.getElementById('mobile_number_error').innerHTML = "Phone Number is invalid!" ; 
+document.getElementById('mobile_number_error').innerHTML = "Phone Number is invalid!" ; 
 update_form.mobile_number.focus();
 return false;
 }
+document.getElementById('mobile_number_error').innerHTML = "";
 return true;
 }
+
 function ValidatePincode()
 {
- document.getElementById('pincode_error').innerHTML = "" ;
+document.getElementById('pincode_error').innerHTML = "" ;
 if(document.update_form.pincode.value == "" ||
 isNaN(document.update_form.pincode.value) ||
 document.update_form.pincode.value.length != 6 )
 {
- document.getElementById('pincode_error').innerHTML = "Please provide a valid pincode with 6 digits" ;     
-
-  
+document.getElementById('pincode_error').innerHTML = "Please provide a valid pincode with 6 digits" ;     
 document.getElementById('pincode').focus();
 return false;
 }
 var pattern = new RegExp("^([1-9]{1})([0-9]{5})$");
 if(!pattern.test(document.update_form.pincode.value))
 {
- document.getElementById('pincode_error').innerHTML = "Pincode is invalid!" ; 
+document.getElementById('pincode_error').innerHTML = "Pincode is invalid!" ; 
 update_form.pincode.focus();
 return false;
 }
+document.getElementById('pincode_error').innerHTML = "";
 return true;
 }
+
 function Validate_Percentage()
 {
 document.getElementById('cgpa_error').innerHTML = "" ;
@@ -417,22 +420,20 @@ isNaN(document.update_form.cgpa.value) ||
 document.update_form.cgpa.value.length != 2 )
 
 {
- document.getElementById('cgpa_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('cgpa_error').innerHTML = "Please provide a valid CGPA " ;      
 document.getElementById('cgpa').focus();
 return false;
 }
 var pattern = document.getElementById('cgpa').value;
 if(isNaN(pattern))
 {
- document.getElementById('cgpa_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('cgpa_error').innerHTML = "CGPA is invalid!" ; 
 update_form.cgpa.focus();
 return false;
 }
+document.getElementById('cgpa_error').innerHTML = "";
 return true;
 }
-
-
-
 
 function Validate_Post_Graduation()
 {
@@ -442,19 +443,19 @@ isNaN(document.update_form.gpg.value) ||
 document.update_form.gpg.value.length != 2 )
 
 {
- document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
 document.getElementById('gpg').focus();
 return false;
 }
 var pattern = document.getElementById('gpg').value;
 if(isNaN(pattern))
 {
- document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
 update_form.gpg.focus();
 return false;
 }
+document.getElementById('gpg_error').innerHTML = "";
 return true;
-
 }
 
 function Validate_Graduation()
@@ -465,64 +466,63 @@ isNaN(document.update_form.gug.value) ||
 document.update_form.gug.value.length != 2 )
 
 {
- document.getElementById('gug_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gug_error').innerHTML = "Please provide a valid CGPA " ;      
 document.getElementById('gug').focus();
 return false;
 }
 var pattern = document.getElementById('gug').value;
 if(isNaN(pattern))
 {
- document.getElementById('gug_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gug_error').innerHTML = "CGPA is invalid!" ; 
 update_form.gug.focus();
 return false;
 }
+document.getElementById('gug_error').innerHTML = "";
 return true;
-
-
 }
+
 function Validate_plusTwo()
 {
-  document.getElementById('gplus_error').innerHTML = "" ;
+document.getElementById('gplus_error').innerHTML = "" ;
 if(document.update_form.gplus.value == "" ||
 isNaN(document.update_form.gplus.value) ||
 document.update_form.gplus.value.length != 2 )
-
 {
- document.getElementById('gplus_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gplus_error').innerHTML = "Please provide a valid CGPA " ;      
 document.getElementById('gplus').focus();
 return false;
 }
 var pattern = document.getElementById('gplus').value;
 if(isNaN(pattern))
 {
- document.getElementById('gplus_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gplus_error').innerHTML = "CGPA is invalid!" ; 
 update_form.gplus.focus();
 return false;
 }
+document.getElementById('gplus_error').innerHTML = "";
 return true;
-
-
 }
+
 function Validate_tenth()
 {
-  document.getElementById('g10_error').innerHTML = "" ;
+document.getElementById('g10_error').innerHTML = "" ;
 if(document.update_form.g10.value == "" ||
 isNaN(document.update_form.g10.value) ||
 document.update_form.g10.value.length != 2 )
 
 {
- document.getElementById('g10_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('g10_error').innerHTML = "Please provide a valid CGPA " ;      
 document.getElementById('g10').focus();
 return false;
 }
 var pattern = document.getElementById('g10').value;
 if(isNaN(pattern))
 {
- document.getElementById('g10_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('g10_error').innerHTML = "CGPA is invalid!" ; 
 update_form.g10.focus();
 return false;
 }
+document.getElementById('g10_error').innerHTML = "";
 return true;
-  
 }
-    </script>
+</script>

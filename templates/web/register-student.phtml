@@ -150,44 +150,42 @@
 
 
 
-    <script type="text/javascript">  
+<script type="text/javascript">  
 
 
-    var  reg_form = document.registration_form;
+var  reg_form = document.registration_form;
 
-    function validatefirstname(){
+function validatefirstname(){
 
-      document.getElementById('firstname_error').innerHTML = "" ; 
-      var firstname =reg_form.firstname.value;
-      
-      if(firstname==""){ 
-        document.getElementById('firstname').focus();
-        document.getElementById('firstname_error').innerHTML = "Error! Firstname is empty " ; 
-        return false;
-      }
+document.getElementById('firstname_error').innerHTML = "" ; 
+var firstname =reg_form.firstname.value;
 
-      if ((firstname.length < 3) || (firstname.length > 30))
-      {
-      document.getElementById('firstname_error').innerHTML = "Error! characters between 3 and 30" ; 
-      document.getElementById('firstname').focus();
-      return false;
-      }
-      var pattern1 = new RegExp("^[a-zA-Z ]*$");
-      if(!pattern1.test(document.registration_form.firstname.value))
-      {
-      document.getElementById('firstname_error').innerHTML ="Error: Please enter first name!" ; 
-      document.registration_form.name.focus();
-      return false;
-      }
-      return true;
-    }
+if(firstname==""){ 
+document.getElementById('firstname').focus();
+document.getElementById('firstname_error').innerHTML = "Error! Firstname is empty " ; 
+return false;
+}
 
-
-
+if ((firstname.length < 3) || (firstname.length > 30))
+{
+document.getElementById('firstname_error').innerHTML = "Error! characters between 3 and 30" ; 
+document.getElementById('firstname').focus();
+return false;
+}
+var pattern1 = new RegExp("^[a-zA-Z ]*$");
+if(!pattern1.test(document.registration_form.firstname.value))
+{
+document.getElementById('firstname_error').innerHTML ="Error: Please enter first name!" ; 
+document.registration_form.name.focus();
+return false;
+}
+document.getElementById('firstname_error').innerHTML ="";
+return true;
+}
 
 function validatelastname()
 {
-  document.getElementById('lastname_error').innerHTML = "" ;
+document.getElementById('lastname_error').innerHTML = "" ;
 var lastname=reg_form.lastname.value;
 if(lastname=="")
 {
@@ -206,72 +204,67 @@ return false;
 var pattern1 = new RegExp("^[a-zA-Z ]*$");
 if(!pattern1.test(document.registration_form.lastname.value))
 {
- document.getElementById('lastname_error').innerHTML ="Error: Please enter last name!" ; 
+document.getElementById('lastname_error').innerHTML ="Error: Please enter last name!" ; 
 registration_form.name.focus();
 return false;
 }
+document.getElementById('lastname_error').innerHTML ="";
 return true;
 }
-
-
 
 function validateEmail()
 {
-  document.getElementById('email_error').innerHTML = "" ;
-  var email = document.getElementById('email');
-   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-   if (!filter.test(email.value))
-   {
-    email.value="";
-    document.getElementById('email').focus();
-    document.getElementById('email_error').innerHTML ="Error: Please enter a valid email!" ; 
-    return false;
-    }else{
-      var valid_ext = ".ajce.in" ;
-      var v_len = valid_ext.length * -1 ;
-      var email_ext = email.value.slice(v_len ); 
+document.getElementById('email_error').innerHTML = "" ;
+var email = document.getElementById('email');
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+if (!filter.test(email.value))
+{
+email.value="";
+document.getElementById('email').focus();
+document.getElementById('email_error').innerHTML ="Error: Please enter a valid email!" ; 
+return false;
+}else{
+var valid_ext = ".ajce.in" ;
+var v_len = valid_ext.length * -1 ;
+var email_ext = email.value.slice(v_len ); 
 
-      console.log(v_len ); 
-      console.log(email_ext ); 
+console.log(v_len ); 
+console.log(email_ext ); 
 
-
-      if(valid_ext != email_ext ){
-        //email.value="";
-        document.getElementById('email').focus();
-        document.getElementById('email_error').innerHTML ="Error: Please you your email provided by the college!" ; 
-        return false;
-      }
-
-    }
+if(valid_ext != email_ext ){
+//email.value="";
+document.getElementById('email').focus();
+document.getElementById('email_error').innerHTML ="Error: Please you your email provided by the college!" ; 
+return false;
+}
+}
+document.getElementById('email_error').innerHTML ="";
 return true;
 }
 
-
-
 function validateMobile()
 {
- document.getElementById('mobile_number_error').innerHTML = "" ;
+document.getElementById('mobile_number_error').innerHTML = "" ;
 if(document.registration_form.mobile_number.value == "" ||
 isNaN(document.registration_form.mobile_number.value) ||
 document.registration_form.mobile_number.value.length != 10 )
 {
- document.getElementById('mobile_number_error').innerHTML = "Please provide a Mobile No upto 10 digit" ;     
+document.getElementById('mobile_number_error').innerHTML = "Please provide a Mobile No upto 10 digit" ;     
 
-  
+
 document.getElementById('mobile_number').focus();
 return false;
 }
 var pattern = new RegExp("^([6-9]{1})([0-9]{9})$");
 if(!pattern.test(document.registration_form.mobile_number.value))
 {
- document.getElementById('mobile_number_error').innerHTML = "Phone Number is invalid!" ; 
+document.getElementById('mobile_number_error').innerHTML = "Phone Number is invalid!" ; 
 registration_form.mobile_number.focus();
 return false;
 }
+document.getElementById('mobile_number_error').innerHTML = "";
 return true;
 }
-
-
 
 function validatepass()
 {
@@ -296,9 +289,9 @@ var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9])
 if( mediumRegex.test(o))
 {
 
-  //console.log("strong pass") ;
-  document.getElementById('password_error').innerHTML = "" ;
-  
+//console.log("strong pass") ;
+document.getElementById('password_error').innerHTML = "" ;
+
 } 
 else
 { 
@@ -306,9 +299,9 @@ document.getElementById('password_error').innerHTML="Week Password! Password mus
 document.getElementById("password").focus();
 return false;
 }
+document.getElementById('password_error').innerHTML="";
 return true;
 }
- 
 
 function validatecpass()
 {
@@ -327,82 +320,10 @@ document.getElementById('cpassword_error').innerHTML = "Passwords do not match" 
 document.getElementById('confirmpassword').focus();
 return false;
 }
+document.getElementById('cpassword_error').innerHTML = "";
 return (true);
 }
-
-
-function validatecardno()
-{
- document.getElementById('card_no_error').innerHTML = "" ;
-if(document.registration_form.card_no.value == "" ||
-isNaN(document.registration_form.card_no.value) ||
-document.registration_form.card_no.value.length != 16)
-{
- document.getElementById('card_no_error').innerHTML = "Please provide a Card No upto 16 digit" ;     
-
-  
-document.getElementById('card_no').focus();
-return false;
-}
-var pattern = new RegExp("^([1-9]{1})([0-9]{15})$");
-if(!pattern.test(document.registration_form.card_no.value))
-{
- document.getElementById('card_no_error').innerHTML = "Card NUmber is invalid!" ; 
-registration_form.card_no.focus();
-return false;
-}
-return true;
-}
-function validatecvv()
-{
- document.getElementById('cvv_error').innerHTML = "" ;
-if(document.registration_form.cvv.value == "" ||
-isNaN(document.registration_form.cvv.value) ||
-document.registration_form.cvv.value.length != 3)
-{
- document.getElementById('cvv_error').innerHTML = "Please provide a Cvv upto 3 digit" ;     
-
-  
-document.getElementById('cvv').focus();
-return false;
-}
-var pattern = new RegExp("^([1-9]{1})([0-9]{2})$");
-if(!pattern.test(document.registration_form.cvv.value))
-{
- document.getElementById('cvv_error').innerHTML = "CVV is invalid!" ; 
-registration_form.cvv.focus();
-return false;
-}
-return true;
-}
-function validatecardname(){
-
-  document.getElementById('card_name_error').innerHTML = "" ; 
-  var firstname =reg_form.card_name.value;
-  
-  if(firstname==""){ 
-    document.getElementById('card_name').focus();
-    document.getElementById('card_name_error').innerHTML = "Error! Card name is empty " ; 
-    return false;
-  }
-
-  if ((card_name.length < 3) || (card_name.length > 30))
-  {
-  document.getElementById('card_name_error').innerHTML = "Error! characters between 3 and 30" ; 
-  document.getElementById('card_name').focus();
-  return false;
-  }
-  var pattern1 = new RegExp("^[a-zA-Z ]*$");
-  if(!pattern1.test(document.registration_form.card_name.value))
-  {
-  document.getElementById('card_name_error').innerHTML ="Error: Please enter Card Name!" ; 
-  document.registration_form.cardname.focus();
-  return false;
-  }
-  return true;
-}
-
-
+ 
 </script>
 
 
