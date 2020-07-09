@@ -42,6 +42,8 @@ function validate_form($form_data) {
 
 $login_details = get_current_user_set();
 
+//debug($login_details);
+
 if (validate_form($_POST)) {
 
 	echo "Passed form data validations";
@@ -51,7 +53,15 @@ if (validate_form($_POST)) {
 
 	$image = $login_details['user_data']['image'];
 
-	if (isset($_FILES) && !empty($_FILES['image'])) {
+	$profile_details = $student->getStudentById($login_details['user_data']['student_id']);
+
+	//debug($profile_details);
+
+	$resume = $profile_details['resume'];
+	$sslc_certificate = $profile_details['sslc_certificate'];
+	$highersecondary_certificate = $profile_details['sslc_certificate'];
+
+	if (isset($_FILES) && !empty($_FILES['image']['name'])) {
 
 		/*echo ($_FILES["image"]["name"]);
 			echo "<br>";
@@ -76,7 +86,7 @@ if (validate_form($_POST)) {
 
 	}
 
-	if (isset($_FILES) && !empty($_FILES['resume'])) {
+	if (isset($_FILES) && !empty($_FILES['resume']['name'])) {
 
 		/*echo ($_FILES["resume"]["name"]);
 			echo "<br>";
@@ -94,7 +104,6 @@ if (validate_form($_POST)) {
 
 			$resume = $enc_name;
 			echo ("<br> Resume File Uploaded");
-			$profile->setData('resume', $resume);
 
 		} else {
 			echo ("<br> Resume File Upload Failed");
@@ -102,7 +111,7 @@ if (validate_form($_POST)) {
 
 	}
 
-	if (isset($_FILES) && !empty($_FILES['sslc_certificate'])) {
+	if (isset($_FILES) && !empty($_FILES['sslc_certificate']['name'])) {
 
 		/*echo ($_FILES["sslc_certificate"]["name"]);
 			echo "<br>";
@@ -121,15 +130,13 @@ if (validate_form($_POST)) {
 			$sslc_certificate = $enc_name;
 			echo ("<br> sslc_certificate File Uploaded");
 
-			$profile->setData('sslc_certificate', $sslc_certificate);
-
 		} else {
 			echo ("<br> sslc_certificate File Upload Failed");
 		}
 
 	}
 
-	if (isset($_FILES) && !empty($_FILES['highersecondary_certificate'])) {
+	if (isset($_FILES) && !empty($_FILES['highersecondary_certificate']['name'])) {
 
 		/*echo ($_FILES["image"]["name"]);
 			echo "<br>";
@@ -147,7 +154,6 @@ if (validate_form($_POST)) {
 
 			$highersecondary_certificate = $enc_name;
 			echo ("<br> highersecondary_certificate File Uploaded");
-			$profile->setData('highersecondary_certificate', $highersecondary_certificate);
 
 		} else {
 			echo ("<br> highersecondary_certificate File Upload Failed");
@@ -177,11 +183,14 @@ if (validate_form($_POST)) {
 	$profile->setData('addressline2', trim($_POST['addressline2']));
 	$profile->setData('pincode', trim($_POST['pincode']));
 	$profile->setData('cgpa', trim($_POST['cgpa']));
-	$profile->setData('gpg', trim($_POST['gpg']));
 	$profile->setData('gug', trim($_POST['gug']));
 	$profile->setData('gplus', trim($_POST['gplus']));
 	$profile->setData('g10', trim($_POST['g10']));
 	$profile->setData('backlogs', trim($_POST['backlogs']));
+
+	$profile->setData('resume', $resume);
+	$profile->setData('sslc_certificate', $sslc_certificate);
+	$profile->setData('highersecondary_certificate', $highersecondary_certificate);
 
 	//debug($profile, false);
 
