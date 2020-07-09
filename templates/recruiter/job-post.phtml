@@ -313,9 +313,9 @@ document.getElementById('job_description_error').innerHTML = "Error! Job Descrip
 return false;
 }
 
-if ((job_description.length < 10) || (job_description.length > 50))
+if ((job_description.length < 10) || (job_description.length > 1000))
 {
-document.getElementById('job_description_error').innerHTML = "Error! characters between 10 and 50" ; 
+document.getElementById('job_description_error').innerHTML = "Error! characters between 10 and 1000" ; 
 document.getElementById('job_description').focus();
 return false;
 }
