@@ -49,9 +49,9 @@ if (validate_form($_POST)) {
 
 	$image_file = $login_details['user_data']['image'];
 
-	$profile_details = $student->getRecruiterById($login_details['user_data']['recruiter_id']);
+	$profile_details = $recruiter->getRecruiterById($login_details['user_data']['recruiter_id']);
 
-	debug($profile_details);
+	//debug($profile_details);
 
 	$license_file = $profile_details['license_file'];
 
@@ -59,7 +59,6 @@ if (validate_form($_POST)) {
 
 		/*echo ($_FILES["image"]["name"]);
 			echo "<br>";
-			echo ($_FILES["image"]["tmp_name"]);
 		*/
 
 		$target_dir = "../../uploads/images/";

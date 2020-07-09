@@ -211,7 +211,7 @@
                   <label for="pincode" class="col-sm-2 control-label">SSLC Certificate  </label>
                   <div class="col-sm-4">
                     <input type="file" class="" id="sslc_certificate" name="sslc_certificate" 
-                    <?=(!empty($this->data['profile_details']['sslc_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['sslc_certificate']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['sslc_certificate'])) { ?> 
@@ -227,7 +227,7 @@
                   <div class="col-sm-4">
                     <input type="file" class="" id="highersecondary_certificate" name="highersecondary_certificate" 
 
-                    <?=(!empty($this->data['profile_details']['highersecondary_certificate']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['highersecondary_certificate']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf"  >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['highersecondary_certificate'])) { ?> 
@@ -242,7 +242,7 @@
                   <label for="pincode" class="col-sm-2 control-label">Resume  </label>
                   <div class="col-sm-4">
                     <input type="file" class="" id="resume" name="resume" 
-                    <?=(!empty($this->data['profile_details']['resume']))? "" : ' required="required"'?>  accept="pdf"  >
+                    <?=(!empty($this->data['profile_details']['resume']))? "" : ' required="required"'?>  accept="image/x-png,image/gif,image/jpeg,application/pdf" >
                   </div>
                   <div class="col-sm-4"> 
                     <?php if (isset($this->data['profile_details']['resume'])) { ?> 
@@ -256,7 +256,7 @@
                 <div class="form-group">
                   <label for="pincode" class="col-sm-2 control-label">Image  </label>
                   <div class="col-sm-4">
-                    <input type="file" class="" accept="png" id="image" name="image" >
+                    <input type="file" class="" accept="image/x-png,image/gif,image/jpeg" id="image" name="image" >
                   </div>
                   <div class="col-sm-4"> 
                     <img class="img img-responsive" width="150" src="<?=base_url()?>/uploads/images/<?=$this->data['profile_details']['image']?>">
