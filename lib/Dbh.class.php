@@ -73,8 +73,8 @@ class Dbh {
 			//return $this->connect()->lastInsertId($this->table_name);
 			return true;
 		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
+			//debug($this->connect()->errorCode(), false);
+			//debug($this->connect()->errorInfo());
 			return false;
 		}
 	}
@@ -98,8 +98,8 @@ class Dbh {
 			//return $this->connect()->lastInsertId($this->table_name);
 			return true;
 		} else {
-			debug($this->connect()->errorCode(), false);
-			debug($this->connect()->errorInfo());
+			//debug($this->connect()->errorCode(), false);
+			//debug($this->connect()->errorInfo());
 			return false;
 		}
 

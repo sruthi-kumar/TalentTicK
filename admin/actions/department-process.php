@@ -50,13 +50,12 @@ if (isset($_POST['id']) && isset($_POST['action'])) {
 
 	//debug($result);
 
-	if (!$result) {
-		$status = 'failed';
-		$_SESSION['errors']['department'] = "Post Failed!";
+	if ($result) {
+		$status = 'success';
 	} else {
+		$_SESSION['errors']['department'] = "Post Failed!";
 		header("location:../department-list.php?status=$status");
 		exit;
-
 	}
 }
 
