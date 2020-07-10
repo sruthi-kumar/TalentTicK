@@ -96,7 +96,7 @@ class Notification extends Dbh {
 			$sql .= " WHERE created_at=? AND user=? AND status=? ORDER BY id DESC ";
 			$params = [Date($date), $this->user, 'active'];
 		} else {
-			$sql .= "  WHERE user=? AND status=? ";
+			$sql .= "  WHERE user=? AND status=? ORDER BY id DESC ";
 			$params = [$this->user, 'active'];
 		}
 		$stmt = $this->connect()->prepare($sql);

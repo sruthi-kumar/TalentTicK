@@ -75,6 +75,11 @@ class JobApplication extends Dbh {
 		$sql .= " JOIN recruiters ON recruiters.id = jobs.recruiter ";
 		$sql .= " JOIN location_districts ON location_districts.id = jobs.district_id ";
 
+		if ($user_type == 'student') {
+
+			$sql .= "  WHERE $this->table_name.user = $user_id  ";
+		}
+
 		//debug($sql);
 
 		$result = $this->connect()->query($sql);
