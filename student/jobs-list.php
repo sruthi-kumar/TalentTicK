@@ -47,8 +47,8 @@ foreach ($job_list as $job) {
 	if (in_array($student_details['branch_id'], $qualified_branches)) {
 
 		if (
-			floatval($job['CGPA_min']) >= floatval($student_details['cgpa']) &&
-			intval($job['backlog_count']) <= intval($student_details['backlogs'])
+			floatval($job['CGPA_min']) <= floatval($student_details['cgpa']) &&
+			intval($job['backlog_count']) >= intval($student_details['backlogs'])
 		) {
 
 			$applied_job = $application->getJobApplicationForJobByStudent($job['id'], $page_data['user_data']['user_id']);
