@@ -54,7 +54,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 		if ($notification->create()) {
 
 			$status = send_email_notification($recruiter_details['email'], $subject, $body);
-			debug($status);
+			//debug($status);
 
 		}
 
