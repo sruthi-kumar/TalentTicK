@@ -28,6 +28,14 @@ $student = new Student();
 $student_details = $student->getStudentById($page_data['user_data']['student_id']);
 //debug($student_details);
 
+$application = new JobApplication();
+
+$application->setData('user', $page_data['user_data']['user_id']);
+
+$applied_jobs = $application->getJobApplications($page_data['user_data']['student_id'], $page_data['login_type']);
+
+//debug($applied_jobs);
+
 foreach ($job_list as $job) {
 
 	//debug($job);
@@ -42,7 +50,19 @@ foreach ($job_list as $job) {
 			floatval($job['CGPA_min']) >= floatval($student_details['cgpa']) &&
 			intval($job['backlog_count']) <= intval($student_details['backlogs'])
 		) {
+
 			$page_data['jobs'][] = $job;
+
+			// foreach ($applied_jobs as $applied_job) {
+
+			// 	// debug($applied_job['job'], false);
+			// 	// debug($job['id']);
+
+			// 	if (intval($applied_job['job']) != intval($job['id'])) {
+			// 		$page_data['jobs'][] = $job;
+			// 	}
+			// }
+
 		}
 
 	}
