@@ -37,7 +37,23 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 		$_SESSION['errors']['register'] = "Update Failed!";
 	} else {
 
-		$_SESSION['user_data']['image'] = $image_file;
+		$subject = "Your Profile has been approved by Talentick Admin";
+
+		$body = "
+		Dear " . $recruiter_details['company_name'] . "<br>
+		Your Profile has been approved by Talentick Admin <br> ";
+
+		$notification = new Notification();
+
+		$notification->setData('user', $recruiter_details['user_id']);
+		$notification->setData('title', $subject);
+		$notification->setData('description', $body);
+
+		if ($notification->create()) {
+
+			send_email_notification($user['email'], $subject, $body);
+
+		}
 
 	}
 
