@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 09, 2020 at 10:54 PM
+-- Generation Time: Jul 10, 2020 at 01:22 PM
 -- Server version: 8.0.20-0ubuntu0.20.04.1
 -- PHP Version: 7.3.19-1+ubuntu20.04.1+deb.sury.org+1
 
@@ -73,7 +73,10 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`id`, `department`) VALUES
 (3, 'B.Tech'),
 (1, 'M.Tech'),
-(2, 'MCA');
+(2, 'MCA'),
+(8, 'SDFDSFSD'),
+(7, 'SREE'),
+(6, 'TEST123');
 
 -- --------------------------------------------------------
 
@@ -106,7 +109,9 @@ CREATE TABLE `jobs` (
 
 INSERT INTO `jobs` (`id`, `recruiter`, `job_title`, `job_description`, `job_type`, `district_id`, `qualified_branches`, `CGPA_min`, `backlog_count`, `salary_min`, `salary_max`, `vacancies`, `status`, `last_date_to_apply`, `created_at`) VALUES
 (1, 1, 'WEB DEVELOPER', 'Web developer job openings ', 1, 2, '[\"11\",\"6\",\"8\",\"7\",\"2\"]', 60, 3, 100000, 150000, 10, 'active', '2020-10-30', '2020-05-31 09:50:22'),
-(2, 1, 'test job post', 'test', 1, 5, '[\"5\",\"14\",\"12\",\"4\",\"15\",\"7\",\"2\"]', 80, 0, 100000, 120000, 10, 'active', '2020-08-29', '2020-06-04 19:31:51');
+(2, 1, 'test job post', 'test', 1, 5, '[\"5\",\"14\",\"12\",\"4\",\"15\",\"7\",\"2\"]', 80, 0, 100000, 120000, 10, 'active', '2020-08-29', '2020-06-04 19:31:51'),
+(3, 1, 'Web Developer', 'Web developer trainee', 1, 6, '[\"7\",\"2\"]', 70, 0, 100000, 500000, 10, 'active', '2020-07-30', '2020-07-09 19:34:42'),
+(4, 1, 'Web Developer', 'Web developer trainee', 1, 6, '[\"7\",\"2\"]', 70, 0, 100000, 500000, 10, 'active', '2020-07-30', '2020-07-09 19:35:25');
 
 -- --------------------------------------------------------
 
@@ -128,7 +133,11 @@ CREATE TABLE `job_applications` (
 --
 
 INSERT INTO `job_applications` (`id`, `user`, `job`, `status`, `created_at`) VALUES
-(1, 6, 2, 'pending', '2020-07-09 03:03:35');
+(4, 6, 2, 'accepted', '2020-07-10 03:55:05'),
+(5, 6, 2, 'pending', '2020-07-10 03:57:04'),
+(6, 6, 2, 'pending', '2020-07-10 03:57:47'),
+(7, 6, 2, 'pending', '2020-07-10 03:58:07'),
+(9, 4, 2, 'pending', '2020-07-10 06:03:41');
 
 -- --------------------------------------------------------
 
@@ -281,7 +290,15 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `description`, `action_link`
 (19, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:01:31'),
 (20, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:13:43'),
 (21, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:17:52'),
-(22, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:42:11');
+(22, 1, 'New Recruiter Registered', 'New Recruiter Registerd in Portal.\n Please check & verify', '', 'info', 'active', '2020-07-09 02:42:11'),
+(23, 1, 'Job Posted By Recruiter', '\n		Job Posted By Recruiter.<br>\n\n		Job Title : Web Developer  <br>\n\n		Job Description : Web developer trainee  <br>\n\n		Last Date to Apply : 2020-07-30  <br>\n\n		Please check <br> ', '', 'info', 'active', '2020-07-09 19:35:25'),
+(24, 4, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-07-09 19:40:33'),
+(25, 5, 'Job Applied By Candidate', '\n		Job Applied By Candidate.<br>\n		Please check <br> ', '', 'info', 'active', '2020-07-10 03:58:07'),
+(26, 6, 'Your Application has been accepted by Recruiter', ' Dear Student .<br>  Your Application has been accepted by Recruiter <br> Please check your account <br> ', '', 'info', 'active', '2020-07-10 03:59:26'),
+(27, 5, 'Job Applied By Candidate', '\n		Job Applied By Candidate.<br>\n		Please check <br> ', '', 'info', 'active', '2020-07-10 05:54:56'),
+(28, 5, 'Job Applied By Candidate', '\n		Job Applied By Candidate.<br>\n		Please check <br> ', '', 'info', 'active', '2020-07-10 06:03:41'),
+(29, 4, 'Message From Talentick Admin', 'hiiiii', '', 'info', 'active', '2020-07-10 07:43:04'),
+(30, 6, 'Message From Talentick Admin', 'hiiiii', '', 'info', 'active', '2020-07-10 07:43:08');
 
 -- --------------------------------------------------------
 
@@ -561,19 +578,19 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `job_types`
@@ -597,7 +614,7 @@ ALTER TABLE `location_states`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `profiles`
