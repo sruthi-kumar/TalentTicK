@@ -57,7 +57,9 @@ if (validate_form($_POST)) {
 
 			$notification->setData('user', $recpient["user_id"]);
 			$notification->setData('title', $subject);
-			$notification->setData('message', $message);
+			$notification->setData('description', $message);
+
+			debug($notification);
 
 			if ($notification->create()) {
 
