@@ -30,7 +30,12 @@ if (isset($_GET['id'])) {
 		$job = new Job();
 		$job_details = $job->getJobById($_GET['id']);
 
-		debug($job_details);
+		//debug($job_details);
+
+		$recruiter = new Recruiter();
+		$recruiter_details = $recruiter->getRecruiterById($job_details['recruiter']);
+
+		//debug($recruiter_details);
 
 		$subject = "Job Applied By Candidate";
 
@@ -40,7 +45,7 @@ if (isset($_GET['id'])) {
 
 		$notification = new Notification();
 
-		$notification->setData('user', $user['user_id']);
+		$notification->setData('user', $recruiter_details['user_id']);
 		$notification->setData('title', $subject);
 		$notification->setData('description', $body);
 

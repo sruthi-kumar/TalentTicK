@@ -17,7 +17,7 @@ $application = new JobApplication();
 
 $application->setData('user', $page_data['user_data']['user_id']);
 
-$page_data['applications'] = $application->getJobApplications($page_data['user_data']['student_id'], $page_data['login_type']);
+$page_data['applications'] = $application->getJobApplications($page_data['user_data']['user_id'], $page_data['login_type']);
 
 //debug($page_data['applications']);
 
