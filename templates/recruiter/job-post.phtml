@@ -369,7 +369,8 @@ function ValidateCgpa()
 document.getElementById('CGPA_min_error').innerHTML = "" ;
 if(document.job_post_form.CGPA_min.value == "" ||
 isNaN(document.job_post_form.CGPA_min.value) ||
-document.job_post_form.CGPA_min.value < 0 )
+document.job_post_form.CGPA_min.value < 0 ||
+document.job_post_form.CGPA_min.value > 100 )
 {
 document.getElementById('CGPA_min_error').innerHTML = "Please provide a valid CGPA " ;     
 document.getElementById('CGPA_min').focus();
@@ -385,7 +386,8 @@ function ValidateBacklog()
 document.getElementById('backlog_count_error').innerHTML = "" ;
 if(document.job_post_form.backlog_count.value == "" ||
 isNaN(document.job_post_form.backlog_count.value) ||
-document.job_post_form.backlog_count.value < 0  )
+document.job_post_form.backlog_count.value < 0  ||
+document.job_post_form.backlog_count.value > 100)
 {
 document.getElementById('backlog_count_error').innerHTML = "Please provide a valid Backlog count " ;      
 document.getElementById('backlog_count').focus();
@@ -401,7 +403,7 @@ function ValidateSalary_min()
 document.getElementById('salary_min_error').innerHTML = "" ;
 if(document.job_post_form.salary_min.value == "" ||
 isNaN(document.job_post_form.salary_min.value) ||
-document.job_post_form.salary_min.value.length <= 5 )
+document.job_post_form.salary_min.value < 1000 )
 {
 document.getElementById('salary_min_error').innerHTML = "Please provide valid salary " ;
 document.getElementById('salary_min').focus();
@@ -423,7 +425,7 @@ function ValidateSalary_Max()
 document.getElementById('salary_max_error').innerHTML = "" ;
 if(document.job_post_form.salary_max.value == "" ||
 isNaN(document.job_post_form.salary_max.value) ||
-document.job_post_form.salary_max.value.length <= 5)
+document.job_post_form.salary_max.value < 1000 )
 {
 document.getElementById('salary_max_error').innerHTML = "Please provide accurate salary " ;
 document.getElementById('salary_max').focus();
