@@ -103,7 +103,7 @@ function notify_users() {
 
 			if (
 				floatval($_POST['CGPA_min']) >= floatval($student_details['cgpa']) &&
-				intval($_POST['backlogs']) <= intval($student_details['backlogs'])
+				intval($_POST['backlog_count']) <= intval($student_details['backlogs'])
 			) {
 				$users[] = [
 					"user_id" => $student_details['user_id'],

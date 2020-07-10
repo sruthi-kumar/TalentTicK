@@ -27,7 +27,28 @@ if (isset($_GET['id'])) {
 		$_SESSION['errors']['apply_job'] = "Job Application Failed!";
 	} else {
 
-		//notify recruiter
+		$job = new Job();
+		$job_details = $job->getJobById($_GET['id']);
+
+		debug($job_details);
+
+		$subject = "Job Applied By Candidate";
+
+		$body = "
+		Job Applied By Candidate.<br>
+		Please check <br> ";
+
+		$notification = new Notification();
+
+		$notification->setData('user', $user['user_id']);
+		$notification->setData('title', $subject);
+		$notification->setData('description', $body);
+
+		if ($notification->create()) {
+
+			send_email_notification($user['email'], $subject, $body);
+
+		}
 
 	}
 
