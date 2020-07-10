@@ -59,7 +59,7 @@ if (validate_form($_POST)) {
 			$notification->setData('title', $subject);
 			$notification->setData('description', $message);
 
-			debug($notification);
+			//debug($notification);
 
 			if ($notification->create()) {
 
