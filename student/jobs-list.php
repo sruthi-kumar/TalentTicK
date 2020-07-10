@@ -51,7 +51,13 @@ foreach ($job_list as $job) {
 			intval($job['backlog_count']) <= intval($student_details['backlogs'])
 		) {
 
-			$page_data['jobs'][] = $job;
+			$applied_job = $application->getJobApplicationForJobByStudent($job['id'], $page_data['user_data']['user_id']);
+
+			//debug($applied_job);
+
+			if (!$applied_job) {
+				$page_data['jobs'][] = $job;
+			}
 
 			// foreach ($applied_jobs as $applied_job) {
 
