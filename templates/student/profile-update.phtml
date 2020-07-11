@@ -436,7 +436,8 @@ function Validate_Percentage()
 document.getElementById('cgpa_error').innerHTML = "" ;
 if(document.update_form.cgpa.value == "" ||
 isNaN(document.update_form.cgpa.value) ||
-document.update_form.cgpa.value.length != 2 )
+document.update_form.cgpa.value  <0 ||
+document.update_form.cgpa.value  > 100 )
 
 {
 document.getElementById('cgpa_error').innerHTML = "Please provide a valid CGPA " ;      
@@ -459,17 +460,18 @@ function Validate_Post_Graduation()
 document.getElementById('gpg_error').innerHTML = "" ;
 if(document.update_form.gpg.value == "" ||
 isNaN(document.update_form.gpg.value) ||
-document.update_form.gpg.value.length != 2 )
+document.update_form.gpg.value  <0 ||
+document.update_form.gpg.value  > 100 )
 
 {
-document.getElementById('gpg_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gpg_error').innerHTML = "Please provide a valid percentage " ;      
 document.getElementById('gpg').focus();
 return false;
 }
 var pattern = document.getElementById('gpg').value;
 if(isNaN(pattern))
 {
-document.getElementById('gpg_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gpg_error').innerHTML = "percentage is invalid!" ; 
 update_form.gpg.focus();
 return false;
 }
@@ -482,17 +484,18 @@ function Validate_Graduation()
 document.getElementById('gug_error').innerHTML = "" ;
 if(document.update_form.gug.value == "" ||
 isNaN(document.update_form.gug.value) ||
-document.update_form.gug.value.length != 2 )
+document.update_form.gug.value  <0 ||
+document.update_form.gug.value  > 100 )
 
 {
-document.getElementById('gug_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gug_error').innerHTML = "Please provide a valid percentage " ;      
 document.getElementById('gug').focus();
 return false;
 }
 var pattern = document.getElementById('gug').value;
 if(isNaN(pattern))
 {
-document.getElementById('gug_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gug_error').innerHTML = "percentage is invalid!" ; 
 update_form.gug.focus();
 return false;
 }
@@ -505,16 +508,17 @@ function Validate_plusTwo()
 document.getElementById('gplus_error').innerHTML = "" ;
 if(document.update_form.gplus.value == "" ||
 isNaN(document.update_form.gplus.value) ||
-document.update_form.gplus.value.length != 2 )
+document.update_form.gplus.value  <0 ||
+document.update_form.gplus.value  > 100 )
 {
-document.getElementById('gplus_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('gplus_error').innerHTML = "Please provide a valid percentage " ;      
 document.getElementById('gplus').focus();
 return false;
 }
 var pattern = document.getElementById('gplus').value;
 if(isNaN(pattern))
 {
-document.getElementById('gplus_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('gplus_error').innerHTML = "percentage is invalid!" ; 
 update_form.gplus.focus();
 return false;
 }
@@ -527,17 +531,17 @@ function Validate_tenth()
 document.getElementById('g10_error').innerHTML = "" ;
 if(document.update_form.g10.value == "" ||
 isNaN(document.update_form.g10.value) ||
-document.update_form.g10.value.length != 2 )
-
+document.update_form.g10.value  <0 ||
+document.update_form.g10.value  > 100 )
 {
-document.getElementById('g10_error').innerHTML = "Please provide a valid CGPA " ;      
+document.getElementById('g10_error').innerHTML = "Please provide a valid percentage " ;      
 document.getElementById('g10').focus();
 return false;
 }
 var pattern = document.getElementById('g10').value;
 if(isNaN(pattern))
 {
-document.getElementById('g10_error').innerHTML = "CGPA is invalid!" ; 
+document.getElementById('g10_error').innerHTML = "percentage is invalid!" ; 
 update_form.g10.focus();
 return false;
 }
