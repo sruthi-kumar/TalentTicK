@@ -26,10 +26,19 @@ if ($page_data['user_data']['recruiter_status'] == "approved") {
 	$testimonial_count = $testimonial->getTestimonials('count');
 	$notification_count = $notification->getNotificationByUser($_SESSION['user_data']['user_id'], 'count');
 
+	$application = new JobApplication();
+
+	$application->setData('user', $_SESSION['user_data']['user_id']);
+
+	$application_count = $application->getJobApplications($page_data['user_data']['recruiter_id'], 'recruiter', 'count');
+
+	//debug($application_count);
+
 	$page_data['job_count'] = $job_count[0]['count'];
 	$page_data['recruiter_count'] = $recruiter_count[0]['count'];
 	$page_data['testimonial_count'] = $testimonial_count[0]['count'];
 	$page_data['notification_count'] = $notification_count[0]['count'];
+	$page_data['application_count'] = $application_count[0]['count'];
 
 	$t->data = $page_data;
 	$t->render('inc/header.phtml');

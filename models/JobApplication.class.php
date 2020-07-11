@@ -80,6 +80,11 @@ class JobApplication extends Dbh {
 			$sql .= "  WHERE $this->table_name.user = $user_id  ";
 		}
 
+		if ($user_type == 'recruiter') {
+
+			$sql .= "  WHERE jobs.recruiter = $user_id  ";
+		}
+
 		//debug($sql);
 
 		$result = $this->connect()->query($sql);
