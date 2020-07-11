@@ -19,6 +19,32 @@ $job = new Job();
 //$job->setData('user', $_SESSION['user_data']['user_id']);
 $page_data['job_details'] = $job->getJobById($id);
 
+$branch = new Branch();
+
+//debug($page_data['job_details']);
+
+$qualified_branches = $page_data['job_details']['qualified_branches'];
+
+$qualified_branches = json_decode($qualified_branches, true);
+
+//debug($qualified_branches);
+
+$branch_list = [];
+
+foreach ($qualified_branches as $qualified_branch) {
+
+	$branch_details = $branch->getBranchById($qualified_branch);
+
+	//debug($branch_details);
+
+	$branch_list[] = $branch_details['branch'];
+
+}
+
+//debug($branch_list);
+
+$page_data['job_details']['branch_list'] = $branch_list;
+
 //debug($page_data['job_details']);
 
 $application = new JobApplication();

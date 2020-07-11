@@ -21,7 +21,7 @@ if ($page_data['user_data']['recruiter_status'] == "approved") {
 	$testimonial = new Testimonial();
 	$notification = new Notification();
 
-	$job_count = $job->getJobs('count');
+	$job_count = $job->getJobs('count', $_SESSION['user_data']['id']);
 	$recruiter_count = $recruiter->getRecruiters('count');
 	$testimonial_count = $testimonial->getTestimonials('count');
 	$notification_count = $notification->getNotificationByUser($_SESSION['user_data']['user_id'], 'count');

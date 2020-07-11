@@ -16,7 +16,7 @@
           <p> Salary Min: <?=$this->data['job_details']['salary_min']?> </p>
           <p> Salary Max: <?=$this->data['job_details']['salary_max']?> </p>
           <p> Vacancies: <?=$this->data['job_details']['vacancies']?> </p>
-           <?php if($this->data['user_data']['type'] == 'admin'  ){ ?> 
+           <?php if($this->data['user_data']['type'] != 'student'  ){ ?> 
            <p> Total Applications : <?=$this->data['application_count']['count'] ?>   </p> 
           <?php }  ?>
           <p> Last Date to Apply: <?=$this->data['job_details']['last_date_to_apply']?> </p>
