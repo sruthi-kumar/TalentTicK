@@ -37,11 +37,24 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 		$_SESSION['errors']['register'] = "Update Failed!";
 	} else {
 
-		$subject = "Your Profile has been approved by Talentick Admin";
+		if ($_GET['action'] == 'approved') {
 
-		$body = "
+			$subject = "Your Profile has been approved by Talentick Admin";
+
+			$body = "
 		Dear " . $recruiter_details['company_name'] . "<br>
 		Your Profile has been approved by Talentick Admin <br> ";
+
+		} else {
+
+			$subject = "Your Profile has been rejected by Talentick Admin";
+
+			$body = "
+		Dear " . $recruiter_details['company_name'] . "<br>
+		Your Profile has been rejected by Talentick Admin <br>
+		Please check with Talentick Admin and resolve.<br> ";
+
+		}
 
 		$notification = new Notification();
 
