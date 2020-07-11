@@ -1,7 +1,7 @@
 <!-- main content start-->
 
 <!-- 
-  `bluckmessages` WHERE 1  `id`, `user`, `user_type`, `message`, `status`, `show_in_web`, `created_at`, `updated_at`
+  `bulkmessages` WHERE 1  `id`, `user`, `user_type`, `message`, `status`, `show_in_web`, `created_at`, `updated_at`
 
  -->
     <div id="page-wrapper">
@@ -14,7 +14,7 @@
 
           <div class="row"> 
             <div class="form-three widget-shadow">
-              <form action="<?=base_url()?>/admin/actions/bluckmessage-post-action.php" method="post" class="form-horizontal"> 
+              <form action="<?=base_url()?>/admin/actions/bulkmessage-post-action.php" method="post" class="form-horizontal"> 
                 
                 <div class="form-group">
                   <label for="message" class="col-sm-2 control-label">Message</label>
@@ -43,6 +43,6 @@
  
 
     <script type="text/javascript">
-      <?php if( $this->data['status'] == "success"){ ?> alert("<?=$_SESSION['message']['bluckmessage']?>") <?php } ?>
-      <?php if( $this->data['status'] == "failed"){ ?> alert("<?=$_SESSION['errors']['bluckmessage']?>") <?php } ?>
+      <?php if( $this->data['status'] == "success"){ ?> alert("<?=$_SESSION['message']['bulkmessage']?>") <?php } ?>
+      <?php if( $this->data['status'] == "failed"){ ?> alert("<?=$_SESSION['errors']['bulkmessage']?>") <?php } ?>
     </script>

@@ -7,7 +7,7 @@ $status = 'success';
 
 /*
 
-`bluckmessages` WHERE 1  `id`, `user`, `user_type`, `message`, `status`, `show_in_web`, `created_at`, `updated_at`
+`bulkmessages` WHERE 1  `id`, `user`, `user_type`, `message`, `status`, `show_in_web`, `created_at`, `updated_at`
 
  */
 
@@ -69,16 +69,16 @@ if (validate_form($_POST)) {
 
 		}
 
-		$_SESSION['bluckmessage']['message'] = "Bluck Message Successfull!";
+		$_SESSION['bulkmessage']['message'] = "Bluck Message Successfull!";
 
 	} else {
 		$status = 'failed';
-		$_SESSION['errors']['bluckmessage'] = "Bluck Message Failed!";
+		$_SESSION['errors']['bulkmessage'] = "Bluck Message Failed!";
 	}
 
 } else {
 	$status = 'failed';
-	$_SESSION['errors']['bluckmessage'] = "Invalid Testimonial Data!";
+	$_SESSION['errors']['bulkmessage'] = "Invalid Testimonial Data!";
 }
 
 header("location:" . $_SERVER['HTTP_REFERER'] . "?status=$status");

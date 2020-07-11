@@ -24,5 +24,5 @@ if (isset($_GET['status'])) {
 $t->data = $page_data;
 $t->render('inc/header.phtml');
 $t->render('inc/nav.phtml');
-$t->render('bluck-message.phtml');
+$t->render('bulk-message.phtml');
 $t->render('inc/footer.phtml');
